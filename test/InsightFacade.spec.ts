@@ -4,6 +4,7 @@ import { InsightResponse, InsightResponseSuccessBody, InsightDatasetKind } from 
 import InsightFacade from "../src/controller/InsightFacade";
 import Log from "../src/Util";
 import TestUtil from "./TestUtil";
+import { AsyncResource } from "async_hooks";
 
 // This should match the JSON schema described in test/query.schema.json
 // except 'filename' which is injected when the file is read.
@@ -19,6 +20,8 @@ describe("InsightFacade Add/Remove Dataset", function () {
     // automatically be loaded in the Before All hook.
     const datasetsToLoad: { [id: string]: string } = {
         courses: "./test/data/courses.zip",
+        rooms: "./test/data/rooms.zip",
+        test: "./test/data/test.zip",
     };
 
     let insightFacade: InsightFacade;
@@ -76,8 +79,98 @@ describe("InsightFacade Add/Remove Dataset", function () {
         }
     });
 
+    it("Should add the dataset I created", async () => {
+        let response: InsightResponse;
+        const id: string = "rooms";
+        const expected: number = 204;
+        try {
+            response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
+        } catch (err) {
+            response = err;
+        } finally {
+            expect(response.code).to.equal(expected);
+        }
+    });
+
+    it("Should not add an invalid dataset", async () => {
+       let response: InsightResponse;
+       const id: string = "test";
+       const expected: number = 400;
+       try {
+           response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
+       } catch (err) {
+           response = err;
+       } finally {
+           expect(response.code).to.equal(expected);
+       }
+    });
+
+    it("Should not add a dataset that doesn't exist", async () => {
+        let response: InsightResponse;
+        const expected: number = 400;
+        const id: string = "foo";
+        try {
+            response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
+        } catch (err) {
+            response = err;
+        } finally {
+            expect(response.code).to.equal(expected);
+        }
+    });
+
+    it("Should not add the same dataset twice", async () => {
+        const id: string = "courses";
+        const expectedCode: number = 400;
+        let response: InsightResponse;
+
+        try {
+            response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
+        } catch (err) {
+            response = err;
+        } finally {
+            expect(response.code).to.equal(expectedCode);
+        }
+    });
+
     // This is an example of a pending test. Add a callback function to make the test run.
-    it("Should remove the courses dataset");
+    it("Should remove the courses dataset", async () => {
+        const id: string = "courses";
+        let response: InsightResponse;
+        const expected: number = 204;
+        try {
+            response = await insightFacade.removeDataset(id);
+        } catch (err) {
+            response = err;
+        } finally {
+            expect(response.code).to.equal(expected);
+        }
+    });
+
+    it("Should return an error if the same dataset is removed twice", async () => {
+        const id: string = "courses";
+        let response: InsightResponse;
+        const expected: number = 400;
+        try {
+            response = await insightFacade.removeDataset(id);
+        } catch (err) {
+            response = err;
+        } finally {
+            expect(response.code).to.equal(expected);
+        }
+    });
+
+    it("Should not remove a databse that isn't there", async () => {
+        const id: string = "telephones";
+        let response: InsightResponse;
+        const expected: number = 400;
+        try {
+            response = await insightFacade.removeDataset(id);
+        } catch (err) {
+            response = err;
+        } finally {
+            expect(response.code).to.equal(expected);
+        }
+    });
 });
 
 // This test suite dynamically generates tests from the JSON files in test/queries.
@@ -85,6 +178,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
 describe("InsightFacade PerformQuery", () => {
     const datasetsToQuery: { [id: string]: string } = {
         courses: "./test/data/courses.zip",
+        my_data: "./test/data/my_data.csv.zip",
     };
     let insightFacade: InsightFacade;
     let testQueries: ITestQuery[] = [];
@@ -182,4 +276,69 @@ describe("InsightFacade PerformQuery", () => {
             }
         });
     });
+
+});
+
+describe("InsightFacade listDatasets", () => {
+    // Reference any datasets you've added to test/data here and they will
+    // automatically be loaded in the Before All hook.
+    const datasetsToLoad: { [id: string]: string } = {
+        courses: "./test/data/courses.zip",
+        rooms: "./test/data/rooms.zip",
+        test: "./test/data/test.zip",
+    };
+
+    let insightFacade: InsightFacade;
+    let datasets: { [id: string]: string };
+
+    before(async function () {
+        Log.test(`Before: ${this.test.parent.title}`);
+
+        try {
+            const loadDatasetPromises: Array<Promise<Buffer>> = [];
+            for (const [id, path] of Object.entries(datasetsToLoad)) {
+                loadDatasetPromises.push(TestUtil.readFileAsync(path));
+            }
+            const loadedDatasets = (await Promise.all(loadDatasetPromises)).map((buf, i) => {
+                return { [Object.keys(datasetsToLoad)[i]]: buf.toString("base64") };
+            });
+            datasets = Object.assign({}, ...loadedDatasets);
+            expect(Object.keys(datasets)).to.have.length.greaterThan(0);
+        } catch (err) {
+            expect.fail("", "", `Failed to read one or more datasets. ${JSON.stringify(err)}`);
+        }
+
+        try {
+            insightFacade = new InsightFacade();
+        } catch (err) {
+            Log.error(err);
+        } finally {
+            expect(insightFacade).to.be.instanceOf(InsightFacade);
+        }
+    });
+
+    beforeEach(function () {
+        Log.test(`BeforeTest: ${this.currentTest.title}`);
+    });
+
+    after(function () {
+        Log.test(`After: ${this.test.parent.title}`);
+    });
+
+    afterEach(function () {
+        Log.test(`AfterTest: ${this.currentTest.title}`);
+    });
+
+    it("Should return a list of datasets and their types", async () => {
+        let response: InsightResponse;
+        const status: number = 200;
+        try {
+            response = await insightFacade.listDatasets();
+        } catch (err) {
+            response = err;
+        } finally {
+            expect(response.code).to.equal(status);
+        }
+    });
+
 });

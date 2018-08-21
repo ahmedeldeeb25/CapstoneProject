@@ -1,0 +1,10 @@
+{
+    "title": "SELECT instructor, title WHERE title LIKE '%comp%'",
+    "query": "In courses dataset courses, find entries whose Title contains with comp; Show ID and Instructor and Title.",
+    "response": {
+        "code": 200,
+        "body": {
+            "result": []
+        }
+    }
+}

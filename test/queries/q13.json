@@ -1,0 +1,10 @@
+{
+    "title": "SELECT instructor, title WHERE title LIKE 'A%'",
+    "query": "In courses dataset courses, find entries whose Title begins with A; Show ID and Instructor and Title.",
+    "response": {
+        "code": 200,
+        "body": {
+            "result": []
+        }
+    }
+}

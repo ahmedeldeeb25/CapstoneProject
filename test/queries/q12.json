@@ -1,0 +1,10 @@
+{
+    "title": "SELECT dept, avg WHERE dep = math",
+    "query": "In courses dataset courses, find entries whose Department is equal to Math",
+    "response": {
+        "code": 200,
+        "body": {
+            "result": []
+        }
+    }
+}
