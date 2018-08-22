@@ -1,10 +1,19 @@
 {
     "title": "SELECT dept, avg WHERE avg = 97",
-    "query": "In courses dataset courses, find entries whose Average is equal to than 97; show Department and Average; sort in ascending order by Average.",
+    "query": "In courses dataset courses, find entries whose Average is equal to 97; show Department and Average; sort in ascending order by Average.",
     "response": {
         "code": 200,
         "body": {
-            "result": []
+            "result": [
+                {
+                    "courses_dept": "epse",
+                    "courses_avg": 97
+                },
+                {
+                    "courses_dept": "crwr",
+                    "courses_avg": 97
+                }
+            ]
         }
     }
 }

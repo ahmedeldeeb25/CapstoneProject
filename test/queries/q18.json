@@ -1,10 +1,171 @@
 {
     "title": "SELECT instructor, title WHERE title NOT LIKE '%comp%'",
-    "query": "In courses dataset courses, find entries whose Title does not contain comp; Show ID and Instructor and Title.",
+    "query": "In courses dataset courses, find entries whose Title does not include \"comp\" and ID is \"153\"; show ID and Instructor and Title.",
     "response": {
         "code": 200,
         "body": {
-            "result": []
+            "result": [
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "harris, robert",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "harris, robert",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "harris, robert",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "harris, robert",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "harris, robert",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "harris, robert",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "harris, robert",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "harris, robert",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "cooke, james",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "harris, robert",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "harris, robert",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "harris, robert",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "harris, robert",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "harris, robert",
+                    "courses_title": "human biology"
+                },
+                {
+                    "courses_id": "153",
+                    "courses_instructor": "",
+                    "courses_title": "human biology"
+                }
+            ]
         }
     }
 }

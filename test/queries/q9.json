@@ -1,10 +1,293 @@
 {
-    "title": "SELECT dept, avg WHERE avg < 97",
-    "query": "In courses dataset courses, find entries whose Average is greater than 97; show Department and Average; sort in descending order by Average.",
+    "title": "SELECT pass, fail, audit, id from courses WHERE avg > 97",
+    "query": "In courses dataset courses, find entries whose Average is greater than 97; show Pass and Fail and Audit and ID.",
     "response": {
         "code": 200,
         "body": {
-            "result": []
+            "result": [
+                {
+                    "courses_pass": 16,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "549"
+                },
+                {
+                    "courses_pass": 12,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "591"
+                },
+                {
+                    "courses_pass": 12,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "591"
+                },
+                {
+                    "courses_pass": 17,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "578"
+                },
+                {
+                    "courses_pass": 17,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "578"
+                },
+                {
+                    "courses_pass": 16,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "578"
+                },
+                {
+                    "courses_pass": 16,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "578"
+                },
+                {
+                    "courses_pass": 12,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "578"
+                },
+                {
+                    "courses_pass": 12,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "578"
+                },
+                {
+                    "courses_pass": 12,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "541"
+                },
+                {
+                    "courses_pass": 12,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "541"
+                },
+                {
+                    "courses_pass": 9,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "606"
+                },
+                {
+                    "courses_pass": 25,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "449"
+                },
+                {
+                    "courses_pass": 17,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "449"
+                },
+                {
+                    "courses_pass": 24,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "449"
+                },
+                {
+                    "courses_pass": 24,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "449"
+                },
+                {
+                    "courses_pass": 17,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "449"
+                },
+                {
+                    "courses_pass": 17,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "449"
+                },
+                {
+                    "courses_pass": 16,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "574"
+                },
+                {
+                    "courses_pass": 15,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "574"
+                },
+                {
+                    "courses_pass": 15,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "574"
+                },
+                {
+                    "courses_pass": 14,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "509"
+                },
+                {
+                    "courses_pass": 14,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "509"
+                },
+                {
+                    "courses_pass": 14,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "509"
+                },
+                {
+                    "courses_pass": 14,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "509"
+                },
+                {
+                    "courses_pass": 14,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "500"
+                },
+                {
+                    "courses_pass": 9,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "534"
+                },
+                {
+                    "courses_pass": 17,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "534"
+                },
+                {
+                    "courses_pass": 11,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "519"
+                },
+                {
+                    "courses_pass": 11,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "519"
+                },
+                {
+                    "courses_pass": 4,
+                    "courses_fail": 0,
+                    "courses_audit": 1,
+                    "courses_id": "525"
+                },
+                {
+                    "courses_pass": 4,
+                    "courses_fail": 0,
+                    "courses_audit": 1,
+                    "courses_id": "525"
+                },
+                {
+                    "courses_pass": 9,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "527"
+                },
+                {
+                    "courses_pass": 9,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "527"
+                },
+                {
+                    "courses_pass": 21,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "532"
+                },
+                {
+                    "courses_pass": 21,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "532"
+                },
+                {
+                    "courses_pass": 11,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "541"
+                },
+                {
+                    "courses_pass": 11,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "541"
+                },
+                {
+                    "courses_pass": 12,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "421"
+                },
+                {
+                    "courses_pass": 10,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "421"
+                },
+                {
+                    "courses_pass": 22,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "421"
+                },
+                {
+                    "courses_pass": 14,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "421"
+                },
+                {
+                    "courses_pass": 14,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "421"
+                },
+                {
+                    "courses_pass": 11,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "596"
+                },
+                {
+                    "courses_pass": 11,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "596"
+                },
+                {
+                    "courses_pass": 1,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "599"
+                },
+                {
+                    "courses_pass": 1,
+                    "courses_fail": 0,
+                    "courses_audit": 0,
+                    "courses_id": "599"
+                }
+            ]
         }
     }
 }

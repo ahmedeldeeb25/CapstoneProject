@@ -1,10 +1,326 @@
 {
     "title": "SELECT instructor, title WHERE title LIKE 'A%'",
-    "query": "In courses dataset courses, find entries whose Title begins with A; Show ID and Instructor and Title.",
+    "query": "In courses dataset courses, find entries whose Title begins with \"ab\"; show ID and Instructor and Title.",
     "response": {
         "code": 200,
         "body": {
-            "result": []
+            "result": [
+                {
+                    "courses_id": "370",
+                    "courses_instructor": "trosper, ronald",
+                    "courses_title": "aborignl forestr"
+                },
+                {
+                    "courses_id": "370",
+                    "courses_instructor": "",
+                    "courses_title": "aborignl forestr"
+                },
+                {
+                    "courses_id": "370",
+                    "courses_instructor": "lyall, andrea",
+                    "courses_title": "aborignl forestr"
+                },
+                {
+                    "courses_id": "370",
+                    "courses_instructor": "",
+                    "courses_title": "aborignl forestr"
+                },
+                {
+                    "courses_id": "370",
+                    "courses_instructor": "lyall, andrea",
+                    "courses_title": "aborignl forestr"
+                },
+                {
+                    "courses_id": "370",
+                    "courses_instructor": "",
+                    "courses_title": "aborignl forestr"
+                },
+                {
+                    "courses_id": "370",
+                    "courses_instructor": "lyall, andrea",
+                    "courses_title": "aborignl forestr"
+                },
+                {
+                    "courses_id": "370",
+                    "courses_instructor": "",
+                    "courses_title": "aborignl forestr"
+                },
+                {
+                    "courses_id": "370",
+                    "courses_instructor": "lyall, andrea",
+                    "courses_title": "aborignl forestr"
+                },
+                {
+                    "courses_id": "370",
+                    "courses_instructor": "",
+                    "courses_title": "aborignl forestr"
+                },
+                {
+                    "courses_id": "370",
+                    "courses_instructor": "lyall, andrea",
+                    "courses_title": "aborignl forestr"
+                },
+                {
+                    "courses_id": "370",
+                    "courses_instructor": "",
+                    "courses_title": "aborignl forestr"
+                },
+                {
+                    "courses_id": "320",
+                    "courses_instructor": "daniels, lori",
+                    "courses_title": "abiotic disturbn"
+                },
+                {
+                    "courses_id": "320",
+                    "courses_instructor": "",
+                    "courses_title": "abiotic disturbn"
+                },
+                {
+                    "courses_id": "320",
+                    "courses_instructor": "blackwell, bruce;mitchell, stephen jarvis",
+                    "courses_title": "abiotic disturbn"
+                },
+                {
+                    "courses_id": "320",
+                    "courses_instructor": "",
+                    "courses_title": "abiotic disturbn"
+                },
+                {
+                    "courses_id": "320",
+                    "courses_instructor": "blackwell, bruce;mitchell, stephen jarvis",
+                    "courses_title": "abiotic disturbn"
+                },
+                {
+                    "courses_id": "320",
+                    "courses_instructor": "",
+                    "courses_title": "abiotic disturbn"
+                },
+                {
+                    "courses_id": "320",
+                    "courses_instructor": "daniels, lori",
+                    "courses_title": "abiotic disturbn"
+                },
+                {
+                    "courses_id": "320",
+                    "courses_instructor": "",
+                    "courses_title": "abiotic disturbn"
+                },
+                {
+                    "courses_id": "320",
+                    "courses_instructor": "daniels, lori",
+                    "courses_title": "abiotic disturbn"
+                },
+                {
+                    "courses_id": "320",
+                    "courses_instructor": "",
+                    "courses_title": "abiotic disturbn"
+                },
+                {
+                    "courses_id": "320",
+                    "courses_instructor": "daniels, lori",
+                    "courses_title": "abiotic disturbn"
+                },
+                {
+                    "courses_id": "320",
+                    "courses_instructor": "",
+                    "courses_title": "abiotic disturbn"
+                },
+                {
+                    "courses_id": "516",
+                    "courses_instructor": "porath, marion",
+                    "courses_title": "able&creatv lrnr"
+                },
+                {
+                    "courses_id": "516",
+                    "courses_instructor": "",
+                    "courses_title": "able&creatv lrnr"
+                },
+                {
+                    "courses_id": "516",
+                    "courses_instructor": "lo, chih shen",
+                    "courses_title": "able&creatv lrnr"
+                },
+                {
+                    "courses_id": "516",
+                    "courses_instructor": "",
+                    "courses_title": "able&creatv lrnr"
+                },
+                {
+                    "courses_id": "516",
+                    "courses_instructor": "lauridsen, kristi",
+                    "courses_title": "able&creatv lrnr"
+                },
+                {
+                    "courses_id": "516",
+                    "courses_instructor": "",
+                    "courses_title": "able&creatv lrnr"
+                },
+                {
+                    "courses_id": "516",
+                    "courses_instructor": "porath, marion",
+                    "courses_title": "able&creatv lrnr"
+                },
+                {
+                    "courses_id": "516",
+                    "courses_instructor": "porath, marion",
+                    "courses_title": "able&creatv lrnr"
+                },
+                {
+                    "courses_id": "516",
+                    "courses_instructor": "",
+                    "courses_title": "able&creatv lrnr"
+                },
+                {
+                    "courses_id": "310",
+                    "courses_instructor": "souto clement, juan",
+                    "courses_title": "abstr linear alg"
+                },
+                {
+                    "courses_id": "310",
+                    "courses_instructor": "",
+                    "courses_title": "abstr linear alg"
+                },
+                {
+                    "courses_id": "310",
+                    "courses_instructor": "",
+                    "courses_title": "abstr linear alg"
+                },
+                {
+                    "courses_id": "310",
+                    "courses_instructor": "",
+                    "courses_title": "abstr linear alg"
+                },
+                {
+                    "courses_id": "310",
+                    "courses_instructor": "liu, keqin",
+                    "courses_title": "abstr linear alg"
+                },
+                {
+                    "courses_id": "310",
+                    "courses_instructor": "",
+                    "courses_title": "abstr linear alg"
+                },
+                {
+                    "courses_id": "310",
+                    "courses_instructor": "ruping, henrik",
+                    "courses_title": "abstr linear alg"
+                },
+                {
+                    "courses_id": "310",
+                    "courses_instructor": "",
+                    "courses_title": "abstr linear alg"
+                },
+                {
+                    "courses_id": "353",
+                    "courses_instructor": "",
+                    "courses_title": "abor & trty rght"
+                },
+                {
+                    "courses_id": "353",
+                    "courses_instructor": "",
+                    "courses_title": "abor & trty rght"
+                },
+                {
+                    "courses_id": "353",
+                    "courses_instructor": "",
+                    "courses_title": "abor & trty rght"
+                },
+                {
+                    "courses_id": "353",
+                    "courses_instructor": "",
+                    "courses_title": "abor & trty rght"
+                },
+                {
+                    "courses_id": "353",
+                    "courses_instructor": "",
+                    "courses_title": "abor & trty rght"
+                },
+                {
+                    "courses_id": "353",
+                    "courses_instructor": "",
+                    "courses_title": "abor & trty rght"
+                },
+                {
+                    "courses_id": "353",
+                    "courses_instructor": "",
+                    "courses_title": "abor & trty rght"
+                },
+                {
+                    "courses_id": "353",
+                    "courses_instructor": "",
+                    "courses_title": "abor & trty rght"
+                },
+                {
+                    "courses_id": "353",
+                    "courses_instructor": "",
+                    "courses_title": "abor & trty rght"
+                },
+                {
+                    "courses_id": "353",
+                    "courses_instructor": "",
+                    "courses_title": "abor & trty rght"
+                },
+                {
+                    "courses_id": "353",
+                    "courses_instructor": "",
+                    "courses_title": "abor & trty rght"
+                },
+                {
+                    "courses_id": "353",
+                    "courses_instructor": "",
+                    "courses_title": "abor & trty rght"
+                },
+                {
+                    "courses_id": "353",
+                    "courses_instructor": "",
+                    "courses_title": "abor & trty rght"
+                },
+                {
+                    "courses_id": "353",
+                    "courses_instructor": "",
+                    "courses_title": "abor & trty rght"
+                },
+                {
+                    "courses_id": "353",
+                    "courses_instructor": "",
+                    "courses_title": "abor & trty rght"
+                },
+                {
+                    "courses_id": "353",
+                    "courses_instructor": "",
+                    "courses_title": "abor & trty rght"
+                },
+                {
+                    "courses_id": "353",
+                    "courses_instructor": "",
+                    "courses_title": "abor & trty rght"
+                },
+                {
+                    "courses_id": "353",
+                    "courses_instructor": "",
+                    "courses_title": "abor & trty rght"
+                },
+                {
+                    "courses_id": "352",
+                    "courses_instructor": "",
+                    "courses_title": "aborig & cdn law"
+                },
+                {
+                    "courses_id": "352",
+                    "courses_instructor": "",
+                    "courses_title": "aborig & cdn law"
+                },
+                {
+                    "courses_id": "352",
+                    "courses_instructor": "",
+                    "courses_title": "aborig & cdn law"
+                },
+                {
+                    "courses_id": "352",
+                    "courses_instructor": "",
+                    "courses_title": "aborig & cdn law"
+                }
+            ]
         }
     }
 }

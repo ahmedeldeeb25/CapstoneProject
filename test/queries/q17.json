@@ -1,10 +1,206 @@
 {
     "title": "SELECT instructor, title WHERE title LIKE '%comp%'",
-    "query": "In courses dataset courses, find entries whose Title contains with comp; Show ID and Instructor and Title.",
+    "query": "In courses dataset courses, find entries whose Title includes \"comp\" and ID is \"300\"; show ID and Instructor and Title.",
     "response": {
         "code": 200,
         "body": {
-            "result": []
+            "result": [
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "bluman, george w",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "li, lu",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "feldman, joel",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "israel, robert b",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "pavlov, ronnie",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "chen, jingyi",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "marcus, brian harry",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "schotzau, dominik",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "yilmaz, ozgur",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "chau, albert",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "marcus, brian harry",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "sadel, christian",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "karu, kalle",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "marcus, brian harry",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "sadel, christian",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "chen, jingyi",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "doerksen, kevin",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "behrend, kai",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "yilmaz, ozgur",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "pramanik, malabika",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "tsai, tai-peng",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "samuels, charles",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "israel, robert b",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "karu, kalle",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "henriot, kevin",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "li, dong",
+                    "courses_title": "intr complex var"
+                },
+                {
+                    "courses_id": "300",
+                    "courses_instructor": "",
+                    "courses_title": "intr complex var"
+                }
+            ]
         }
     }
 }
