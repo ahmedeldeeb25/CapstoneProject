@@ -77,6 +77,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expectedCode);
+            expect(response.body).to.be("");
         }
     });
 
@@ -90,6 +91,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expected);
+            expect(response.body).to.be("");
         }
     });
 
@@ -103,6 +105,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
            response = err;
        } finally {
            expect(response.code).to.equal(expected);
+           expect(response.body).to.be("");
        }
     });
 
@@ -116,6 +119,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expected);
+            expect(response.body).to.be("");
         }
     });
 
@@ -129,6 +133,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expected);
+            expect(response.body).to.be("");
         }
     });
 
@@ -144,7 +149,9 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expectedCode);
+            expect(response.body).to.be("");
         }
+
     });
 
     // This is an example of a pending test. Add a callback function to make the test run.
@@ -158,6 +165,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expected);
+            expect(response.body).to.be("");
         }
     });
 
@@ -171,6 +179,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expected);
+            expect(response.body).to.be("");
         }
     });
 
@@ -184,6 +193,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expected);
+            expect(response.body).to.be("");
         }
     });
 
@@ -196,6 +206,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expected);
+            expect(response.body).to.be("");
         }
     });
 });
