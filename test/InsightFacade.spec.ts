@@ -190,6 +190,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
 describe("InsightFacade PerformQuery", () => {
     const datasetsToQuery: { [id: string]: string } = {
         courses: "./test/data/courses.zip",
+        tests: "./test/data/test.zip",
     };
 
     let insightFacade: InsightFacade;
