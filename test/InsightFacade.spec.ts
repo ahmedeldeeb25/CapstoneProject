@@ -124,20 +124,6 @@ describe("InsightFacade Add/Remove Dataset", function () {
         }
     });
 
-    // it("Should not add an invalid file", async () => {
-    //     let response: InsightResponse;
-    //     const id: string = "nonsense";
-    //     const expected: number = 400;
-    //     try {
-    //         response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Rooms);
-    //     } catch (err) {
-    //         response = err;
-    //     } finally {
-    //         expect(response.code).to.equal(expected);
-    //         expect(response.body).to.be("");
-    //     }
-    // });
-
     it("Should not add a dataset that doesn't exist", async () => {
         let response: InsightResponse;
         const expected: number = 400;
@@ -151,20 +137,6 @@ describe("InsightFacade Add/Remove Dataset", function () {
             expect(response.body).to.be("");
         }
     });
-
-    // it("Should not add a dataset that doesn't exist", async () => {
-    //     let response: InsightResponse;
-    //     const expected: number = 400;
-    //     const id: string = "foo";
-    //     try {
-    //         response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Rooms);
-    //     } catch (err) {
-    //         response = err;
-    //     } finally {
-    //         expect(response.code).to.equal(expected);
-    //         expect(response.body).to.be("");
-    //     }
-    // });
 
     it("Should not add the same dataset twice", async () => {
         const id: string = "courses";
@@ -183,23 +155,6 @@ describe("InsightFacade Add/Remove Dataset", function () {
 
     });
 
-    // it("Should not add the same dataset twice", async () => {
-    //     const id: string = "courses";
-    //     const expectedCode: number = 400;
-    //     let response: InsightResponse;
-
-    //     try {
-    //         response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Rooms);
-    //         response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Rooms);
-    //     } catch (err) {
-    //         response = err;
-    //     } finally {
-    //         expect(response.code).to.equal(expectedCode);
-    //         expect(response.body).to.be("");
-    //     }
-
-    // });
-
     // This is an example of a pending test. Add a callback function to make the test run.
     it("Should remove the courses dataset", async () => {
         const id: string = "courses";
@@ -214,20 +169,6 @@ describe("InsightFacade Add/Remove Dataset", function () {
             expect(response.body).to.be("");
         }
     });
-
-    // it("Should remove the rooms dataset", async () => {
-    //     const id: string = "rooms";
-    //     let response: InsightResponse;
-    //     const expected: number = 204;
-    //     try {
-    //         response = await insightFacade.removeDataset(id);
-    //     } catch (err) {
-    //         response = err;
-    //     } finally {
-    //         expect(response.code).to.equal(expected);
-    //         expect(response.body).to.be("");
-    //     }
-    // });
 
     it("Should return an error if the same dataset is removed twice", async () => {
         const id: string = "courses";
