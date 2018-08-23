@@ -81,7 +81,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
         }
     });
 
-    it("Should add the dataset I created", async () => {
+    it("Should add the dataset with type courses I created", async () => {
         let response: InsightResponse;
         const id: string = "tests";
         const expected: number = 204;
@@ -95,12 +95,12 @@ describe("InsightFacade Add/Remove Dataset", function () {
         }
     });
 
-    it("Should not add an invalid dataset", async () => {
+    it("Should not add an valid dataset of type rooms", async () => {
        let response: InsightResponse;
        const id: string = "rooms";
-       const expected: number = 400;
+       const expected: number = 200;
        try {
-           response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
+           response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Rooms);
        } catch (err) {
            response = err;
        } finally {
