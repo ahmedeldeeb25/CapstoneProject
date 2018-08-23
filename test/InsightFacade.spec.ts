@@ -155,6 +155,20 @@ describe("InsightFacade Add/Remove Dataset", function () {
 
     });
 
+    it("Should throw an error with an invalid file path", async () => {
+        let response: InsightResponse;
+        const id: string = "courses";
+        const expected: number = 400;
+        try {
+            response = await insightFacade.addDataset(id, "./test/data/foo.zip", InsightDatasetKind.Courses);
+        } catch (err) {
+            response = err;
+        } finally {
+            expect(response.code).to.equal(expected);
+            expect(response.body).to.be("");
+        }
+    });
+
     // This is an example of a pending test. Add a callback function to make the test run.
     it("Should remove the courses dataset", async () => {
         const id: string = "courses";
