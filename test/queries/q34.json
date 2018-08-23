@@ -2,7 +2,7 @@
     "title": "Select title, department from courses where pass < 1",
     "query": "In courses dataset courses, find entries whose Fail is greater than 99; show Title and Department.",
     "response": {
-        "code": 400,
+        "code": 200,
         "body": {
             "result": [
                 {

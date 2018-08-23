@@ -1,8 +1,8 @@
 {
-    "title": "Select title, department from courses where pass < 1",
+    "title": "Select title, department from courses where pass = 100",
     "query": "In courses dataset courses, find entries whose Pass is equal to 100; show Title and Department.",
     "response": {
-        "code": 400,
+        "code": 200,
         "body": {
             "result": [
                 {

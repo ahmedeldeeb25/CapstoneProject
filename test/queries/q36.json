@@ -1,0 +1,19 @@
+{
+    "title": "Select title, department from courses where pass < 1",
+    "query": "In courses dataset courses, find entries whose Audit is equal to 14; show Title and Department.",
+    "response": {
+        "code": 200,
+        "body": {
+            "result": [
+                {
+                    "courses_title": "machine lrn mine",
+                    "courses_dept": "cpsc"
+                },
+                {
+                    "courses_title": "dev rehab prog",
+                    "courses_dept": "rhsc"
+                }
+            ]
+        }
+    }
+}

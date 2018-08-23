@@ -1,0 +1,251 @@
+{
+    "title": "Select title, department from courses where pass < 1",
+    "query": "In courses dataset courses, find entries whose Fail is less than 7 and Fail is greater than 5 and Department is \"biol\"; show Title and Department.",
+    "response": {
+        "code": 200,
+        "body": {
+            "result": [
+                {
+                    "courses_title": "human biology",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "human biology",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "plnt phyl 1:nutr",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "plnt phyl 1:nutr",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "fund ecology",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "fund ecology",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "human biology",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "human biology",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "fund genetics",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "non vasc plants",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "non vasc plants",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "molecular gen",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "molecular gen",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "molecular gen",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "molecular gen",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "molecular gen",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "molecular gen",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "eco gen evol",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "gentcs ecol&evol",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "gentcs ecol&evol",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "gentcs ecol&evol",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "gentcs ecol&evol",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "gentcs ecol&evol",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "gentcs ecol&evol",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "gentcs ecol&evol",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "evolutionary bio",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "evolutionary bio",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "intr modern bio",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "intr modern bio",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "intr modern bio",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "advanced ecology",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "biology of cell",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "biology of cell",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "biology of cell",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "biology of cell",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "fund physiology",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "biometrics",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "fund of biostats",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "biometrics",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "biometrics",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "biometrics",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "animal physiol",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "animal physiol",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "vert struct&func",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "vert struct&func",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "vascular plants",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "vascular plants",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "comp invertbrat",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "comp invertbrat",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "comp invertbrat",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "comp invertbrat",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "intro to physio",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "cell biology 2",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "cell biology 2",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "cell biology 2",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "intro biochem",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "intro biochem",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "intro biochem",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "fund cell bio",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "fund cell bio",
+                    "courses_dept": "biol"
+                }
+            ]
+        }
+    }
+}

@@ -2,7 +2,7 @@
     "title": "A query that gets 1 exact entry and shows all fields",
     "query": "In courses dataset courses, find entries whose Department is \"elec\" and ID is \"292\" and UUID is \"30872\" and Instructor is \"calvino-fraga, jesus\" and Pass is equal to 19 and Fail is equal to 0 and Audit is equal to 0 and Title is \"biom dsgn studio\" and Average is equal to 89.68; show Department and ID and UUID and Instructor and Pass and Fail and Audit and Title and Average.",
     "response": {
-        "code": 400,
+        "code": 200,
         "body": {
             "result": [
                 {

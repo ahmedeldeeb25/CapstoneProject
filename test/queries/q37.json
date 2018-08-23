@@ -2,7 +2,7 @@
     "title": "Select title, department from courses where pass < 1",
     "query": "In courses dataset courses, find entries whose Audit is greater than 14 and Audit is less than 20; show Title and Department.",
     "response": {
-        "code": 400,
+        "code": 200,
         "body": {
             "result": [
                 {
