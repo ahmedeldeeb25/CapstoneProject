@@ -149,7 +149,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
     it("Should return an error if the same dataset is removed twice", async () => {
         const id: string = "courses";
         let response: InsightResponse;
-        const expected: number = 400;
+        const expected: number = 404;
         try {
             response = await insightFacade.removeDataset(id);
         } catch (err) {
@@ -162,7 +162,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
     it("Should not remove a databse that isn't there", async () => {
         const id: string = "telephones";
         let response: InsightResponse;
-        const expected: number = 400;
+        const expected: number = 404;
         try {
             response = await insightFacade.removeDataset(id);
         } catch (err) {

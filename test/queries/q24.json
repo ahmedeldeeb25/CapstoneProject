@@ -1,0 +1,23 @@
+{
+    "title": "SELECT dept, avg WHERE avg <= 5 and Department is Math or Id is 275",
+    "query": "In courses dataset courses, find entries whose Average is not greater than 5 and Department is \"Math\" or ID is \"275\"; show ID and Department and UUID and Average.",
+    "response": {
+        "code": 200,
+        "body": {
+            "result": [
+                {
+                    "courses_id": "275",
+                    "courses_dept": "educ",
+                    "courses_uuid": "50485",
+                    "courses_avg": 76.01
+                },
+                {
+                    "courses_id": "275",
+                    "courses_dept": "educ",
+                    "courses_uuid": "50486",
+                    "courses_avg": 76.01
+                }
+            ]
+        }
+    }
+}

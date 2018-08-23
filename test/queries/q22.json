@@ -1,0 +1,26 @@
+{
+    "title": "SELECT dept, avg WHERE avg >= 99",
+    "query": "In courses dataset courses, find entries whose Average is not less than 99; show ID and Department and UUID.",
+    "response": {
+        "code": 200,
+        "body": {
+            "result": [
+                {
+                    "courses_id": "574",
+                    "courses_dept": "cnps",
+                    "courses_uuid": "26777"
+                },
+                {
+                    "courses_id": "527",
+                    "courses_dept": "math",
+                    "courses_uuid": "5373"
+                },
+                {
+                    "courses_id": "527",
+                    "courses_dept": "math",
+                    "courses_uuid": "5374"
+                }
+            ]
+        }
+    }
+}
