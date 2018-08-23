@@ -22,6 +22,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
         courses: "./test/data/courses.zip",
         rooms: "./test/data/rooms.zip",
         test: "./test/data/test.zip",
+        nonsense: "./test/data/nonsense.zip",
     };
 
     let insightFacade: InsightFacade;
@@ -81,7 +82,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
 
     it("Should add the dataset I created", async () => {
         let response: InsightResponse;
-        const id: string = "rooms";
+        const id: string = "tests";
         const expected: number = 204;
         try {
             response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
@@ -94,7 +95,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
 
     it("Should not add an invalid dataset", async () => {
        let response: InsightResponse;
-       const id: string = "test";
+       const id: string = "rooms";
        const expected: number = 400;
        try {
            response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
@@ -103,6 +104,19 @@ describe("InsightFacade Add/Remove Dataset", function () {
        } finally {
            expect(response.code).to.equal(expected);
        }
+    });
+
+    it("Should not add an invalid file", async () => {
+        let response: InsightResponse;
+        const id: string = "nonsense";
+        const expected: number = 400;
+        try {
+            response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
+        } catch (err) {
+            response = err;
+        } finally {
+            expect(response.code).to.equal(expected);
+        }
     });
 
     it("Should not add a dataset that doesn't exist", async () => {
@@ -124,6 +138,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
         let response: InsightResponse;
 
         try {
+            response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
             response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
         } catch (err) {
             response = err;
