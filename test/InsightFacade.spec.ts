@@ -96,19 +96,19 @@ describe("InsightFacade Add/Remove Dataset", function () {
         }
     });
 
-    // it("Should add an valid dataset of type rooms", async () => {
-    //    let response: InsightResponse;
-    //    const id: string = "rooms";
-    //    const expected: number = 200;
-    //    try {
-    //        response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Rooms);
-    //    } catch (err) {
-    //        response = err;
-    //    } finally {
-    //        expect(response.code).to.equal(expected);
-    //        expect(response.body).to.be("");
-    //    }
-    // });
+    it("Should add an valid dataset of type rooms", async () => {
+       let response: InsightResponse;
+       const id: string = "rooms";
+       const expected: number = 200;
+       try {
+           response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Rooms);
+       } catch (err) {
+           response = err;
+       } finally {
+           expect(response.code).to.equal(expected);
+           expect(response.body).to.be("");
+       }
+    });
 
     it("Should not add an invalid file", async () => {
         let response: InsightResponse;
