@@ -95,7 +95,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
         }
     });
 
-    it("Should not add an valid dataset of type rooms", async () => {
+    it("Should add an valid dataset of type rooms", async () => {
        let response: InsightResponse;
        const id: string = "rooms";
        const expected: number = 200;
@@ -115,6 +115,20 @@ describe("InsightFacade Add/Remove Dataset", function () {
         const expected: number = 400;
         try {
             response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
+        } catch (err) {
+            response = err;
+        } finally {
+            expect(response.code).to.equal(expected);
+            expect(response.body).to.be("");
+        }
+    });
+
+    it("Should not add an invalid file", async () => {
+        let response: InsightResponse;
+        const id: string = "nonsense";
+        const expected: number = 400;
+        try {
+            response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Rooms);
         } catch (err) {
             response = err;
         } finally {
@@ -316,4 +330,19 @@ describe("InsightFacade PerformQuery", () => {
         });
     });
 
+    it("Should perform queries on type Rooms", async () => {
+        const id: string = "rooms";
+        const file: string = "./test/data/rooms.zip";
+        const type: InsightDatasetKind = InsightDatasetKind.Rooms;
+        let response: InsightResponse;
+        const expected: number = 200;
+        try {
+            await insightFacade.addDataset(id, file, type);
+            response = await insightFacade.performQuery("In rooms dataset rooms, find all entries; show ID.");
+        } catch (err) {
+            response = err;
+        } finally {
+            expect(response.code).to.equal(expected);
+        }
+    });
 });
