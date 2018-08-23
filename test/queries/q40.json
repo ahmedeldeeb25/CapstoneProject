@@ -1,0 +1,10 @@
+{
+    "title": "SELECT dept, avg from rooms WHERE avg > 97",
+    "query": "In rooms dataset rooms, find entries whose Average is greater than 97; show Department and Average; sort in ascending order by Average.",
+    "response": {
+        "code": 200,
+        "body": {
+            "result": [ ]
+        }
+    }
+}

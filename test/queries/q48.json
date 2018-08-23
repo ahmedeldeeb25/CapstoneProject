@@ -1,0 +1,10 @@
+{
+    "title": "SELECT dept, avg WHERE avg > 80 or course_id = 329",
+    "query": "In rooms dataset rooms, find entries whose Average is greater than 97 or ID is equal to 329; show Department and Average and ID; sort in ascending order by Average.",
+    "response": {
+        "code": 400,
+        "body": {
+            "err": ""
+        }
+    }
+}
