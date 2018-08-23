@@ -1,0 +1,10 @@
+{
+    "title": "Complete nonese",
+    "query": "Mary had a little lab",
+    "response": {
+        "code": 400,
+        "body": {
+            "error": ""
+        }
+    }
+}

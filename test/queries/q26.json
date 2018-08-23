@@ -1,0 +1,10 @@
+{
+    "title": "A query with find all and a filter",
+    "query": "In rooms dataset abc, find all entries whose Instructor is \"Joseph\"; show Seats and Address; sort in descending order by Average.",
+    "response": {
+        "code": 400,
+        "body": {
+            "error": ""
+        }
+    }
+}
