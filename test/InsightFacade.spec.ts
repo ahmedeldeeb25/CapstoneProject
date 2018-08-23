@@ -66,149 +66,149 @@ describe("InsightFacade Add/Remove Dataset", function () {
         Log.test(`AfterTest: ${this.currentTest.title}`);
     });
 
-    it("Should add a valid dataset", async () => {
-        const id: string = "courses";
-        const expectedCode: number = 204;
-        let response: InsightResponse;
+    // it("Should add a valid dataset", async () => {
+    //     const id: string = "courses";
+    //     const expectedCode: number = 204;
+    //     let response: InsightResponse;
 
-        try {
-            response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
-        } catch (err) {
-            response = err;
-        } finally {
-            expect(response.code).to.equal(expectedCode);
-            expect(response.body).to.be("");
-        }
-    });
+    //     try {
+    //         response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
+    //     } catch (err) {
+    //         response = err;
+    //     } finally {
+    //         expect(response.code).to.equal(expectedCode);
+    //         expect(response.body).to.be("");
+    //     }
+    // });
 
-    it("Should add the dataset I created", async () => {
-        let response: InsightResponse;
-        const id: string = "tests";
-        const expected: number = 204;
-        try {
-            response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
-        } catch (err) {
-            response = err;
-        } finally {
-            expect(response.code).to.equal(expected);
-            expect(response.body).to.be("");
-        }
-    });
+    // it("Should add the dataset I created", async () => {
+    //     let response: InsightResponse;
+    //     const id: string = "tests";
+    //     const expected: number = 204;
+    //     try {
+    //         response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
+    //     } catch (err) {
+    //         response = err;
+    //     } finally {
+    //         expect(response.code).to.equal(expected);
+    //         expect(response.body).to.be("");
+    //     }
+    // });
 
-    it("Should not add an invalid dataset", async () => {
-       let response: InsightResponse;
-       const id: string = "rooms";
-       const expected: number = 400;
-       try {
-           response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
-       } catch (err) {
-           response = err;
-       } finally {
-           expect(response.code).to.equal(expected);
-           expect(response.body).to.be("");
-       }
-    });
+    // it("Should not add an invalid dataset", async () => {
+    //    let response: InsightResponse;
+    //    const id: string = "rooms";
+    //    const expected: number = 400;
+    //    try {
+    //        response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
+    //    } catch (err) {
+    //        response = err;
+    //    } finally {
+    //        expect(response.code).to.equal(expected);
+    //        expect(response.body).to.be("");
+    //    }
+    // });
 
-    it("Should not add an invalid file", async () => {
-        let response: InsightResponse;
-        const id: string = "nonsense";
-        const expected: number = 400;
-        try {
-            response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
-        } catch (err) {
-            response = err;
-        } finally {
-            expect(response.code).to.equal(expected);
-            expect(response.body).to.be("");
-        }
-    });
+    // it("Should not add an invalid file", async () => {
+    //     let response: InsightResponse;
+    //     const id: string = "nonsense";
+    //     const expected: number = 400;
+    //     try {
+    //         response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
+    //     } catch (err) {
+    //         response = err;
+    //     } finally {
+    //         expect(response.code).to.equal(expected);
+    //         expect(response.body).to.be("");
+    //     }
+    // });
 
-    it("Should not add a dataset that doesn't exist", async () => {
-        let response: InsightResponse;
-        const expected: number = 400;
-        const id: string = "foo";
-        try {
-            response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
-        } catch (err) {
-            response = err;
-        } finally {
-            expect(response.code).to.equal(expected);
-            expect(response.body).to.be("");
-        }
-    });
+    // it("Should not add a dataset that doesn't exist", async () => {
+    //     let response: InsightResponse;
+    //     const expected: number = 400;
+    //     const id: string = "foo";
+    //     try {
+    //         response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
+    //     } catch (err) {
+    //         response = err;
+    //     } finally {
+    //         expect(response.code).to.equal(expected);
+    //         expect(response.body).to.be("");
+    //     }
+    // });
 
-    it("Should not add the same dataset twice", async () => {
-        const id: string = "courses";
-        const expectedCode: number = 400;
-        let response: InsightResponse;
+    // it("Should not add the same dataset twice", async () => {
+    //     const id: string = "courses";
+    //     const expectedCode: number = 400;
+    //     let response: InsightResponse;
 
-        try {
-            response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
-            response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
-        } catch (err) {
-            response = err;
-        } finally {
-            expect(response.code).to.equal(expectedCode);
-            expect(response.body).to.be("");
-        }
+    //     try {
+    //         response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
+    //         response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
+    //     } catch (err) {
+    //         response = err;
+    //     } finally {
+    //         expect(response.code).to.equal(expectedCode);
+    //         expect(response.body).to.be("");
+    //     }
 
-    });
+    // });
 
-    // This is an example of a pending test. Add a callback function to make the test run.
-    it("Should remove the courses dataset", async () => {
-        const id: string = "courses";
-        let response: InsightResponse;
-        const expected: number = 204;
-        try {
-            response = await insightFacade.removeDataset(id);
-        } catch (err) {
-            response = err;
-        } finally {
-            expect(response.code).to.equal(expected);
-            expect(response.body).to.be("");
-        }
-    });
+    // // This is an example of a pending test. Add a callback function to make the test run.
+    // it("Should remove the courses dataset", async () => {
+    //     const id: string = "courses";
+    //     let response: InsightResponse;
+    //     const expected: number = 204;
+    //     try {
+    //         response = await insightFacade.removeDataset(id);
+    //     } catch (err) {
+    //         response = err;
+    //     } finally {
+    //         expect(response.code).to.equal(expected);
+    //         expect(response.body).to.be("");
+    //     }
+    // });
 
-    it("Should return an error if the same dataset is removed twice", async () => {
-        const id: string = "courses";
-        let response: InsightResponse;
-        const expected: number = 404;
-        try {
-            response = await insightFacade.removeDataset(id);
-        } catch (err) {
-            response = err;
-        } finally {
-            expect(response.code).to.equal(expected);
-            expect(response.body).to.be("");
-        }
-    });
+    // it("Should return an error if the same dataset is removed twice", async () => {
+    //     const id: string = "courses";
+    //     let response: InsightResponse;
+    //     const expected: number = 404;
+    //     try {
+    //         response = await insightFacade.removeDataset(id);
+    //     } catch (err) {
+    //         response = err;
+    //     } finally {
+    //         expect(response.code).to.equal(expected);
+    //         expect(response.body).to.be("");
+    //     }
+    // });
 
-    it("Should not remove a databse that isn't there", async () => {
-        const id: string = "telephones";
-        let response: InsightResponse;
-        const expected: number = 404;
-        try {
-            response = await insightFacade.removeDataset(id);
-        } catch (err) {
-            response = err;
-        } finally {
-            expect(response.code).to.equal(expected);
-            expect(response.body).to.be("");
-        }
-    });
+    // it("Should not remove a databse that isn't there", async () => {
+    //     const id: string = "telephones";
+    //     let response: InsightResponse;
+    //     const expected: number = 404;
+    //     try {
+    //         response = await insightFacade.removeDataset(id);
+    //     } catch (err) {
+    //         response = err;
+    //     } finally {
+    //         expect(response.code).to.equal(expected);
+    //         expect(response.body).to.be("");
+    //     }
+    // });
 
-    it("Should return a list of datasets and their types", async () => {
-        let response: InsightResponse;
-        const expected: number = 200;
-        try {
-            response = await insightFacade.listDatasets();
-        } catch (err) {
-            response = err;
-        } finally {
-            expect(response.code).to.equal(expected);
-            expect(response.body).to.be("");
-        }
-    });
+    // it("Should return a list of datasets and their types", async () => {
+    //     let response: InsightResponse;
+    //     const expected: number = 200;
+    //     try {
+    //         response = await insightFacade.listDatasets();
+    //     } catch (err) {
+    //         response = err;
+    //     } finally {
+    //         expect(response.code).to.equal(expected);
+    //         expect(response.body).to.be("");
+    //     }
+    // });
 });
 
 // This test suite dynamically generates tests from the JSON files in test/queries.
