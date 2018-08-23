@@ -1,0 +1,35 @@
+{
+    "title": "Select title, department from courses where pass < 1",
+    "query": "In courses dataset courses, find entries whose Pass is less than 1; show Title and Department.",
+    "response": {
+        "code": 400,
+        "body": {
+            "result": [
+                {
+                    "courses_title": "found re apprai",
+                    "courses_dept": "busi"
+                },
+                {
+                    "courses_title": "found re apprai",
+                    "courses_dept": "busi"
+                },
+                {
+                    "courses_title": "sustnbt&frst ops",
+                    "courses_dept": "fopr"
+                },
+                {
+                    "courses_title": "in land food com",
+                    "courses_dept": "lfs"
+                },
+                {
+                    "courses_title": "in land food com",
+                    "courses_dept": "lfs"
+                },
+                {
+                    "courses_title": "forest ecology",
+                    "courses_dept": "frst"
+                }
+            ]
+        }
+    }
+}

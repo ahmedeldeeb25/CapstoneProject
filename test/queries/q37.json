@@ -1,0 +1,55 @@
+{
+    "title": "Select title, department from courses where pass < 1",
+    "query": "In courses dataset courses, find entries whose Audit is greater than 14 and Audit is less than 20; show Title and Department.",
+    "response": {
+        "code": 400,
+        "body": {
+            "result": [
+                {
+                    "courses_title": "rehab learning",
+                    "courses_dept": "rhsc"
+                },
+                {
+                    "courses_title": "mult regres meth",
+                    "courses_dept": "frst"
+                },
+                {
+                    "courses_title": "mult regres meth",
+                    "courses_dept": "frst"
+                },
+                {
+                    "courses_title": "machine learn i",
+                    "courses_dept": "cpsc"
+                },
+                {
+                    "courses_title": "reas & dec-mking",
+                    "courses_dept": "rhsc"
+                },
+                {
+                    "courses_title": "reas & dec-mking",
+                    "courses_dept": "rhsc"
+                },
+                {
+                    "courses_title": "eval src evidenc",
+                    "courses_dept": "rhsc"
+                },
+                {
+                    "courses_title": "intr gis frs&con",
+                    "courses_dept": "cons"
+                },
+                {
+                    "courses_title": "meas in practice",
+                    "courses_dept": "rhsc"
+                },
+                {
+                    "courses_title": "meas in practice",
+                    "courses_dept": "rhsc"
+                },
+                {
+                    "courses_title": "dev rehab prog",
+                    "courses_dept": "rhsc"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,379 @@
+{
+    "title": "Select title, department from courses where pass < 1",
+    "query": "In courses dataset courses, find entries whose Fail is greater than 99; show Title and Department.",
+    "response": {
+        "code": 400,
+        "body": {
+            "result": [
+                {
+                    "courses_title": "mechanics i",
+                    "courses_dept": "phys"
+                },
+                {
+                    "courses_title": "mechanics i",
+                    "courses_dept": "phys"
+                },
+                {
+                    "courses_title": "mechanics i",
+                    "courses_dept": "phys"
+                },
+                {
+                    "courses_title": "calculus 3",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "calculus 3",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "calculus 3",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "calculus 3",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "calculus 3",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "calculus 3",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "calculus 3",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "calculus 3",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "comptn, progrmng",
+                    "courses_dept": "cpsc"
+                },
+                {
+                    "courses_title": "comptn, progrmng",
+                    "courses_dept": "cpsc"
+                },
+                {
+                    "courses_title": "comptn, progrmng",
+                    "courses_dept": "cpsc"
+                },
+                {
+                    "courses_title": "comptn, progrmng",
+                    "courses_dept": "cpsc"
+                },
+                {
+                    "courses_title": "energy & waves",
+                    "courses_dept": "phys"
+                },
+                {
+                    "courses_title": "energy & waves",
+                    "courses_dept": "phys"
+                },
+                {
+                    "courses_title": "energy & waves",
+                    "courses_dept": "phys"
+                },
+                {
+                    "courses_title": "energy & waves",
+                    "courses_dept": "phys"
+                },
+                {
+                    "courses_title": "energy & waves",
+                    "courses_dept": "phys"
+                },
+                {
+                    "courses_title": "energy & waves",
+                    "courses_dept": "phys"
+                },
+                {
+                    "courses_title": "dff calc ap c&ss",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "int calc ap c&ss",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "int calc ap c&ss",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "int calc ap c&ss",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "int calc ap c&ss",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "int calc ap c&ss",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "int calc ap ph s",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "int calc ap ph s",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "int calc ap ph s",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "int calc ap ph s",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "int calc ap ph s",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "int calc ap ph s",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "int calc ap ph s",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "int calc ap ph s",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "int calc ap ph s",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "df calc ap ph sc",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "df calc ap ph sc",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "df calc ap ph sc",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "eco gen evol",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "gentcs ecol&evol",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "gentcs ecol&evol",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "gentcs ecol&evol",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "gentcs ecol&evol",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "gentcs ecol&evol",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "int calc ap lf s",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "biol bact cell",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "unicellular life",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "biology of cell",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "unicellular life",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "unicellular life",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "unicellular life",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "comp eng design",
+                    "courses_dept": "apsc"
+                },
+                {
+                    "courses_title": "comp eng design",
+                    "courses_dept": "apsc"
+                },
+                {
+                    "courses_title": "comp eng design",
+                    "courses_dept": "apsc"
+                },
+                {
+                    "courses_title": "comp eng design",
+                    "courses_dept": "apsc"
+                },
+                {
+                    "courses_title": "comp eng design",
+                    "courses_dept": "apsc"
+                },
+                {
+                    "courses_title": "linear systems",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "linear systems",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "linear systems",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "linear systems",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "linear systems",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "linear systems",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "technical commun",
+                    "courses_dept": "apsc"
+                },
+                {
+                    "courses_title": "calc socsci comm",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "calc socsci comm",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "princpl macrecon",
+                    "courses_dept": "econ"
+                },
+                {
+                    "courses_title": "princpl macrecon",
+                    "courses_dept": "econ"
+                },
+                {
+                    "courses_title": "princpl macrecon",
+                    "courses_dept": "econ"
+                },
+                {
+                    "courses_title": "princpl macrecon",
+                    "courses_dept": "econ"
+                },
+                {
+                    "courses_title": "princpl macrecon",
+                    "courses_dept": "econ"
+                },
+                {
+                    "courses_title": "princpl macrecon",
+                    "courses_dept": "econ"
+                },
+                {
+                    "courses_title": "princpl macrecon",
+                    "courses_dept": "econ"
+                },
+                {
+                    "courses_title": "princpl macrecon",
+                    "courses_dept": "econ"
+                },
+                {
+                    "courses_title": "princpl macrecon",
+                    "courses_dept": "econ"
+                },
+                {
+                    "courses_title": "prncpls micrecon",
+                    "courses_dept": "econ"
+                },
+                {
+                    "courses_title": "prncpls micrecon",
+                    "courses_dept": "econ"
+                },
+                {
+                    "courses_title": "prncpls micrecon",
+                    "courses_dept": "econ"
+                },
+                {
+                    "courses_title": "prncpls micrecon",
+                    "courses_dept": "econ"
+                },
+                {
+                    "courses_title": "prncpls micrecon",
+                    "courses_dept": "econ"
+                },
+                {
+                    "courses_title": "prncpls micrecon",
+                    "courses_dept": "econ"
+                },
+                {
+                    "courses_title": "prncpls micrecon",
+                    "courses_dept": "econ"
+                },
+                {
+                    "courses_title": "prncpls micrecon",
+                    "courses_dept": "econ"
+                },
+                {
+                    "courses_title": "prncpls micrecon",
+                    "courses_dept": "econ"
+                },
+                {
+                    "courses_title": "cell biology 1",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "cell biology 1",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "fund cell bio",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "fund cell bio",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "cell biology 1",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "cell biology 1",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "cell biology 1",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "cell biology 1",
+                    "courses_dept": "biol"
+                }
+            ]
+        }
+    }
+}

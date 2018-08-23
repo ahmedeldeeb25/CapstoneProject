@@ -1,0 +1,10 @@
+{
+    "title": "Select title, department from courses where pass > 5 and < 10",
+    "query": "In courses dataset courses, find entries whose Pass is less than 6 and Pass is greater than 5; show UUID.",
+    "response": {
+        "code": 400,
+        "body": {
+            "result": []
+        }
+    }
+}

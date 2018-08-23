@@ -1,0 +1,323 @@
+{
+    "title": "Select title, department from courses where pass < 1",
+    "query": "In courses dataset courses, find entries whose Pass is equal to 100; show Title and Department.",
+    "response": {
+        "code": 400,
+        "body": {
+            "result": [
+                {
+                    "courses_title": "info systems",
+                    "courses_dept": "busi"
+                },
+                {
+                    "courses_title": "thermal phys i",
+                    "courses_dept": "phys"
+                },
+                {
+                    "courses_title": "thermal phys i",
+                    "courses_dept": "phys"
+                },
+                {
+                    "courses_title": "hum nut lif span",
+                    "courses_dept": "fnh"
+                },
+                {
+                    "courses_title": "hum nut lif span",
+                    "courses_dept": "fnh"
+                },
+                {
+                    "courses_title": "internet comp",
+                    "courses_dept": "cpsc"
+                },
+                {
+                    "courses_title": "prin audit",
+                    "courses_dept": "busi"
+                },
+                {
+                    "courses_title": "calculus 3",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "calculus 3",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "comp hard&os",
+                    "courses_dept": "cpsc"
+                },
+                {
+                    "courses_title": "adul educ",
+                    "courses_dept": "adhe"
+                },
+                {
+                    "courses_title": "comptn, progrmng",
+                    "courses_dept": "cpsc"
+                },
+                {
+                    "courses_title": "soci of family",
+                    "courses_dept": "soci"
+                },
+                {
+                    "courses_title": "soci of family",
+                    "courses_dept": "soci"
+                },
+                {
+                    "courses_title": "intgrt'd bio lab",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "intgrt'd bio lab",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "found re apprai",
+                    "courses_dept": "busi"
+                },
+                {
+                    "courses_title": "found re apprai",
+                    "courses_dept": "busi"
+                },
+                {
+                    "courses_title": "proc dyn&control",
+                    "courses_dept": "chbe"
+                },
+                {
+                    "courses_title": "proc dyn&control",
+                    "courses_dept": "chbe"
+                },
+                {
+                    "courses_title": "dff calc ap c&ss",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "explor our food",
+                    "courses_dept": "fnh"
+                },
+                {
+                    "courses_title": "fluid mech i",
+                    "courses_dept": "civl"
+                },
+                {
+                    "courses_title": "europe 1900-50",
+                    "courses_dept": "hist"
+                },
+                {
+                    "courses_title": "int calc ap c&ss",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "intr busnss law",
+                    "courses_dept": "busi"
+                },
+                {
+                    "courses_title": "unit oper i",
+                    "courses_dept": "chbe"
+                },
+                {
+                    "courses_title": "unit oper i",
+                    "courses_dept": "chbe"
+                },
+                {
+                    "courses_title": "df calc ap ph sc",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "intro comp sys",
+                    "courses_dept": "cpsc"
+                },
+                {
+                    "courses_title": "intro philosophy",
+                    "courses_dept": "phil"
+                },
+                {
+                    "courses_title": "int calc ap lf s",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "int calc ap lf s",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "res meth educ",
+                    "courses_dept": "etec"
+                },
+                {
+                    "courses_title": "ancient greece",
+                    "courses_dept": "clst"
+                },
+                {
+                    "courses_title": "multivrbl calc",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "anlyz bus procss",
+                    "courses_dept": "basc"
+                },
+                {
+                    "courses_title": "heat transfer i",
+                    "courses_dept": "mech"
+                },
+                {
+                    "courses_title": "data anly&utiliz",
+                    "courses_dept": "babs"
+                },
+                {
+                    "courses_title": "matrx struc anly",
+                    "courses_dept": "civl"
+                },
+                {
+                    "courses_title": "intro literature",
+                    "courses_dept": "engl"
+                },
+                {
+                    "courses_title": "intro literature",
+                    "courses_dept": "engl"
+                },
+                {
+                    "courses_title": "fam resrc mngmt",
+                    "courses_dept": "fmst"
+                },
+                {
+                    "courses_title": "fam resrc mngmt",
+                    "courses_dept": "fmst"
+                },
+                {
+                    "courses_title": "fmly human dvlpm",
+                    "courses_dept": "fmst"
+                },
+                {
+                    "courses_title": "land economics",
+                    "courses_dept": "econ"
+                },
+                {
+                    "courses_title": "land economics",
+                    "courses_dept": "econ"
+                },
+                {
+                    "courses_title": "vert struct&func",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "vert struct&func",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "vascular plants",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "vascular plants",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "mech of material",
+                    "courses_dept": "mech"
+                },
+                {
+                    "courses_title": "child & yng adlt",
+                    "courses_dept": "crwr"
+                },
+                {
+                    "courses_title": "child & yng adlt",
+                    "courses_dept": "crwr"
+                },
+                {
+                    "courses_title": "cptl mrkts&rl es",
+                    "courses_dept": "busi"
+                },
+                {
+                    "courses_title": "cptl mrkts&rl es",
+                    "courses_dept": "busi"
+                },
+                {
+                    "courses_title": "linear systems",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "linear systems",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "ling thry&anl i",
+                    "courses_dept": "ling"
+                },
+                {
+                    "courses_title": "ling thry&anl i",
+                    "courses_dept": "ling"
+                },
+                {
+                    "courses_title": "hist music i",
+                    "courses_dept": "musc"
+                },
+                {
+                    "courses_title": "can,japn&pc poli",
+                    "courses_dept": "astu"
+                },
+                {
+                    "courses_title": "intro acad writ",
+                    "courses_dept": "lled"
+                },
+                {
+                    "courses_title": "intro acad writ",
+                    "courses_dept": "lled"
+                },
+                {
+                    "courses_title": "princpl macrecon",
+                    "courses_dept": "econ"
+                },
+                {
+                    "courses_title": "18th cent genre",
+                    "courses_dept": "engl"
+                },
+                {
+                    "courses_title": "math proof",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "intrm micro anly",
+                    "courses_dept": "econ"
+                },
+                {
+                    "courses_title": "lab animal physi",
+                    "courses_dept": "biol"
+                },
+                {
+                    "courses_title": "int microecon ii",
+                    "courses_dept": "econ"
+                },
+                {
+                    "courses_title": "int microecon ii",
+                    "courses_dept": "econ"
+                },
+                {
+                    "courses_title": "int microecon ii",
+                    "courses_dept": "econ"
+                },
+                {
+                    "courses_title": "int microecon ii",
+                    "courses_dept": "econ"
+                },
+                {
+                    "courses_title": "int microecon ii",
+                    "courses_dept": "econ"
+                },
+                {
+                    "courses_title": "alg coding crypt",
+                    "courses_dept": "math"
+                },
+                {
+                    "courses_title": "nutr conc & cont",
+                    "courses_dept": "fnh"
+                },
+                {
+                    "courses_title": "stdy genre/perio",
+                    "courses_dept": "fist"
+                },
+                {
+                    "courses_title": "stdy genre/perio",
+                    "courses_dept": "fist"
+                }
+            ]
+        }
+    }
+}
