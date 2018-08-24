@@ -1,5 +1,5 @@
 import Log from "../Util";
-import {IInsightFacade, InsightResponse, InsightDatasetKind} from "./IInsightFacade";
+import {IInsightFacade, InsightResponse, InsightDatasetKind } from "./IInsightFacade";
 
 /**
  * This is the main programmatic entry point for the project.

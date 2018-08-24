@@ -1,6 +1,7 @@
 import { expect } from "chai";
 
-import { InsightResponse, InsightResponseSuccessBody, InsightDatasetKind } from "../src/controller/IInsightFacade";
+import { InsightResponse, InsightResponseSuccessBody,
+    InsightDatasetKind, InsightDataset } from "../src/controller/IInsightFacade";
 import InsightFacade from "../src/controller/InsightFacade";
 import Log from "../src/Util";
 import TestUtil from "./TestUtil";
@@ -222,8 +223,25 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expected);
-            expect(response.body).to.be("");
+            expect(response.body).to.be.an.instanceof(Array);
         }
+    });
+
+    it("Should return a list of datasets and their types", async () => {
+        let response: InsightResponse;
+        const expected: number = 200;
+        try {
+            response = await insightFacade.listDatasets();
+        } catch (err) {
+            response = err;
+        } finally {
+            expect(response.code).to.equal(expected);
+        }
+        const body: InsightResponseSuccessBody = response.body as InsightResponseSuccessBody;
+        const dataset: InsightDataset[] = body.result as InsightDataset[];
+        expect(dataset[0].id).to.equal("courses");
+        expect(dataset[0].kind).to.equal(InsightDatasetKind.Courses);
+        expect(dataset[0].numRows).to.be.a("number");
     });
 });
 
