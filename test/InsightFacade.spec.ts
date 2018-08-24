@@ -153,6 +153,19 @@ describe("InsightFacade Add/Remove Dataset", function () {
         }
     });
 
+    it("Should return an error if null passed in to id and content", async () => {
+        let response: InsightResponse;
+        const expected: number = 400;
+        try {
+            response = await insightFacade.addDataset(null, null, InsightDatasetKind.Courses);
+        } catch (err) {
+            response = err;
+        } finally {
+            expect(response).to.be.a("InsightResponseErrorBody");
+            expect(response.code).to.equal(expected);
+        }
+    });
+
     it("Should throw an error with an invalid file path: Rooms", async () => {
         let response: InsightResponse;
         const id: string = "courses";
@@ -198,6 +211,30 @@ describe("InsightFacade Add/Remove Dataset", function () {
         } finally {
             expect(response.code).to.equal(expected);
             expect(response).to.be.a("InsightResponse");
+        }
+    });
+
+    it("Should return an error if param is null", async () => {
+        let response: InsightResponse;
+        const expected: number = 204;
+        try {
+            response = await insightFacade.removeDataset(null);
+        } catch (err) {
+            response = err;
+        } finally {
+            expect(response.code).to.equal(204);
+        }
+    });
+
+    it("Should return an error if param is empty string", async () => {
+        let response: InsightResponse;
+        const expected: number = 204;
+        try {
+            response = await insightFacade.removeDataset("");
+        } catch (err) {
+            response = err;
+        } finally {
+            expect(response.code).to.equal(204);
         }
     });
 
