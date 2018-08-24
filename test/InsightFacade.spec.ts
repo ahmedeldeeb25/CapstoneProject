@@ -78,6 +78,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expectedCode);
+            expect(response).to.be.a("InsightResponse");
         }
     });
 
@@ -91,6 +92,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expected);
+            expect(response).to.be.a("InsightResponse");
         }
     });
 
@@ -104,6 +106,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
            response = err;
        } finally {
            expect(response.code).to.equal(expected);
+           expect(response).to.be.a("InsightResponse");
        }
     });
 
@@ -117,6 +120,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expected);
+            expect(response).to.be.a("InsightResponse");
             expect(response.body).to.be("{'error': 'file is not a csv file'} ");
         }
     });
@@ -131,6 +135,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expected);
+            expect(response).to.be.a("InsightResponse");
             expect(response.body).to.be("{ 'error': 'file does not exist'} ");
         }
     });
@@ -145,6 +150,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expected);
+            expect(response).to.be.a("InsightResponse");
             expect(response.body).to.be("{'error': 'file does not exist'} ");
         }
     });
@@ -161,6 +167,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expectedCode);
+            expect(response).to.be.a("InsightResponse");
             expect(response.body).to.be("{'error': 'dataset with that id already exists'}");
         }
 
@@ -177,6 +184,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expected);
+            expect(response).to.be.a("InsightResponse");
         }
     });
 
@@ -191,6 +199,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expected);
+            expect(response).to.be.a("InsightResponse");
             expect(response.body).to.be("{ 'error': 'dataset does not exist' }");
         }
     });
@@ -205,6 +214,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expected);
+            expect(response).to.be.a("InsightResponse");
             expect(response.body).to.be("{'error': 'dataset doesn't exist'}");
         }
     });
