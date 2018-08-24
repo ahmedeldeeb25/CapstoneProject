@@ -234,25 +234,6 @@ describe("InsightFacade Add/Remove Dataset", function () {
         }
     });
 
-    it("Should return a list of datasets and their types, dataset should be length 3", async () => {
-        let response: InsightResponse;
-        const expected: number = 200;
-        try {
-            response = await insightFacade.listDatasets();
-        } catch (err) {
-            response = err;
-        } finally {
-            expect(response.code).to.equal(expected);
-            expect(response.body).to.be.an.instanceof(Array);
-            const body: InsightResponseSuccessBody = response.body as InsightResponseSuccessBody;
-            const dataset: InsightDataset[] = body.result as InsightDataset[];
-            expect(dataset[0].id).to.equal("courses");
-            expect(dataset[0].kind).to.equal(InsightDatasetKind.Courses);
-            expect(dataset[0].numRows).to.be.a("number");
-            expect(dataset.length).to.equal(datasetsToLoad.keys.length);
-        }
-    });
-
 });
 
 // This test suite dynamically generates tests from the JSON files in test/queries.
@@ -403,22 +384,32 @@ describe("IInsightFacade listDatasets", () => {
         }
     });
 
-    it("should return an array of length 0 if 1 dataset is added but then removed", async () => {
+    it("Should return a list of datasets and their types, dataset should be length 3", async () => {
+        const datasets: any = {
+            courses: "./test/data/courses.zip",
+            rooms: "./test/data/test.zip",
+            tests: "./test/data/test.zip",
+        };
+
         let response: InsightResponse;
-        const expectedCode: number = 200;
-        const expectedLength: number = 0;
-        const id: string = "courses";
-        const filename: string = "./test/data/courses.zip";
-        const kind: InsightDatasetKind = InsightDatasetKind.Courses;
+        const expected: number = 200;
         try {
-            await insightFacade.addDataset(id, filename, kind);
-            await insightFacade.removeDataset(id);
+            await insightFacade.addDataset("courses", datasets["courses"], InsightDatasetKind.Courses);
+            await insightFacade.addDataset("rooms", datasets["rooms"], InsightDatasetKind.Courses);
+            await insightFacade.addDataset("tests", datasets["tests"], InsightDatasetKind.Courses);
             response = await insightFacade.listDatasets();
         } catch (err) {
             response = err;
         } finally {
-            expect(response.code).to.equal(expectedCode);
-            expect((response.body as InsightResponseSuccessBody).result.length).to.equal(expectedLength);
+            expect(response.code).to.equal(expected);
+            expect(response.body).to.be.an.instanceof(Array);
+            const body: InsightResponseSuccessBody = response.body as InsightResponseSuccessBody;
+            const dataset: InsightDataset[] = body.result as InsightDataset[];
+            expect(dataset[0].id).to.equal("courses");
+            expect(dataset[0].kind).to.equal(InsightDatasetKind.Courses);
+            expect(dataset[0].numRows).to.be.a("number");
+            expect(dataset.length).to.equal(datasets.keys.length);
         }
     });
+
 });
