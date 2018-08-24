@@ -1,0 +1,10 @@
+{
+    "title": "A string with * in it",
+    "query": "In courses dataset courses, find entries whose Title contains \"Your * mom\"; show Average and Instructor.",
+    "response": {
+        "code": 400,
+        "body": {
+            "error": ""
+        }
+    }
+}
