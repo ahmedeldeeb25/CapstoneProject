@@ -121,7 +121,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
         }
     });
 
-    it("Should not add a dataset that doesn't exist", async () => {
+    it("Should not add a dataset that doesn't exist: Courses", async () => {
         let response: InsightResponse;
         const expected: number = 400;
         const id: string = "foo";
@@ -132,6 +132,20 @@ describe("InsightFacade Add/Remove Dataset", function () {
         } finally {
             expect(response.code).to.equal(expected);
             expect(response.body).to.be("{ 'error': 'file does not exist'} ");
+        }
+    });
+
+    it("Should throw an error with an invalid file path: Rooms", async () => {
+        let response: InsightResponse;
+        const id: string = "courses";
+        const expected: number = 400;
+        try {
+            response = await insightFacade.addDataset(id, "./test/data/foo.zip", InsightDatasetKind.Rooms);
+        } catch (err) {
+            response = err;
+        } finally {
+            expect(response.code).to.equal(expected);
+            expect(response.body).to.be("{'error': 'file does not exist'} ");
         }
     });
 
@@ -150,20 +164,6 @@ describe("InsightFacade Add/Remove Dataset", function () {
             expect(response.body).to.be("{'error': 'dataset with that id already exists'}");
         }
 
-    });
-
-    it("Should throw an error with an invalid file path", async () => {
-        let response: InsightResponse;
-        const id: string = "courses";
-        const expected: number = 400;
-        try {
-            response = await insightFacade.addDataset(id, "./test/data/foo.zip", InsightDatasetKind.Courses);
-        } catch (err) {
-            response = err;
-        } finally {
-            expect(response.code).to.equal(expected);
-            expect(response.body).to.be("{'error': 'file does not exist'} ");
-        }
     });
 
     // This is an example of a pending test. Add a callback function to make the test run.
@@ -335,21 +335,5 @@ describe("InsightFacade PerformQuery", () => {
             }
         });
     });
-
-    // it("Should perform queries on type Rooms", async () => {
-    //     const id: string = "rooms";
-    //     const file: string = "./test/data/rooms.zip";
-    //     const type: InsightDatasetKind = InsightDatasetKind.Rooms;
-    //     let response: InsightResponse;
-    //     const expected: number = 200;
-    //     try {
-    //         await insightFacade.addDataset(id, file, type);
-    //         response = await insightFacade.performQuery("In rooms dataset rooms, find all entries; show ID.");
-    //     } catch (err) {
-    //         response = err;
-    //     } finally {
-    //         expect(response.code).to.equal(expected);
-    //     }
-    // });
 
 });
