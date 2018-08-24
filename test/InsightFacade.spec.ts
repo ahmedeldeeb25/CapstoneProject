@@ -402,4 +402,23 @@ describe("IInsightFacade listDatasets", () => {
             expect((response.body as InsightResponseSuccessBody).result.length).to.equal(expectedLength);
         }
     });
+
+    it("should return an array of length 0 if 1 dataset is added but then removed", async () => {
+        let response: InsightResponse;
+        const expectedCode: number = 200;
+        const expectedLength: number = 0;
+        const id: string = "courses";
+        const filename: string = "./test/data/courses.zip";
+        const kind: InsightDatasetKind = InsightDatasetKind.Courses;
+        try {
+            await insightFacade.addDataset(id, filename, kind);
+            await insightFacade.removeDataset(id);
+            response = await insightFacade.listDatasets();
+        } catch (err) {
+            response = err;
+        } finally {
+            expect(response.code).to.equal(expectedCode);
+            expect((response.body as InsightResponseSuccessBody).result.length).to.equal(expectedLength);
+        }
+    });
 });
