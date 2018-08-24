@@ -140,6 +140,19 @@ describe("InsightFacade Add/Remove Dataset", function () {
         }
     });
 
+    it("Should return an error if empty string passed in to id and content", async () => {
+        let response: InsightResponse;
+        const expected: number = 400;
+        try {
+            response = await insightFacade.addDataset("", "", InsightDatasetKind.Courses);
+        } catch (err) {
+            response = err;
+        } finally {
+            expect(response).to.be.a("InsightResponseErrorBody");
+            expect(response.code).to.equal(expected);
+        }
+    });
+
     it("Should throw an error with an invalid file path: Rooms", async () => {
         let response: InsightResponse;
         const id: string = "courses";
