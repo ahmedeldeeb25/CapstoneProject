@@ -5,7 +5,7 @@ import { InsightResponse, InsightResponseSuccessBody,
 import InsightFacade from "../src/controller/InsightFacade";
 import Log from "../src/Util";
 import TestUtil from "./TestUtil";
-// import { AsyncResource } from "async_hooks";
+import { AsyncResource } from "async_hooks";
 
 // This should match the JSON schema described in test/query.schema.json
 // except 'filename' which is injected when the file is read.
@@ -219,25 +219,14 @@ describe("InsightFacade Add/Remove Dataset", function () {
         } finally {
             expect(response.code).to.equal(expected);
             expect(response.body).to.be.an.instanceof(Array);
+            const body: InsightResponseSuccessBody = response.body as InsightResponseSuccessBody;
+            const dataset: InsightDataset[] = body.result as InsightDataset[];
+            expect(dataset[0].id).to.equal("courses");
+            expect(dataset[0].kind).to.equal(InsightDatasetKind.Courses);
+            expect(dataset[0].numRows).to.be.a("number");
         }
     });
 
-    it("Should return a list of datasets and their types", async () => {
-        let response: InsightResponse;
-        const expected: number = 200;
-        try {
-            response = await insightFacade.listDatasets();
-        } catch (err) {
-            response = err;
-        } finally {
-            expect(response.code).to.equal(expected);
-        }
-        const body: InsightResponseSuccessBody = response.body as InsightResponseSuccessBody;
-        const dataset: InsightDataset[] = body.result as InsightDataset[];
-        expect(dataset[0].id).to.equal("courses");
-        expect(dataset[0].kind).to.equal(InsightDatasetKind.Courses);
-        expect(dataset[0].numRows).to.be.a("number");
-    });
 });
 
 // This test suite dynamically generates tests from the JSON files in test/queries.
@@ -347,20 +336,20 @@ describe("InsightFacade PerformQuery", () => {
         });
     });
 
-    it("Should perform queries on type Rooms", async () => {
-        const id: string = "rooms";
-        const file: string = "./test/data/rooms.zip";
-        const type: InsightDatasetKind = InsightDatasetKind.Rooms;
-        let response: InsightResponse;
-        const expected: number = 200;
-        try {
-            await insightFacade.addDataset(id, file, type);
-            response = await insightFacade.performQuery("In rooms dataset rooms, find all entries; show ID.");
-        } catch (err) {
-            response = err;
-        } finally {
-            expect(response.code).to.equal(expected);
-        }
-    });
+    // it("Should perform queries on type Rooms", async () => {
+    //     const id: string = "rooms";
+    //     const file: string = "./test/data/rooms.zip";
+    //     const type: InsightDatasetKind = InsightDatasetKind.Rooms;
+    //     let response: InsightResponse;
+    //     const expected: number = 200;
+    //     try {
+    //         await insightFacade.addDataset(id, file, type);
+    //         response = await insightFacade.performQuery("In rooms dataset rooms, find all entries; show ID.");
+    //     } catch (err) {
+    //         response = err;
+    //     } finally {
+    //         expect(response.code).to.equal(expected);
+    //     }
+    // });
 
 });
