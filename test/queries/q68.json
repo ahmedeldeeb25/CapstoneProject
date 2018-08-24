@@ -1,6 +1,6 @@
 {
     "title": "Input contains underscore",
-    "query": "In courses dataset courses_title, find entries whose Average is equal to \"45\"; show Average and Instructor.",
+    "query": "In courses dataset courses_title, find entries whose Average is equal to 45; show Average and Instructor.",
     "response": {
         "code": 400,
         "body": {
