@@ -363,17 +363,4 @@ describe("InsightFacade PerformQuery", () => {
         }
     });
 
-    it("Should return an error if a query is performed on a removed dataset", async () => {
-        let response: InsightResponse;
-        const expected: number = 400;
-        try {
-            insightFacade.removeDataset("courses").then( async () => {
-                response = await insightFacade.performQuery("In courses dataset courses, find all entries; show ID.");
-            });
-        } catch (err) {
-            response = err;
-        } finally {
-            expect(response.code).to.equal(expect);
-        }
-    });
 });
