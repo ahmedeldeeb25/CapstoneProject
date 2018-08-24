@@ -219,6 +219,21 @@ describe("InsightFacade Add/Remove Dataset", function () {
         }
     });
 
+    it("Should return an error if a query is performed on a removed database", async () => {
+        const id: string = "courses";
+        let response: InsightResponse;
+        const expected: number = 200;
+        try {
+            await insightFacade.removeDataset(id);
+            response = await insightFacade.performQuery("In courses dataset courses, find all entries; show ID.");
+        } catch (err) {
+            response = err;
+        } finally {
+            expect(response.code).to.equal(expected);
+            expect(response.body).to.deep.equal("{'error': 'my text'}");
+        }
+    });
+
     it("Should return a list of datasets and their types, dataset should be length 3", async () => {
         let response: InsightResponse;
         const expected: number = 200;
