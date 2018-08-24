@@ -209,7 +209,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
         }
     });
 
-    it("Should return a list of datasets and their types", async () => {
+    it("Should return a list of datasets and their types, dataset should be length 3", async () => {
         let response: InsightResponse;
         const expected: number = 200;
         try {
@@ -224,6 +224,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
             expect(dataset[0].id).to.equal("courses");
             expect(dataset[0].kind).to.equal(InsightDatasetKind.Courses);
             expect(dataset[0].numRows).to.be.a("number");
+            expect(dataset.length).to.equal(datasetsToLoad.keys.length);
         }
     });
 
@@ -335,4 +336,45 @@ describe("InsightFacade PerformQuery", () => {
         });
     });
 
+});
+
+describe("IInsightFacade listDatasets", () => {
+
+    let insightFacade: InsightFacade;
+
+    before( () => {
+        insightFacade = new InsightFacade();
+    });
+
+    it("should return an array of length 0 if no datasets are added", async () => {
+        let response: InsightResponse;
+        const expectedCode: number = 200;
+        const expectedLength: number = 0;
+        try {
+            response = await insightFacade.listDatasets();
+        } catch (err) {
+            response = err;
+        } finally {
+            expect(response.code).to.equal(expectedCode);
+            expect((response.body as InsightResponseSuccessBody).result.length).to.equal(expectedLength);
+        }
+    });
+
+    it("should return an array of length 1 if 1 dataset is added", async () => {
+        let response: InsightResponse;
+        const expectedCode: number = 200;
+        const expectedLength: number = 1;
+        const id: string = "courses";
+        const filename: string = "./test/data/courses.zip";
+        const kind: InsightDatasetKind = InsightDatasetKind.Courses;
+        try {
+            await insightFacade.addDataset(id, filename, kind);
+            response = await insightFacade.listDatasets();
+        } catch (err) {
+            response = err;
+        } finally {
+            expect(response.code).to.equal(expectedCode);
+            expect((response.body as InsightResponseSuccessBody).result.length).to.equal(expectedLength);
+        }
+    });
 });
