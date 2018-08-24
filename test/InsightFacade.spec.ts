@@ -434,32 +434,4 @@ describe("IInsightFacade listDatasets", () => {
         }
     });
 
-    it("Should return a list of datasets and their types, dataset should be length 3", async () => {
-        const datasets: any = {
-            courses: "./test/data/courses.zip",
-            rooms: "./test/data/test.zip",
-            tests: "./test/data/test.zip",
-        };
-
-        let response: InsightResponse;
-        const expected: number = 200;
-        try {
-            await insightFacade.addDataset("courses", datasets["courses"], InsightDatasetKind.Courses);
-            await insightFacade.addDataset("rooms", datasets["rooms"], InsightDatasetKind.Courses);
-            await insightFacade.addDataset("tests", datasets["tests"], InsightDatasetKind.Courses);
-            response = await insightFacade.listDatasets();
-        } catch (err) {
-            response = err;
-        } finally {
-            expect(response.code).to.equal(expected);
-            expect(response.body).to.be.an.instanceof(Array);
-            const body: InsightResponseSuccessBody = response.body as InsightResponseSuccessBody;
-            const dataset: InsightDataset[] = body.result as InsightDataset[];
-            expect(dataset[0].id).to.equal("courses");
-            expect(dataset[0].kind).to.equal(InsightDatasetKind.Courses);
-            expect(dataset[0].numRows).to.be.a("number");
-            expect(dataset.length).to.equal(datasets.keys.length);
-        }
-    });
-
 });
