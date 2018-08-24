@@ -1,0 +1,10 @@
+{
+    "title": "String number mistmatch",
+    "query": "In courses dataset courses, find entries whose Title is less than 45; show Average and Instructor.",
+    "response": {
+        "code": 400,
+        "body": {
+            "error": ""
+        }
+    }
+}
