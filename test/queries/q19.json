@@ -2,7 +2,7 @@
     "title": "SELECT dept, avg, id WHERE avg > 97 and avg < 100",
     "query": "In courses dataset courses, find entries whose Average is greater than 97 and Average is less than 100; show Department and Average and ID; sort in ascending order by Average.",
     "response": {
-        "code": 400,
+        "code": 200,
         "body": {
             "result": [
                 {
