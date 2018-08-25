@@ -7,11 +7,10 @@
  */
 import * as JSzip from "jszip";
 import * as fs from "fs";
-import { relative } from "path";
-import Log from "../../../src/Util";
+import Log from "../../Util";
 import { promisify } from "util";
 
-export default class Consumer {
+export default class Validator {
     private filename: string;
     private foldername: string;
 
@@ -26,14 +25,10 @@ export default class Consumer {
         return this.valid_zip_file(this.filename) && await this.contains_only_csv();
     }
 
-    // Parse the file
-    public parse_data(): void {
-        // TODO parse data
-    }
-
-    // Saves dataset to cache
-    public cache_dataset(): void {
-        // TODO save data to cache
+    // Return folder with csv files for parser
+    public get_folder(): JSzip {
+        const jszip: JSzip = new JSzip();
+        return jszip.folder(this.foldername);
     }
 
     // return false if the file doesn't end in .zip
