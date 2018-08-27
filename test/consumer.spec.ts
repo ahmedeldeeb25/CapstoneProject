@@ -1,10 +1,7 @@
-import { expect, assert } from "chai";
+import { expect } from "chai";
 import Validator from "../src/controller/consumer/validator";
 import Parser from "../src/controller/consumer/parser";
-import Log from "../src/Util";
-import * as JSzip from "jszip";
 import * as fs from "fs";
-import { AssertionError } from "assert";
 
 describe("Consumer valid_file validator", () => {
     let validator: Validator;
@@ -51,33 +48,23 @@ describe("Consumer valid_file validator", () => {
         }
     });
 
-    it("Should return a valid JSZip if given folder name", () => {
-        const filename: string = "./test/data/courses.zip";
-        const foldername: string = "courses";
-        let jszip: JSzip;
-        validator = new Validator(filename, foldername);
-        jszip = validator.get_folder();
-        expect(jszip).to.be.an.instanceof(JSzip);
-    });
-
 });
 
 describe("Consumer Parser", () => {
 
     let parser: Parser;
-    let folder: JSzip;
+    const filename: string = "./test/data/small_test.zip";
+    const id: string = "small_test";
     before("Before each", () => {
         // assumes that file is valid
-        const validator: Validator = new Validator("./test/data/small_test.zip", "small_test");
-        folder = validator.get_folder();
-        parser = new Parser("courses", folder);
+        parser = new Parser(id, filename);
     });
 
     after("After each", () => {
         // TODO: delete file made for cache
     });
 
-    it("Should parse each line of a file and convert it into an object", () => {
+    it("Should parse each line of a file and convert it into an object", async () => {
         const expected: object[] = [
             {
                  small_test_title: "gross anat limbs",
@@ -119,14 +106,13 @@ describe("Consumer Parser", () => {
                 small_test_section: "001",
             },
         ];
-        const actual: object[] = parser.parse_data();
+        const actual: {} = await parser.parse_data();
         expect(actual).to.deep.equal(expected);
     });
 
     it("Should store the objects in a cache", async () => {
         await parser.store_data();
-        const folderName: string = folder.name;
-        expect(fs.existsSync("../src/cache/" + folderName + ".json")).to.equal(true);
+        expect(fs.existsSync("../src/cache/" + id + ".json")).to.equal(true);
     });
 
 });

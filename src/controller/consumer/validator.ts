@@ -25,12 +25,6 @@ export default class Validator {
         return this.valid_zip_file(this.filename) && await this.contains_only_csv();
     }
 
-    // Return folder with csv files for parser
-    public get_folder(): JSzip {
-        const jszip: JSzip = new JSzip();
-        return jszip.folder(this.foldername);
-    }
-
     // return false if the file doesn't end in .zip
     private valid_zip_file(filename: string): boolean {
         return /\.zip$/.test(filename);
