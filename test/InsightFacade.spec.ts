@@ -5,7 +5,6 @@ import { InsightResponse, InsightResponseSuccessBody,
 import InsightFacade from "../src/controller/InsightFacade";
 import Log from "../src/Util";
 import TestUtil from "./TestUtil";
-import { AsyncResource } from "async_hooks";
 
 // This should match the JSON schema described in test/query.schema.json
 // except 'filename' which is injected when the file is read.

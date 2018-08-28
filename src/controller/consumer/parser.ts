@@ -8,7 +8,7 @@ import * as fs from "fs";
 import * as readline from "readline";
 import Log from "../../Util";
 import { promisify } from "util";
-import { validate } from "../../../node_modules/jsonschema";
+import { validate } from "jsonschema";
 
 export default class Parser {
 
