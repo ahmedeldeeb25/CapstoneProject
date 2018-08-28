@@ -71,7 +71,7 @@ describe("Consumer Parser", () => {
                  small_test_id: "1845",
                  small_test_professor: "alimohammadi, majid",
                  small_test_audit: 0,
-                 small_test_year: 2013,
+                 small_test_year: "2013",
                  small_test_course: 392,
                  small_test_pass: 82,
                  small_test_fail: 0,
@@ -84,8 +84,8 @@ describe("Consumer Parser", () => {
                 small_test_id: "1846",
                 small_test_professor: "",
                 small_test_audit: 0,
-                small_test_year: 2013,
-                small_test_class: 392,
+                small_test_year: "2013",
+                small_test_course: 392,
                 small_test_pass: 82,
                 small_test_fail: 0,
                 small_test_avg: 81.82,
@@ -97,7 +97,7 @@ describe("Consumer Parser", () => {
                 small_test_id: "12690",
                 small_test_professor: "alimohammadi, majid",
                 small_test_audit: 0,
-                small_test_year: 2014,
+                small_test_year: "2014",
                 small_test_course: 392,
                 small_test_pass: 83,
                 small_test_fail: 0,
@@ -106,13 +106,14 @@ describe("Consumer Parser", () => {
                 small_test_section: "001",
             },
         ];
-        const actual: {} = await parser.parse_data();
+        const actual: object[] = await parser.parse_data();
         expect(actual).to.deep.equal(expected);
     });
 
     it("Should store the objects in a cache", async () => {
-        await parser.store_data();
-        expect(fs.existsSync("../src/cache/" + id + ".json")).to.equal(true);
+        const data: object[] = await parser.parse_data();
+        await parser.store_data(data);
+        expect(fs.existsSync("./src/cache/" + id + ".json")).to.equal(true);
     });
 
 });
