@@ -1,5 +1,6 @@
 import { isString, isNumber } from "util";
 import Log from "../Util";
+import { join } from "path";
 
 /**
  * Take a query apart and determine if it is valid
@@ -30,7 +31,7 @@ export default class ParseQuery {
         const words: string[] = sOP.split(" ");
         const lastWord: string = words[words.length - 1];
         const phrase: string = words.slice(0, -1).join(" ");
-        if (/^\"\w*\"$/.test(lastWord)) {
+        if (this.valid_string(lastWord)) {
             return this.S_OP.includes(phrase);
         } else {
             return false;
@@ -60,4 +61,8 @@ export default class ParseQuery {
         }
     }
 
+    // Returns true if a string is enveloped in double quotes and does not contain a * and doesnt contain a "
+    private valid_string(word: string): boolean {
+        return /^\"\w*\"$/.test(word) && !word.includes("*") && !word.split("").slice(1, -1).join("").includes("\"");
+    }
 }
