@@ -7,7 +7,8 @@ export interface IsplitQuery {
 
 export class SplitQuery {
 
-    private POS_LOOK_AHEAD_AND: RegExp = new RegExp(/and|or(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+    private POS_LOOK_AHEAD_AND: RegExp = new RegExp('and(?=(?:(?:[^"]*"){2})*[^"]*$)', "g");
+    private POS_LOOK_AHEAD_OR: RegExp = new RegExp('and(?=(?:(?:[^"]*"){2})*[^"]*$)', "g");
     private QUERY: string;
     private SPLIT_QUERY: IsplitQuery;
 
@@ -20,8 +21,34 @@ export class SplitQuery {
         return this.SPLIT_QUERY;
     }
 
+    /**
+     * @param filter "is \"the and that\" and is not equal to 75 or is less than 400"
+     * @returns ["is \"the and \that", "and is not equal to 75", "or is less than 400"]]
+     * This function is pretty ugly
+     */
+    public split_filter(filter: string): string[] | string {
+        if (filter === "find all entries") {
+            return filter;
+        } else {
+            const splitByAnd: string[] = filter.match(this.POS_LOOK_AHEAD_AND);
+            const and: string[] = [];
+            const or: string[] = [];
+            splitByAnd.forEach( (x) => {
+                if (this.POS_LOOK_AHEAD_OR.test(x)) {
+                    const first: string = x[0];
+                    const second: string = x[1];
+                    and.push("and " + first.trim());
+                    or.push("or " + second.trim());
+                } else {
+                    and.push("and " + x.trim());
+                }
+            });
+            return and.concat(or);
+        }
+    }
+
     // Returns an object with dataset, filter, show, order (IsplitQuery interface)
-    private split_query(query: string): void {
+    public split_query(query: string): void {
         const commaIndex: number = query.indexOf(",");
         const dataset: string = query.slice(0, commaIndex);
         const semiIndex: number = query.indexOf(";");
@@ -47,18 +74,6 @@ export class SplitQuery {
      */
     private split_show(show: string): string[] {
         return show.split("show ")[1].split(" and ");
-    }
-
-    /**
-     * @param filter "is \"the and that\" and is not equal to 75 or is less than 400"
-     * @returns ["and is \"the and \that", "and is not equal to 75", "or is less than 400"]
-     */
-    private split_filter(filter: string): string[] | string {
-        if (filter === "find all entries") {
-            return filter;
-        } else {
-            // TODO
-        }
     }
 
 }
