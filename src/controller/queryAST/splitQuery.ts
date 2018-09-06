@@ -62,7 +62,14 @@ export class SplitQuery {
      *
      */
     private split_show(show: string): string[] {
-        return show.trim().split(" ").filter( (x) => x !== "show").filter( (x) => x !== "and");
+        // trim show just in case
+        show = show.trim();
+        // if show has a period at the end remove the period
+        if (show.slice(-1) === ".") {
+            show = show.slice(0, -1);
+        }
+        // split show into words and filter out words that are not keys
+        return show.split(" ").filter( (x) => x !== "show").filter( (x) => x !== "and");
     }
 
     // returns an array of criteria, maybe criteria should be objects
@@ -70,7 +77,8 @@ export class SplitQuery {
     private parse_criteria(criteria: string[]): QueryFilter[] {
         const filterList: QueryFilter[] = [];
         for (const c of criteria) {
-            const words: string[] = c.trim().split(" ");
+            // chop string into words but keep strings in quotes together
+            const words: string[] = c.trim().split(/\s(?=(?:[^"']|["|'][^"']*")*$)/);
             let andOr: string = null;
             let key: string;
             let OP: SOP | MOP;

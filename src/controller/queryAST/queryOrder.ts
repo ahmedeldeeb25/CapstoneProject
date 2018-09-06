@@ -3,7 +3,6 @@ export default class Order {
     private phrase: string = "sort in ascending order by";
     private order: string;
     private keys: string[] = ["Average", "Pass", "Fail", "Audit", "Department", "ID", "Instructor", "Title", "UUID"];
-
     constructor(order: string) {
         this.order = order.trim();
         this.parse(order);

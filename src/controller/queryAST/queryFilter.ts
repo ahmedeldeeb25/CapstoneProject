@@ -16,4 +16,16 @@ export default class QueryFilter implements IFILTER {
         this.andOr = andOr ? andOr : null;
         this.criteria = OP ? OP : null;
     }
+
+    public validate_filter(): boolean {
+        if (this.all) {
+            return true;
+        } else {
+            return this.validate_and_or() && this.criteria.validateCriteria();
+        }
+    }
+
+    private validate_and_or(): boolean {
+        return this.andOr === null || this.andOr === "and" || this.andOr === "or";
+    }
 }

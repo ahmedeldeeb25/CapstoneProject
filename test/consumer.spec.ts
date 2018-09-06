@@ -2,14 +2,28 @@ import { expect } from "chai";
 import Validator from "../src/controller/consumer/validator";
 import Parser from "../src/controller/consumer/parser";
 import * as fs from "fs";
+import { promisify } from "util";
+import Log from "../src/Util";
 
 describe("Consumer valid_file validator", () => {
     let validator: Validator;
 
+    after("Delete files", async () => {
+        const files: string[] = ["courses", "nonsense", "small_test", "rooms", "test"];
+        for (const file of files) {
+            if (await (promisify)(fs.exists)(`./src/cache/${file}.json`)) {
+                await (promisify)(fs.unlink)(`./src/cache/${file}.json`);
+                Log.test("Deleted file: " + file);
+            }
+        }
+    });
+
     it("Should return false if the file is not a zip", async () => {
-        const filename: string = "./test/data/testfile.jpg";
+        const filename: string = "./test/data/nonsense.png";
         const foldername: string = "testfile";
-        validator = new Validator(filename, foldername);
+        const buffer: Buffer = await (promisify)(fs.readFile)(filename);
+        const content = buffer.toString("base64");
+        validator = new Validator(foldername, content);
         let value: boolean;
         try {
             value = await validator.valid_file();
@@ -23,7 +37,9 @@ describe("Consumer valid_file validator", () => {
     it("Should return false if the file does not contain csv", async () => {
         const filename: string = "./test/data/nonsense.zip";
         const foldername: string = "nonsense";
-        validator = new Validator(filename, foldername);
+        const buffer: Buffer = await (promisify)(fs.readFile)(filename);
+        const content = buffer.toString("base64");
+        validator = new Validator(foldername, content);
         let value: boolean;
         try {
             value = await validator.valid_file();
@@ -37,7 +53,9 @@ describe("Consumer valid_file validator", () => {
     it("Should return true if the file is a valid zip file that contains csv", async () => {
         const filename: string = "./test/data/courses.zip";
         const foldername: string = "courses";
-        validator = new Validator(filename, foldername);
+        const buffer: Buffer = await (promisify)(fs.readFile)(filename);
+        const content = buffer.toString("base64");
+        validator = new Validator(foldername, content);
         let value: boolean;
         try {
             value = await validator.valid_file();
@@ -55,9 +73,11 @@ describe("Consumer Parser", () => {
     let parser: Parser;
     const filename: string = "./test/data/small_test.zip";
     const id: string = "small_test";
-    before("Before each", () => {
+    before("Before each", async () => {
         // assumes that file is valid
-        parser = new Parser(id, filename);
+        const buffer: Buffer = await (promisify)(fs.readFile)(filename);
+        const content: string = buffer.toString("base64");
+        parser = new Parser(id, content);
     });
 
     after("After each", () => {

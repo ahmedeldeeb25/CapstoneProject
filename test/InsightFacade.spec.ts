@@ -5,6 +5,8 @@ import { InsightResponse, InsightResponseSuccessBody,
 import InsightFacade from "../src/controller/InsightFacade";
 import Log from "../src/Util";
 import TestUtil from "./TestUtil";
+import * as fs from "fs";
+import { promisify } from "util";
 
 // This should match the JSON schema described in test/query.schema.json
 // except 'filename' which is injected when the file is read.
@@ -58,8 +60,16 @@ describe("InsightFacade Add/Remove Dataset", function () {
         Log.test(`BeforeTest: ${this.currentTest.title}`);
     });
 
-    after(function () {
+    // remove the cached files
+    after(async function () {
         Log.test(`After: ${this.test.parent.title}`);
+        for (const file of Object.keys(datasetsToLoad)) {
+            if (await (promisify)(fs.exists)(`./src/cache/${file}.json`)) {
+                await (promisify)(fs.unlink)(`./src/cache/${file}.json`);
+                Log.test("removed: " + file);
+            }
+        }
+        Log.test("cached files removed");
     });
 
     afterEach(function () {
@@ -77,13 +87,12 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expectedCode);
-            expect(response).to.be.a("InsightResponse");
         }
     });
 
     it("Should add the dataset with type courses I created", async () => {
         let response: InsightResponse;
-        const id: string = "tests";
+        const id: string = "test";
         const expected: number = 204;
         try {
             response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
@@ -91,21 +100,19 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expected);
-            expect(response).to.be.a("InsightResponse");
         }
     });
 
     it("Should add an valid dataset of type rooms", async () => {
        let response: InsightResponse;
        const id: string = "rooms";
-       const expected: number = 200;
+       const expected: number = 204;
        try {
            response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Rooms);
        } catch (err) {
            response = err;
        } finally {
            expect(response.code).to.equal(expected);
-           expect(response).to.be.a("InsightResponse");
        }
     });
 
@@ -119,8 +126,6 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expected);
-            expect(response).to.be.a("InsightResponse");
-            expect(response.body).to.be("{'error': 'file is not a csv file'} ");
         }
     });
 
@@ -134,8 +139,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expected);
-            expect(response).to.be.a("InsightResponse");
-            expect(response.body).to.be("{ 'error': 'file does not exist'} ");
+            expect(response.body).to.deep.equal({ error: "file was not valid" });
         }
     });
 
@@ -149,8 +153,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expected);
-            expect(response).to.be.a("InsightResponse");
-            expect(response.body).to.be("{'error': 'file does not exist'} ");
+            expect(response.body).to.deep.equal({ error: "file was not valid" });
         }
     });
 
@@ -166,8 +169,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expectedCode);
-            expect(response).to.be.a("InsightResponse");
-            expect(response.body).to.be("{'error': 'dataset with that id already exists'}");
+            expect(response.body).to.deep.equal({ error: "file was not valid"});
         }
 
     });
@@ -183,7 +185,6 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expected);
-            expect(response).to.be.a("InsightResponse");
         }
     });
 
@@ -195,7 +196,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
         } catch (err) {
             response = err;
         } finally {
-            expect(response.code).to.equal(204);
+            expect(response.code).to.equal(expected);
         }
     });
 
@@ -207,7 +208,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
         } catch (err) {
             response = err;
         } finally {
-            expect(response.code).to.equal(204);
+            expect(response.code).to.equal(expected);
         }
     });
 

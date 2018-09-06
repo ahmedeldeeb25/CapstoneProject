@@ -1,6 +1,7 @@
 import { IsplitQuery, SplitQuery } from "./splitQuery";
 import QueryFilter from "./queryFilter";
 import Order from "./queryOrder";
+import { isArray } from "util";
 
 /**
  * Take a query apart and determine if it is valid
@@ -8,7 +9,7 @@ import Order from "./queryOrder";
 export default class ValidateQuery {
     private MORE_KEYS: string = "and";
     private KIND: string[] = ["courses"];
-
+    private KEYS: string[] = ["Average", "Pass", "Fail", "Audit", "Department", "ID", "Instructor", "Title", "UUID"];
     private KEYWORDS: string[] = [
         "In", "dataset", "find", "all", "show", "and", "or", "sort", "by", "entries", "is", "the", "of", "whose",
     ];
@@ -31,7 +32,7 @@ export default class ValidateQuery {
      *
      */
     public valid_query(query: string): boolean {
-        if (query[-1] !== "." || query.split(",").length < 2) {
+        if (query.slice(-1) !== "." || query.split(",").length < 2) {
             return false;
         }
 
@@ -40,7 +41,6 @@ export default class ValidateQuery {
         const { filter } = splitQuery;
         const { order} = splitQuery;
         const { show } = splitQuery;
-
         return this.valid_dataset(dataset) && this.valid_filter(filter)
             && this.valid_show(show) && this.valid_order(order);
     }
@@ -62,15 +62,33 @@ export default class ValidateQuery {
     }
 
     public valid_filter(filter: QueryFilter | QueryFilter[]): boolean {
-        return false;
+        if (isArray(filter)) {
+            for (const i of filter) {
+                if (!i.validate_filter) {
+                    return false;
+                }
+            }
+        } else {
+            return filter.validate_filter();
+        }
+        return true;
     }
 
     public valid_show(show: string[]): boolean {
-        return false;
+        for (const index in show) {
+            if (!this.KEYS.includes(show[index])) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public valid_order(order: Order): boolean {
-        return order.validateOrder();
+        if (order) {
+            return order.validateOrder();
+        } else {
+            return true;
+        }
     }
 
     private valid_kind(kind: string): boolean {

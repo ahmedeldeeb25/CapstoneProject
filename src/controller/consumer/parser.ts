@@ -8,19 +8,18 @@ import * as fs from "fs";
 import * as readline from "readline";
 import Log from "../../Util";
 import { promisify } from "util";
-import { validate } from "jsonschema";
 
 export default class Parser {
 
     private allKeys: string[] = ["dept", "id", "instructor", "title", "pass", "fail", "audit", "uuid", "avg"];
     private mKeys: string[] = ["pass", "fail", "audit", "avg", "course"];
     private id: string;
-    private filename: string;
+    private content: string;
     private jszip: JSzip;
 
-    constructor(id: string, filename: string) {
+    constructor(id: string, content: string) {
         this.id = id;
-        this.filename = filename;
+        this.content = content;
         this.jszip = new JSzip();
     }
 
@@ -28,12 +27,16 @@ export default class Parser {
     // Return promise with JSON Object that represents all entries from all csv files in the folder
     public async parse_data(): Promise<object[]> {
         const data: Array<Promise<Array<{}>>> = [];
-        const folder = await this.getFolder();
+        let folder: JSzip;
+        try {
+             folder = await this.getFolder();
+        } catch (err) {
+            throw new Error("unable to find folder");
+        }
         folder.forEach( async (relativePath, f) => {
             const cvsContents = this.cvsPromise(f);
             data.push(cvsContents);
         });
-        // this is just here to make TS Lint happy for now
         return Promise.all(data).then( (d) => {
             const flatten: Array<{}> = [].concat.apply([], d);
             return Promise.resolve(flatten);
@@ -60,8 +63,7 @@ export default class Parser {
         let jszip: JSzip;
         let folder: JSzip;
         try {
-            const file: Buffer = await promisify(fs.readFile)(this.filename);
-            jszip = await this.jszip.loadAsync(file);
+            jszip = await this.jszip.loadAsync(this.content, { base64: true });
         } catch (err) {
             Log.test(err);
             throw new Error("unable to get file");
@@ -82,8 +84,13 @@ export default class Parser {
     private async cvsPromise(f: JSzip.JSZipObject): Promise<Array<{}>> {
         let first: boolean = true;
         let keys: string[];
+        let stream: NodeJS.ReadableStream;
         const json: Array<{}> = new Array<{}>();
-        const stream = await this.getReadableStream(f);
+        try {
+            stream = await this.getReadableStream(f);
+        } catch (err) {
+            throw new Error("error occured with stream");
+        }
         const rl = readline.createInterface({
             input: stream,
         });

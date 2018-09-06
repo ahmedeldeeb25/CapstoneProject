@@ -1,4 +1,5 @@
 export default abstract class CRITERIA {
+    protected mOP: { [name: string]: (a: string | number, b: string | number) => boolean };
     private key: string;
     private OP: string;
     private target: number | string;
@@ -24,13 +25,18 @@ export default abstract class CRITERIA {
 
     public setPhrases(phrases: string[]) { this.phrases = phrases; }
 
+    public setKey(key: string) { this.key = key; }
+
     public validateCriteria(): boolean {
         return this.validateOP() && this.validateKey() && this.validateTarget();
     }
+
+    public abstract getFunc(): (a: string | number, b: string | number) => boolean;
 
     public abstract validateOP(): boolean;
 
     public abstract validateKey(): boolean;
 
     public abstract validateTarget(): boolean;
+
 }
