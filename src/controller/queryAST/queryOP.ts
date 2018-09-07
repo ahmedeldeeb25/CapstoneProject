@@ -31,6 +31,11 @@ export default abstract class CRITERIA {
         return this.validateOP() && this.validateKey() && this.validateTarget();
     }
 
+    public toString(): string {
+        return `OP: ${this.getOP()} Key: ${this.getKey()} ` +
+                `Target: ${this.getTarget()} Valid: ${this.validateCriteria()}\n`;
+    }
+
     public abstract getFunc(): (a: string | number, b: string | number) => boolean;
 
     public abstract validateOP(): boolean;

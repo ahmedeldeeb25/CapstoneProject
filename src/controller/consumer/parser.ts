@@ -7,12 +7,17 @@ import * as JSzip from "jszip";
 import * as fs from "fs";
 import * as readline from "readline";
 import Log from "../../Util";
-import { promisify } from "util";
 
 export default class Parser {
 
     private allKeys: string[] = ["dept", "id", "instructor", "title", "pass", "fail", "audit", "uuid", "avg"];
     private mKeys: string[] = ["pass", "fail", "audit", "avg", "course"];
+    private translate: { [index: string]: string } = {
+        subject: "dept",
+        professor: "instructor",
+        id: "uuid",
+        course: "id",
+    };
     private id: string;
     private content: string;
     private jszip: JSzip;
@@ -98,6 +103,8 @@ export default class Parser {
             if (first) {
                 keys = line.split("|");
                 keys = keys.map( (val, index) => val.toLowerCase());
+                // make sure keys are uniform, i.e, subject should be department
+                keys = keys.map( (val, index) => Object.keys(this.translate).includes(val) ? this.translate[val] : val);
                 first = !first;
             } else {
                 const lineObj: any = {};

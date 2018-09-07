@@ -5,6 +5,7 @@ import QueryFilter from "../src/controller/queryAST/queryFilter";
 import MOP from "../src/controller/queryAST/queryMOP";
 import SOP from "../src/controller/queryAST/querySOP";
 import Order from "../src/controller/queryAST/queryOrder";
+import Log from "../src/Util";
 
 describe("Query splitter", () => {
     const splitQuery = new SplitQuery("In rooms dataset rooms, find entries whose Average is greater" +
@@ -34,6 +35,19 @@ describe("Query splitter", () => {
         expect(filters[0].criteria.getKey()).to.equal(q1.criteria.getKey());
         expect(filters[1].criteria.getKey()).to.equal(q2.criteria.getKey());
         expect(filters[2].criteria.getKey()).to.equal(q3.criteria.getKey());
+    });
+
+    it("Should have proper filter", () => {
+        const query: string = "In courses dataset courses, " +
+            "find entries whose Instructor includes \"bob\"; show ID.";
+        const filters: QueryFilter[] = (new SplitQuery(query).get_split_query().filter) as QueryFilter[];
+        const filterLength: number = 1;
+        const criteria: string = "OP: includes Key: Instructor Target: \"bob\" Valid: true\n";
+        expect(filters[0].criteria.getTarget()).to.equal("\"bob\"");
+        expect(filters[0].criteria.getKey()).to.equal("Instructor");
+        expect(filters[0].criteria.getOP()).to.equal("includes");
+        expect(filters.length).to.equal(filterLength);
+        expect(filters[0].criteria.toString()).to.equal(criteria);
     });
 
     it("Should have proper order", () => {
@@ -157,8 +171,8 @@ describe("Validate Query", () => {
 
     it("Should validate query from q2", () => {
         const expected: boolean = true;
-        const query: string = "In courses dataset courses, find entries whose Average is greater than 90"
-        + "and Department is \"adhe\""
+        const query: string = "In courses dataset courses, find entries whose Average is greater than 90 "
+        + "and Department is \"adhe\" "
         + "or Average is equal to 95; show Department and ID and Average; sort in ascending order by Average.";
         const splitQuery: SplitQuery = new SplitQuery(query);
         const parser: ValidateQuery = new ValidateQuery(splitQuery);
@@ -185,7 +199,7 @@ describe("Validate Query", () => {
     it("Should validate query from q5", () => {
         const expected: boolean = true;
         const query: string = "In courses dataset courses, find entries whose Average is less than 97"
-        + " and id is \"400\"; show Department and Average; sort in ascending order by Average.";
+        + " and ID is \"400\"; show Department and Average; sort in ascending order by Average.";
         const splitQuery: SplitQuery = new SplitQuery(query);
         const parser: ValidateQuery = new ValidateQuery(splitQuery);
         expect(parser.valid_query(query)).to.equal(expected);
@@ -193,8 +207,8 @@ describe("Validate Query", () => {
 
     it("Should validate query with a not MOP", () => {
         const expected: boolean = true;
-        const query: string = "In courses dataset courses, find entries whose Average is not greater than 90"
-            + "and Department is \"adhe\""
+        const query: string = "In courses dataset courses, find entries whose Average is not greater than 90 "
+            + "and Department is \"adhe\" "
             + "or Average is equal to 95; show Department and ID and Average; sort in ascending order by Average.";
         const splitQuery: SplitQuery = new SplitQuery(query);
         const parser: ValidateQuery = new ValidateQuery(splitQuery);
@@ -215,6 +229,49 @@ describe("Validate Query", () => {
         const parser: ValidateQuery = new ValidateQuery(new SplitQuery("In courses dataset courses, " +
                                     "find all entries; show Department."));
         expect(parser.valid_show(invalidKeys)).to.equal(expected);
+    });
+
+    it("Should validate query: with invalid SOP (target is number)", () => {
+        const query: string = "In courses dataset courses, " +
+            "find entries whose Average is greater than 97 or ID is equal to 329; " +
+            "show Department and Average and ID; sort in ascending order by Average.";
+        const splitQuery = new SplitQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        const expected: boolean = false;
+        expect(parser.valid_query(query)).to.equal(expected);
+    });
+
+    it("Should valid query true with other dataset", () => {
+        const query: string = "In test dataset test, find all entries; show Title.";
+        const splitQuery = new SplitQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        const expected: boolean = true;
+        Log.test("OTHER DATASET " + parser.toString() + "??? " + parser.valid_query(query));
+        expect(parser.valid_query(query)).to.equal(expected);
+    });
+
+    it("Should return false with invalid input", () => {
+        const query: string = "In courses dataset course titles, "
+        + "find entries whose Average is equal to 45; show Average and Instructor.";
+        const splitQuery = new SplitQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        const expected: boolean = false;
+        Log.test(parser.toString());
+        expect(parser.valid_query(query)).to.equal(expected);
+    });
+
+    it("Should return true for this very long query", () => {
+        const query: string = "In courses dataset courses, " +
+         "find entries whose Department is \"elec\" and ID is \"292\"" +
+         " and UUID is \"30872\" and Instructor is \"calvino-fraga, jesus\"" +
+         " and Pass is equal to 19 and Fail is equal to 0 and Audit is equal to 0" +
+         " and Title is \"biom dsgn studio\" and Average is equal to 89.68;" +
+        " show Department and ID and UUID and Instructor and Pass and Fail and Audit and Title and Average.";
+        const splitQuery = new SplitQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        const expected: boolean = true;
+        expect((splitQuery.get_split_query().filter as QueryFilter[]).length).to.equal(9);
+        expect(parser.valid_query(query)).to.equal(expected);
     });
 
 });
@@ -243,4 +300,5 @@ describe("Query Filter", () => {
         const expected: boolean = false;
         expect(q.validate_filter()).to.equal(expected);
     });
+
 });

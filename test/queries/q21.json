@@ -1,6 +1,6 @@
 {
     "title": "Select * from tests where ID is 1845 or 12690",
-    "query": "In tests dataset tests find entries whose ID is \"1845\" or ID is \"12690\"; show Title and Instructor",
+    "query": "In tests dataset tests, find entries whose ID is \"1845\" or ID is \"12690\"; show Title and Instructor.",
     "response": {
         "code": 200,
         "body": {

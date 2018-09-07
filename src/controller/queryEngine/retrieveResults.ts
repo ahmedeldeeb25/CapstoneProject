@@ -1,7 +1,8 @@
 import { IsplitQuery } from "../queryAST/splitQuery";
 import * as fs from "fs";
 import QueryFilter from "../queryAST/queryFilter";
-import { isArray } from "util";
+import { isArray, isString } from "util";
+import Log from "../../Util";
 
 export default class QueryEngine {
     private data: object[];
@@ -20,7 +21,7 @@ export default class QueryEngine {
         Year: "year",
         Course: "course",
         Subject: "subject",
-        Professor: "professor",
+        Professor: "instructor",
     };
 
     constructor(id: string) {
@@ -49,6 +50,11 @@ export default class QueryEngine {
         // O(n) * 2 == O(n) ?, but would be faster if i didnt have to iterate over twice
         // filter data by filter
         let data: object[] = this.filter_data(query.filter);
+        // sort if sort is true
+        if (query.order) {
+            const orderOn: string = query.order.getKey();
+            data = this.sort_data(data, orderOn);
+        }
         // map so that it only shows what we want (i'm sure there's a nice ES6 way to do this)
         data = data.map( (x: { [index: string]: string | number }) => {
             const y: { [index: string]: string | number } = {};
@@ -94,7 +100,11 @@ export default class QueryEngine {
                 let result: boolean;
                 for (const f of filter) {
                     const key: string = this.id_key(f.criteria.getKey());
-                    const target: string | number = f.criteria.getTarget();
+                    let target: string | number = f.criteria.getTarget();
+                    // remove the extra pair of quotes surrounding target if it's a string
+                    if (isString(target)) {
+                        target = target.slice(1, -1);
+                    }
                     const fun = f.criteria.getFunc();
                     if (f.andOr === "and") {
                         result = result && fun(x[key], target);
@@ -107,6 +117,21 @@ export default class QueryEngine {
                 return result;
             });
         }
+    }
+
+    // sort the data
+    private sort_data(data: object[], orderOn: string): object[] {
+        orderOn = this.id_key(orderOn);
+        data = data.sort(((a: { [i: string]: number | string }, b: { [i: string]: number | string }) => {
+            if (a[orderOn] < b[orderOn]) {
+                return -1;
+            }
+            if (a[orderOn] > b[orderOn]) {
+                return 1;
+            }
+            return 0;
+        }));
+        return data;
     }
 
 }

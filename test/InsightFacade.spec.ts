@@ -190,7 +190,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
 
     it("Should return an error if param is null", async () => {
         let response: InsightResponse;
-        const expected: number = 204;
+        const expected: number = 404;
         try {
             response = await insightFacade.removeDataset(null);
         } catch (err) {
@@ -202,7 +202,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
 
     it("Should return an error if param is empty string", async () => {
         let response: InsightResponse;
-        const expected: number = 204;
+        const expected: number = 404;
         try {
             response = await insightFacade.removeDataset("");
         } catch (err) {
@@ -223,8 +223,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expected);
-            expect(response).to.be.a("InsightResponse");
-            expect(response.body).to.be("{ 'error': 'dataset does not exist' }");
+            expect(response.body).to.deep.equal({ error: "dataset doesn't exist" });
         }
     });
 
@@ -238,15 +237,14 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expected);
-            expect(response).to.be.a("InsightResponse");
-            expect(response.body).to.be("{'error': 'dataset doesn't exist'}");
+            expect(response.body).to.deep.equal({ error: "dataset doesn't exist"});
         }
     });
 
     it("Should return an error if a query is performed on a removed database", async () => {
         const id: string = "courses";
         let response: InsightResponse;
-        const expected: number = 200;
+        const expected: number = 404;
         try {
             await insightFacade.removeDataset(id);
             response = await insightFacade.performQuery("In courses dataset courses, find all entries; show ID.");
@@ -254,7 +252,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expected);
-            expect(response.body).to.deep.equal("{'error': 'my text'}");
+            expect(response.body).to.deep.equal({ error: "dataset doesn't exist"});
         }
     });
 
@@ -265,13 +263,12 @@ describe("InsightFacade Add/Remove Dataset", function () {
 describe("InsightFacade PerformQuery", () => {
     const datasetsToQuery: { [id: string]: string } = {
         courses: "./test/data/courses.zip",
-        tests: "./test/data/test.zip",
+        test: "./test/data/test.zip",
         rooms: "./test/data/rooms.zip",
     };
 
     let insightFacade: InsightFacade;
     let testQueries: ITestQuery[] = [];
-
     // Create a new instance of InsightFacade, read in the test queries from test/queries and
     // add the datasets specified in datasetsToQuery.
     before(async function () {
@@ -301,26 +298,26 @@ describe("InsightFacade PerformQuery", () => {
             for (const [id, path] of Object.entries(datasetsToQuery)) {
                 loadDatasetPromises.push(TestUtil.readFileAsync(path));
             }
+            const responsePromises: Array<Promise<InsightResponse>> = [];
             const loadedDatasets = (await Promise.all(loadDatasetPromises)).map((buf, i) => {
                 return { [Object.keys(datasetsToQuery)[i]]: buf.toString("base64") };
             });
             expect(loadedDatasets).to.have.length.greaterThan(0);
 
-            const responsePromises: Array<Promise<InsightResponse>> = [];
             const datasets: { [id: string]: string } = Object.assign({}, ...loadedDatasets);
             for (const [id, content] of Object.entries(datasets)) {
-                responsePromises.push(insightFacade.addDataset(id, content, InsightDatasetKind.Courses));
+                    responsePromises.push(insightFacade.addDataset(id, content, InsightDatasetKind.Courses));
             }
-
+            await Promise.all(responsePromises);
             // This try/catch is a hack to let your dynamic tests execute enough the addDataset method fails.
             // In D1, you should remove this try/catch to ensure your datasets load successfully before trying
             // to run you queries.
-            try {
-                const responses: InsightResponse[] = await Promise.all(responsePromises);
-                responses.forEach((response) => expect(response.code).to.equal(204));
-            } catch (err) {
-                Log.warn(`Ignoring addDataset errors. For D1, you should allow errors to fail the Before All hook.`);
-            }
+            // try {
+            //     const responses: InsightResponse[] = await Promise.all(responsePromises);
+            //     responses.forEach((response) => expect(response.code).to.equal(204));
+            // } catch (err) {
+            //     Log.warn(`Ignoring addDataset errors. For D1, you should allow errors to fail the Before All hook.`);
+            // }
         } catch (err) {
             expect.fail("", "", `Failed to read one or more datasets. ${JSON.stringify(err)}`);
         }
@@ -331,7 +328,7 @@ describe("InsightFacade PerformQuery", () => {
     });
 
     after(function () {
-        Log.test(`After: ${this.test.parent.title}`);
+        Log.test(`AfterTest: ${this.test.parent.title}`);
     });
 
     afterEach(function () {
@@ -339,15 +336,15 @@ describe("InsightFacade PerformQuery", () => {
     });
 
     // Dynamically create and run a test for each query in testQueries
-    it("Should run test queries", () => {
-        describe("Dynamic InsightFacade PerformQuery tests", () => {
+    it("Should run test queries", async () => {
+        describe("Dynamic InsightFacade PerformQuery tests", async () => {
             for (const test of testQueries) {
                 it(`[${test.filename}] ${test.title}`, async () => {
                     let response: InsightResponse;
-
                     try {
                         response = await insightFacade.performQuery(test.query);
                     } catch (err) {
+                        Log.test("ERROR" + err.body.error);
                         response = err;
                     } finally {
                         expect(response.code).to.equal(test.response.code);

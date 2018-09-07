@@ -1,6 +1,6 @@
 {
     "title": "SELECT dept, avg WHERE avg < 97",
-    "query": "In courses dataset courses, find entries whose Average is less than 97 and id is \"400\"; show Department and Average; sort in ascending order by Average.",
+    "query": "In courses dataset courses, find entries whose Average is less than 97 and ID is \"400\"; show Department and Average; sort in ascending order by Average.",
     "response": {
         "code": 200,
         "body": {

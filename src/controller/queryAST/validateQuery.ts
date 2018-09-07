@@ -8,7 +8,8 @@ import { isArray } from "util";
  */
 export default class ValidateQuery {
     private MORE_KEYS: string = "and";
-    private KIND: string[] = ["courses"];
+    // test included for testing purposes
+    private KIND: string[] = ["courses", "test", "rooms"];
     private KEYS: string[] = ["Average", "Pass", "Fail", "Audit", "Department", "ID", "Instructor", "Title", "UUID"];
     private KEYWORDS: string[] = [
         "In", "dataset", "find", "all", "show", "and", "or", "sort", "by", "entries", "is", "the", "of", "whose",
@@ -58,13 +59,14 @@ export default class ValidateQuery {
         return words[0] === "In"
             && this.valid_kind(words[1])
             && words[2] === "dataset"
-            && this.valid_input(words[3]);
+            && this.valid_input(words[3])
+            && words.length === 4;
     }
 
     public valid_filter(filter: QueryFilter | QueryFilter[]): boolean {
         if (isArray(filter)) {
             for (const i of filter) {
-                if (!i.validate_filter) {
+                if (!i.validate_filter()) {
                     return false;
                 }
             }
@@ -90,14 +92,18 @@ export default class ValidateQuery {
             return true;
         }
     }
+    public toString(): string {
+        const splitQuery: IsplitQuery = this.SPLIT_QUERY.get_split_query();
+        const { dataset } = splitQuery;
+        const { filter } = splitQuery;
+        const { order } = splitQuery;
+        const { show } = splitQuery;
+        return `Dataset: ${this.valid_dataset(dataset)} Filter: ${this.valid_filter(filter)}
+            Show: ${this.valid_show(show)} Order: ${this.valid_order(order)}`;
+    }
 
     private valid_kind(kind: string): boolean {
         return this.KIND.includes(kind);
-    }
-
-    // Returns true if a string is enveloped in double quotes and does not contain a * and doesnt contain a "
-    private valid_string(word: string): boolean {
-        return /^\"\w*\"$/.test(word) && !word.includes("*") && !word.split("").slice(1, -1).join("").includes("\"");
     }
 
     // Input is not a key word, has no _ and no " "

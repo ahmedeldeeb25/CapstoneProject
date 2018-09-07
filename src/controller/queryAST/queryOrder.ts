@@ -15,6 +15,10 @@ export default class Order {
             && /^sort in ascending order by/.test(this.order);
     }
 
+    public toString(): string {
+        return `key: ${this.key}`;
+    }
+
     private parse(order: string) {
         const words: string[] = order.split(" ");
         const key: string = words.pop();

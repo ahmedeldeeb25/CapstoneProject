@@ -1,63 +1,63 @@
 {
-    "title": "Select * from tests",
-    "query": "In tests dataset tests find entries whose Title is not \"Turtle\"; show Title",
+    "title": "Select * from test",
+    "query": "In test dataset test, find entries whose Title is not \"Turtle\"; show Title.",
     "response": {
         "code": 200,
         "body": {
             "result": [
                 {
-                    "tests_title": "gross anat limbs"
+                    "test_title": "gross anat limbs"
                 },
                 {
-                    "tests_title": "gross anat limbs"
+                    "test_title": "gross anat limbs"
                 },
                 {
-                    "tests_title": "gross anat limbs"
+                    "test_title": "gross anat limbs"
                 },
                 {
-                    "tests_title": "gross anat limbs"
+                    "test_title": "gross anat limbs"
                 },
                 {
-                    "tests_title": "gross anat limbs"
+                    "test_title": "gross anat limbs"
                 },
                 {
-                    "tests_title": "gross anat limbs"
+                    "test_title": "gross anat limbs"
                 },
                 {
-                    "tests_title": "gross anat limbs"
+                    "test_title": "gross anat limbs"
                 },
                 {
-                    "tests_title": "gross anat limbs"
+                    "test_title": "gross anat limbs"
                 },
                 {
-                    "tests_title": "gross anat limbs"
+                    "test_title": "gross anat limbs"
                 },
                 {
-                    "tests_title": "gross anat limbs"
+                    "test_title": "gross anat limbs"
                 },
                 {
-                    "tests_title": "gross anat limbs"
+                    "test_title": "gross anat limbs"
                 },
                 {
-                    "tests_title": "gross anat limbs"
+                    "test_title": "gross anat limbs"
                 },
                 {
-                    "tests_title": "gross anat limbs"
+                    "test_title": "gross anat limbs"
                 },
                 {
-                    "tests_title": "gross anat limbs"
+                    "test_title": "gross anat limbs"
                 },
                 {
-                    "tests_title": "gross anat limbs"
+                    "test_title": "gross anat limbs"
                 },
                 {
-                    "tests_title": "gross anat limbs"
+                    "test_title": "gross anat limbs"
                 },
                 {
-                    "tests_title": "gross anat limbs"
+                    "test_title": "gross anat limbs"
                 },
                 {
-                    "tests_title": "gross anat limbs"
+                    "test_title": "gross anat limbs"
                 }
             ]
         }

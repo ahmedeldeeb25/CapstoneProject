@@ -1,6 +1,6 @@
 {
     "title": "Select * from tests",
-    "query": "In tests dataset tests find entries whose Title begins with \"gross\"; show Title",
+    "query": "In tests dataset tests, find entries whose Title begins with \"gross\"; show Title.",
     "response": {
         "code": 200,
         "body": {

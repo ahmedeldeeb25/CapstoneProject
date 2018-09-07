@@ -2,6 +2,7 @@ import QueryFilter from "./queryFilter";
 import Order from "./queryOrder";
 import SOP from "./querySOP";
 import MOP from "./queryMOP";
+import Log from "../../Util";
 
 export interface IsplitQuery {
     dataset: string;
@@ -11,22 +12,25 @@ export interface IsplitQuery {
 }
 
 export class SplitQuery {
-
-    private POS_LOOK_AHEAD_AND: RegExp = new RegExp('(?=and|or(?:(?:[^"]*"){2})*[^"]*$)', "g");
-    private QUERY: string;
+    private regex: string = '(?= and (?:(?:[^"]*"){2})*[^"]*$| or (?:(?:[^"]*"){2})*[^"]*$)';
+    private POS_LOOK_AHEAD_AND: RegExp = new RegExp(this.regex, "g");
+    private COMMA: RegExp = /,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/;
+    private SEMI: RegExp = /;(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/;
     private SPLIT_QUERY: IsplitQuery;
 
     constructor(query: string) {
-        this.QUERY = query;
         this.split_query(query);
     }
     // Returns an object with dataset, filter, show, order (IsplitQuery interface)
     // This method could use some prettying up
     public split_query(query: string): void {
-        const sepBySemi: string[] = query.split(";");
-        const sepByComa: string[] = sepBySemi[0].split(",");
+        const sepBySemi: string[] = query.split(this.SEMI);
+        if (sepBySemi.length < 2) { throw new Error("Incorrectly formatted query"); }
+        const sepByComa: string[] = sepBySemi[0].split(this.COMMA);
+        if (sepByComa.length < 2) { throw new Error("Incorrectly formatted string"); }
+
         const dataset: string = sepByComa[0].trim();
-        const filter: QueryFilter | QueryFilter[] = this.split_filter(sepByComa[1].trim());
+        const filter: QueryFilter | QueryFilter[] = this.split_filter(sepByComa[1].slice(1).trim());
         const show: string[] = this.split_show(sepBySemi[1].trim());
         let order: Order = null;
         if (sepBySemi.length === 3) {
@@ -39,6 +43,17 @@ export class SplitQuery {
         return this.SPLIT_QUERY;
     }
 
+    // returns the input (id of the dataset)
+    public get_input(): string {
+        return this.SPLIT_QUERY.dataset.split(" ")[3];
+    }
+
+    public toString(): string {
+        return `\n\tdataset: ${this.get_split_query().dataset}
+        \nfilter: ${this.get_split_query().filter.toString() }
+        \norder: ${this.get_split_query().order}
+        \nshow: ${this.get_split_query().show}`;
+    }
     /**
      * @param filter "is \"the and that\" and is not equal to 75 or is less than 400"
      * @returns QueryFilters built with ["is \"the and \that", "and is not equal to 75", "or is less than 400"]]
@@ -48,9 +63,10 @@ export class SplitQuery {
         if (filter === "find all entries") {
             return new QueryFilter(true);
         } else {
-            const criteria: string = filter.split("find entries whose")[1].trim();
+            const criteria: string = filter.split("find entries whose")[1];
             // splits into list of individual CRITERIA
             const splitByAndOr: string[] = criteria.split(this.POS_LOOK_AHEAD_AND);
+            Log.test(criteria);
             return this.parse_criteria(splitByAndOr);
         }
     }

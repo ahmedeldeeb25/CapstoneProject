@@ -1,6 +1,6 @@
 {
     "title": "Select * from tests",
-    "query": "In tests dataset tests find all entries; show Title",
+    "query": "In test dataset test, find all entries; show Title.",
     "response": {
         "code": 200,
         "body": {

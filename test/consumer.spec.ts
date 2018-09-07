@@ -60,6 +60,7 @@ describe("Consumer valid_file validator", () => {
         try {
             value = await validator.valid_file();
         } catch (err) {
+            Log.test("error occurred" + err);
             value = err;
         } finally {
             expect(value).to.equal(true);
@@ -89,40 +90,40 @@ describe("Consumer Parser", () => {
             {
                  small_test_title: "gross anat limbs",
                  small_test_id: "1845",
-                 small_test_professor: "alimohammadi, majid",
+                 small_test_instructor: "alimohammadi, majid",
                  small_test_audit: 0,
                  small_test_year: "2013",
                  small_test_course: 392,
                  small_test_pass: 82,
                  small_test_fail: 0,
                  small_test_avg: 81.82,
-                 small_test_subject: "anat",
+                 small_test_dept: "anat",
                  small_test_section: "001",
             },
             {
                 small_test_title: "gross anat limbs",
                 small_test_id: "1846",
-                small_test_professor: "",
+                small_test_instructor: "",
                 small_test_audit: 0,
                 small_test_year: "2013",
                 small_test_course: 392,
                 small_test_pass: 82,
                 small_test_fail: 0,
                 small_test_avg: 81.82,
-                small_test_subject: "anat",
+                small_test_dept: "anat",
                 small_test_section: "overall",
             },
             {
                 small_test_title: "gross anat limbs",
                 small_test_id: "12690",
-                small_test_professor: "alimohammadi, majid",
+                small_test_instructor: "alimohammadi, majid",
                 small_test_audit: 0,
                 small_test_year: "2014",
                 small_test_course: 392,
                 small_test_pass: 83,
                 small_test_fail: 0,
                 small_test_avg: 83.65,
-                small_test_subject: "anat",
+                small_test_dept: "anat",
                 small_test_section: "001",
             },
         ];

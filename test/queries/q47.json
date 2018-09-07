@@ -1,6 +1,6 @@
 {
     "title": "Select * from tests",
-    "query": "In rooms dataset rooms find all entries; show Title",
+    "query": "In rooms dataset rooms, find all entries; show Title.",
     "response": {
         "code": 200,
         "body": {
