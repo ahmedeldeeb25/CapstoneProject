@@ -8,7 +8,7 @@ export default class SOP extends CRITERIA {
         "includes": (a: string, b: string) => a.includes(b),
         "does not include": (a: string, b: string) => !a.includes(b),
         "begins with": (a: string, b: string) => new RegExp(`^${b}`).test(a),
-        "does not begin with": (a: string, b: string) => ! new RegExp(`${b}`).test(a),
+        "does not begin with": (a: string, b: string) => ! new RegExp(`^${b}`).test(a),
         "ends with": (a: string, b: string) =>  new RegExp(`${b}$`).test(a),
         "does not end with": (a: string, b: string) => ! new RegExp(`${b}$`).test(a),
     };

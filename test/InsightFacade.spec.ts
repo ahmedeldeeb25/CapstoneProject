@@ -17,15 +17,27 @@ export interface ITestQuery {
     filename: string;  // This is injected when reading the file
 }
 
+async function remove_files(datasets: { [index: string]: string }): Promise<void> {
+    const filesToRemove: Array<Promise<void>> = [];
+    for (const file of Object.keys(datasets)) {
+        if (await(promisify)(fs.exists)(`./src/cache/${file}.json`)) {
+            filesToRemove.push((promisify)(fs.unlink)(`./src/cache/${file}.json`));
+            Log.test("removed: " + file);
+        }
+    }
+    await Promise.all(filesToRemove);
+}
+
+const datasetsToLoad: { [id: string]: string } = {
+    courses: "./test/data/courses.zip",
+    rooms: "./test/data/rooms.zip",
+    test: "./test/data/test.zip",
+    nonsense: "./test/data/nonsense.zip",
+};
+
 describe("InsightFacade Add/Remove Dataset", function () {
     // Reference any datasets you've added to test/data here and they will
     // automatically be loaded in the Before All hook.
-    const datasetsToLoad: { [id: string]: string } = {
-        courses: "./test/data/courses.zip",
-        rooms: "./test/data/rooms.zip",
-        test: "./test/data/test.zip",
-        nonsense: "./test/data/nonsense.zip",
-    };
 
     let insightFacade: InsightFacade;
     let datasets: { [id: string]: string };
@@ -63,12 +75,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
     // remove the cached files
     after(async function () {
         Log.test(`After: ${this.test.parent.title}`);
-        for (const file of Object.keys(datasetsToLoad)) {
-            if (await (promisify)(fs.exists)(`./src/cache/${file}.json`)) {
-                await (promisify)(fs.unlink)(`./src/cache/${file}.json`);
-                Log.test("removed: " + file);
-            }
-        }
+        await remove_files(datasetsToLoad);
         Log.test("cached files removed");
     });
 
@@ -369,7 +376,8 @@ describe("IInsightFacade listDatasets", () => {
 
     let insightFacade: InsightFacade;
 
-    before( () => {
+    before( async () => {
+        Log.test("cached files removed");
         insightFacade = new InsightFacade();
     });
 
@@ -391,11 +399,10 @@ describe("IInsightFacade listDatasets", () => {
         let response: InsightResponse;
         const expectedCode: number = 200;
         const expectedLength: number = 1;
-        const id: string = "courses";
-        const filename: string = "./test/data/courses.zip";
-        const kind: InsightDatasetKind = InsightDatasetKind.Courses;
         try {
-            await insightFacade.addDataset(id, filename, kind);
+            const buffer: Buffer = await (promisify)(fs.readFile)("./test/data/small_test.zip");
+            const content: string = buffer.toString("base64");
+            await insightFacade.addDataset("small_test", content, InsightDatasetKind.Courses);
             response = await insightFacade.listDatasets();
         } catch (err) {
             response = err;

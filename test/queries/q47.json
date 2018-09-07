@@ -5,6 +5,15 @@
         "code": 200,
         "body": {
             "result": [
+                {
+                    "rooms_title": "[undefined]"
+                },
+                {
+                    "rooms_title": "[undefined]"
+                },
+                {
+                    "rooms_title": "[undefined]"
+                }
             ]
         }
     }

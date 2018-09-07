@@ -197,7 +197,7 @@ describe("Query Engine", () => {
 describe("Course data", () => {
     const queryEngine: QueryEngine = new QueryEngine("courses");
     before("load data if it doesn't exist", async () => {
-        if (! (promisify)(fs.exists)("./src/cache/courses.json")) {
+        if (! await (promisify)(fs.exists)("./src/cache/courses.json")) {
             const buffer: Buffer = await (promisify)(fs.readFile)("./src/data/courses.zip");
             const content = buffer.toString("base64");
             const parser: Parser = new Parser("courses", content);
@@ -214,15 +214,16 @@ describe("Course data", () => {
         expect(queryEngine.get_data().length).to.equal(expected);
     });
 
-    // THIS WORKS PERFECTLY HERE WHY NOT IN InsightFacade Test Suite??????
-    // it("Should match the 1st query", () => {
-    //     const query: string = "In courses dataset courses, find entries whose Average is greater than 97;" +
-    //      " show Department and Average; sort in ascending order by Average.";
-    //     const splitQuery = new SplitQuery(query);
-    //     const data: object[] = queryEngine.query_data(splitQuery.get_split_query());
-    //     for (const entry of data as Array<{[name: string]: string | number }>) {
-    //         Log.test("dept: " + entry["courses_dept"] + " avg: " + entry["courses_avg"]);
-    //     }
-    // });
+    it("Should match the 1st query", () => {
+        const query: string = "In courses dataset courses, find entries whose Title begins with \"ab\";" +
+        " show ID and Instructor and Title.";
+        const splitQuery = new SplitQuery(query);
+        const data: object[] = queryEngine.query_data(splitQuery.get_split_query());
+        // for (const entry of data as Array<{[name: string]: string | number }>) {
+        //     Log.test("id: " + entry["courses_id"] + " instructor: " + entry["courses_instructor"]
+        //      + "title: " + entry["courses_title"]);
+        // }
+        expect(data.length).to.equal(63);
+    });
 
 });

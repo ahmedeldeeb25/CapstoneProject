@@ -1,5 +1,5 @@
 import Log from "../Util";
-import {IInsightFacade, InsightResponse, InsightDatasetKind } from "./IInsightFacade";
+import {IInsightFacade, InsightResponse, InsightDatasetKind, InsightDataset } from "./IInsightFacade";
 import Validator from "./consumer/validator";
 import Parser from "./consumer/parser";
 import { isNull, promisify } from "util";
@@ -11,6 +11,7 @@ import QueryEngine from "./queryEngine/retrieveResults";
  * This is the main programmatic entry point for the project.
  */
 export default class InsightFacade implements IInsightFacade {
+    private dataSets: InsightDataset[] = [];
 
     constructor() {
         Log.trace("InsightFacadeImpl::init()");
@@ -32,6 +33,7 @@ export default class InsightFacade implements IInsightFacade {
         } catch (err) {
             return Promise.reject({ code: 400, body: { error: err }});
         }
+        this.dataSets.push({ id, kind, numRows: data.length });
         return Promise.resolve({ code: 204, body: { result: "success" } });
     }
 
@@ -81,7 +83,7 @@ export default class InsightFacade implements IInsightFacade {
         }
     }
 
-    public listDatasets(): Promise<InsightResponse> {
-        return Promise.reject({code: -1, body: null});
+    public async listDatasets(): Promise<InsightResponse> {
+        return Promise.resolve({code: 200, body: { result: this.dataSets }});
     }
 }

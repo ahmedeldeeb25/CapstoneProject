@@ -1,17 +1,17 @@
 {
-    "title": "Select * from tests where ID is 1845 or 12690",
-    "query": "In tests dataset tests, find entries whose ID is \"1845\" or ID is \"12690\"; show Title and Instructor.",
+    "title": "Select * from tests where UUID is 1845 or 12690",
+    "query": "In test dataset test, find entries whose UUID is \"1845\" or ID is \"12690\"; show Title and Instructor.",
     "response": {
         "code": 200,
         "body": {
             "result": [
                 {
-                    "tests_title": "gross anat limbs",
-                    "tests_instructor": "alimohammadi, majid"
+                    "test_title": "gross anat limbs",
+                    "test_instructor": "alimohammadi, majid"
                 },
                 {
-                    "tests_title": "gross anat limbs",
-                    "tests_instructor": "alimohammadi, majid"
+                    "test_title": "gross anat limbs",
+                    "test_instructor": "alimohammadi, majid"
                 }
             ]
         }
