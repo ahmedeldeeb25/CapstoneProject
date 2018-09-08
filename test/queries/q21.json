@@ -1,6 +1,6 @@
 {
     "title": "Select * from tests where UUID is 1845 or 12690",
-    "query": "In test dataset test, find entries whose UUID is \"1845\" or ID is \"12690\"; show Title and Instructor.",
+    "query": "In test dataset test, find entries whose UUID is \"1845\" or UUID is \"12690\"; show Title and Instructor.",
     "response": {
         "code": 200,
         "body": {

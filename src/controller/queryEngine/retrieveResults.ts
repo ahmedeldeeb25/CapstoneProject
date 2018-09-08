@@ -29,6 +29,7 @@ export default class QueryEngine {
     }
 
     public get_data(): object[] { return this.data; }
+    public data_setter(data: object[]) { this.data = data; }
 
     // use FS to get contents of the json file of id
     public async set_data(): Promise<string> {

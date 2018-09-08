@@ -192,6 +192,22 @@ describe("Query Engine", () => {
         expect(data).to.deep.equal(expected);
     });
 
+    it("Should be able to handle a query with or", async () => {
+        newQuery = new QueryEngine(sorted);
+        await newQuery.set_data();
+        const expected: object[] = [{
+            sorted_instructor: "thomas anderson",
+        }, {
+                sorted_instructor: "sam bob boo",
+        }];
+        const q: string = "In courses dataset courses, " +
+            "find entries whose UUID is \"1845\" or UUID is \"12690\"; show Instructor.";
+        const splitQuery = new SplitQuery(q);
+        const queryAST: IsplitQuery = splitQuery.get_split_query();
+        const data: object[] = newQuery.query_data(queryAST);
+        expect(data).to.deep.equal(expected);
+    });
+
 });
 
 describe("Course data", () => {
