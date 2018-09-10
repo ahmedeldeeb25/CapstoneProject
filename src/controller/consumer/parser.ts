@@ -10,7 +10,6 @@ import Log from "../../Util";
 
 export default class Parser {
 
-    private allKeys: string[] = ["dept", "id", "instructor", "title", "pass", "fail", "audit", "uuid", "avg"];
     private mKeys: string[] = ["pass", "fail", "audit", "avg", "course"];
     private translate: { [index: string]: string } = {
         subject: "dept",
