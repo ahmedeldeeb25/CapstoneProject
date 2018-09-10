@@ -68,3 +68,4 @@ src/**/*.map
 test/*.js
 test/*.map
 **/.DS_Store
+src/cache/*.json

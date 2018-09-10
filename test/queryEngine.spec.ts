@@ -230,16 +230,11 @@ describe("Course data", () => {
         expect(queryEngine.get_data().length).to.equal(expected);
     });
 
-    it("Should match the 1st query", () => {
-        const query: string = "In courses dataset courses, find entries whose Title begins with \"ab\";" +
-        " show ID and Instructor and Title.";
+    it("Use to compare data between UI on SDMM and data my app gets", () => {
+        const query: string = "In courses dataset courses, find entries whose Average is greater than 97;" +
+        " show Department and Average; sort in ascending order by Average.";
         const splitQuery = new SplitQuery(query);
         const data: object[] = queryEngine.query_data(splitQuery.get_split_query());
-        // for (const entry of data as Array<{[name: string]: string | number }>) {
-        //     Log.test("id: " + entry["courses_id"] + " instructor: " + entry["courses_instructor"]
-        //      + "title: " + entry["courses_title"]);
-        // }
-        expect(data.length).to.equal(63);
+        expect(data.length).to.equal(47);
     });
-
 });
