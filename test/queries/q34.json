@@ -1,377 +1,469 @@
 {
     "title": "Select title, department from courses where pass < 1",
-    "query": "In courses dataset courses, find entries whose Fail is greater than 99; show Title and Department.",
+    "query": "In courses dataset courses, find entries whose Fail is greater than 99; show Title and Department and UUID; sort in ascending order by UUID.",
     "response": {
         "code": 200,
         "body": {
             "result": [
                 {
-                    "courses_title": "mechanics i",
-                    "courses_dept": "phys"
+                    "courses_title": "prncpls micrecon",
+                    "courses_dept": "econ",
+                    "courses_uuid": "11418"
                 },
                 {
-                    "courses_title": "mechanics i",
-                    "courses_dept": "phys"
-                },
-                {
-                    "courses_title": "mechanics i",
-                    "courses_dept": "phys"
-                },
-                {
-                    "courses_title": "calculus 3",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "calculus 3",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "calculus 3",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "calculus 3",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "calculus 3",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "calculus 3",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "calculus 3",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "calculus 3",
-                    "courses_dept": "math"
+                    "courses_title": "princpl macrecon",
+                    "courses_dept": "econ",
+                    "courses_uuid": "11431"
                 },
                 {
                     "courses_title": "comptn, progrmng",
-                    "courses_dept": "cpsc"
-                },
-                {
-                    "courses_title": "comptn, progrmng",
-                    "courses_dept": "cpsc"
-                },
-                {
-                    "courses_title": "comptn, progrmng",
-                    "courses_dept": "cpsc"
-                },
-                {
-                    "courses_title": "comptn, progrmng",
-                    "courses_dept": "cpsc"
-                },
-                {
-                    "courses_title": "energy & waves",
-                    "courses_dept": "phys"
-                },
-                {
-                    "courses_title": "energy & waves",
-                    "courses_dept": "phys"
-                },
-                {
-                    "courses_title": "energy & waves",
-                    "courses_dept": "phys"
-                },
-                {
-                    "courses_title": "energy & waves",
-                    "courses_dept": "phys"
-                },
-                {
-                    "courses_title": "energy & waves",
-                    "courses_dept": "phys"
-                },
-                {
-                    "courses_title": "energy & waves",
-                    "courses_dept": "phys"
-                },
-                {
-                    "courses_title": "dff calc ap c&ss",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "int calc ap c&ss",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "int calc ap c&ss",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "int calc ap c&ss",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "int calc ap c&ss",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "int calc ap c&ss",
-                    "courses_dept": "math"
+                    "courses_dept": "cpsc",
+                    "courses_uuid": "1256"
                 },
                 {
                     "courses_title": "int calc ap ph s",
-                    "courses_dept": "math"
+                    "courses_dept": "math",
+                    "courses_uuid": "13688"
                 },
                 {
-                    "courses_title": "int calc ap ph s",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "int calc ap ph s",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "int calc ap ph s",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "int calc ap ph s",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "int calc ap ph s",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "int calc ap ph s",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "int calc ap ph s",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "int calc ap ph s",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "df calc ap ph sc",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "df calc ap ph sc",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "df calc ap ph sc",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "eco gen evol",
-                    "courses_dept": "biol"
-                },
-                {
-                    "courses_title": "gentcs ecol&evol",
-                    "courses_dept": "biol"
-                },
-                {
-                    "courses_title": "gentcs ecol&evol",
-                    "courses_dept": "biol"
-                },
-                {
-                    "courses_title": "gentcs ecol&evol",
-                    "courses_dept": "biol"
-                },
-                {
-                    "courses_title": "gentcs ecol&evol",
-                    "courses_dept": "biol"
-                },
-                {
-                    "courses_title": "gentcs ecol&evol",
-                    "courses_dept": "biol"
-                },
-                {
-                    "courses_title": "int calc ap lf s",
-                    "courses_dept": "math"
+                    "courses_title": "calculus 3",
+                    "courses_dept": "math",
+                    "courses_uuid": "13772"
                 },
                 {
                     "courses_title": "biol bact cell",
-                    "courses_dept": "biol"
+                    "courses_dept": "biol",
+                    "courses_uuid": "18031"
                 },
                 {
-                    "courses_title": "unicellular life",
-                    "courses_dept": "biol"
+                    "courses_title": "eco gen evol",
+                    "courses_dept": "biol",
+                    "courses_uuid": "18041"
                 },
                 {
-                    "courses_title": "biology of cell",
-                    "courses_dept": "biol"
+                    "courses_title": "cell biology 1",
+                    "courses_dept": "biol",
+                    "courses_uuid": "18071"
                 },
                 {
-                    "courses_title": "unicellular life",
-                    "courses_dept": "biol"
-                },
-                {
-                    "courses_title": "unicellular life",
-                    "courses_dept": "biol"
-                },
-                {
-                    "courses_title": "unicellular life",
-                    "courses_dept": "biol"
+                    "courses_title": "cell biology 1",
+                    "courses_dept": "biol",
+                    "courses_uuid": "18074"
                 },
                 {
                     "courses_title": "comp eng design",
-                    "courses_dept": "apsc"
-                },
-                {
-                    "courses_title": "comp eng design",
-                    "courses_dept": "apsc"
-                },
-                {
-                    "courses_title": "comp eng design",
-                    "courses_dept": "apsc"
-                },
-                {
-                    "courses_title": "comp eng design",
-                    "courses_dept": "apsc"
-                },
-                {
-                    "courses_title": "comp eng design",
-                    "courses_dept": "apsc"
-                },
-                {
-                    "courses_title": "linear systems",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "linear systems",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "linear systems",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "linear systems",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "linear systems",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "linear systems",
-                    "courses_dept": "math"
+                    "courses_dept": "apsc",
+                    "courses_uuid": "18671"
                 },
                 {
                     "courses_title": "technical commun",
-                    "courses_dept": "apsc"
+                    "courses_dept": "apsc",
+                    "courses_uuid": "18701"
                 },
                 {
-                    "courses_title": "calc socsci comm",
-                    "courses_dept": "math"
+                    "courses_title": "unicellular life",
+                    "courses_dept": "biol",
+                    "courses_uuid": "19559"
                 },
                 {
-                    "courses_title": "calc socsci comm",
-                    "courses_dept": "math"
+                    "courses_title": "gentcs ecol&evol",
+                    "courses_dept": "biol",
+                    "courses_uuid": "19569"
                 },
                 {
-                    "courses_title": "princpl macrecon",
-                    "courses_dept": "econ"
+                    "courses_title": "comp eng design",
+                    "courses_dept": "apsc",
+                    "courses_uuid": "19807"
                 },
                 {
-                    "courses_title": "princpl macrecon",
-                    "courses_dept": "econ"
+                    "courses_title": "biology of cell",
+                    "courses_dept": "biol",
+                    "courses_uuid": "20532"
                 },
                 {
-                    "courses_title": "princpl macrecon",
-                    "courses_dept": "econ"
-                },
-                {
-                    "courses_title": "princpl macrecon",
-                    "courses_dept": "econ"
-                },
-                {
-                    "courses_title": "princpl macrecon",
-                    "courses_dept": "econ"
-                },
-                {
-                    "courses_title": "princpl macrecon",
-                    "courses_dept": "econ"
-                },
-                {
-                    "courses_title": "princpl macrecon",
-                    "courses_dept": "econ"
-                },
-                {
-                    "courses_title": "princpl macrecon",
-                    "courses_dept": "econ"
-                },
-                {
-                    "courses_title": "princpl macrecon",
-                    "courses_dept": "econ"
-                },
-                {
-                    "courses_title": "prncpls micrecon",
-                    "courses_dept": "econ"
-                },
-                {
-                    "courses_title": "prncpls micrecon",
-                    "courses_dept": "econ"
-                },
-                {
-                    "courses_title": "prncpls micrecon",
-                    "courses_dept": "econ"
-                },
-                {
-                    "courses_title": "prncpls micrecon",
-                    "courses_dept": "econ"
-                },
-                {
-                    "courses_title": "prncpls micrecon",
-                    "courses_dept": "econ"
-                },
-                {
-                    "courses_title": "prncpls micrecon",
-                    "courses_dept": "econ"
-                },
-                {
-                    "courses_title": "prncpls micrecon",
-                    "courses_dept": "econ"
-                },
-                {
-                    "courses_title": "prncpls micrecon",
-                    "courses_dept": "econ"
-                },
-                {
-                    "courses_title": "prncpls micrecon",
-                    "courses_dept": "econ"
-                },
-                {
-                    "courses_title": "cell biology 1",
-                    "courses_dept": "biol"
-                },
-                {
-                    "courses_title": "cell biology 1",
-                    "courses_dept": "biol"
+                    "courses_title": "gentcs ecol&evol",
+                    "courses_dept": "biol",
+                    "courses_uuid": "20542"
                 },
                 {
                     "courses_title": "fund cell bio",
-                    "courses_dept": "biol"
+                    "courses_dept": "biol",
+                    "courses_uuid": "20550"
                 },
                 {
                     "courses_title": "fund cell bio",
-                    "courses_dept": "biol"
+                    "courses_dept": "biol",
+                    "courses_uuid": "20553"
+                },
+                {
+                    "courses_title": "prncpls micrecon",
+                    "courses_dept": "econ",
+                    "courses_uuid": "21433"
+                },
+                {
+                    "courses_title": "princpl macrecon",
+                    "courses_dept": "econ",
+                    "courses_uuid": "21442"
+                },
+                {
+                    "courses_title": "princpl macrecon",
+                    "courses_dept": "econ",
+                    "courses_uuid": "21907"
+                },
+                {
+                    "courses_title": "comp eng design",
+                    "courses_dept": "apsc",
+                    "courses_uuid": "22385"
+                },
+                {
+                    "courses_title": "int calc ap ph s",
+                    "courses_dept": "math",
+                    "courses_uuid": "27216"
+                },
+                {
+                    "courses_title": "dff calc ap c&ss",
+                    "courses_dept": "math",
+                    "courses_uuid": "27240"
+                },
+                {
+                    "courses_title": "int calc ap c&ss",
+                    "courses_dept": "math",
+                    "courses_uuid": "27253"
+                },
+                {
+                    "courses_title": "linear systems",
+                    "courses_dept": "math",
+                    "courses_uuid": "27269"
+                },
+                {
+                    "courses_title": "calc socsci comm",
+                    "courses_dept": "math",
+                    "courses_uuid": "27280"
+                },
+                {
+                    "courses_title": "calculus 3",
+                    "courses_dept": "math",
+                    "courses_uuid": "27291"
+                },
+                {
+                    "courses_title": "df calc ap ph sc",
+                    "courses_dept": "math",
+                    "courses_uuid": "29703"
+                },
+                {
+                    "courses_title": "int calc ap ph s",
+                    "courses_dept": "math",
+                    "courses_uuid": "29715"
+                },
+                {
+                    "courses_title": "linear systems",
+                    "courses_dept": "math",
+                    "courses_uuid": "29760"
+                },
+                {
+                    "courses_title": "calculus 3",
+                    "courses_dept": "math",
+                    "courses_uuid": "29815"
+                },
+                {
+                    "courses_title": "df calc ap ph sc",
+                    "courses_dept": "math",
+                    "courses_uuid": "31924"
+                },
+                {
+                    "courses_title": "energy & waves",
+                    "courses_dept": "phys",
+                    "courses_uuid": "33525"
+                },
+                {
+                    "courses_title": "mechanics i",
+                    "courses_dept": "phys",
+                    "courses_uuid": "33548"
+                },
+                {
+                    "courses_title": "int calc ap ph s",
+                    "courses_dept": "math",
+                    "courses_uuid": "33964"
+                },
+                {
+                    "courses_title": "int calc ap c&ss",
+                    "courses_dept": "math",
+                    "courses_uuid": "33997"
+                },
+                {
+                    "courses_title": "linear systems",
+                    "courses_dept": "math",
+                    "courses_uuid": "34013"
+                },
+                {
+                    "courses_title": "calculus 3",
+                    "courses_dept": "math",
+                    "courses_uuid": "34036"
+                },
+                {
+                    "courses_title": "unicellular life",
+                    "courses_dept": "biol",
+                    "courses_uuid": "34263"
+                },
+                {
+                    "courses_title": "gentcs ecol&evol",
+                    "courses_dept": "biol",
+                    "courses_uuid": "34273"
                 },
                 {
                     "courses_title": "cell biology 1",
-                    "courses_dept": "biol"
+                    "courses_dept": "biol",
+                    "courses_uuid": "34303"
                 },
                 {
                     "courses_title": "cell biology 1",
-                    "courses_dept": "biol"
+                    "courses_dept": "biol",
+                    "courses_uuid": "34307"
+                },
+                {
+                    "courses_title": "int calc ap ph s",
+                    "courses_dept": "math",
+                    "courses_uuid": "3759"
+                },
+                {
+                    "courses_title": "int calc ap c&ss",
+                    "courses_dept": "math",
+                    "courses_uuid": "3792"
+                },
+                {
+                    "courses_title": "linear systems",
+                    "courses_dept": "math",
+                    "courses_uuid": "3807"
+                },
+                {
+                    "courses_title": "energy & waves",
+                    "courses_dept": "phys",
+                    "courses_uuid": "41176"
+                },
+                {
+                    "courses_title": "comp eng design",
+                    "courses_dept": "apsc",
+                    "courses_uuid": "45774"
+                },
+                {
+                    "courses_title": "int calc ap ph s",
+                    "courses_dept": "math",
+                    "courses_uuid": "47011"
+                },
+                {
+                    "courses_title": "int calc ap c&ss",
+                    "courses_dept": "math",
+                    "courses_uuid": "47049"
+                },
+                {
+                    "courses_title": "linear systems",
+                    "courses_dept": "math",
+                    "courses_uuid": "47064"
+                },
+                {
+                    "courses_title": "calculus 3",
+                    "courses_dept": "math",
+                    "courses_uuid": "47088"
+                },
+                {
+                    "courses_title": "comptn, progrmng",
+                    "courses_dept": "cpsc",
+                    "courses_uuid": "49856"
+                },
+                {
+                    "courses_title": "energy & waves",
+                    "courses_dept": "phys",
+                    "courses_uuid": "50198"
+                },
+                {
+                    "courses_title": "mechanics i",
+                    "courses_dept": "phys",
+                    "courses_uuid": "50221"
+                },
+                {
+                    "courses_title": "int calc ap ph s",
+                    "courses_dept": "math",
+                    "courses_uuid": "5131"
+                },
+                {
+                    "courses_title": "linear systems",
+                    "courses_dept": "math",
+                    "courses_uuid": "5181"
+                },
+                {
+                    "courses_title": "calculus 3",
+                    "courses_dept": "math",
+                    "courses_uuid": "5204"
+                },
+                {
+                    "courses_title": "prncpls micrecon",
+                    "courses_dept": "econ",
+                    "courses_uuid": "52233"
+                },
+                {
+                    "courses_title": "princpl macrecon",
+                    "courses_dept": "econ",
+                    "courses_uuid": "52243"
+                },
+                {
+                    "courses_title": "unicellular life",
+                    "courses_dept": "biol",
+                    "courses_uuid": "54004"
+                },
+                {
+                    "courses_title": "gentcs ecol&evol",
+                    "courses_dept": "biol",
+                    "courses_uuid": "54014"
+                },
+                {
+                    "courses_title": "prncpls micrecon",
+                    "courses_dept": "econ",
+                    "courses_uuid": "58324"
+                },
+                {
+                    "courses_title": "princpl macrecon",
+                    "courses_dept": "econ",
+                    "courses_uuid": "58333"
+                },
+                {
+                    "courses_title": "comptn, progrmng",
+                    "courses_dept": "cpsc",
+                    "courses_uuid": "62349"
+                },
+                {
+                    "courses_title": "prncpls micrecon",
+                    "courses_dept": "econ",
+                    "courses_uuid": "69781"
+                },
+                {
+                    "courses_title": "princpl macrecon",
+                    "courses_dept": "econ",
+                    "courses_uuid": "69790"
+                },
+                {
+                    "courses_title": "int calc ap ph s",
+                    "courses_dept": "math",
+                    "courses_uuid": "72908"
+                },
+                {
+                    "courses_title": "calculus 3",
+                    "courses_dept": "math",
+                    "courses_uuid": "72980"
+                },
+                {
+                    "courses_title": "prncpls micrecon",
+                    "courses_dept": "econ",
+                    "courses_uuid": "74279"
+                },
+                {
+                    "courses_title": "princpl macrecon",
+                    "courses_dept": "econ",
+                    "courses_uuid": "74293"
+                },
+                {
+                    "courses_title": "energy & waves",
+                    "courses_dept": "phys",
+                    "courses_uuid": "75268"
+                },
+                {
+                    "courses_title": "mechanics i",
+                    "courses_dept": "phys",
+                    "courses_uuid": "75290"
+                },
+                {
+                    "courses_title": "prncpls micrecon",
+                    "courses_dept": "econ",
+                    "courses_uuid": "78331"
+                },
+                {
+                    "courses_title": "princpl macrecon",
+                    "courses_dept": "econ",
+                    "courses_uuid": "78343"
+                },
+                {
+                    "courses_title": "energy & waves",
+                    "courses_dept": "phys",
+                    "courses_uuid": "80561"
+                },
+                {
+                    "courses_title": "comp eng design",
+                    "courses_dept": "apsc",
+                    "courses_uuid": "8246"
+                },
+                {
+                    "courses_title": "comptn, progrmng",
+                    "courses_dept": "cpsc",
+                    "courses_uuid": "83395"
+                },
+                {
+                    "courses_title": "unicellular life",
+                    "courses_dept": "biol",
+                    "courses_uuid": "88920"
+                },
+                {
+                    "courses_title": "gentcs ecol&evol",
+                    "courses_dept": "biol",
+                    "courses_uuid": "88930"
                 },
                 {
                     "courses_title": "cell biology 1",
-                    "courses_dept": "biol"
+                    "courses_dept": "biol",
+                    "courses_uuid": "88960"
                 },
                 {
                     "courses_title": "cell biology 1",
-                    "courses_dept": "biol"
+                    "courses_dept": "biol",
+                    "courses_uuid": "88965"
+                },
+                {
+                    "courses_title": "df calc ap ph sc",
+                    "courses_dept": "math",
+                    "courses_uuid": "89960"
+                },
+                {
+                    "courses_title": "int calc ap ph s",
+                    "courses_dept": "math",
+                    "courses_uuid": "89972"
+                },
+                {
+                    "courses_title": "int calc ap lf s",
+                    "courses_dept": "math",
+                    "courses_uuid": "89990"
+                },
+                {
+                    "courses_title": "int calc ap c&ss",
+                    "courses_dept": "math",
+                    "courses_uuid": "90009"
+                },
+                {
+                    "courses_title": "calc socsci comm",
+                    "courses_dept": "math",
+                    "courses_uuid": "90035"
+                },
+                {
+                    "courses_title": "calculus 3",
+                    "courses_dept": "math",
+                    "courses_uuid": "90046"
+                },
+                {
+                    "courses_title": "prncpls micrecon",
+                    "courses_dept": "econ",
+                    "courses_uuid": "90881"
+                },
+                {
+                    "courses_title": "princpl macrecon",
+                    "courses_dept": "econ",
+                    "courses_uuid": "90894"
+                },
+                {
+                    "courses_title": "energy & waves",
+                    "courses_dept": "phys",
+                    "courses_uuid": "98668"
+                },
+                {
+                    "courses_title": "prncpls micrecon",
+                    "courses_dept": "econ",
+                    "courses_uuid": "9980"
                 }
             ]
         }

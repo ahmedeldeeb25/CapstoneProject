@@ -231,10 +231,12 @@ describe("Course data", () => {
     });
 
     it("Use to compare data between UI on SDMM and data my app gets", () => {
-        const query: string = "In courses dataset courses, find entries whose Average is greater than 97;" +
-        " show Department and Average; sort in ascending order by Average.";
+        const query: string = "In courses dataset courses, find entries whose Title begins with \"ab\";" +
+        " show ID and Instructor and Title and UUID; sort in ascending order by UUID.";
         const splitQuery = new SplitQuery(query);
         const data: object[] = queryEngine.query_data(splitQuery.get_split_query());
-        expect(data.length).to.equal(47);
+        for (const o of data) {
+            Log.test(JSON.stringify(o));
+        }
     });
 });

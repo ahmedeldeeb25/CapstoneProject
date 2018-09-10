@@ -1,321 +1,399 @@
 {
     "title": "Select title, department from courses where pass = 100",
-    "query": "In courses dataset courses, find entries whose Pass is equal to 100; show Title and Department.",
+    "query": "In courses dataset courses, find entries whose Pass is equal to 100; show Title and Department and UUID; sort in ascending order by UUID.",
     "response": {
         "code": 200,
         "body": {
             "result": [
                 {
-                    "courses_title": "info systems",
-                    "courses_dept": "busi"
-                },
-                {
-                    "courses_title": "thermal phys i",
-                    "courses_dept": "phys"
-                },
-                {
-                    "courses_title": "thermal phys i",
-                    "courses_dept": "phys"
-                },
-                {
-                    "courses_title": "hum nut lif span",
-                    "courses_dept": "fnh"
-                },
-                {
-                    "courses_title": "hum nut lif span",
-                    "courses_dept": "fnh"
-                },
-                {
-                    "courses_title": "internet comp",
-                    "courses_dept": "cpsc"
-                },
-                {
-                    "courses_title": "prin audit",
-                    "courses_dept": "busi"
-                },
-                {
-                    "courses_title": "calculus 3",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "calculus 3",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "comp hard&os",
-                    "courses_dept": "cpsc"
-                },
-                {
-                    "courses_title": "adul educ",
-                    "courses_dept": "adhe"
-                },
-                {
-                    "courses_title": "comptn, progrmng",
-                    "courses_dept": "cpsc"
-                },
-                {
-                    "courses_title": "soci of family",
-                    "courses_dept": "soci"
-                },
-                {
-                    "courses_title": "soci of family",
-                    "courses_dept": "soci"
-                },
-                {
-                    "courses_title": "intgrt'd bio lab",
-                    "courses_dept": "biol"
-                },
-                {
-                    "courses_title": "intgrt'd bio lab",
-                    "courses_dept": "biol"
-                },
-                {
-                    "courses_title": "found re apprai",
-                    "courses_dept": "busi"
-                },
-                {
-                    "courses_title": "found re apprai",
-                    "courses_dept": "busi"
-                },
-                {
-                    "courses_title": "proc dyn&control",
-                    "courses_dept": "chbe"
-                },
-                {
-                    "courses_title": "proc dyn&control",
-                    "courses_dept": "chbe"
-                },
-                {
-                    "courses_title": "dff calc ap c&ss",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "explor our food",
-                    "courses_dept": "fnh"
-                },
-                {
-                    "courses_title": "fluid mech i",
-                    "courses_dept": "civl"
-                },
-                {
-                    "courses_title": "europe 1900-50",
-                    "courses_dept": "hist"
-                },
-                {
-                    "courses_title": "int calc ap c&ss",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "intr busnss law",
-                    "courses_dept": "busi"
-                },
-                {
-                    "courses_title": "unit oper i",
-                    "courses_dept": "chbe"
-                },
-                {
-                    "courses_title": "unit oper i",
-                    "courses_dept": "chbe"
-                },
-                {
-                    "courses_title": "df calc ap ph sc",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "intro comp sys",
-                    "courses_dept": "cpsc"
-                },
-                {
-                    "courses_title": "intro philosophy",
-                    "courses_dept": "phil"
-                },
-                {
-                    "courses_title": "int calc ap lf s",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "int calc ap lf s",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "res meth educ",
-                    "courses_dept": "etec"
-                },
-                {
-                    "courses_title": "ancient greece",
-                    "courses_dept": "clst"
-                },
-                {
-                    "courses_title": "multivrbl calc",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "anlyz bus procss",
-                    "courses_dept": "basc"
-                },
-                {
-                    "courses_title": "heat transfer i",
-                    "courses_dept": "mech"
-                },
-                {
-                    "courses_title": "data anly&utiliz",
-                    "courses_dept": "babs"
-                },
-                {
-                    "courses_title": "matrx struc anly",
-                    "courses_dept": "civl"
-                },
-                {
-                    "courses_title": "intro literature",
-                    "courses_dept": "engl"
-                },
-                {
-                    "courses_title": "intro literature",
-                    "courses_dept": "engl"
-                },
-                {
-                    "courses_title": "fam resrc mngmt",
-                    "courses_dept": "fmst"
-                },
-                {
-                    "courses_title": "fam resrc mngmt",
-                    "courses_dept": "fmst"
-                },
-                {
-                    "courses_title": "fmly human dvlpm",
-                    "courses_dept": "fmst"
-                },
-                {
-                    "courses_title": "land economics",
-                    "courses_dept": "econ"
-                },
-                {
-                    "courses_title": "land economics",
-                    "courses_dept": "econ"
-                },
-                {
-                    "courses_title": "vert struct&func",
-                    "courses_dept": "biol"
-                },
-                {
-                    "courses_title": "vert struct&func",
-                    "courses_dept": "biol"
-                },
-                {
-                    "courses_title": "vascular plants",
-                    "courses_dept": "biol"
-                },
-                {
-                    "courses_title": "vascular plants",
-                    "courses_dept": "biol"
-                },
-                {
-                    "courses_title": "mech of material",
-                    "courses_dept": "mech"
-                },
-                {
-                    "courses_title": "child & yng adlt",
-                    "courses_dept": "crwr"
-                },
-                {
-                    "courses_title": "child & yng adlt",
-                    "courses_dept": "crwr"
-                },
-                {
                     "courses_title": "cptl mrkts&rl es",
-                    "courses_dept": "busi"
-                },
-                {
-                    "courses_title": "cptl mrkts&rl es",
-                    "courses_dept": "busi"
-                },
-                {
-                    "courses_title": "linear systems",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "linear systems",
-                    "courses_dept": "math"
-                },
-                {
-                    "courses_title": "ling thry&anl i",
-                    "courses_dept": "ling"
-                },
-                {
-                    "courses_title": "ling thry&anl i",
-                    "courses_dept": "ling"
-                },
-                {
-                    "courses_title": "hist music i",
-                    "courses_dept": "musc"
-                },
-                {
-                    "courses_title": "can,japn&pc poli",
-                    "courses_dept": "astu"
-                },
-                {
-                    "courses_title": "intro acad writ",
-                    "courses_dept": "lled"
-                },
-                {
-                    "courses_title": "intro acad writ",
-                    "courses_dept": "lled"
-                },
-                {
-                    "courses_title": "princpl macrecon",
-                    "courses_dept": "econ"
-                },
-                {
-                    "courses_title": "18th cent genre",
-                    "courses_dept": "engl"
-                },
-                {
-                    "courses_title": "math proof",
-                    "courses_dept": "math"
+                    "courses_dept": "busi",
+                    "courses_uuid": "11059"
                 },
                 {
                     "courses_title": "intrm micro anly",
-                    "courses_dept": "econ"
+                    "courses_dept": "econ",
+                    "courses_uuid": "11450"
+                },
+                {
+                    "courses_title": "intro comp sys",
+                    "courses_dept": "cpsc",
+                    "courses_uuid": "1272"
+                },
+                {
+                    "courses_title": "intro philosophy",
+                    "courses_dept": "phil",
+                    "courses_uuid": "12893"
+                },
+                {
+                    "courses_title": "int calc ap lf s",
+                    "courses_dept": "math",
+                    "courses_uuid": "13698"
+                },
+                {
+                    "courses_title": "stdy genre/perio",
+                    "courses_dept": "fist",
+                    "courses_uuid": "14966"
+                },
+                {
+                    "courses_title": "info systems",
+                    "courses_dept": "busi",
+                    "courses_uuid": "15726"
+                },
+                {
+                    "courses_title": "ancient greece",
+                    "courses_dept": "clst",
+                    "courses_uuid": "18606"
                 },
                 {
                     "courses_title": "lab animal physi",
-                    "courses_dept": "biol"
+                    "courses_dept": "biol",
+                    "courses_uuid": "19703"
                 },
                 {
-                    "courses_title": "int microecon ii",
-                    "courses_dept": "econ"
-                },
-                {
-                    "courses_title": "int microecon ii",
-                    "courses_dept": "econ"
-                },
-                {
-                    "courses_title": "int microecon ii",
-                    "courses_dept": "econ"
-                },
-                {
-                    "courses_title": "int microecon ii",
-                    "courses_dept": "econ"
-                },
-                {
-                    "courses_title": "int microecon ii",
-                    "courses_dept": "econ"
-                },
-                {
-                    "courses_title": "alg coding crypt",
-                    "courses_dept": "math"
+                    "courses_title": "fam resrc mngmt",
+                    "courses_dept": "fmst",
+                    "courses_uuid": "22211"
                 },
                 {
                     "courses_title": "nutr conc & cont",
-                    "courses_dept": "fnh"
+                    "courses_dept": "fnh",
+                    "courses_uuid": "23580"
+                },
+                {
+                    "courses_title": "calculus 3",
+                    "courses_dept": "math",
+                    "courses_uuid": "27290"
+                },
+                {
+                    "courses_title": "int calc ap c&ss",
+                    "courses_dept": "math",
+                    "courses_uuid": "29743"
+                },
+                {
+                    "courses_title": "linear systems",
+                    "courses_dept": "math",
+                    "courses_uuid": "29758"
+                },
+                {
+                    "courses_title": "intro acad writ",
+                    "courses_dept": "lled",
+                    "courses_uuid": "30309"
+                },
+                {
+                    "courses_title": "explor our food",
+                    "courses_dept": "fnh",
+                    "courses_uuid": "34853"
+                },
+                {
+                    "courses_title": "anlyz bus procss",
+                    "courses_dept": "basc",
+                    "courses_uuid": "34994"
+                },
+                {
+                    "courses_title": "ling thry&anl i",
+                    "courses_dept": "ling",
+                    "courses_uuid": "35461"
+                },
+                {
+                    "courses_title": "ling thry&anl i",
+                    "courses_dept": "ling",
+                    "courses_uuid": "35462"
+                },
+                {
+                    "courses_title": "linear systems",
+                    "courses_dept": "math",
+                    "courses_uuid": "3803"
+                },
+                {
+                    "courses_title": "intro literature",
+                    "courses_dept": "engl",
+                    "courses_uuid": "41354"
+                },
+                {
+                    "courses_title": "intgrt'd bio lab",
+                    "courses_dept": "biol",
+                    "courses_uuid": "42205"
+                },
+                {
+                    "courses_title": "intgrt'd bio lab",
+                    "courses_dept": "biol",
+                    "courses_uuid": "42206"
+                },
+                {
+                    "courses_title": "thermal phys i",
+                    "courses_dept": "phys",
+                    "courses_uuid": "427"
+                },
+                {
+                    "courses_title": "thermal phys i",
+                    "courses_dept": "phys",
+                    "courses_uuid": "428"
+                },
+                {
+                    "courses_title": "res meth educ",
+                    "courses_dept": "etec",
+                    "courses_uuid": "45886"
+                },
+                {
+                    "courses_title": "internet comp",
+                    "courses_dept": "cpsc",
+                    "courses_uuid": "46709"
+                },
+                {
+                    "courses_title": "math proof",
+                    "courses_dept": "math",
+                    "courses_uuid": "47105"
+                },
+                {
+                    "courses_title": "fluid mech i",
+                    "courses_dept": "civl",
+                    "courses_uuid": "47527"
+                },
+                {
+                    "courses_title": "matrx struc anly",
+                    "courses_dept": "civl",
+                    "courses_uuid": "47589"
+                },
+                {
+                    "courses_title": "comptn, progrmng",
+                    "courses_dept": "cpsc",
+                    "courses_uuid": "49853"
+                },
+                {
+                    "courses_title": "child & yng adlt",
+                    "courses_dept": "crwr",
+                    "courses_uuid": "50509"
+                },
+                {
+                    "courses_title": "child & yng adlt",
+                    "courses_dept": "crwr",
+                    "courses_uuid": "50510"
+                },
+                {
+                    "courses_title": "calculus 3",
+                    "courses_dept": "math",
+                    "courses_uuid": "5195"
+                },
+                {
+                    "courses_title": "alg coding crypt",
+                    "courses_dept": "math",
+                    "courses_uuid": "5314"
+                },
+                {
+                    "courses_title": "vascular plants",
+                    "courses_dept": "biol",
+                    "courses_uuid": "54062"
+                },
+                {
+                    "courses_title": "vascular plants",
+                    "courses_dept": "biol",
+                    "courses_uuid": "54063"
+                },
+                {
+                    "courses_title": "fam resrc mngmt",
+                    "courses_dept": "fmst",
+                    "courses_uuid": "5470"
+                },
+                {
+                    "courses_title": "int microecon ii",
+                    "courses_dept": "econ",
+                    "courses_uuid": "58353"
+                },
+                {
+                    "courses_title": "int microecon ii",
+                    "courses_dept": "econ",
+                    "courses_uuid": "58354"
+                },
+                {
+                    "courses_title": "europe 1900-50",
+                    "courses_dept": "hist",
+                    "courses_uuid": "61774"
+                },
+                {
+                    "courses_title": "adul educ",
+                    "courses_dept": "adhe",
+                    "courses_uuid": "62739"
+                },
+                {
+                    "courses_title": "unit oper i",
+                    "courses_dept": "chbe",
+                    "courses_uuid": "63593"
+                },
+                {
+                    "courses_title": "unit oper i",
+                    "courses_dept": "chbe",
+                    "courses_uuid": "63594"
+                },
+                {
+                    "courses_title": "proc dyn&control",
+                    "courses_dept": "chbe",
+                    "courses_uuid": "63601"
+                },
+                {
+                    "courses_title": "proc dyn&control",
+                    "courses_dept": "chbe",
+                    "courses_uuid": "63602"
+                },
+                {
+                    "courses_title": "intro acad writ",
+                    "courses_dept": "lled",
+                    "courses_uuid": "6424"
+                },
+                {
+                    "courses_title": "hum nut lif span",
+                    "courses_dept": "fnh",
+                    "courses_uuid": "65054"
+                },
+                {
+                    "courses_title": "hum nut lif span",
+                    "courses_dept": "fnh",
+                    "courses_uuid": "65055"
+                },
+                {
+                    "courses_title": "cptl mrkts&rl es",
+                    "courses_dept": "busi",
+                    "courses_uuid": "65186"
+                },
+                {
+                    "courses_title": "data anly&utiliz",
+                    "courses_dept": "babs",
+                    "courses_uuid": "6537"
+                },
+                {
+                    "courses_title": "int microecon ii",
+                    "courses_dept": "econ",
+                    "courses_uuid": "69811"
+                },
+                {
+                    "courses_title": "int microecon ii",
+                    "courses_dept": "econ",
+                    "courses_uuid": "69812"
+                },
+                {
+                    "courses_title": "found re apprai",
+                    "courses_dept": "busi",
+                    "courses_uuid": "71014"
+                },
+                {
+                    "courses_title": "found re apprai",
+                    "courses_dept": "busi",
+                    "courses_uuid": "71015"
+                },
+                {
+                    "courses_title": "intr busnss law",
+                    "courses_dept": "busi",
+                    "courses_uuid": "71036"
+                },
+                {
+                    "courses_title": "prin audit",
+                    "courses_dept": "busi",
+                    "courses_uuid": "71057"
+                },
+                {
+                    "courses_title": "int calc ap lf s",
+                    "courses_dept": "math",
+                    "courses_uuid": "72918"
+                },
+                {
+                    "courses_title": "dff calc ap c&ss",
+                    "courses_dept": "math",
+                    "courses_uuid": "72926"
+                },
+                {
+                    "courses_title": "multivrbl calc",
+                    "courses_dept": "math",
+                    "courses_uuid": "73015"
+                },
+                {
+                    "courses_title": "fmly human dvlpm",
+                    "courses_dept": "fmst",
+                    "courses_uuid": "75980"
+                },
+                {
+                    "courses_title": "land economics",
+                    "courses_dept": "econ",
+                    "courses_uuid": "78440"
+                },
+                {
+                    "courses_title": "land economics",
+                    "courses_dept": "econ",
+                    "courses_uuid": "78441"
+                },
+                {
+                    "courses_title": "comp hard&os",
+                    "courses_dept": "cpsc",
+                    "courses_uuid": "83439"
+                },
+                {
+                    "courses_title": "heat transfer i",
+                    "courses_dept": "mech",
+                    "courses_uuid": "84178"
+                },
+                {
+                    "courses_title": "soci of family",
+                    "courses_dept": "soci",
+                    "courses_uuid": "85159"
+                },
+                {
+                    "courses_title": "soci of family",
+                    "courses_dept": "soci",
+                    "courses_uuid": "85160"
+                },
+                {
+                    "courses_title": "vert struct&func",
+                    "courses_dept": "biol",
+                    "courses_uuid": "86126"
+                },
+                {
+                    "courses_title": "vert struct&func",
+                    "courses_dept": "biol",
+                    "courses_uuid": "86127"
+                },
+                {
+                    "courses_title": "df calc ap ph sc",
+                    "courses_dept": "math",
+                    "courses_uuid": "89956"
+                },
+                {
+                    "courses_title": "princpl macrecon",
+                    "courses_dept": "econ",
+                    "courses_uuid": "90883"
+                },
+                {
+                    "courses_title": "int microecon ii",
+                    "courses_dept": "econ",
+                    "courses_uuid": "90921"
+                },
+                {
+                    "courses_title": "mech of material",
+                    "courses_dept": "mech",
+                    "courses_uuid": "91949"
                 },
                 {
                     "courses_title": "stdy genre/perio",
-                    "courses_dept": "fist"
+                    "courses_dept": "fist",
+                    "courses_uuid": "9214"
                 },
                 {
-                    "courses_title": "stdy genre/perio",
-                    "courses_dept": "fist"
+                    "courses_title": "hist music i",
+                    "courses_dept": "musc",
+                    "courses_uuid": "93744"
+                },
+                {
+                    "courses_title": "18th cent genre",
+                    "courses_dept": "engl",
+                    "courses_uuid": "95365"
+                },
+                {
+                    "courses_title": "intro literature",
+                    "courses_dept": "engl",
+                    "courses_uuid": "97321"
+                },
+                {
+                    "courses_title": "can,japn&pc poli",
+                    "courses_dept": "astu",
+                    "courses_uuid": "98365"
                 }
             ]
         }

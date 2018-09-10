@@ -1,6 +1,6 @@
 {
     "title": "SELECT dept, avg WHERE avg <= 5",
-    "query": "In courses dataset courses, find entries whose Average is not greater than 5; show ID and Department and UUID.",
+    "query": "In courses dataset courses, find entries whose Average is not greater than 5; show ID and Department and UUID; sort in ascending order by UUID.",
     "response": {
         "code": 200,
         "body": {
@@ -16,11 +16,6 @@
                     "courses_uuid": "16428"
                 },
                 {
-                    "courses_id": "362",
-                    "courses_dept": "fopr",
-                    "courses_uuid": "84769"
-                },
-                {
                     "courses_id": "100",
                     "courses_dept": "lfs",
                     "courses_uuid": "56402"
@@ -29,6 +24,11 @@
                     "courses_id": "100",
                     "courses_dept": "lfs",
                     "courses_uuid": "56403"
+                },
+                {
+                    "courses_id": "362",
+                    "courses_dept": "fopr",
+                    "courses_uuid": "84769"
                 },
                 {
                     "courses_id": "202",

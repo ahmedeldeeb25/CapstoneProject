@@ -1,53 +1,64 @@
 {
     "title": "Select title, department from courses where pass < 1",
-    "query": "In courses dataset courses, find entries whose Audit is greater than 14 and Audit is less than 20; show Title and Department.",
+    "query": "In courses dataset courses, find entries whose Audit is greater than 14 and Audit is less than 20; show Title and Department and UUID; sort in ascending order by UUID.",
     "response": {
         "code": 200,
         "body": {
             "result": [
                 {
-                    "courses_title": "rehab learning",
-                    "courses_dept": "rhsc"
-                },
-                {
-                    "courses_title": "mult regres meth",
-                    "courses_dept": "frst"
-                },
-                {
-                    "courses_title": "mult regres meth",
-                    "courses_dept": "frst"
+                    "courses_title": "meas in practice",
+                    "courses_dept": "rhsc",
+                    "courses_uuid": "21801"
                 },
                 {
                     "courses_title": "machine learn i",
-                    "courses_dept": "cpsc"
-                },
-                {
-                    "courses_title": "reas & dec-mking",
-                    "courses_dept": "rhsc"
-                },
-                {
-                    "courses_title": "reas & dec-mking",
-                    "courses_dept": "rhsc"
-                },
-                {
-                    "courses_title": "eval src evidenc",
-                    "courses_dept": "rhsc"
+                    "courses_dept": "cpsc",
+                    "courses_uuid": "62474"
                 },
                 {
                     "courses_title": "intr gis frs&con",
-                    "courses_dept": "cons"
+                    "courses_dept": "cons",
+                    "courses_uuid": "68836"
+                },
+                {
+                    "courses_title": "eval src evidenc",
+                    "courses_dept": "rhsc",
+                    "courses_uuid": "71594"
+                },
+                {
+                    "courses_title": "reas & dec-mking",
+                    "courses_dept": "rhsc",
+                    "courses_uuid": "71600"
                 },
                 {
                     "courses_title": "meas in practice",
-                    "courses_dept": "rhsc"
-                },
-                {
-                    "courses_title": "meas in practice",
-                    "courses_dept": "rhsc"
+                    "courses_dept": "rhsc",
+                    "courses_uuid": "71604"
                 },
                 {
                     "courses_title": "dev rehab prog",
-                    "courses_dept": "rhsc"
+                    "courses_dept": "rhsc",
+                    "courses_uuid": "71608"
+                },
+                {
+                    "courses_title": "reas & dec-mking",
+                    "courses_dept": "rhsc",
+                    "courses_uuid": "76495"
+                },
+                {
+                    "courses_title": "rehab learning",
+                    "courses_dept": "rhsc",
+                    "courses_uuid": "76509"
+                },
+                {
+                    "courses_title": "mult regres meth",
+                    "courses_dept": "frst",
+                    "courses_uuid": "97727"
+                },
+                {
+                    "courses_title": "mult regres meth",
+                    "courses_dept": "frst",
+                    "courses_uuid": "97728"
                 }
             ]
         }

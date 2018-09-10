@@ -1,879 +1,1053 @@
 {
     "title": "SELECT instructor, title WHERE title NOT LIKE 'A%'",
-    "query": "In courses dataset courses, find entries whose Title does not begin with \"a\" and Title does not begin with \"b\" and ID is \"400\"; show ID and Instructor and Title.",
+    "query": "In courses dataset courses, find entries whose Title does not begin with \"a\" and Title does not begin with \"b\" and ID is \"400\"; show ID and Instructor and Title and UUID; sort in ascending order by UUID.",
     "response": {
         "code": 200,
         "body": {
             "result": [
                 {
                     "courses_id": "400",
-                    "courses_instructor": "lister, alison",
-                    "courses_title": "intr elem prtcls"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "intr elem prtcls"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "mattison, thomas",
-                    "courses_title": "intr elem prtcls"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "intr elem prtcls"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "tanaka, hirohisa",
-                    "courses_title": "intr elem prtcls"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "intr elem prtcls"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "gay, colin",
-                    "courses_title": "intr elem prtcls"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "intr elem prtcls"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "tanaka, hirohisa",
-                    "courses_title": "intr elem prtcls"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "intr elem prtcls"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "mattison, thomas",
-                    "courses_title": "intr elem prtcls"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "intr elem prtcls"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "mattison, thomas",
-                    "courses_title": "intr elem prtcls"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "intr elem prtcls"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "mattison, thomas",
-                    "courses_title": "intr elem prtcls"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "intr elem prtcls"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "bhagavatula, sastry",
-                    "courses_title": "systematic pcol"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "systematic pcol"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "bhagavatula, sastry",
-                    "courses_title": "systematic pcol"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "systematic pcol"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "ansermino, john mark;barr, alasdair;bernatchez, pascal;bhagavatula, sastry;choi, peter tsz lung;etminan, mahyar;griesdale, donald e;hackett, tillie-louise;horne, andrew;laher, ismail;preston, roanne;schwarz, stephan;warriner, charles brian;wright, james",
-                    "courses_title": "systematic pcol"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "systematic pcol"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "bhagavatula, sastry",
-                    "courses_title": "systematic pcol"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "systematic pcol"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "systematic pcol"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "systematic pcol"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "bhagavatula, sastry",
-                    "courses_title": "systematic pcol"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "systematic pcol"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "ansermino, john mark;barr, alasdair;bernatchez, pascal;bhagavatula, sastry;choi, peter tsz lung;etminan, mahyar;fedida, david;griesdale, donald e;hackett, tillie-louise;horne, andrew;kurata, harley;laher, ismail;preston, roanne;schwarz, stephan;walker, michael j a;warriner, charles brian;wright, james",
-                    "courses_title": "systematic pcol"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "systematic pcol"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "bhagavatula, sastry",
-                    "courses_title": "systematic pcol"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "systematic pcol"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "bhagavatula, sastry",
-                    "courses_title": "systematic pcol"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "systematic pcol"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "hatzimanolakis, penny",
-                    "courses_title": "curr iss oral hl"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "mcfarlane, rae",
-                    "courses_title": "curr iss oral hl"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "curr iss oral hl"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "hatzimanolakis, penny",
-                    "courses_title": "curr iss oral hl"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "hatzimanolakis, penny",
-                    "courses_title": "curr iss oral hl"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "curr iss oral hl"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "bigelow-ghaname, carrie",
-                    "courses_title": "curr iss oral hl"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "curr iss oral hl"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "curr iss oral hl"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "bigelow-ghaname, carrie",
-                    "courses_title": "curr iss oral hl"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "curr iss oral hl"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "mcfarlane, rae",
-                    "courses_title": "curr iss oral hl"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "mcfarlane, rae",
-                    "courses_title": "curr iss oral hl"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "curr iss oral hl"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "curr iss oral hl"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "bigelow-ghaname, carrie",
-                    "courses_title": "curr iss oral hl"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "curr iss oral hl"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "hatzimanolakis, penny",
-                    "courses_title": "curr iss oral hl"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "curr iss oral hl"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "curr iss oral hl"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "curr iss oral hl"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "polissky, olena",
-                    "courses_title": "fourth-year russ"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "fourth-year russ"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "polissky, olena",
-                    "courses_title": "fourth-year russ"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "fourth-year russ"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "chitnev, veta",
-                    "courses_title": "fourth-year russ"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "fourth-year russ"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "prykhodko, dariya",
-                    "courses_title": "fourth-year russ"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "fourth-year russ"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "polissky, olena",
-                    "courses_title": "fourth-year russ"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "fourth-year russ"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "chitnev, veta",
-                    "courses_title": "fourth-year russ"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "fourth-year russ"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "prykhodko, dariya",
-                    "courses_title": "fourth-year russ"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "fourth-year russ"
+                    "courses_instructor": "low, alan",
+                    "courses_title": "pharm mgmt",
+                    "courses_uuid": "10348"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "low, alan",
-                    "courses_title": "pharm mgmt"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "low, alan",
-                    "courses_title": "pharm mgmt"
+                    "courses_title": "pharm mgmt",
+                    "courses_uuid": "10349"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "pharm mgmt"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "crawford, david robert;fielding, david",
-                    "courses_title": "pharm mgmt"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "crawford, david robert;fielding, david",
-                    "courses_title": "pharm mgmt"
+                    "courses_title": "pharm mgmt",
+                    "courses_uuid": "10350"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "pharm mgmt"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "low, alan",
-                    "courses_title": "pharm mgmt"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "low, alan",
-                    "courses_title": "pharm mgmt"
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "11129"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "pharm mgmt"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "low, alan",
-                    "courses_title": "pharm mgmt"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "low, alan",
-                    "courses_title": "pharm mgmt"
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "11130"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "pharm mgmt"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "pharm mgmt"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "pharm mgmt"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "pharm mgmt"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "crawford, david robert;fielding, david",
-                    "courses_title": "pharm mgmt"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "crawford, david robert;fielding, david",
-                    "courses_title": "pharm mgmt"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "pharm mgmt"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "low, alan",
-                    "courses_title": "pharm mgmt"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "low, alan",
-                    "courses_title": "pharm mgmt"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "pharm mgmt"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "low, alan",
-                    "courses_title": "pharm mgmt"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "low, alan",
-                    "courses_title": "pharm mgmt"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "pharm mgmt"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "harris, sara;ivanochko, tara",
-                    "courses_title": "cmnty pr env sci"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "cmnty pr env sci"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "lane, erin;steyn, douw gerbrand",
-                    "courses_title": "rsrc prj env sci"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "rsrc prj env sci"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "harris, sara;ivanochko, tara",
-                    "courses_title": "rsrc prj env sci"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "rsrc prj env sci"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "harris, sara;ivanochko, tara",
-                    "courses_title": "rsrc prj env sci"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "rsrc prj env sci"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "harris, sara;ivanochko, tara",
-                    "courses_title": "cmnty pr env sci"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "cmnty pr env sci"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "harris, sara;ivanochko, tara",
-                    "courses_title": "rsrc prj env sci"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "rsrc prj env sci"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "justice, daniel",
-                    "courses_title": "practicm/adv res"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "practicm/adv res"
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "11131"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "white, jane",
-                    "courses_title": "intro ece & care"
+                    "courses_title": "intro ece & care",
+                    "courses_uuid": "1149"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "intro ece & care"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "wyly, elvin",
-                    "courses_title": "sem urban studes"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "sem urban studes"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "wyly, elvin kirk",
-                    "courses_title": "sem urban studes"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "sem urban studes"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "wyly, elvin kirk",
-                    "courses_title": "sem urban studes"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "sem urban studes"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "sem urban studes"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "sem urban studes"
+                    "courses_title": "intro ece & care",
+                    "courses_uuid": "1150"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "owens, cameron",
-                    "courses_title": "sem urban studes"
+                    "courses_title": "sem urban studes",
+                    "courses_uuid": "13251"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "sem urban studes"
+                    "courses_title": "sem urban studes",
+                    "courses_uuid": "13252"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "ansermino, john mark;barr, alasdair;bernatchez, pascal;bhagavatula, sastry;choi, peter tsz lung;etminan, mahyar;griesdale, donald e;hackett, tillie-louise;horne, andrew;laher, ismail;preston, roanne;schwarz, stephan;warriner, charles brian;wright, james",
+                    "courses_title": "systematic pcol",
+                    "courses_uuid": "15193"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "systematic pcol",
+                    "courses_uuid": "15194"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "15760"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "15761"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "15762"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "lane, erin;steyn, douw gerbrand",
+                    "courses_title": "rsrc prj env sci",
+                    "courses_uuid": "15846"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "rsrc prj env sci",
+                    "courses_uuid": "15847"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "dig comm&tpcs ag",
+                    "courses_uuid": "16616"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "dig comm&tpcs ag",
+                    "courses_uuid": "16617"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "16794"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "16795"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "16885"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "16886"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "16887"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "bhagavatula, sastry",
+                    "courses_title": "systematic pcol",
+                    "courses_uuid": "17635"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "systematic pcol",
+                    "courses_uuid": "17636"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "bigelow-ghaname, carrie",
+                    "courses_title": "curr iss oral hl",
+                    "courses_uuid": "18551"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "curr iss oral hl",
+                    "courses_uuid": "18552"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "bhagavatula, sastry",
+                    "courses_title": "systematic pcol",
+                    "courses_uuid": "2190"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "systematic pcol",
+                    "courses_uuid": "2191"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "2246"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "2247"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "systematic pcol",
+                    "courses_uuid": "22906"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "systematic pcol",
+                    "courses_uuid": "22907"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "26438"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "26439"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "dig comm&tpcs ag",
+                    "courses_uuid": "26620"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "dig comm&tpcs ag",
+                    "courses_uuid": "26621"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "harris, sara;ivanochko, tara",
+                    "courses_title": "cmnty pr env sci",
+                    "courses_uuid": "2683"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "cmnty pr env sci",
+                    "courses_uuid": "2684"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "chitnev, veta",
+                    "courses_title": "fourth-year russ",
+                    "courses_uuid": "26946"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "fourth-year russ",
+                    "courses_uuid": "26947"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "low, alan",
+                    "courses_title": "pharm mgmt",
+                    "courses_uuid": "30448"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "low, alan",
+                    "courses_title": "pharm mgmt",
+                    "courses_uuid": "30449"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "pharm mgmt",
+                    "courses_uuid": "30450"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "bhagavatula, sastry",
+                    "courses_title": "systematic pcol",
+                    "courses_uuid": "32293"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "systematic pcol",
+                    "courses_uuid": "32294"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "curr iss oral hl",
+                    "courses_uuid": "32780"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "bigelow-ghaname, carrie",
+                    "courses_title": "curr iss oral hl",
+                    "courses_uuid": "32781"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "curr iss oral hl",
+                    "courses_uuid": "32782"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "hatzimanolakis, penny",
+                    "courses_title": "curr iss oral hl",
+                    "courses_uuid": "3300"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "mcfarlane, rae",
+                    "courses_title": "curr iss oral hl",
+                    "courses_uuid": "3301"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "curr iss oral hl",
+                    "courses_uuid": "3302"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "ansermino, john mark;barr, alasdair;bernatchez, pascal;bhagavatula, sastry;choi, peter tsz lung;etminan, mahyar;fedida, david;griesdale, donald e;hackett, tillie-louise;horne, andrew;kurata, harley;laher, ismail;preston, roanne;schwarz, stephan;walker, michael j a;warriner, charles brian;wright, james",
+                    "courses_title": "systematic pcol",
+                    "courses_uuid": "33144"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "systematic pcol",
+                    "courses_uuid": "33145"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "tanaka, hirohisa",
+                    "courses_title": "intr elem prtcls",
+                    "courses_uuid": "33605"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "intr elem prtcls",
+                    "courses_uuid": "33606"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "justice, daniel",
+                    "courses_title": "practicm/adv res",
+                    "courses_uuid": "33907"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "practicm/adv res",
+                    "courses_uuid": "33908"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "mcfarlane, rae",
+                    "courses_title": "curr iss oral hl",
+                    "courses_uuid": "36674"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "mcfarlane, rae",
+                    "courses_title": "curr iss oral hl",
+                    "courses_uuid": "36675"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "curr iss oral hl",
+                    "courses_uuid": "36676"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "curr iss oral hl",
+                    "courses_uuid": "40767"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "bigelow-ghaname, carrie",
+                    "courses_title": "curr iss oral hl",
+                    "courses_uuid": "40768"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "curr iss oral hl",
+                    "courses_uuid": "40769"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "gay, colin",
+                    "courses_title": "intr elem prtcls",
+                    "courses_uuid": "41254"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "intr elem prtcls",
+                    "courses_uuid": "41255"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "prykhodko, dariya",
+                    "courses_title": "fourth-year russ",
+                    "courses_uuid": "42058"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "fourth-year russ",
+                    "courses_uuid": "42059"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "harris, sara;ivanochko, tara",
+                    "courses_title": "rsrc prj env sci",
+                    "courses_uuid": "42085"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "rsrc prj env sci",
+                    "courses_uuid": "42086"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "hatzimanolakis, penny",
+                    "courses_title": "curr iss oral hl",
+                    "courses_uuid": "44762"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "curr iss oral hl",
+                    "courses_uuid": "44763"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "lister, alison",
+                    "courses_title": "intr elem prtcls",
+                    "courses_uuid": "468"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "intr elem prtcls",
+                    "courses_uuid": "469"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "low, alan",
+                    "courses_title": "pharm mgmt",
+                    "courses_uuid": "4708"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "low, alan",
+                    "courses_title": "pharm mgmt",
+                    "courses_uuid": "4709"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "pharm mgmt",
+                    "courses_uuid": "4710"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "polissky, olena",
+                    "courses_title": "fourth-year russ",
+                    "courses_uuid": "48202"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "fourth-year russ",
+                    "courses_uuid": "48203"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "hatzimanolakis, penny",
+                    "courses_title": "curr iss oral hl",
+                    "courses_uuid": "4884"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "hatzimanolakis, penny",
+                    "courses_title": "curr iss oral hl",
+                    "courses_uuid": "4885"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "curr iss oral hl",
+                    "courses_uuid": "4886"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "tanaka, hirohisa",
+                    "courses_title": "intr elem prtcls",
+                    "courses_uuid": "50270"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "intr elem prtcls",
+                    "courses_uuid": "50271"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "harris, sara;ivanochko, tara",
+                    "courses_title": "rsrc prj env sci",
+                    "courses_uuid": "50471"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "rsrc prj env sci",
+                    "courses_uuid": "50472"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "50660"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "50661"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "50662"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "wyly, elvin",
+                    "courses_title": "sem urban studes",
+                    "courses_uuid": "539"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "sem urban studes",
+                    "courses_uuid": "540"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "chitnev, veta",
+                    "courses_title": "fourth-year russ",
+                    "courses_uuid": "54356"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "fourth-year russ",
+                    "courses_uuid": "54357"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "polissky, olena",
+                    "courses_title": "fourth-year russ",
+                    "courses_uuid": "557"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "fourth-year russ",
+                    "courses_uuid": "558"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "dig comm&tpcs ag",
+                    "courses_uuid": "56415"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "dig comm&tpcs ag",
+                    "courses_uuid": "56416"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "mattison, thomas",
+                    "courses_title": "intr elem prtcls",
+                    "courses_uuid": "5986"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "intr elem prtcls",
+                    "courses_uuid": "5987"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "harris, sara;ivanochko, tara",
+                    "courses_title": "cmnty pr env sci",
+                    "courses_uuid": "60032"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "cmnty pr env sci",
+                    "courses_uuid": "60033"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "curr iss oral hl",
+                    "courses_uuid": "62121"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "curr iss oral hl",
+                    "courses_uuid": "62122"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "wyly, elvin kirk",
-                    "courses_title": "sem urban studes"
+                    "courses_title": "sem urban studes",
+                    "courses_uuid": "62742"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "sem urban studes"
+                    "courses_title": "sem urban studes",
+                    "courses_uuid": "62743"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "wyly, elvin kirk",
-                    "courses_title": "sem urban studes"
+                    "courses_title": "sem urban studes",
+                    "courses_uuid": "62746"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "sem urban studes"
+                    "courses_title": "sem urban studes",
+                    "courses_uuid": "62747"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "pharm mgmt",
+                    "courses_uuid": "64091"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "pharm mgmt",
+                    "courses_uuid": "64092"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "",
+                    "courses_title": "pharm mgmt",
+                    "courses_uuid": "64093"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "wyly, elvin kirk",
-                    "courses_title": "sem urban studes"
+                    "courses_title": "sem urban studes",
+                    "courses_uuid": "64181"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "sem urban studes"
+                    "courses_title": "sem urban studes",
+                    "courses_uuid": "64182"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "65253"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "65254"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "65255"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "66777"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "66778"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "66779"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "wyly, elvin kirk",
+                    "courses_title": "sem urban studes",
+                    "courses_uuid": "6806"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "sem urban studes",
+                    "courses_uuid": "6807"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "crawford, david robert;fielding, david",
+                    "courses_title": "pharm mgmt",
+                    "courses_uuid": "69337"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "crawford, david robert;fielding, david",
+                    "courses_title": "pharm mgmt",
+                    "courses_uuid": "69338"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "pharm mgmt",
+                    "courses_uuid": "69339"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "bhagavatula, sastry",
+                    "courses_title": "systematic pcol",
+                    "courses_uuid": "70944"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "systematic pcol",
+                    "courses_uuid": "70945"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "71039"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "71040"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "low, alan",
+                    "courses_title": "pharm mgmt",
+                    "courses_uuid": "72773"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "low, alan",
+                    "courses_title": "pharm mgmt",
+                    "courses_uuid": "72774"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "pharm mgmt",
+                    "courses_uuid": "72775"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "73526"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "73527"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "74203"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "74204"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "74205"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "mattison, thomas",
+                    "courses_title": "intr elem prtcls",
+                    "courses_uuid": "75338"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "intr elem prtcls",
+                    "courses_uuid": "75339"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "bhagavatula, sastry",
+                    "courses_title": "systematic pcol",
+                    "courses_uuid": "7660"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "systematic pcol",
+                    "courses_uuid": "7661"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "wyly, elvin kirk",
+                    "courses_title": "sem urban studes",
+                    "courses_uuid": "7680"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "sem urban studes",
+                    "courses_uuid": "7681"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "sem urban studes",
+                    "courses_uuid": "7757"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "sem urban studes",
+                    "courses_uuid": "7758"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "79807"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "79808"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "mattison, thomas",
+                    "courses_title": "intr elem prtcls",
+                    "courses_uuid": "80626"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "intr elem prtcls",
+                    "courses_uuid": "80627"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "bhagavatula, sastry",
+                    "courses_title": "systematic pcol",
+                    "courses_uuid": "81302"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "systematic pcol",
+                    "courses_uuid": "81303"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "low, alan",
+                    "courses_title": "pharm mgmt",
+                    "courses_uuid": "83037"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "low, alan",
+                    "courses_title": "pharm mgmt",
+                    "courses_uuid": "83038"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "pharm mgmt",
+                    "courses_uuid": "83039"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "harris, sara;ivanochko, tara",
+                    "courses_title": "rsrc prj env sci",
+                    "courses_uuid": "84353"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "rsrc prj env sci",
+                    "courses_uuid": "84354"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "87470"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "87471"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "87472"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "91391"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "91392"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "prykhodko, dariya",
+                    "courses_title": "fourth-year russ",
+                    "courses_uuid": "91460"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "fourth-year russ",
+                    "courses_uuid": "91461"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "dig comm&tpcs ag",
+                    "courses_uuid": "92180"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "dig comm&tpcs ag",
+                    "courses_uuid": "92181"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "crawford, david robert;fielding, david",
+                    "courses_title": "pharm mgmt",
+                    "courses_uuid": "9278"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "crawford, david robert;fielding, david",
+                    "courses_title": "pharm mgmt",
+                    "courses_uuid": "9279"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "pharm mgmt",
+                    "courses_uuid": "9280"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "95583"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "95584"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "res prop anal",
+                    "courses_uuid": "95585"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "mattison, thomas",
+                    "courses_title": "intr elem prtcls",
+                    "courses_uuid": "98763"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "res prop anal"
+                    "courses_title": "intr elem prtcls",
+                    "courses_uuid": "98764"
+                },
+                {
+                    "courses_id": "400",
+                    "courses_instructor": "polissky, olena",
+                    "courses_title": "fourth-year russ",
+                    "courses_uuid": "9962"
                 },
                 {
                     "courses_id": "400",
                     "courses_instructor": "",
-                    "courses_title": "dig comm&tpcs ag"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "dig comm&tpcs ag"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "dig comm&tpcs ag"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "dig comm&tpcs ag"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "dig comm&tpcs ag"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "dig comm&tpcs ag"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "dig comm&tpcs ag"
-                },
-                {
-                    "courses_id": "400",
-                    "courses_instructor": "",
-                    "courses_title": "dig comm&tpcs ag"
+                    "courses_title": "fourth-year russ",
+                    "courses_uuid": "9963"
                 }
             ]
         }

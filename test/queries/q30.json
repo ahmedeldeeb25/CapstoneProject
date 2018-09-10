@@ -1,33 +1,39 @@
 {
     "title": "Select title, department from courses where pass < 1",
-    "query": "In courses dataset courses, find entries whose Pass is less than 1; show Title and Department.",
+    "query": "In courses dataset courses, find entries whose Pass is less than 1; show Title and Department and UUID; sort in ascending order by UUID.",
     "response": {
         "code": 200,
         "body": {
             "result": [
                 {
                     "courses_title": "found re apprai",
-                    "courses_dept": "busi"
+                    "courses_dept": "busi",
+                    "courses_uuid": "16427"
                 },
                 {
                     "courses_title": "found re apprai",
-                    "courses_dept": "busi"
+                    "courses_dept": "busi",
+                    "courses_uuid": "16428"
+                },
+                {
+                    "courses_title": "in land food com",
+                    "courses_dept": "lfs",
+                    "courses_uuid": "56402"
+                },
+                {
+                    "courses_title": "in land food com",
+                    "courses_dept": "lfs",
+                    "courses_uuid": "56403"
                 },
                 {
                     "courses_title": "sustnbt&frst ops",
-                    "courses_dept": "fopr"
-                },
-                {
-                    "courses_title": "in land food com",
-                    "courses_dept": "lfs"
-                },
-                {
-                    "courses_title": "in land food com",
-                    "courses_dept": "lfs"
+                    "courses_dept": "fopr",
+                    "courses_uuid": "84769"
                 },
                 {
                     "courses_title": "forest ecology",
-                    "courses_dept": "frst"
+                    "courses_dept": "frst",
+                    "courses_uuid": "89536"
                 }
             ]
         }

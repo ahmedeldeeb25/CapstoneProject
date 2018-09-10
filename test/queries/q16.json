@@ -1,464 +1,555 @@
 {
     "title": "SELECT instructor, title WHERE title NOT LIKE '%A'",
-    "query": "In courses dataset courses, find entries whose Title does not end with \"a\" and ID is \"575\"; show ID and Instructor and Title.",
+    "query": "In courses dataset courses, find entries whose Title does not end with \"a\" and ID is \"575\"; show ID and Instructor and Title and UUID; sort in ascending order by UUID.",
     "response": {
         "code": 200,
         "body": {
             "result": [
                 {
                     "courses_id": "575",
-                    "courses_instructor": "mirenda, pat",
-                    "courses_title": "inst mthd chalng"
+                    "courses_instructor": "",
+                    "courses_title": "lang dev&dis sch",
+                    "courses_uuid": "11889"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "",
-                    "courses_title": "inst mthd chalng"
+                    "courses_title": "lang dev&dis sch",
+                    "courses_uuid": "11890"
                 },
                 {
                     "courses_id": "575",
-                    "courses_instructor": "mirenda, pat",
-                    "courses_title": "inst mthd chalng"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "inst mthd chalng"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "mirenda, pat",
-                    "courses_title": "inst mthd chalng"
+                    "courses_instructor": "lau, anthony k",
+                    "courses_title": "air polutn cntrl",
+                    "courses_uuid": "13026"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "",
-                    "courses_title": "inst mthd chalng"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "mirenda, pat",
-                    "courses_title": "inst mthd chalng"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "inst mthd chalng"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "lang dev&dis sch"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "lang dev&dis sch"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "marinova-todd, stefka",
-                    "courses_title": "lang dev&dis sch"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "lang dev&dis sch"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "marinova-todd, stefka",
-                    "courses_title": "lang dev&dis sch"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "lang dev&dis sch"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "marinova-todd, stefka",
-                    "courses_title": "lang dev&dis sch"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "lang dev&dis sch"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "marinova-todd, stefka",
-                    "courses_title": "lang dev&dis sch"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "lang dev&dis sch"
+                    "courses_title": "air polutn cntrl",
+                    "courses_uuid": "13027"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "tba",
-                    "courses_title": "lang dev&dis sch"
+                    "courses_title": "sem work & educ",
+                    "courses_uuid": "15059"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "",
-                    "courses_title": "lang dev&dis sch"
+                    "courses_title": "sem work & educ",
+                    "courses_uuid": "15060"
                 },
                 {
                     "courses_id": "575",
-                    "courses_instructor": "marinova-todd, stefka",
-                    "courses_title": "lang dev&dis sch"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "lang dev&dis sch"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "marinova-todd, stefka",
-                    "courses_title": "lang dev&dis sch"
+                    "courses_instructor": "dircks, anita",
+                    "courses_title": "adv clin rotatn",
+                    "courses_uuid": "24463"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "",
-                    "courses_title": "lang dev&dis sch"
+                    "courses_title": "adv clin rotatn",
+                    "courses_uuid": "24464"
                 },
                 {
                     "courses_id": "575",
-                    "courses_instructor": "pakhomov, yevhenii",
-                    "courses_title": "bio&eco zooplank"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "bio&eco zooplank"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "pakhomov, yevhenii",
-                    "courses_title": "bio&eco zooplank"
+                    "courses_instructor": "oh, tracey",
+                    "courses_title": "adv clin rotatn",
+                    "courses_uuid": "24489"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "",
-                    "courses_title": "bio&eco zooplank"
+                    "courses_title": "adv clin rotatn",
+                    "courses_uuid": "24490"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "copeland, lynn",
-                    "courses_title": "acad libraries"
+                    "courses_title": "acad libraries",
+                    "courses_uuid": "25928"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "",
-                    "courses_title": "acad libraries"
+                    "courses_title": "acad libraries",
+                    "courses_uuid": "25929"
                 },
                 {
                     "courses_id": "575",
-                    "courses_instructor": "farrell, adam",
-                    "courses_title": "acad libraries"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "acad libraries"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "copeland, lynn;garnett, joyce",
-                    "courses_title": "acad libraries"
+                    "courses_instructor": "marinova-todd, stefka",
+                    "courses_title": "lang dev&dis sch",
+                    "courses_uuid": "27669"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "",
-                    "courses_title": "acad libraries"
+                    "courses_title": "lang dev&dis sch",
+                    "courses_uuid": "27670"
                 },
                 {
                     "courses_id": "575",
-                    "courses_instructor": "copeland, lynn;garnett, joyce",
-                    "courses_title": "acad libraries"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "acad libraries"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "dircks, anita",
-                    "courses_title": "adv clin rotatn"
+                    "courses_instructor": "marinova-todd, stefka",
+                    "courses_title": "lang dev&dis sch",
+                    "courses_uuid": "29450"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "",
-                    "courses_title": "adv clin rotatn"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "dircks, anita",
-                    "courses_title": "adv clin rotatn"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "adv clin rotatn"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "oh, tracey",
-                    "courses_title": "adv clin rotatn"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "adv clin rotatn"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "dircks, anita",
-                    "courses_title": "adv clin rotatn"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "adv clin rotatn"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "oh, tracey",
-                    "courses_title": "adv clin rotatn"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "adv clin rotatn"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "oh, tracey",
-                    "courses_title": "adv clin rotatn"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "adv clin rotatn"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "adv clin rotatn"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "adv clin rotatn"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "dircks, anita",
-                    "courses_title": "adv clin rotatn"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "adv clin rotatn"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "dircks, anita",
-                    "courses_title": "adv clin rotatn"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "adv clin rotatn"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "lau, anthony k",
-                    "courses_title": "air polutn cntrl"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "air polutn cntrl"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "lau, anthony k",
-                    "courses_title": "air polutn cntrl"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "air polutn cntrl"
+                    "courses_title": "lang dev&dis sch",
+                    "courses_uuid": "29451"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "bi, xiaotao",
-                    "courses_title": "air polutn cntrl"
+                    "courses_title": "air polutn cntrl",
+                    "courses_uuid": "30221"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "",
-                    "courses_title": "air polutn cntrl"
+                    "courses_title": "air polutn cntrl",
+                    "courses_uuid": "30222"
                 },
                 {
                     "courses_id": "575",
-                    "courses_instructor": "lau, anthony k",
-                    "courses_title": "air polutn cntrl"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "air polutn cntrl"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "lau, anthony k",
-                    "courses_title": "air polutn cntrl"
+                    "courses_instructor": "mirenda, pat",
+                    "courses_title": "inst mthd chalng",
+                    "courses_uuid": "3252"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "",
-                    "courses_title": "air polutn cntrl"
+                    "courses_title": "inst mthd chalng",
+                    "courses_uuid": "3253"
                 },
                 {
                     "courses_id": "575",
-                    "courses_instructor": "lau, anthony k",
-                    "courses_title": "air polutn cntrl"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "air polutn cntrl"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "lau, anthony k",
-                    "courses_title": "air polutn cntrl"
+                    "courses_instructor": "dircks, anita",
+                    "courses_title": "adv clin rotatn",
+                    "courses_uuid": "32671"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "",
-                    "courses_title": "air polutn cntrl"
+                    "courses_title": "adv clin rotatn",
+                    "courses_uuid": "32672"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "marinova-todd, stefka",
+                    "courses_title": "lang dev&dis sch",
+                    "courses_uuid": "33740"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "",
-                    "courses_title": "air polutn cntrl"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "air polutn cntrl"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "lau, anthony k",
-                    "courses_title": "air polutn cntrl"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "air polutn cntrl"
+                    "courses_title": "lang dev&dis sch",
+                    "courses_uuid": "33741"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "rubenson, kjell len",
-                    "courses_title": "work & learning"
+                    "courses_title": "work & learning",
+                    "courses_uuid": "36458"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "",
-                    "courses_title": "work & learning"
+                    "courses_title": "work & learning",
+                    "courses_uuid": "36459"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "oh, tracey",
+                    "courses_title": "adv clin rotatn",
+                    "courses_uuid": "37022"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "adv clin rotatn",
+                    "courses_uuid": "37023"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "mirenda, pat",
+                    "courses_title": "inst mthd chalng",
+                    "courses_uuid": "38228"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "inst mthd chalng",
+                    "courses_uuid": "38229"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "pakhomov, yevhenii",
+                    "courses_title": "bio&eco zooplank",
+                    "courses_uuid": "38683"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "bio&eco zooplank",
+                    "courses_uuid": "38684"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "mirenda, pat",
+                    "courses_title": "inst mthd chalng",
+                    "courses_uuid": "44438"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "inst mthd chalng",
+                    "courses_uuid": "44439"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "lau, anthony k",
+                    "courses_title": "air polutn cntrl",
+                    "courses_uuid": "45722"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "air polutn cntrl",
+                    "courses_uuid": "45723"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "dircks, anita",
+                    "courses_title": "adv clin rotatn",
+                    "courses_uuid": "4642"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "adv clin rotatn",
+                    "courses_uuid": "4643"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "lau, anthony k",
+                    "courses_title": "air polutn cntrl",
+                    "courses_uuid": "49143"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "air polutn cntrl",
+                    "courses_uuid": "49144"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "sem work & educ",
+                    "courses_uuid": "50727"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "sem work & educ",
+                    "courses_uuid": "50728"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "oh, tracey",
+                    "courses_title": "adv clin rotatn",
+                    "courses_uuid": "55355"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "adv clin rotatn",
+                    "courses_uuid": "55356"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "lau, anthony k",
+                    "courses_title": "air polutn cntrl",
+                    "courses_uuid": "56519"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "air polutn cntrl",
+                    "courses_uuid": "56520"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "lau, anthony k",
+                    "courses_title": "air polutn cntrl",
+                    "courses_uuid": "58630"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "air polutn cntrl",
+                    "courses_uuid": "58631"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "adv clin rotatn",
+                    "courses_uuid": "60372"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "adv clin rotatn",
+                    "courses_uuid": "60373"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "tba",
-                    "courses_title": "sem work & educ"
+                    "courses_title": "work & learning",
+                    "courses_uuid": "60764"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "",
-                    "courses_title": "sem work & educ"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "rubenson, kjell len",
-                    "courses_title": "work & learning"
+                    "courses_title": "work & learning",
+                    "courses_uuid": "60765"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "",
-                    "courses_title": "work & learning"
+                    "courses_title": "sem work & educ",
+                    "courses_uuid": "61355"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "",
-                    "courses_title": "sem work & educ"
+                    "courses_title": "sem work & educ",
+                    "courses_uuid": "61356"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "marinova-todd, stefka",
+                    "courses_title": "lang dev&dis sch",
+                    "courses_uuid": "61640"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "",
-                    "courses_title": "sem work & educ"
+                    "courses_title": "lang dev&dis sch",
+                    "courses_uuid": "61641"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "air polutn cntrl",
+                    "courses_uuid": "63675"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "air polutn cntrl",
+                    "courses_uuid": "63676"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "mirenda, pat",
+                    "courses_title": "inst mthd chalng",
+                    "courses_uuid": "6378"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "inst mthd chalng",
+                    "courses_uuid": "6379"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "tba",
-                    "courses_title": "work & learning"
+                    "courses_title": "lang dev&dis sch",
+                    "courses_uuid": "66456"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "",
-                    "courses_title": "work & learning"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "sem work & educ"
-                },
-                {
-                    "courses_id": "575",
-                    "courses_instructor": "",
-                    "courses_title": "sem work & educ"
+                    "courses_title": "lang dev&dis sch",
+                    "courses_uuid": "66457"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "rubenson, kjell len",
-                    "courses_title": "work & learning"
+                    "courses_title": "work & learning",
+                    "courses_uuid": "6730"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "",
-                    "courses_title": "work & learning"
+                    "courses_title": "work & learning",
+                    "courses_uuid": "6731"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "marinova-todd, stefka",
+                    "courses_title": "lang dev&dis sch",
+                    "courses_uuid": "68002"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "lang dev&dis sch",
+                    "courses_uuid": "68003"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "rubenson, kjell len",
+                    "courses_title": "work & learning",
+                    "courses_uuid": "68653"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "work & learning",
+                    "courses_uuid": "68654"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "pakhomov, yevhenii",
+                    "courses_title": "bio&eco zooplank",
+                    "courses_uuid": "69049"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "bio&eco zooplank",
+                    "courses_uuid": "69050"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "dircks, anita",
+                    "courses_title": "adv clin rotatn",
+                    "courses_uuid": "74990"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "adv clin rotatn",
+                    "courses_uuid": "74991"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "marinova-todd, stefka",
+                    "courses_title": "lang dev&dis sch",
+                    "courses_uuid": "75778"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "lang dev&dis sch",
+                    "courses_uuid": "75779"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "walker, judith",
-                    "courses_title": "work & learning"
+                    "courses_title": "work & learning",
+                    "courses_uuid": "76444"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "",
-                    "courses_title": "work & learning"
+                    "courses_title": "work & learning",
+                    "courses_uuid": "76445"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "lau, anthony k",
+                    "courses_title": "air polutn cntrl",
+                    "courses_uuid": "76918"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "air polutn cntrl",
+                    "courses_uuid": "76919"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "farrell, adam",
+                    "courses_title": "acad libraries",
+                    "courses_uuid": "77290"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "acad libraries",
+                    "courses_uuid": "77291"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "lau, anthony k",
+                    "courses_title": "air polutn cntrl",
+                    "courses_uuid": "7944"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "air polutn cntrl",
+                    "courses_uuid": "7945"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "copeland, lynn;garnett, joyce",
+                    "courses_title": "acad libraries",
+                    "courses_uuid": "82015"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "acad libraries",
+                    "courses_uuid": "82016"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "dircks, anita",
+                    "courses_title": "adv clin rotatn",
+                    "courses_uuid": "84547"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "adv clin rotatn",
+                    "courses_uuid": "84548"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "copeland, lynn;garnett, joyce",
+                    "courses_title": "acad libraries",
+                    "courses_uuid": "94549"
+                },
+                {
+                    "courses_id": "575",
+                    "courses_instructor": "",
+                    "courses_title": "acad libraries",
+                    "courses_uuid": "94550"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "shan, hongxia",
-                    "courses_title": "work & learning"
+                    "courses_title": "work & learning",
+                    "courses_uuid": "95032"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "taylor, alison",
-                    "courses_title": "work & learning"
+                    "courses_title": "work & learning",
+                    "courses_uuid": "95033"
                 },
                 {
                     "courses_id": "575",
                     "courses_instructor": "",
-                    "courses_title": "work & learning"
+                    "courses_title": "work & learning",
+                    "courses_uuid": "95034"
                 }
             ]
         }
