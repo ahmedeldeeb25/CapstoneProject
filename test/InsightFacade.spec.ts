@@ -181,6 +181,21 @@ describe("InsightFacade Add/Remove Dataset", function () {
 
     });
 
+    it("Should add the same dataset under a different id", async () => {
+        const id: string = "courses";
+        const fakeID: string = "courses_test";
+        const expected: number = 204;
+        let response: InsightResponse;
+        try {
+            response = await insightFacade.addDataset(fakeID, datasets[id], InsightDatasetKind.Courses);
+        } catch (err) {
+            Log.test("ERROR: " + JSON.stringify(err));
+            response = err;
+        } finally {
+            expect(response.code).to.equal(expected);
+        }
+    });
+
     // This is an example of a pending test. Add a callback function to make the test run.
     it("Should remove the courses dataset", async () => {
         const id: string = "courses";
@@ -245,6 +260,19 @@ describe("InsightFacade Add/Remove Dataset", function () {
         } finally {
             expect(response.code).to.equal(expected);
             expect(response.body).to.deep.equal({ error: "dataset doesn't exist"});
+        }
+    });
+
+    it("Should remove the duplicate dataset made under a different name", async () => {
+        const id: string = "courses_test";
+        let response: InsightResponse;
+        const expected: number = 204;
+        try {
+            response = await insightFacade.removeDataset(id);
+        } catch (err) {
+            response = err;
+        } finally {
+            expect(response.code).to.equal(expected);
         }
     });
 

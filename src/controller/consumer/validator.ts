@@ -29,19 +29,28 @@ export default class Validator {
     }
     // Read the list of file names in a zipped file and if there is one that is not csv return false
     private async contains_only_csv(): Promise<boolean> {
+        let jszip: JSzip = new JSzip();
+        let folder: string;
         try {
-            const jszip: JSzip = await JSzip.loadAsync(this.content, { base64: true});
-            const folder: JSzip.JSZipObject[] = jszip.folder(new RegExp("^" + this.id));
-            // if there's no root folder in the zip file return false
-            if (folder.length === 0) {
-                throw Error("No folder found!");
-            } else {
-                // if any files in the zip file contain a non csv file return false
-                await jszip.folder(this.id).forEach((relativePath, f) => {
-                    if (!this.valid_csv_file(relativePath)) {
-                        throw Error("File was not a csv");
+            jszip = await jszip.loadAsync(this.content, { base64: true});
+            // go through all the files and get the name of the one that is a directory
+            // super slow, but the only way to do it without the name of the folder given?
+            for (const [name, jszipobj] of Object.entries(jszip.files)) {
+                if (jszipobj.dir) {
+                    folder = name;
+                    break;
+                }
+            }
+            // if the folder exists, make sure all files in the folder are csv files
+            // if not throw an error
+            if (folder) {
+                    jszip.folder(folder).forEach( (relativePath, f) => {
+                    if (!this.valid_csv_file(f.name)) {
+                        throw new Error("File was not a csv");
                     }
                 });
+            } else {
+                throw new Error("No folder found!");
             }
         } catch (err) {
             Log.test("there was en error" + err);

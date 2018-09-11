@@ -6,7 +6,6 @@
 import * as JSzip from "jszip";
 import * as fs from "fs";
 import * as readline from "readline";
-import Log from "../../Util";
 
 export default class Parser {
 
@@ -65,16 +64,12 @@ export default class Parser {
     // Returns array of the CSV files in the main folder
     private async getFolder(): Promise<JSzip> {
         let jszip: JSzip;
-        let folder: JSzip;
         try {
             jszip = await this.jszip.loadAsync(this.content, { base64: true });
         } catch (err) {
-            Log.test(err);
             throw new Error("unable to get file");
-        } finally {
-            folder = jszip.folder(this.id + "/");
         }
-        return Promise.resolve(folder);
+        return Promise.resolve(jszip);
     }
 
     /**
