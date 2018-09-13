@@ -274,6 +274,31 @@ describe("Validate Query", () => {
         expect(parser.valid_query(query)).to.equal(expected);
     });
 
+    it("validate query", () => {
+        const query = "In courses dataset courses, find entries whose Audit is not less than 4" +
+        " and Average is not equal to 45 and Pass is not greater than 1 and ID begins with \"5\";" +
+        " show Average and ID and Title and UUID.";
+        const splitQuery = new SplitQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        expect(parser.valid_query(query)).to.equal(true);
+    });
+
+    it("validate query", () => {
+        const query = "In courses dataset courses, find entries whose Pass is not greater than 5 and " +
+        "Pass is not greater than 6 and Pass is not greater than 7; show ID.";
+        const splitQuery = new SplitQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        expect(parser.valid_query(query)).to.equal(true);
+    });
+
+    it("validate query", () => {
+        const query = "In courses dataset courses, find entries whose ID begins with \"a\" and " +
+        "ID ends with \"z\" and ID includes \"g\"; show UUID.";
+        const splitQuery = new SplitQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        expect(parser.valid_query(query)).to.equal(true);
+    });
+
 });
 
 describe("Query Filter", () => {

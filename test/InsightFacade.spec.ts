@@ -22,7 +22,6 @@ async function remove_files(datasets: { [index: string]: string }): Promise<void
     for (const file of Object.keys(datasets)) {
         if (await(promisify)(fs.exists)(`./src/cache/${file}.json`)) {
             filesToRemove.push((promisify)(fs.unlink)(`./src/cache/${file}.json`));
-            Log.test("removed: " + file);
         }
     }
     await Promise.all(filesToRemove);
@@ -373,6 +372,11 @@ describe("InsightFacade PerformQuery", () => {
     // Dynamically create and run a test for each query in testQueries
     it("Should run test queries", async () => {
         describe("Dynamic InsightFacade PerformQuery tests", async () => {
+
+            after("remove files", () => {
+                remove_files(datasetsToLoad);
+            });
+
             for (const test of testQueries) {
                 it(`[${test.filename}] ${test.title}`, async () => {
                     let response: InsightResponse;
@@ -437,6 +441,11 @@ describe("IInsightFacade listDatasets", () => {
         } finally {
             expect(response.code).to.equal(expectedCode);
             expect((response.body as InsightResponseSuccessBody).result.length).to.equal(expectedLength);
+            try {
+                await (promisify)(fs.unlink)("./src/cache/small_test.json");
+            } catch (err) {
+                Log.test("error");
+            }
         }
     });
 

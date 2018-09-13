@@ -89,11 +89,11 @@ describe("Consumer Parser", () => {
         const expected: object[] = [
             {
                  small_test_title: "gross anat limbs",
-                 small_test_id: "1845",
+                 small_test_uuid: "1845",
                  small_test_instructor: "alimohammadi, majid",
                  small_test_audit: 0,
                  small_test_year: "2013",
-                 small_test_course: 392,
+                 small_test_id: "392",
                  small_test_pass: 82,
                  small_test_fail: 0,
                  small_test_avg: 81.82,
@@ -102,11 +102,11 @@ describe("Consumer Parser", () => {
             },
             {
                 small_test_title: "gross anat limbs",
-                small_test_id: "1846",
+                small_test_uuid: "1846",
                 small_test_instructor: "",
                 small_test_audit: 0,
                 small_test_year: "2013",
-                small_test_course: 392,
+                small_test_id: "392",
                 small_test_pass: 82,
                 small_test_fail: 0,
                 small_test_avg: 81.82,
@@ -115,11 +115,11 @@ describe("Consumer Parser", () => {
             },
             {
                 small_test_title: "gross anat limbs",
-                small_test_id: "12690",
+                small_test_uuid: "12690",
                 small_test_instructor: "alimohammadi, majid",
                 small_test_audit: 0,
                 small_test_year: "2014",
-                small_test_course: 392,
+                small_test_id: "392",
                 small_test_pass: 83,
                 small_test_fail: 0,
                 small_test_avg: 83.65,
@@ -135,6 +135,11 @@ describe("Consumer Parser", () => {
         const data: object[] = await parser.parse_data();
         await parser.store_data(data);
         expect(fs.existsSync("./src/cache/" + id + ".json")).to.equal(true);
+        try {
+            await (promisify)(fs.unlink)("./src/cache/" + id + ".json");
+        } catch (err) {
+            throw new Error("File didnt exist");
+        }
     });
 
 });
