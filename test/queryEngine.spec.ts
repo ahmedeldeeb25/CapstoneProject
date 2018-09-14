@@ -28,7 +28,7 @@ describe("Query Engine", () => {
     }];
     const sorted = "sorted";
     before("Before Query", async () => {
-        id = "small_test";
+        id = "small_test_1";
         const filename: string = "./test/data/small_test.zip";
         const buffer: Buffer = await (promisify)(fs.readFile)(filename);
         const content = buffer.toString("base64");
@@ -54,36 +54,36 @@ describe("Query Engine", () => {
     });
 
     it("Should retrieve JSON object from .json file", async () => {
-        const contents: object[] = [{ small_test_title: "gross anat limbs", small_test_uuid: "1845",
-        small_test_instructor: "alimohammadi, majid", small_test_audit: 0, small_test_year: "2013",
-        small_test_id: "392", small_test_pass: 82, small_test_fail: 0, small_test_avg: 81.82,
-        small_test_dept: "anat", small_test_section: "001" }, { small_test_title: "gross anat limbs",
-        small_test_uuid: "1846", small_test_instructor: "", small_test_audit: 0, small_test_year: "2013",
-        small_test_id: "392", small_test_pass: 82, small_test_fail: 0, small_test_avg: 81.82,
-        small_test_dept: "anat", small_test_section: "overall" }, { small_test_title: "gross anat limbs",
-        small_test_uuid: "12690", small_test_instructor: "alimohammadi, majid", small_test_audit: 0,
-        small_test_year: "2014", small_test_id: "392", small_test_pass: 83, small_test_fail: 0,
-        small_test_avg: 83.65, small_test_dept: "anat", small_test_section: "001" }];
+        const contents: object[] = [{ small_test_1_title: "gross anat limbs", small_test_1_uuid: "1845",
+        small_test_1_instructor: "alimohammadi, majid", small_test_1_audit: 0, small_test_1_year: "2013",
+        small_test_1_id: "392", small_test_1_pass: 82, small_test_1_fail: 0, small_test_1_avg: 81.82,
+        small_test_1_dept: "anat", small_test_1_section: "001" }, { small_test_1_title: "gross anat limbs",
+        small_test_1_uuid: "1846", small_test_1_instructor: "", small_test_1_audit: 0, small_test_1_year: "2013",
+        small_test_1_id: "392", small_test_1_pass: 82, small_test_1_fail: 0, small_test_1_avg: 81.82,
+        small_test_1_dept: "anat", small_test_1_section: "overall" }, { small_test_1_title: "gross anat limbs",
+        small_test_1_uuid: "12690", small_test_1_instructor: "alimohammadi, majid", small_test_1_audit: 0,
+        small_test_1_year: "2014", small_test_1_id: "392", small_test_1_pass: 83, small_test_1_fail: 0,
+        small_test_1_avg: 83.65, small_test_1_dept: "anat", small_test_1_section: "001" }];
         const expected: object[] = query.get_data();
         expect(expected).to.deep.equal(contents);
     });
 
     it("Should return all data if queried for all", () => {
         const contents: object[] = [{
-            small_test_title: "gross anat limbs", small_test_uuid: "1845",
-            small_test_instructor: "alimohammadi, majid", small_test_audit: 0, small_test_year: "2013",
-            small_test_id: "392", small_test_pass: 82, small_test_fail: 0, small_test_avg: 81.82,
-            small_test_dept: "anat", small_test_section: "001",
+            small_test_1_title: "gross anat limbs", small_test_1_uuid: "1845",
+            small_test_1_instructor: "alimohammadi, majid", small_test_1_audit: 0, small_test_1_year: "2013",
+            small_test_1_id: "392", small_test_1_pass: 82, small_test_1_fail: 0, small_test_1_avg: 81.82,
+            small_test_1_dept: "anat", small_test_1_section: "001",
         }, {
-            small_test_title: "gross anat limbs",
-            small_test_uuid: "1846", small_test_instructor: "", small_test_audit: 0, small_test_year: "2013",
-            small_test_id: "392", small_test_pass: 82, small_test_fail: 0, small_test_avg: 81.82,
-            small_test_dept: "anat", small_test_section: "overall",
+            small_test_1_title: "gross anat limbs",
+            small_test_1_uuid: "1846", small_test_1_instructor: "", small_test_1_audit: 0, small_test_1_year: "2013",
+            small_test_1_id: "392", small_test_1_pass: 82, small_test_1_fail: 0, small_test_1_avg: 81.82,
+            small_test_1_dept: "anat", small_test_1_section: "overall",
         }, {
-            small_test_title: "gross anat limbs",
-            small_test_uuid: "12690", small_test_instructor: "alimohammadi, majid", small_test_audit: 0,
-            small_test_year: "2014", small_test_id: "392", small_test_pass: 83, small_test_fail: 0,
-            small_test_avg: 83.65, small_test_dept: "anat", small_test_section: "001",
+            small_test_1_title: "gross anat limbs",
+            small_test_1_uuid: "12690", small_test_1_instructor: "alimohammadi, majid", small_test_1_audit: 0,
+            small_test_1_year: "2014", small_test_1_id: "392", small_test_1_pass: 83, small_test_1_fail: 0,
+            small_test_1_avg: 83.65, small_test_1_dept: "anat", small_test_1_section: "001",
         }];
         const splitQuery: SplitQuery = new SplitQuery("In courses dataset small_test, find all entries; " +
             "show Title and ID and Professor and Audit and " +
@@ -95,8 +95,8 @@ describe("Query Engine", () => {
 
     it("Should return specific data if queries for specific data", () => {
         const contents: object[] = [{
-            small_test_title: "gross anat limbs",
-            small_test_uuid: "12690",
+            small_test_1_title: "gross anat limbs",
+            small_test_1_uuid: "12690",
         }];
         const splitQuery: SplitQuery = new SplitQuery("In courses dataset small_test, find entries whose " +
             "Average is equal to 83.65;" +
@@ -212,17 +212,18 @@ describe("Query Engine", () => {
 
 describe("Course data", () => {
     const queryEngine: QueryEngine = new QueryEngine("courses");
+    let data: object[];
+
     before("load data if it doesn't exist", async () => {
         if (! await (promisify)(fs.exists)("./src/cache/courses.json")) {
             const buffer: Buffer = await (promisify)(fs.readFile)("./src/data/courses.zip");
             const content = buffer.toString("base64");
             const parser: Parser = new Parser("courses", content);
-            const data: object[] = await parser.parse_data();
-            await parser.store_data(data);
+            data = await parser.parse_data();
         } else {
-            Log.test("data already exists");
+            data = JSON.parse(await (promisify)(fs.readFile)("./src/cache/courses.json", "utf8"));
         }
-        await queryEngine.set_data();
+        queryEngine.data_setter(data);
     });
 
     it("Should have 49044 entries", () => {

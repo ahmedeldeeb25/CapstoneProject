@@ -9,11 +9,10 @@ describe("Consumer valid_file validator", () => {
     let validator: Validator;
 
     after("Delete files", async () => {
-        const files: string[] = ["courses", "nonsense", "small_test", "rooms", "test"];
+        const files: string[] = ["courses_1", "nonsense_1", "small_test_1", "rooms_1", "test_1"];
         for (const file of files) {
             if (await (promisify)(fs.exists)(`./src/cache/${file}.json`)) {
                 await (promisify)(fs.unlink)(`./src/cache/${file}.json`);
-                Log.test("Deleted file: " + file);
             }
         }
     });
@@ -52,7 +51,7 @@ describe("Consumer valid_file validator", () => {
 
     it("Should return true if the file is a valid zip file that contains csv", async () => {
         const filename: string = "./test/data/courses.zip";
-        const foldername: string = "courses";
+        const foldername: string = "courses_1";
         const buffer: Buffer = await (promisify)(fs.readFile)(filename);
         const content = buffer.toString("base64");
         validator = new Validator(foldername, content);
@@ -73,7 +72,7 @@ describe("Consumer Parser", () => {
 
     let parser: Parser;
     const filename: string = "./test/data/small_test.zip";
-    const id: string = "small_test";
+    const id: string = "small_test_1";
     before("Before each", async () => {
         // assumes that file is valid
         const buffer: Buffer = await (promisify)(fs.readFile)(filename);
@@ -88,43 +87,43 @@ describe("Consumer Parser", () => {
     it("Should parse each line of a file and convert it into an object", async () => {
         const expected: object[] = [
             {
-                 small_test_title: "gross anat limbs",
-                 small_test_uuid: "1845",
-                 small_test_instructor: "alimohammadi, majid",
-                 small_test_audit: 0,
-                 small_test_year: "2013",
-                 small_test_id: "392",
-                 small_test_pass: 82,
-                 small_test_fail: 0,
-                 small_test_avg: 81.82,
-                 small_test_dept: "anat",
-                 small_test_section: "001",
+                 small_test_1_title: "gross anat limbs",
+                 small_test_1_uuid: "1845",
+                 small_test_1_instructor: "alimohammadi, majid",
+                 small_test_1_audit: 0,
+                 small_test_1_year: "2013",
+                 small_test_1_id: "392",
+                 small_test_1_pass: 82,
+                 small_test_1_fail: 0,
+                 small_test_1_avg: 81.82,
+                 small_test_1_dept: "anat",
+                 small_test_1_section: "001",
             },
             {
-                small_test_title: "gross anat limbs",
-                small_test_uuid: "1846",
-                small_test_instructor: "",
-                small_test_audit: 0,
-                small_test_year: "2013",
-                small_test_id: "392",
-                small_test_pass: 82,
-                small_test_fail: 0,
-                small_test_avg: 81.82,
-                small_test_dept: "anat",
-                small_test_section: "overall",
+                small_test_1_title: "gross anat limbs",
+                small_test_1_uuid: "1846",
+                small_test_1_instructor: "",
+                small_test_1_audit: 0,
+                small_test_1_year: "2013",
+                small_test_1_id: "392",
+                small_test_1_pass: 82,
+                small_test_1_fail: 0,
+                small_test_1_avg: 81.82,
+                small_test_1_dept: "anat",
+                small_test_1_section: "overall",
             },
             {
-                small_test_title: "gross anat limbs",
-                small_test_uuid: "12690",
-                small_test_instructor: "alimohammadi, majid",
-                small_test_audit: 0,
-                small_test_year: "2014",
-                small_test_id: "392",
-                small_test_pass: 83,
-                small_test_fail: 0,
-                small_test_avg: 83.65,
-                small_test_dept: "anat",
-                small_test_section: "001",
+                small_test_1_title: "gross anat limbs",
+                small_test_1_uuid: "12690",
+                small_test_1_instructor: "alimohammadi, majid",
+                small_test_1_audit: 0,
+                small_test_1_year: "2014",
+                small_test_1_id: "392",
+                small_test_1_pass: 83,
+                small_test_1_fail: 0,
+                small_test_1_avg: 83.65,
+                small_test_1_dept: "anat",
+                small_test_1_section: "001",
             },
         ];
         const actual: object[] = await parser.parse_data();

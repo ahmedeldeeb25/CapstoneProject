@@ -43,7 +43,6 @@ describe("InsightFacade Add/Remove Dataset", function () {
 
     before(async function () {
         Log.test(`Before: ${this.test.parent.title}`);
-
         try {
             const loadDatasetPromises: Array<Promise<Buffer>> = [];
             for (const [id, path] of Object.entries(datasetsToLoad)) {
@@ -292,6 +291,53 @@ describe("InsightFacade Add/Remove Dataset", function () {
 
 });
 
+describe("IInsightFacade listDatasets", () => {
+
+    let insightFacade: InsightFacade;
+
+    before(async () => {
+        Log.test("cached files removed");
+        insightFacade = new InsightFacade();
+    });
+
+    it("should return an array of length 0 if no datasets are added", async () => {
+        let response: InsightResponse;
+        const expectedCode: number = 200;
+        const expectedLength: number = 0;
+        try {
+            response = await insightFacade.listDatasets();
+        } catch (err) {
+            response = err;
+        } finally {
+            expect(response.code).to.equal(expectedCode);
+            expect((response.body as InsightResponseSuccessBody).result.length).to.equal(expectedLength);
+        }
+    });
+
+    it("should return an array of length 1 if 1 dataset is added", async () => {
+        let response: InsightResponse;
+        const expectedCode: number = 200;
+        const expectedLength: number = 1;
+        try {
+            const buffer: Buffer = await (promisify)(fs.readFile)("./test/data/small_test.zip");
+            const content: string = buffer.toString("base64");
+            await insightFacade.addDataset("small_test", content, InsightDatasetKind.Courses);
+            response = await insightFacade.listDatasets();
+        } catch (err) {
+            response = err;
+        } finally {
+            expect(response.code).to.equal(expectedCode);
+            expect((response.body as InsightResponseSuccessBody).result.length).to.equal(expectedLength);
+            try {
+                await (promisify)(fs.unlink)("./src/cache/small_test.json");
+            } catch (err) {
+                Log.test("error");
+            }
+        }
+    });
+
+});
+
 // This test suite dynamically generates tests from the JSON files in test/queries.
 // You should not need to modify it; instead, add additional files to the queries directory.
 describe("InsightFacade PerformQuery", () => {
@@ -400,53 +446,6 @@ describe("InsightFacade PerformQuery", () => {
                 });
             }
         });
-    });
-
-});
-
-describe("IInsightFacade listDatasets", () => {
-
-    let insightFacade: InsightFacade;
-
-    before( async () => {
-        Log.test("cached files removed");
-        insightFacade = new InsightFacade();
-    });
-
-    it("should return an array of length 0 if no datasets are added", async () => {
-        let response: InsightResponse;
-        const expectedCode: number = 200;
-        const expectedLength: number = 0;
-        try {
-            response = await insightFacade.listDatasets();
-        } catch (err) {
-            response = err;
-        } finally {
-            expect(response.code).to.equal(expectedCode);
-            expect((response.body as InsightResponseSuccessBody).result.length).to.equal(expectedLength);
-        }
-    });
-
-    it("should return an array of length 1 if 1 dataset is added", async () => {
-        let response: InsightResponse;
-        const expectedCode: number = 200;
-        const expectedLength: number = 1;
-        try {
-            const buffer: Buffer = await (promisify)(fs.readFile)("./test/data/small_test.zip");
-            const content: string = buffer.toString("base64");
-            await insightFacade.addDataset("small_test", content, InsightDatasetKind.Courses);
-            response = await insightFacade.listDatasets();
-        } catch (err) {
-            response = err;
-        } finally {
-            expect(response.code).to.equal(expectedCode);
-            expect((response.body as InsightResponseSuccessBody).result.length).to.equal(expectedLength);
-            try {
-                await (promisify)(fs.unlink)("./src/cache/small_test.json");
-            } catch (err) {
-                Log.test("error");
-            }
-        }
     });
 
 });
