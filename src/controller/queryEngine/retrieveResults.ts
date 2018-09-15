@@ -2,6 +2,7 @@ import { IsplitQuery } from "../queryAST/splitQuery";
 import * as fs from "fs";
 import QueryFilter from "../queryAST/queryFilter";
 import { isArray, isString } from "util";
+import * as path from "path";
 
 export default class QueryEngine {
     private data: object[];
@@ -33,7 +34,7 @@ export default class QueryEngine {
     // use FS to get contents of the json file of id
     public async set_data(): Promise<string> {
         return new Promise<string>( (resolve, reject) => {
-            fs.readFile("./src/cache/" + this.id + ".json", "utf8", (err, data) => {
+            fs.readFile(path.join(__dirname, "..", "..", "cache", `${this.id}.json`), "utf8", (err, data) => {
                 if (err) {
                     reject("failed");
                 }

@@ -7,7 +7,7 @@
  */
 import * as JSzip from "jszip";
 import * as fs from "fs";
-import Log from "../../Util";
+import * as path from "path";
 
 export default class Validator {
     private id: string;
@@ -53,7 +53,6 @@ export default class Validator {
                 throw new Error("No folder found!");
             }
         } catch (err) {
-            Log.test("there was en error" + err);
             return false;
         }
         return true;
@@ -63,7 +62,7 @@ export default class Validator {
     // with the name ${foldername}.json
     private data_doesnt_exist(): Promise<boolean> {
         return new Promise<boolean>((resolve, reject) => {
-            fs.exists(`./src/cache/${this.id}.json`, (exists) => {
+            fs.exists(path.join(__dirname, "..", "..", "cache", `${this.id}.json`), (exists) => {
                 resolve(!exists);
             });
         });

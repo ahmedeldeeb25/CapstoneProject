@@ -4,6 +4,7 @@ import Validator from "./consumer/validator";
 import Parser from "./consumer/parser";
 import { isNull, promisify } from "util";
 import * as fs from "fs";
+import * as path from "path";
 import { SplitQuery } from "./queryAST/splitQuery";
 import ValidateQuery from "./queryAST/validateQuery";
 import QueryEngine from "./queryEngine/retrieveResults";
@@ -42,8 +43,8 @@ export default class InsightFacade implements IInsightFacade {
             if (id === "" || isNull(id)) {
                 return Promise.reject({ code: 404, body: { error: "invalid parameter" } });
             }
-            if (await (promisify)(fs.exists)(`./src/cache/${id}.json`)) {
-                await (promisify)(fs.unlink)(`./src/cache/${id}.json`);
+            if (await (promisify)(fs.exists)(path.join(__dirname, "..", "cache", `${id}.json`))) {
+                await (promisify)(fs.unlink)(path.join(__dirname, "..", "cache", `${id}.json`));
                 return Promise.resolve({ code: 204, body: null });
             } else {
                 return Promise.reject({ code: 404, body: { error: "dataset doesn't exist" }});

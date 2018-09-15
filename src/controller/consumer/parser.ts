@@ -6,6 +6,8 @@
 import * as JSzip from "jszip";
 import * as fs from "fs";
 import * as readline from "readline";
+import * as path from "path";
+import Log from "../../Util";
 
 export default class Parser {
 
@@ -51,7 +53,7 @@ export default class Parser {
         // TODO store data in json file w same name
         const stringified: string = JSON.stringify(data);
         return new Promise<string>( (resolve, reject) => {
-            fs.writeFile(`./src/cache/${this.id}.json`, stringified, (err) => {
+            fs.writeFile(path.join(__dirname, "..", "..", "cache", `${this.id}.json`), stringified, (err) => {
                 if (err) {
                     reject("there was an error");
                 } else {

@@ -2,7 +2,6 @@ import QueryFilter from "./queryFilter";
 import Order from "./queryOrder";
 import SOP from "./querySOP";
 import MOP from "./queryMOP";
-import Log from "../../Util";
 
 export interface IsplitQuery {
     dataset: string;
@@ -66,7 +65,6 @@ export class SplitQuery {
             const criteria: string = filter.split("find entries whose")[1];
             // splits into list of individual CRITERIA
             const splitByAndOr: string[] = criteria.split(this.POS_LOOK_AHEAD_AND);
-            Log.test(criteria);
             return this.parse_criteria(splitByAndOr);
         }
     }
