@@ -5,6 +5,7 @@ import Log from "../src/Util";
 import Parser from "../src/controller/consumer/parser";
 import { promisify } from "util";
 import * as fs from "fs";
+import * as path from "path";
 
 describe("Query Engine", () => {
     let query: QueryEngine;
@@ -29,7 +30,7 @@ describe("Query Engine", () => {
     const sorted = "sorted";
     before("Before Query", async () => {
         id = "small_test_1";
-        const filename: string = "./test/data/small_test.zip";
+        const filename: string = path.join(__dirname, "/data/small_test.zip");
         const buffer: Buffer = await (promisify)(fs.readFile)(filename);
         const content = buffer.toString("base64");
         const parser: Parser = new Parser(id, content);
@@ -47,8 +48,8 @@ describe("Query Engine", () => {
     after("After Query", async () => {
         const ids: string[] = ["sorted", id];
         for (const i of ids) {
-            if (await (promisify)(fs.exists)(`./src/cache/${i}.json`)) {
-                await (promisify)(fs.unlink)(`./src/cache/${i}.json`);
+            if (await (promisify)(fs.exists)(path.join(__dirname, "..", `/src/cache/${i}.json`))) {
+                await (promisify)(fs.unlink)(path.join(__dirname, "..", `/src/cache/${i}.json`));
             }
         }
     });
@@ -116,7 +117,8 @@ describe("Query Engine", () => {
     });
 
     it("Should be able to sort data", async () => {
-        await (promisify)(fs.writeFile)("./src/cache/sorted.json", JSON.stringify(customContents));
+        const filename = path.join(__dirname, "..", "/src/cache/sorted.json");
+        await (promisify)(fs.writeFile)(filename, JSON.stringify(customContents));
         newQuery = new QueryEngine(sorted);
         await newQuery.set_data();
         const expected: object[] = [{
@@ -215,13 +217,14 @@ describe("Course data", () => {
     let data: object[];
 
     before("load data if it doesn't exist", async () => {
-        if (! await (promisify)(fs.exists)("./src/cache/courses.json")) {
-            const buffer: Buffer = await (promisify)(fs.readFile)("./src/data/courses.zip");
+        const filename = path.join(__dirname, "..", "/src/cache/courses.json");
+        if (! await (promisify)(fs.exists)(filename)) {
+            const buffer: Buffer = await (promisify)(fs.readFile)(path.join(__dirname, "..", "/src/data/courses.zip"));
             const content = buffer.toString("base64");
             const parser: Parser = new Parser("courses", content);
             data = await parser.parse_data();
         } else {
-            data = JSON.parse(await (promisify)(fs.readFile)("./src/cache/courses.json", "utf8"));
+            data = JSON.parse(await (promisify)(fs.readFile)(filename, "utf8"));
         }
         queryEngine.data_setter(data);
     });

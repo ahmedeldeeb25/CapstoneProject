@@ -4,6 +4,7 @@ import Parser from "../src/controller/consumer/parser";
 import * as fs from "fs";
 import { promisify } from "util";
 import Log from "../src/Util";
+import * as path from "path";
 
 describe("Consumer valid_file validator", () => {
     let validator: Validator;
@@ -11,14 +12,14 @@ describe("Consumer valid_file validator", () => {
     after("Delete files", async () => {
         const files: string[] = ["courses_1", "nonsense_1", "small_test_1", "rooms_1", "test_1"];
         for (const file of files) {
-            if (await (promisify)(fs.exists)(`./src/cache/${file}.json`)) {
+            if (await (promisify)(fs.exists)(path.join(__dirname, "..", "cache", `${file}.json`))) {
                 await (promisify)(fs.unlink)(`./src/cache/${file}.json`);
             }
         }
     });
 
     it("Should return false if the file is not a zip", async () => {
-        const filename: string = "./test/data/nonsense.png";
+        const filename: string = path.join(__dirname, "data", "nonsense.png");
         const foldername: string = "testfile";
         const buffer: Buffer = await (promisify)(fs.readFile)(filename);
         const content = buffer.toString("base64");
@@ -34,7 +35,7 @@ describe("Consumer valid_file validator", () => {
     });
 
     it("Should return false if the file does not contain csv", async () => {
-        const filename: string = "./test/data/nonsense.zip";
+        const filename: string = path.join(__dirname, "data", "nonsense.zip");
         const foldername: string = "nonsense";
         const buffer: Buffer = await (promisify)(fs.readFile)(filename);
         const content = buffer.toString("base64");
@@ -50,7 +51,7 @@ describe("Consumer valid_file validator", () => {
     });
 
     it("Should return true if the file is a valid zip file that contains csv", async () => {
-        const filename: string = "./test/data/courses.zip";
+        const filename: string = path.join(__dirname, "/data/courses.zip");
         const foldername: string = "courses_1";
         const buffer: Buffer = await (promisify)(fs.readFile)(filename);
         const content = buffer.toString("base64");
@@ -71,7 +72,7 @@ describe("Consumer valid_file validator", () => {
 describe("Consumer Parser", () => {
 
     let parser: Parser;
-    const filename: string = "./test/data/small_test.zip";
+    const filename: string = path.join(__dirname, "/data/small_test.zip");
     const id: string = "small_test_1";
     before("Before each", async () => {
         // assumes that file is valid
@@ -133,9 +134,9 @@ describe("Consumer Parser", () => {
     it("Should store the objects in a cache", async () => {
         const data: object[] = await parser.parse_data();
         await parser.store_data(data);
-        expect(fs.existsSync("./src/cache/" + id + ".json")).to.equal(true);
+        expect(fs.existsSync(path.join(__dirname, "..", "src", "cache", `${id}.json`))).to.equal(true);
         try {
-            await (promisify)(fs.unlink)("./src/cache/" + id + ".json");
+            await (promisify)(fs.unlink)(path.join(__dirname, "..", "src", "cache", `${id}.json`));
         } catch (err) {
             throw new Error("File didnt exist");
         }
