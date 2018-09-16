@@ -1,7 +1,9 @@
 import { expect } from "chai";
 
-import { InsightResponse, InsightResponseSuccessBody,
-    InsightDatasetKind, InsightDataset } from "../src/controller/IInsightFacade";
+import {
+    InsightResponse, InsightResponseSuccessBody,
+    InsightDatasetKind, InsightDataset,
+} from "../src/controller/IInsightFacade";
 import InsightFacade from "../src/controller/InsightFacade";
 import Log from "../src/Util";
 import TestUtil from "./TestUtil";
@@ -17,15 +19,15 @@ export interface ITestQuery {
     filename: string;  // This is injected when reading the file
 }
 
-async function remove_files(datasets: { [index: string]: string }): Promise<void> {
-    const filesToRemove: Array<Promise<void>> = [];
-    for (const file of Object.keys(datasets)) {
-        if (await(promisify)(fs.exists)(`./src/cache/${file}.json`)) {
-            filesToRemove.push((promisify)(fs.unlink)(`./src/cache/${file}.json`));
-        }
-    }
-    await Promise.all(filesToRemove);
-}
+// async function remove_files(datasets: { [index: string]: string }): Promise<void> {
+//     const filesToRemove: Array<Promise<void>> = [];
+//     for (const file of Object.keys(datasets)) {
+//         if (await(promisify)(fs.exists)(`./src/cache/${file}.json`)) {
+//             filesToRemove.push((promisify)(fs.unlink)(`./src/cache/${file}.json`));
+//         }
+//     }
+//     await Promise.all(filesToRemove);
+// }
 
 const datasetsToLoad: { [id: string]: string } = {
     courses: "./test/data/courses.zip",
@@ -73,7 +75,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
     // remove the cached files
     after(async function () {
         Log.test(`After: ${this.test.parent.title}`);
-        await remove_files(datasetsToLoad);
+        // await remove_files(datasetsToLoad);
         Log.test("cached files removed");
     });
 
@@ -109,16 +111,16 @@ describe("InsightFacade Add/Remove Dataset", function () {
     });
 
     it("Should add an valid dataset of type rooms", async () => {
-       let response: InsightResponse;
-       const id: string = "rooms";
-       const expected: number = 204;
-       try {
-           response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Rooms);
-       } catch (err) {
-           response = err;
-       } finally {
-           expect(response.code).to.equal(expected);
-       }
+        let response: InsightResponse;
+        const id: string = "rooms";
+        const expected: number = 204;
+        try {
+            response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Rooms);
+        } catch (err) {
+            response = err;
+        } finally {
+            expect(response.code).to.equal(expected);
+        }
     });
 
     it("Should not add an invalid file", async () => {
@@ -174,7 +176,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expectedCode);
-            expect(response.body).to.deep.equal({ error: "file was not valid"});
+            expect(response.body).to.deep.equal({ error: "file was not valid" });
         }
 
     });
@@ -257,7 +259,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expected);
-            expect(response.body).to.deep.equal({ error: "dataset doesn't exist"});
+            expect(response.body).to.deep.equal({ error: "dataset doesn't exist" });
         }
     });
 
@@ -285,7 +287,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
             response = err;
         } finally {
             expect(response.code).to.equal(expected);
-            expect(response.body).to.deep.equal({ error: "dataset doesn't exist"});
+            expect(response.body).to.deep.equal({ error: "dataset doesn't exist" });
         }
     });
 
@@ -328,11 +330,6 @@ describe("IInsightFacade listDatasets", () => {
         } finally {
             expect(response.code).to.equal(expectedCode);
             expect((response.body as InsightResponseSuccessBody).result.length).to.equal(expectedLength);
-            try {
-                await (promisify)(fs.unlink)("./src/cache/small_test.json");
-            } catch (err) {
-                Log.test("error");
-            }
         }
     });
 
@@ -386,7 +383,7 @@ describe("InsightFacade PerformQuery", () => {
 
             const datasets: { [id: string]: string } = Object.assign({}, ...loadedDatasets);
             for (const [id, content] of Object.entries(datasets)) {
-                    responsePromises.push(insightFacade.addDataset(id, content, InsightDatasetKind.Courses));
+                responsePromises.push(insightFacade.addDataset(id, content, InsightDatasetKind.Courses));
             }
             await Promise.all(responsePromises);
             // This try/catch is a hack to let your dynamic tests execute enough the addDataset method fails.
@@ -420,7 +417,7 @@ describe("InsightFacade PerformQuery", () => {
         describe("Dynamic InsightFacade PerformQuery tests", async () => {
 
             after("remove files", () => {
-                remove_files(datasetsToLoad);
+                // remove_files(datasetsToLoad);
             });
 
             for (const test of testQueries) {
