@@ -1,22 +1,13 @@
 import { expect } from "chai";
 import Validator from "../src/controller/consumer/validator";
 import Parser from "../src/controller/consumer/parser";
-import * as fs from "fs";
 import { promisify } from "util";
 import Log from "../src/Util";
 import * as path from "path";
+import * as fs from "fs";
 
 describe("Consumer valid_file validator", () => {
     let validator: Validator;
-
-    after("Delete files", async () => {
-        const files: string[] = ["courses_1", "nonsense_1", "small_test_1", "rooms_1", "test_1"];
-        for (const file of files) {
-            if (await (promisify)(fs.exists)(path.join(__dirname, "..", "cache", `${file}.json`))) {
-                await (promisify)(fs.unlink)(`./src/cache/${file}.json`);
-            }
-        }
-    });
 
     it("Should return false if the file is not a zip", async () => {
         const filename: string = path.join(__dirname, "data", "nonsense.png");
@@ -88,17 +79,17 @@ describe("Consumer Parser", () => {
     it("Should parse each line of a file and convert it into an object", async () => {
         const expected: object[] = [
             {
-                 small_test_1_title: "gross anat limbs",
-                 small_test_1_uuid: "1845",
-                 small_test_1_instructor: "alimohammadi, majid",
-                 small_test_1_audit: 0,
-                 small_test_1_year: "2013",
-                 small_test_1_id: "392",
-                 small_test_1_pass: 82,
-                 small_test_1_fail: 0,
-                 small_test_1_avg: 81.82,
-                 small_test_1_dept: "anat",
-                 small_test_1_section: "001",
+                small_test_1_title: "gross anat limbs",
+                small_test_1_uuid: "1845",
+                small_test_1_instructor: "alimohammadi, majid",
+                small_test_1_audit: 0,
+                small_test_1_year: "2013",
+                small_test_1_id: "392",
+                small_test_1_pass: 82,
+                small_test_1_fail: 0,
+                small_test_1_avg: 81.82,
+                small_test_1_dept: "anat",
+                small_test_1_section: "001",
             },
             {
                 small_test_1_title: "gross anat limbs",
@@ -129,17 +120,6 @@ describe("Consumer Parser", () => {
         ];
         const actual: object[] = await parser.parse_data();
         expect(actual).to.deep.equal(expected);
-    });
-
-    it("Should store the objects in a cache", async () => {
-        const data: object[] = await parser.parse_data();
-        await parser.store_data(data);
-        expect(fs.existsSync(path.join(__dirname, "..", "src", "cache", `${id}.json`))).to.equal(true);
-        try {
-            await (promisify)(fs.unlink)(path.join(__dirname, "..", "src", "cache", `${id}.json`));
-        } catch (err) {
-            throw new Error("File didnt exist");
-        }
     });
 
 });

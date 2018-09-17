@@ -6,6 +6,8 @@ import Parser from "../src/controller/consumer/parser";
 import { promisify } from "util";
 import * as fs from "fs";
 import * as path from "path";
+import InsightFacade from "../src/controller/InsightFacade";
+import { InsightDatasetKind } from "../src/controller/IInsightFacade";
 
 describe("Query Engine", () => {
     let query: QueryEngine;
@@ -38,33 +40,31 @@ describe("Query Engine", () => {
 
         try {
             const data: object[] = await parser.parse_data();
-            await parser.store_data(data);
-            await query.set_data();
+            // await parser.store_data(data);
+            // await query.set_data();
+            query.data_setter(data);
         } catch (err) {
             Log.test("error occurred getting data");
         }
     });
 
-    after("After Query", async () => {
-        const ids: string[] = ["sorted", id];
-        for (const i of ids) {
-            if (await (promisify)(fs.exists)(path.join(__dirname, "..", `/src/cache/${i}.json`))) {
-                await (promisify)(fs.unlink)(path.join(__dirname, "..", `/src/cache/${i}.json`));
-            }
-        }
-    });
-
     it("Should retrieve JSON object from .json file", async () => {
-        const contents: object[] = [{ small_test_1_title: "gross anat limbs", small_test_1_uuid: "1845",
-        small_test_1_instructor: "alimohammadi, majid", small_test_1_audit: 0, small_test_1_year: "2013",
-        small_test_1_id: "392", small_test_1_pass: 82, small_test_1_fail: 0, small_test_1_avg: 81.82,
-        small_test_1_dept: "anat", small_test_1_section: "001" }, { small_test_1_title: "gross anat limbs",
-        small_test_1_uuid: "1846", small_test_1_instructor: "", small_test_1_audit: 0, small_test_1_year: "2013",
-        small_test_1_id: "392", small_test_1_pass: 82, small_test_1_fail: 0, small_test_1_avg: 81.82,
-        small_test_1_dept: "anat", small_test_1_section: "overall" }, { small_test_1_title: "gross anat limbs",
-        small_test_1_uuid: "12690", small_test_1_instructor: "alimohammadi, majid", small_test_1_audit: 0,
-        small_test_1_year: "2014", small_test_1_id: "392", small_test_1_pass: 83, small_test_1_fail: 0,
-        small_test_1_avg: 83.65, small_test_1_dept: "anat", small_test_1_section: "001" }];
+        const contents: object[] = [{
+            small_test_1_title: "gross anat limbs", small_test_1_uuid: "1845",
+            small_test_1_instructor: "alimohammadi, majid", small_test_1_audit: 0, small_test_1_year: "2013",
+            small_test_1_id: "392", small_test_1_pass: 82, small_test_1_fail: 0, small_test_1_avg: 81.82,
+            small_test_1_dept: "anat", small_test_1_section: "001",
+        }, {
+            small_test_1_title: "gross anat limbs",
+            small_test_1_uuid: "1846", small_test_1_instructor: "", small_test_1_audit: 0, small_test_1_year: "2013",
+            small_test_1_id: "392", small_test_1_pass: 82, small_test_1_fail: 0, small_test_1_avg: 81.82,
+            small_test_1_dept: "anat", small_test_1_section: "overall",
+        }, {
+            small_test_1_title: "gross anat limbs",
+            small_test_1_uuid: "12690", small_test_1_instructor: "alimohammadi, majid", small_test_1_audit: 0,
+            small_test_1_year: "2014", small_test_1_id: "392", small_test_1_pass: 83, small_test_1_fail: 0,
+            small_test_1_avg: 83.65, small_test_1_dept: "anat", small_test_1_section: "001",
+        }];
         const expected: object[] = query.get_data();
         expect(expected).to.deep.equal(contents);
     });
@@ -110,26 +110,24 @@ describe("Query Engine", () => {
     it("Should return nothing if nothing matches", () => {
         const contents: object[] = [];
         const splitQuery: SplitQuery = new SplitQuery("In courses dataset small_test, " +
-        "find entries whose Title includes \"fuck you\"; show Fail and Pass and Section.");
+            "find entries whose Title includes \"fuck you\"; show Fail and Pass and Section.");
         const queryAST: IsplitQuery = splitQuery.get_split_query();
         const expected: object[] = query.query_data(queryAST);
         expect(contents).to.deep.equal(expected);
     });
 
     it("Should be able to sort data", async () => {
-        const filename = path.join(__dirname, "..", "/src/cache/sorted.json");
-        await (promisify)(fs.writeFile)(filename, JSON.stringify(customContents));
         newQuery = new QueryEngine(sorted);
-        await newQuery.set_data();
+        newQuery.data_setter(customContents);
         const expected: object[] = [{
             sorted_title: "lowest",
         }, {
-          sorted_title: "middle",
+            sorted_title: "middle",
         }, {
             sorted_title: "highest",
         }];
         const q: string = "In courses dataset courses, " +
-        "find all entries; show Title; sort in ascending order by Average.";
+            "find all entries; show Title; sort in ascending order by Average.";
         const splitQuery = new SplitQuery(q);
         const queryAST: IsplitQuery = splitQuery.get_split_query();
         const data: object[] = newQuery.query_data(queryAST);
@@ -138,7 +136,7 @@ describe("Query Engine", () => {
 
     it("Should be able to get data that contains a piece of a string", async () => {
         newQuery = new QueryEngine(sorted);
-        await newQuery.set_data();
+        newQuery.data_setter(customContents);
         const expected: object[] = [{
             sorted_uuid: "1846",
         }, {
@@ -154,7 +152,7 @@ describe("Query Engine", () => {
 
     it("Should be able to get data the ends in a string", async () => {
         newQuery = new QueryEngine(sorted);
-        await newQuery.set_data();
+        newQuery.data_setter(customContents);
         const expected: object[] = [{
             sorted_title: "lowest",
         }];
@@ -168,7 +166,7 @@ describe("Query Engine", () => {
 
     it("Should be able to get data that starts with a string", async () => {
         newQuery = new QueryEngine(sorted);
-        await newQuery.set_data();
+        newQuery.data_setter(customContents);
         const expected: object[] = [{
             sorted_title: "highest",
         }];
@@ -182,7 +180,7 @@ describe("Query Engine", () => {
 
     it("Should be able to get data that does not match the string", async () => {
         newQuery = new QueryEngine(sorted);
-        await newQuery.set_data();
+        newQuery.data_setter(customContents);
         const expected: object[] = [{
             sorted_title: "middle",
         }];
@@ -196,11 +194,11 @@ describe("Query Engine", () => {
 
     it("Should be able to handle a query with or", async () => {
         newQuery = new QueryEngine(sorted);
-        await newQuery.set_data();
+        newQuery.data_setter(customContents);
         const expected: object[] = [{
-            sorted_instructor: "thomas anderson",
+            sorted_instructor: "sam bob boo",
         }, {
-                sorted_instructor: "sam bob boo",
+            sorted_instructor: "thomas anderson",
         }];
         const q: string = "In courses dataset courses, " +
             "find entries whose UUID is \"1845\" or UUID is \"12690\"; show Instructor.";
@@ -217,14 +215,15 @@ describe("Course data", () => {
     let data: object[];
 
     before("load data if it doesn't exist", async () => {
-        const filename = path.join(__dirname, "..", "/src/cache/courses.json");
-        if (! await (promisify)(fs.exists)(filename)) {
-            const buffer: Buffer = await (promisify)(fs.readFile)(path.join(__dirname, "..", "/src/data/courses.zip"));
-            const content = buffer.toString("base64");
-            const parser: Parser = new Parser("courses", content);
-            data = await parser.parse_data();
-        } else {
-            data = JSON.parse(await (promisify)(fs.readFile)(filename, "utf8"));
+        const filename = path.join(__dirname, "..", "/src/data/courses.zip");
+        const insightFacade = new InsightFacade();
+        try {
+            const buffer: Buffer = await (promisify)(fs.readFile)(filename);
+            const content: string = buffer.toString("base64");
+            await insightFacade.addDataset("courses", content, InsightDatasetKind.Courses);
+            data = insightFacade.get_cache()["courses"];
+        } catch (err) {
+            throw new Error("there was an error loading data");
         }
         queryEngine.data_setter(data);
     });

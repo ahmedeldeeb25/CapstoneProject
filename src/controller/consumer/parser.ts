@@ -34,34 +34,34 @@ export default class Parser {
         const data: Array<Promise<Array<{}>>> = [];
         let folder: JSzip;
         try {
-             folder = await this.getFolder();
+            folder = await this.getFolder();
         } catch (err) {
             throw new Error("unable to find folder");
         }
-        folder.forEach( async (relativePath, f) => {
+        folder.forEach(async (relativePath, f) => {
             const cvsContents = this.cvsPromise(f);
             data.push(cvsContents);
         });
-        return Promise.all(data).then( (d) => {
+        return Promise.all(data).then((d) => {
             const flatten: Array<{}> = [].concat.apply([], d);
             return Promise.resolve(flatten);
         });
     }
 
     // Stores data in json file with same name of folder, ex: folder = "test", saves as test.json
-    public store_data(data: {}): Promise<string> {
-        // TODO store data in json file w same name
-        const stringified: string = JSON.stringify(data);
-        return new Promise<string>( (resolve, reject) => {
-            fs.writeFile(path.join(__dirname, "..", "..", "cache", `${this.id}.json`), stringified, (err) => {
-                if (err) {
-                    reject("there was an error");
-                } else {
-                    resolve("worked");
-                }
-            });
-        });
-    }
+    // public store_data(data: {}): Promise<string> {
+    //     // TODO store data in json file w same name
+    //     const stringified: string = JSON.stringify(data);
+    //     return new Promise<string>( (resolve, reject) => {
+    //         fs.writeFile(path.join(__dirname, "..", "..", "cache", `${this.id}.json`), stringified, (err) => {
+    //             if (err) {
+    //                 reject("there was an error");
+    //             } else {
+    //                 resolve("worked");
+    //             }
+    //         });
+    //     });
+    // }
 
     // Returns array of the CSV files in the main folder
     private async getFolder(): Promise<JSzip> {
@@ -98,9 +98,9 @@ export default class Parser {
         rl.on("line", (line) => {
             if (first) {
                 keys = line.split("|");
-                keys = keys.map( (val, index) => val.toLowerCase());
+                keys = keys.map((val, index) => val.toLowerCase());
                 // make sure keys are uniform, i.e, subject should be department
-                keys = keys.map( (val, index) => Object.keys(this.translate).includes(val) ? this.translate[val] : val);
+                keys = keys.map((val, index) => Object.keys(this.translate).includes(val) ? this.translate[val] : val);
                 first = !first;
             } else {
                 const lineObj: any = {};
@@ -113,7 +113,7 @@ export default class Parser {
                 json.push(lineObj);
             }
         });
-        return new Promise<Array<{}>>( (resolve, reject) => {
+        return new Promise<Array<{}>>((resolve, reject) => {
             rl.on("close", () => {
                 resolve(json);
             });
