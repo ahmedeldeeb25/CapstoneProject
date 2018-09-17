@@ -26,7 +26,7 @@ export class SplitQuery {
         const sepBySemi: string[] = query.split(this.SEMI);
         if (sepBySemi.length < 2) { throw new Error("Incorrectly formatted query"); }
         const sepByComa: string[] = sepBySemi[0].split(this.COMMA);
-        if (sepByComa.length < 2) { throw new Error("Incorrectly formatted string"); }
+        if (sepByComa.length < 2) { throw new Error("Incorrectly formatted query"); }
 
         const dataset: string = sepByComa[0].trim();
         const filter: QueryFilter | QueryFilter[] = this.split_filter(sepByComa[1].slice(1).trim());

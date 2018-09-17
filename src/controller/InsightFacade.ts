@@ -3,11 +3,10 @@ import { IInsightFacade, InsightResponse, InsightDatasetKind, InsightDataset } f
 import Validator from "./consumer/validator";
 import Parser from "./consumer/parser";
 import { isNull, promisify } from "util";
-import * as fs from "fs";
-import * as path from "path";
 import { SplitQuery } from "./queryAST/splitQuery";
 import ValidateQuery from "./queryAST/validateQuery";
 import QueryEngine from "./queryEngine/retrieveResults";
+import { PostCode } from "./test";
 
 /**
  * This is the main programmatic entry point for the project.
@@ -15,6 +14,7 @@ import QueryEngine from "./queryEngine/retrieveResults";
 export default class InsightFacade implements IInsightFacade {
     private dataSets: InsightDataset[] = [];
     private cache: { [name: string]: object[] } = {};
+    private pc: PostCode = new PostCode();
     constructor() {
         Log.trace("InsightFacadeImpl::init()");
     }
@@ -31,14 +31,14 @@ export default class InsightFacade implements IInsightFacade {
         try {
             validFile = await validator.valid_file();
             if (!validFile || this.cache[id]) {
+                this.pc.postCode(id + " file was not valid");
                 return Promise.reject({ code: 400, body: { error: "file was not valid" } });
             } else {
                 data = await parser.parse_data();
                 this.cache[id] = data;
-                // await parser.store_data(data);
             }
         } catch (err) {
-            Log.test("the error: " + err);
+            this.pc.postCode(id + "caused this error the error: " + err);
             return Promise.reject({ code: 400, body: { error: err } });
         }
         this.dataSets.push({ id, kind, numRows: data.length });
@@ -48,15 +48,18 @@ export default class InsightFacade implements IInsightFacade {
     public async removeDataset(id: string): Promise<InsightResponse> {
         try {
             if (id === "" || isNull(id)) {
+                this.pc.postCode(": invalid parameter");
                 return Promise.reject({ code: 404, body: { error: "invalid parameter" } });
             }
             if (this.cache[id]) {
                 delete this.cache[id];
                 return Promise.resolve({ code: 204, body: null });
             } else {
+                this.pc.postCode(id + " the data doesn't exist");
                 return Promise.reject({ code: 404, body: { error: "dataset doesn't exist" } });
             }
         } catch (err) {
+            this.pc.postCode(id + " something went wrong!");
             return Promise.reject({ code: 404, body: { error: "something went wrong!" } });
         }
     }
@@ -69,7 +72,7 @@ export default class InsightFacade implements IInsightFacade {
             queryAST = new SplitQuery(query);
             validator = new ValidateQuery(queryAST);
         } catch (err) {
-            Log.test("err: query was not valid!" + err);
+            this.pc.postCode(query +  ": query was not valid " + err);
             return Promise.reject({ code: 400, body: { error: "invalid query" } });
         }
         const dataset: string = queryAST.get_input();
@@ -83,12 +86,14 @@ export default class InsightFacade implements IInsightFacade {
                 queryEngine.data_setter(this.cache[dataset]);
                 result = queryEngine.query_data(queryAST.get_split_query());
             } catch (err) {
+                this.pc.postCode(query + ": data was not valid!");
                 Log.test("err: the data wasn't valid" + err);
 
                 return Promise.reject({ code: 400, body: { error: "dataset not found" } });
             }
             return Promise.resolve({ code: 200, body: { result } });
         } else {
+            this.pc.postCode(query + ": invalid query!");
             return Promise.reject({ code: 400, body: { error: "invalid query" } });
         }
     }

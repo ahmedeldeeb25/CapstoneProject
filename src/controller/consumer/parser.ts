@@ -4,10 +4,7 @@
  * Cache data structure
  */
 import * as JSzip from "jszip";
-import * as fs from "fs";
 import * as readline from "readline";
-import * as path from "path";
-import Log from "../../Util";
 
 export default class Parser {
 
@@ -47,21 +44,6 @@ export default class Parser {
             return Promise.resolve(flatten);
         });
     }
-
-    // Stores data in json file with same name of folder, ex: folder = "test", saves as test.json
-    // public store_data(data: {}): Promise<string> {
-    //     // TODO store data in json file w same name
-    //     const stringified: string = JSON.stringify(data);
-    //     return new Promise<string>( (resolve, reject) => {
-    //         fs.writeFile(path.join(__dirname, "..", "..", "cache", `${this.id}.json`), stringified, (err) => {
-    //             if (err) {
-    //                 reject("there was an error");
-    //             } else {
-    //                 resolve("worked");
-    //             }
-    //         });
-    //     });
-    // }
 
     // Returns array of the CSV files in the main folder
     private async getFolder(): Promise<JSzip> {
