@@ -234,14 +234,14 @@ describe("Course data", () => {
         expect(queryEngine.get_data().length).to.equal(expected);
     });
 
-    // it("Use to compare data between UI on SDMM and data my app gets", () => {
-    //     const query: string = "In courses dataset courses, find entries whose" +
-    //     " Title begins with \"bi\"; show ID and Title.";
-    //     const splitQuery = new SplitQuery(query);
-    //     const data: object[] = queryEngine.query_data(splitQuery.get_split_query());
-    //     for (const c of data) {
-    //         Log.test(JSON.stringify(c));
-    //     }
-    //     expect(data.length).to.equal(19);
-    // });
+    it("Use to compare data between UI on SDMM and data my app gets", () => {
+        const query: string = "In courses dataset courses, find entries whose" +
+        " Average is less than -5 or Audit is greater than -12 or ID is \"404\"; show ID and Title and UUID.";
+        const splitQuery = new SplitQuery(query);
+        const d: object[] = queryEngine.query_data(splitQuery.get_split_query());
+        for (const c of d) {
+            Log.test(JSON.stringify(c));
+        }
+        expect(data.length).to.equal(19);
+    });
 });

@@ -315,6 +315,14 @@ describe("Validate Query", () => {
         expect(parser.valid_query(query)).to.equal(true);
     });
 
+    it("shoud validate with differnet input", () => {
+        const query = "In courses dataset horses, find entries whose " +
+            'ID begins with "a" and ID ends with "z" and ID includes "g"; show UUID.';
+        const splitQuery = new SplitQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        expect(parser.valid_query(query)).to.equal(true);
+    });
+
 });
 
 describe("Query Filter", () => {
