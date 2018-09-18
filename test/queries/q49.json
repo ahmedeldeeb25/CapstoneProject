@@ -1,5 +1,5 @@
 {
-    "title": "Select * from test",
+    "title": "Select title from test where title is not Turtle",
     "query": "In test dataset test, find entries whose Title is not \"Turtle\"; show Title.",
     "response": {
         "code": 200,

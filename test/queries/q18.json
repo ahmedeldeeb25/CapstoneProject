@@ -1,5 +1,5 @@
 {
-    "title": "SELECT instructor, title WHERE title NOT LIKE '%comp%'",
+    "title": "SELECT instructor, title WHERE title NOT LIKE '%comp%' and ID is '153'",
     "query": "In courses dataset courses, find entries whose Title does not include \"comp\" and ID is \"153\"; show ID and Instructor and Title.",
     "response": {
         "code": 200,

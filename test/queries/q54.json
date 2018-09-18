@@ -1,5 +1,5 @@
 {
-    "title": "A query that uses a S_OP with an M_KEY",
+    "title": "A query that uses a S_OP with an M_KEY ie, Average does not include '45'",
     "query": "In courses dataset courses, find entries whose Average does not include \"45\"; show Average and Instructor.",
     "response": {
         "code": 400,

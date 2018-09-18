@@ -1,5 +1,5 @@
 {
-    "title": "Use reserve word for input",
+    "title": "Use reserve word for input 'In courses dataset dataset' FAILS",
     "query": "In courses dataset dataset, find entries whose Average is equal to \"45\"; show Average and Instructor.",
     "response": {
         "code": 400,

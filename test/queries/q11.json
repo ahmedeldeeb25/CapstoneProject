@@ -1,5 +1,5 @@
 {
-    "title": "SELECT dept, avg WHERE avg > 80 or course_id = 329",
+    "title": "SELECT dept, avg WHERE avg > 80 or course_id = 329 (fails because ID is a string not a num)",
     "query": "In courses dataset courses, find entries whose Average is greater than 97 or ID is equal to 329; show Department and Average and ID; sort in ascending order by Average.",
     "response": {
         "code": 400,

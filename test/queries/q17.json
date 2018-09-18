@@ -1,5 +1,5 @@
 {
-    "title": "SELECT instructor, title WHERE title LIKE '%comp%'",
+    "title": "SELECT instructor, title WHERE title LIKE '%comp%' and ID is '300'",
     "query": "In courses dataset courses, find entries whose Title includes \"comp\" and ID is \"300\"; show ID and Instructor and Title.",
     "response": {
         "code": 200,

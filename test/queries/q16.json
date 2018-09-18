@@ -1,5 +1,5 @@
 {
-    "title": "SELECT instructor, title WHERE title NOT LIKE '%A'",
+    "title": "SELECT instructor, title WHERE title NOT LIKE '%A' and ID is '575'",
     "query": "In courses dataset courses, find entries whose Title does not end with \"a\" and ID is \"575\"; show ID and Instructor and Title and UUID; sort in ascending order by UUID.",
     "response": {
         "code": 200,

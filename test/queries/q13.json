@@ -1,5 +1,5 @@
 {
-    "title": "SELECT instructor, title WHERE title LIKE 'A%'",
+    "title": "SELECT instructor, title WHERE title LIKE 'ab%'",
     "query": "In courses dataset courses, find entries whose Title begins with \"ab\"; show ID and Instructor and Title and UUID; sort in ascending order by UUID.",
     "response": {
         "code": 200,

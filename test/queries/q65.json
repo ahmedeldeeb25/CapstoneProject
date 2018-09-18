@@ -1,5 +1,5 @@
 {
-    "title": "String number mistmatch",
+    "title": "String number mistmatch Average is equal to STRING FAILS",
     "query": "In courses dataset courses, find entries whose Average is equal to \"45\"; show Average and Instructor.",
     "response": {
         "code": 400,

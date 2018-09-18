@@ -1,5 +1,5 @@
 {
-    "title": "Select title, department from courses where pass < 1",
+    "title": "Select title, department from courses where fail > 99",
     "query": "In courses dataset courses, find entries whose Fail is greater than 99; show Title and Department and UUID; sort in ascending order by UUID.",
     "response": {
         "code": 200,

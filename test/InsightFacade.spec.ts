@@ -62,7 +62,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
         try {
             insightFacade = new InsightFacade();
         } catch (err) {
-            Log.error(err);
+            insightFacade = err;
         } finally {
             expect(insightFacade).to.be.instanceOf(InsightFacade);
         }
@@ -189,7 +189,6 @@ describe("InsightFacade Add/Remove Dataset", function () {
         try {
             response = await insightFacade.addDataset(fakeID, datasets[id], InsightDatasetKind.Courses);
         } catch (err) {
-            Log.test("ERROR: " + JSON.stringify(err));
             response = err;
         } finally {
             expect(response.code).to.equal(expected);
@@ -363,7 +362,7 @@ describe("InsightFacade PerformQuery", () => {
         try {
             insightFacade = new InsightFacade();
         } catch (err) {
-            Log.error(err);
+            insightFacade = err;
         } finally {
             expect(insightFacade).to.be.instanceOf(InsightFacade);
         }
@@ -426,7 +425,6 @@ describe("InsightFacade PerformQuery", () => {
                     try {
                         response = await insightFacade.performQuery(test.query);
                     } catch (err) {
-                        Log.test("ERROR" + err.body.error);
                         response = err;
                     } finally {
                         expect(response.code).to.equal(test.response.code);

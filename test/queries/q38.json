@@ -1,5 +1,5 @@
 {
-    "title": "avg > 97 audit > 5 pass > 50",
+    "title": "select title from courses where avg > 97 audit > 5 pass > 50",
     "query": "In courses dataset courses, find entries whose Average is greater than 97 and Audit is greater than 5 and Pass is greater than 50; show Title.",
     "response": {
         "code": 200,

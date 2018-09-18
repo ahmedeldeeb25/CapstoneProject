@@ -2,7 +2,6 @@ import { expect } from "chai";
 import Validator from "../src/controller/consumer/validator";
 import Parser from "../src/controller/consumer/parser";
 import { promisify } from "util";
-import Log from "../src/Util";
 import * as path from "path";
 import * as fs from "fs";
 
@@ -51,7 +50,6 @@ describe("Consumer valid_file validator", () => {
         try {
             value = await validator.valid_file();
         } catch (err) {
-            Log.test("error occurred" + err);
             value = err;
         } finally {
             expect(value).to.equal(true);

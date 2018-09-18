@@ -5,7 +5,6 @@ import QueryFilter from "../src/controller/queryAST/queryFilter";
 import MOP from "../src/controller/queryAST/queryMOP";
 import SOP from "../src/controller/queryAST/querySOP";
 import Order from "../src/controller/queryAST/queryOrder";
-import Log from "../src/Util";
 
 describe("Query splitter", () => {
     const splitQuery = new SplitQuery("In rooms dataset rooms, find entries whose Average is greater" +
@@ -246,7 +245,6 @@ describe("Validate Query", () => {
         const splitQuery = new SplitQuery(query);
         const parser: ValidateQuery = new ValidateQuery(splitQuery);
         const expected: boolean = true;
-        Log.test("OTHER DATASET " + parser.toString() + "??? " + parser.valid_query(query));
         expect(parser.valid_query(query)).to.equal(expected);
     });
 
@@ -256,7 +254,6 @@ describe("Validate Query", () => {
         const splitQuery = new SplitQuery(query);
         const parser: ValidateQuery = new ValidateQuery(splitQuery);
         const expected: boolean = false;
-        Log.test(parser.toString());
         expect(parser.valid_query(query)).to.equal(expected);
     });
 

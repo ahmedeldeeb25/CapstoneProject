@@ -1,5 +1,5 @@
 {
-    "title": "String number mistmatch",
+    "title": "String number mistmatch Title is not greater than num FAILS",
     "query": "In courses dataset courses, find entries whose Title is not greater than 45; show Average and Instructor.",
     "response": {
         "code": 400,

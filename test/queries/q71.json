@@ -1,5 +1,5 @@
 {
-    "title": "Query out of order",
+    "title": "Query out of order DATASET; FILTER; ORDER; SHOW",
     "query": "In courses dataset courses_title, find entries whose Average is equal to 45; sort in ascending order by Average; show Title and ID.",
     "response": {
         "code": 400,

@@ -1,5 +1,5 @@
 {
-    "title": "Select title, department from courses where pass < 1",
+    "title": "Select title, department from courses where audit === 14",
     "query": "In courses dataset courses, find entries whose Audit is equal to 14; show Title and Department.",
     "response": {
         "code": 200,

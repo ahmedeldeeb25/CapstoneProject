@@ -1,5 +1,5 @@
 {
-    "title": "A query that uses a M_KEY with an S_KEY",
+    "title": "A query that uses a M_KEY with an S_KEY ie Title is equal to test FAILS",
     "query": "In courses dataset courses, find entries whose Title is equal to \"test\"; show Average and Instructor.",
     "response": {
         "code": 400,

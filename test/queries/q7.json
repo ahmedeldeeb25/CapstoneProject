@@ -1,5 +1,5 @@
 {
-    "title": "SELECT dept, avg WHERE avg != 97",
+    "title": "SELECT dept, avg WHERE avg != 97 and ID is 400",
     "query": "In courses dataset courses, find entries whose Average is not equal to 97 and ID is \"400\"; show Department and Average and UUID; sort in ascending order by UUID.",
     "response": {
         "code": 200,

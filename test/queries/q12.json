@@ -1,5 +1,5 @@
 {
-    "title": "SELECT dept, avg, title WHERE dep = math",
+    "title": "SELECT dept, avg, title WHERE dep = math and ID is 400",
     "query": "In courses dataset courses, find entries whose Department is \"math\" and ID is \"400\"; show Title and ID and Department.",
     "response": {
         "code": 200,

@@ -1,5 +1,5 @@
 {
-    "title": "Input contains space",
+    "title": "Input contains space 'In courses dataset course titles' FAILS",
     "query": "In courses dataset course titles, find entries whose Average is equal to 45; show Average and Instructor.",
     "response": {
         "code": 400,

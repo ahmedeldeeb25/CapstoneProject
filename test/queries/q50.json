@@ -1,5 +1,5 @@
 {
-    "title": "Select * from test",
+    "title": "Select title from test where Title begins with gross",
     "query": "In test dataset test, find entries whose Title begins with \"gross\"; show Title.",
     "response": {
         "code": 200,
