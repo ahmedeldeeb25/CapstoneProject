@@ -4,9 +4,10 @@
  * Cache data structure
  */
 import * as JSzip from "jszip";
-import * as parser from "csv-parse";
+import * as readline from "readline";
 
 export default class Parser {
+
     private mKeys: string[] = ["pass", "fail", "audit", "avg", "course"];
     private translate: { [index: string]: string } = {
         subject: "dept",
@@ -67,38 +68,35 @@ export default class Parser {
         let first: boolean = true;
         let keys: string[];
         let stream: NodeJS.ReadableStream;
-        const p = parser({delimiter: "|"});
         const json: Array<{}> = new Array<{}>();
         try {
             stream = await this.getReadableStream(f);
         } catch (err) {
             throw new Error("error occured with stream");
         }
-        stream.pipe(p);
-        p.on("readable", () => {
-            let record: string[] = p.read();
-            while (record) {
-                if (first) {
-                    keys = record.map((val, index) => val.toLowerCase());
-                    // make sure keys are uniform, i.e, subject should be department
-                    keys = keys.map((val, index) =>
-                        Object.keys(this.translate).includes(val) ? this.translate[val] : val);
-                    first = !first;
-                } else {
-                    const lineObj: any = {};
-                    const entry: string[] = record;
-                    for (let i: number = 0; i < entry.length; i++) {
-                        const key: string = keys[i];
-                        const datum: string | number = this.mKeys.includes(key) ? parseFloat(entry[i]) : entry[i];
-                        lineObj[`${this.id}_${key}`] = datum;
-                    }
-                    json.push(lineObj);
+        const rl = readline.createInterface({
+            input: stream,
+        });
+        rl.on("line", (line) => {
+            if (first) {
+                keys = line.split("|");
+                keys = keys.map((val, index) => val.toLowerCase());
+                // make sure keys are uniform, i.e, subject should be department
+                keys = keys.map((val, index) => Object.keys(this.translate).includes(val) ? this.translate[val] : val);
+                first = !first;
+            } else {
+                const lineObj: any = {};
+                const entry: string[] = line.split("|");
+                for (let i: number = 0; i < entry.length; i++) {
+                    const key: string = keys[i];
+                    const datum: string | number = this.mKeys.includes(key) ? parseFloat(entry[i]) : entry[i];
+                    lineObj[`${this.id}_${key}`] = datum;
                 }
-                record = p.read();
+                json.push(lineObj);
             }
         });
         return new Promise<Array<{}>>((resolve, reject) => {
-            p.on("finish", () => {
+            rl.on("close", () => {
                 resolve(json);
             });
         });

@@ -33,7 +33,6 @@
     },
     "dependencies": {
         "@types/csv-parse": "^1.1.11",
-        "csv-parse": "^3.0.0",
         "decimal.js": "9.0.1",
         "dotenv": "4.0.0",
         "jszip": "3.1.5",
