@@ -2,11 +2,11 @@ import Log from "../Util";
 import { IInsightFacade, InsightResponse, InsightDatasetKind, InsightDataset } from "./IInsightFacade";
 import Validator from "./consumer/validator";
 import Parser from "./consumer/parser";
-import { isNull } from "util";
+import { isNull, promisify } from "util";
 import { SplitQuery } from "./queryAST/splitQuery";
 import ValidateQuery from "./queryAST/validateQuery";
 import QueryEngine from "./queryEngine/retrieveResults";
-
+import * as fs from "fs";
 /**
  * This is the main programmatic entry point for the project.
  */
@@ -29,11 +29,14 @@ export default class InsightFacade implements IInsightFacade {
         try {
             validFile = await validator.valid_file();
             if (!validFile || this.cache[id]) {
-
                 return Promise.reject({ code: 400, body: { error: "file was not valid" } });
+            } else if (await (promisify)(fs.exists)(`./${id}.json`)) {
+                data = JSON.parse(await (promisify)(fs.readFile)(`./${id}.json`, "utf-8"));
+                this.cache[id] = data;
             } else {
                 data = await parser.parse_data();
                 this.cache[id] = data;
+                await (promisify)(fs.writeFile)(`./${id}.json`, JSON.stringify(data));
             }
         } catch (err) {
             return Promise.reject({ code: 400, body: { error: err } });
@@ -45,11 +48,11 @@ export default class InsightFacade implements IInsightFacade {
     public async removeDataset(id: string): Promise<InsightResponse> {
         try {
             if (id === "" || isNull(id)) {
-
                 return Promise.reject({ code: 404, body: { error: "invalid parameter" } });
             }
             if (this.cache[id]) {
                 delete this.cache[id];
+                await (promisify)(fs.unlink)(`./${id}.json`);
                 return Promise.resolve({ code: 204, body: null });
             } else {
 

@@ -19,15 +19,15 @@ export interface ITestQuery {
     filename: string;  // This is injected when reading the file
 }
 
-// async function remove_files(datasets: { [index: string]: string }): Promise<void> {
-//     const filesToRemove: Array<Promise<void>> = [];
-//     for (const file of Object.keys(datasets)) {
-//         if (await(promisify)(fs.exists)(`./src/cache/${file}.json`)) {
-//             filesToRemove.push((promisify)(fs.unlink)(`./src/cache/${file}.json`));
-//         }
-//     }
-//     await Promise.all(filesToRemove);
-// }
+async function remove_files(datasets: { [index: string]: string }): Promise<void> {
+    const filesToRemove: Array<Promise<void>> = [];
+    for (const file of Object.keys(datasets)) {
+        if (await(promisify)(fs.exists)(`./${file}.json`)) {
+            filesToRemove.push((promisify)(fs.unlink)(`./${file}.json`));
+        }
+    }
+    await Promise.all(filesToRemove);
+}
 
 const datasetsToLoad: { [id: string]: string } = {
     courses: "./test/data/courses.zip",
@@ -75,7 +75,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
     // remove the cached files
     after(async function () {
         Log.test(`After: ${this.test.parent.title}`);
-        // await remove_files(datasetsToLoad);
+        await remove_files(datasetsToLoad);
         Log.test("cached files removed");
     });
 
@@ -415,8 +415,8 @@ describe("InsightFacade PerformQuery", () => {
     it("Should run test queries", async () => {
         describe("Dynamic InsightFacade PerformQuery tests", async () => {
 
-            after("remove files", () => {
-                // remove_files(datasetsToLoad);
+            after("remove files", async () => {
+                await remove_files(datasetsToLoad);
             });
 
             for (const test of testQueries) {
