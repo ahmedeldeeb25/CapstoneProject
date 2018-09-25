@@ -1,0 +1,10 @@
+{
+    "title": "Supports commas in show",
+    "query": "In courses dataset courses, find entries whose Average is equal to 45; show Average, Instructor and Title.",
+    "response": {
+        "code": 200,
+        "body": {
+            "result": []
+        }
+    }
+}

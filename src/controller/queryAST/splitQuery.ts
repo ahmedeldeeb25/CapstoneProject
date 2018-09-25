@@ -23,9 +23,11 @@ export class SplitQuery {
     // Returns an object with dataset, filter, show, order (IsplitQuery interface)
     // This method could use some prettying up
     public split_query(query: string): void {
-        const sepBySemi: string[] = query.split(this.SEMI);
+        let sepBySemi: string[];
+        let sepByComa: string[];
+        sepBySemi = query.split(this.SEMI);
         if (sepBySemi.length < 2) { throw new Error("Incorrectly formatted query"); }
-        const sepByComa: string[] = sepBySemi[0].split(this.COMMA);
+        sepByComa = sepBySemi[0].split(this.COMMA);
         if (sepByComa.length < 2) { throw new Error("Incorrectly formatted query"); }
 
         const dataset: string = sepByComa[0].trim();
@@ -44,7 +46,11 @@ export class SplitQuery {
 
     // returns the input (id of the dataset)
     public get_input(): string {
-        return this.SPLIT_QUERY.dataset.split(" ")[3];
+        if (this.SPLIT_QUERY.dataset) {
+            return this.SPLIT_QUERY.dataset.split(" ")[3];
+        } else {
+            throw new Error("dataset undefined");
+        }
     }
 
     public toString(): string {
@@ -63,8 +69,9 @@ export class SplitQuery {
             return new QueryFilter(true);
         } else {
             const criteria: string = filter.split("find entries whose")[1];
+            let splitByAndOr: string [];
             // splits into list of individual CRITERIA
-            const splitByAndOr: string[] = criteria.split(this.POS_LOOK_AHEAD_AND);
+            splitByAndOr = criteria.split(this.POS_LOOK_AHEAD_AND);
             return this.parse_criteria(splitByAndOr);
         }
     }
@@ -82,6 +89,8 @@ export class SplitQuery {
         if (show.slice(-1) === ".") {
             show = show.slice(0, -1);
         }
+        // commas ?
+        show = show.replace(/,/g, "");
         // split show into words and filter out words that are not keys
         return show.split(" ").filter( (x) => x !== "show").filter( (x) => x !== "and");
     }

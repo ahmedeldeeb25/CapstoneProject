@@ -320,6 +320,14 @@ describe("Validate Query", () => {
         expect(parser.valid_query(query)).to.equal(true);
     });
 
+    it("Should validate with commas in the show", () => {
+        const query = "In courses dataset courses, find entries whose Average is greater than 95;" +
+        " show Average, ID, UUID, and Title.";
+        const splitQuery: SplitQuery = new SplitQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        expect(parser.valid_query(query)).to.equal(true);
+    });
+
 });
 
 describe("Query Filter", () => {
