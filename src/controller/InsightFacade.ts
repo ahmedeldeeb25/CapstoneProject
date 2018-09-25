@@ -1,7 +1,7 @@
 import Log from "../Util";
 import { IInsightFacade, InsightResponse, InsightDatasetKind, InsightDataset } from "./IInsightFacade";
 import Validator from "./consumer/validator";
-import Parser from "./consumer/parser";
+import Parser from "./consumer/parser_cvs";
 import { isNull, promisify } from "util";
 import { SplitQuery } from "./queryAST/splitQuery";
 import ValidateQuery from "./queryAST/validateQuery";

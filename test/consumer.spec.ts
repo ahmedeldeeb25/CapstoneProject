@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import Validator from "../src/controller/consumer/validator";
-import Parser from "../src/controller/consumer/parser";
+import Parser from "../src/controller/consumer/parser_cvs";
 import { promisify } from "util";
 import * as path from "path";
 import * as fs from "fs";

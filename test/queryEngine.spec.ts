@@ -2,7 +2,7 @@ import { expect } from "chai";
 import QueryEngine from "../src/controller/queryEngine/retrieveResults";
 import { IsplitQuery, SplitQuery } from "../src/controller/queryAST/splitQuery";
 import Log from "../src/Util";
-import Parser from "../src/controller/consumer/parser";
+import Parser from "../src/controller/consumer/parser_cvs";
 import { promisify } from "util";
 import * as fs from "fs";
 import * as path from "path";
