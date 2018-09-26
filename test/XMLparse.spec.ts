@@ -29,11 +29,36 @@ describe("XMLPARSE", () => {
         const index: JSZipObject = await parser.getIndex();
         const xml: string = await index.async("text");
         const buildings: any = parser.parse(xml);
-        Log.test(inspect(buildings));
+        // Log.test(inspect(buildings));
     });
 
     it("Should return false if given invalid XML document", () => {
         // TODO
     });
 
+    it("Should parse room from path in index.xml no rooms", async () => {
+        const file: string = "./campus/discover/buildings-and-classrooms/SOJ";
+        const output: {} = {};
+        let room: {};
+        try {
+            room = await parser.parseRooms(file);
+        } catch (err) {
+            room = err;
+        }
+        expect(room).to.deep.equal([]);
+    });
+
+    it("Should parse room from path in index.xml lots of rooms", async () => {
+        const file: string = "./campus/discover/buildings-and-classrooms/ANGU";
+        const output: {} = {};
+        let room: {};
+        try {
+            room = await parser.parseRooms(file);
+        } catch (err) {
+            Log.test("ERROR: " + err);
+            room = err;
+        }
+        Log.test(JSON.stringify(room));
+        // expect(room).to.deep.equal([]);
+    });
 });
