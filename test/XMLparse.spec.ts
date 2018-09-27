@@ -21,19 +21,33 @@ describe("XMLPARSE", () => {
 
     it("Should get index file xml", async () => {
         const filename: string = "index.xml";
-        const index: JSZipObject = await parser.getIndex();
-        expect(index.name).to.equal("sdmm/index.xml");
+        const index: boolean = await parser.setIndex();
+        expect(index).to.equal(true);
+        expect(parser.getIndex().name).to.equal("sdmm/index.xml");
     });
 
     it("Should return true with a valid XML document", async () => {
-        const index: JSZipObject = await parser.getIndex();
+        const valid: boolean = await parser.setIndex();
+        const index: JSZipObject = parser.getIndex();
         const xml: string = await index.async("text");
-        const buildings: any = parser.parse(xml);
-        // Log.test(inspect(buildings));
+        const buildings: any = await parser.parse(xml);
+        expect(valid).to.equal(true);
+        expect(buildings.length).to.equal(62);
     });
 
-    it("Should return false if given invalid XML document", () => {
-        // TODO
+    it("Should return false if given invalid XML document", async () => {
+        const id: string = "nonsense";
+        const filepath: string = path.join(__dirname + "/data/nonsense.zip");
+        const buffer: Buffer = await(promisify)(fs.readFile)(filepath);
+        const content: string = buffer.toString("base64");
+        const p: XMLParse = new XMLParse(id, content);
+        let response: boolean;
+        try {
+            response = await p.setIndex();
+        } catch (err) {
+            response = err;
+        }
+        expect(response).to.equal(false);
     });
 
     it("Should parse room from path in index.xml no rooms", async () => {
@@ -58,7 +72,7 @@ describe("XMLPARSE", () => {
             Log.test("ERROR: " + err);
             room = err;
         }
-        Log.test(JSON.stringify(room));
+        // Log.test(JSON.stringify(room));
         // expect(room).to.deep.equal([]);
     });
 });

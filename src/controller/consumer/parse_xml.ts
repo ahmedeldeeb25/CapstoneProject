@@ -8,42 +8,50 @@ export default class XMLParse {
     private id: string;
     private content: string;
     private jszip: JSzip;
+    private index: JSzip.JSZipObject;
 
     constructor(id: string, content: string) {
         this.id = id;
         this.content = content;
         this.jszip = new JSzip();
     }
-
+    public getIndex(): JSzip.JSZipObject {
+        return this.index;
+    }
     /**
      * Returns the index.xml file contained in the zipped folder
      * Works regardless of the name of the first folder
      * Assumes that there is only one index.xml (as stated in specs)
      */
-    public async getIndex(): Promise<JSzip.JSZipObject> {
+    public async setIndex(): Promise<boolean> {
         const filename: string = "index.xml";
         let jszip: JSzip;
         let file: JSzip.JSZipObject;
         try {
             jszip = await this.jszip.loadAsync(this.content, { base64: true });
             file = jszip.file(/(index.xml)$/)[0];
+            this.jszip = jszip;
+            this.index = file;
+            if (file) {
+                return Promise.resolve(true);
+            } else {
+                return Promise.resolve(false);
+            }
         } catch (err) {
-            Log.test("error occured opening file!");
-            return Promise.reject(err);
+            return Promise.reject(false);
         }
-        this.jszip = jszip;
-        return Promise.resolve(file);
     }
 
-    public parse(xml: string): object[] {
+    public async parse(xml: string): Promise<object[]> {
         const doc: { [childNodes: string]: any } = parse5.parse(xml);
         // GET to the BUILDINGS
         const html: any = doc.childNodes[1];
         const body: any = html.childNodes[1];
         const container: any = body.childNodes[0];
         // Filter everything thats not a building (text)
-        let buildings: any = container.childNodes.filter((x: any) => x.tagName === "building" );
-        buildings = buildings.map((building: any) => {
+        const buildings: any = container.childNodes.filter((x: any) => x.tagName === "building" );
+        const data: object[] = [];
+        for (const building of buildings) {
             const x: any = {};
             // loop through attributes of building tag and make object with name, value pairs
             for (const buildingAttr of building.attrs) {
@@ -55,11 +63,19 @@ export default class XMLParse {
             for (const locAttr of locAttrs) {
                 x[locAttr.name] = locAttr.value;
             }
-            return x;
-        });
-        return buildings;
+            // use the path to parse the file that contains info about the rooms
+            x["rooms"] = await this.parseRooms(x.path);
+            data.push(x);
+        }
+        return data;
     }
 
+    /**
+     *
+     * @param path filename
+     * parses the file that contains info about the rooms
+     * @returns Promise<object[]>
+     */
     public async parseRooms(path: string): Promise<object[]> {
         path = path.slice(1);
         const pathRegex = new RegExp(path + "$");
