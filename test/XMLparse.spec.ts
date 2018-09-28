@@ -45,6 +45,7 @@ describe("XMLPARSE", () => {
         try {
             response = await p.setIndex();
         } catch (err) {
+            Log.test("Error: " + err);
             response = err;
         }
         expect(response).to.equal(false);
@@ -57,6 +58,7 @@ describe("XMLPARSE", () => {
         try {
             room = await parser.parseRooms(file);
         } catch (err) {
+            Log.test("Error: " + err);
             room = err;
         }
         expect(room).to.deep.equal([]);
@@ -74,5 +76,16 @@ describe("XMLPARSE", () => {
         }
         // Log.test(JSON.stringify(room));
         // expect(room).to.deep.equal([]);
+    });
+
+    it("Should have lat and long in data", async () => {
+        const valid: boolean = await parser.setIndex();
+        const index: JSZipObject = parser.getIndex();
+        const xml: string = await index.async("text");
+        const buildings: any = await parser.parse(xml);
+        Log.test(JSON.stringify(buildings));
+        expect(buildings[0].lat).to.not.equal(null || undefined);
+        expect(buildings[1].lon).to.not.equal(null || undefined);
+        Log.test(JSON.stringify(buildings[3]));
     });
 });

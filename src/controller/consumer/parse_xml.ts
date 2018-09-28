@@ -1,7 +1,6 @@
 import * as parse5 from "parse5";
 import * as JSzip from "jszip";
-import Log from "../../Util";
-import { inspect, isNull } from "util";
+import Request, { IGeoResponse } from "./request";
 
 export default class XMLParse {
 
@@ -9,7 +8,7 @@ export default class XMLParse {
     private content: string;
     private jszip: JSzip;
     private index: JSzip.JSZipObject;
-
+    private request: Request = new Request();
     constructor(id: string, content: string) {
         this.id = id;
         this.content = content;
@@ -51,6 +50,10 @@ export default class XMLParse {
         // Filter everything thats not a building (text)
         const buildings: any = container.childNodes.filter((x: any) => x.tagName === "building" );
         const data: object[] = [];
+        const roomsPromises: Array<Promise<{}>> = [];
+        const locPromises: Array<Promise<{}>> = [];
+        // I think instead of waiting for each promise to finish I need to implement
+        // a solution that keeps going and then uses promise.all to wait for everything to be DONE
         for (const building of buildings) {
             const x: any = {};
             // loop through attributes of building tag and make object with name, value pairs
@@ -64,9 +67,22 @@ export default class XMLParse {
                 x[locAttr.name] = locAttr.value;
             }
             // use the path to parse the file that contains info about the rooms
-            x["rooms"] = await this.parseRooms(x.path);
+            const rooms = this.parseRooms(x.path);
+            rooms.then( (res) => {
+                x["rooms"] = res;
+            });
+            roomsPromises.push(rooms);
+            // use request to get lat and long
+            const geoResponse: Promise<IGeoResponse> = this.request.getCoords(x["address"]);
+            geoResponse.then( (r) => {
+                x["lat"] = r.lat;
+                x["lon"] = r.lon;
+            });
+            locPromises.push(geoResponse);
             data.push(x);
         }
+        await Promise.all(locPromises);
+        await Promise.all(roomsPromises);
         return data;
     }
 

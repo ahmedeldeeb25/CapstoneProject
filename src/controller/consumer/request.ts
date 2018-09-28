@@ -7,11 +7,12 @@ export interface IGeoResponse {
 }
 
 export default class Request {
+    private url: string = "http://sdmm.cs.ubc.ca:11316/api/v1/team_ccunnin8/";
 
-    public async getCoords(url: string): Promise<{}> {
+    public async getCoords(address: string): Promise<{}> {
         // todo
         return new Promise( (resolve, reject) => {
-            http.get(url, (res) => {
+            http.get(this.url + address, (res) => {
                 const { statusCode } = res;
                 const contentType = res.headers["content-type"];
                 let error;
