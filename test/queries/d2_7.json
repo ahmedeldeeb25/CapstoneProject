@@ -1,0 +1,91 @@
+{
+    "title": "Select Name, Full Name from Rooms where Fullname is like %c",
+    "query": "In rooms dataset rooms, find entries whose Full Name begins with \"C\"; show Name and Full Name and Short Name.",
+    "response": {
+        "code": 200,
+        "body": {
+            "result": [
+                {
+                    "rooms_name": "CIRS_1250",
+                    "rooms_fullname": "Centre for Interactive  Research on Sustainability",
+                    "rooms_shortname": "CIRS"
+                },
+                {
+                    "rooms_name": "CHBE_101",
+                    "rooms_fullname": "Chemical and Biological Engineering Building",
+                    "rooms_shortname": "CHBE"
+                },
+                {
+                    "rooms_name": "CHBE_102",
+                    "rooms_fullname": "Chemical and Biological Engineering Building",
+                    "rooms_shortname": "CHBE"
+                },
+                {
+                    "rooms_name": "CHBE_103",
+                    "rooms_fullname": "Chemical and Biological Engineering Building",
+                    "rooms_shortname": "CHBE"
+                },
+                {
+                    "rooms_name": "CHEM_B150",
+                    "rooms_fullname": "Chemistry",
+                    "rooms_shortname": "CHEM"
+                },
+                {
+                    "rooms_name": "CHEM_B250",
+                    "rooms_fullname": "Chemistry",
+                    "rooms_shortname": "CHEM"
+                },
+                {
+                    "rooms_name": "CHEM_C124",
+                    "rooms_fullname": "Chemistry",
+                    "rooms_shortname": "CHEM"
+                },
+                {
+                    "rooms_name": "CHEM_C126",
+                    "rooms_fullname": "Chemistry",
+                    "rooms_shortname": "CHEM"
+                },
+                {
+                    "rooms_name": "CHEM_D200",
+                    "rooms_fullname": "Chemistry",
+                    "rooms_shortname": "CHEM"
+                },
+                {
+                    "rooms_name": "CHEM_D300",
+                    "rooms_fullname": "Chemistry",
+                    "rooms_shortname": "CHEM"
+                },
+                {
+                    "rooms_name": "CEME_1202",
+                    "rooms_fullname": "Civil and Mechanical Engineering",
+                    "rooms_shortname": "CEME"
+                },
+                {
+                    "rooms_name": "CEME_1204",
+                    "rooms_fullname": "Civil and Mechanical Engineering",
+                    "rooms_shortname": "CEME"
+                },
+                {
+                    "rooms_name": "CEME_1206",
+                    "rooms_fullname": "Civil and Mechanical Engineering",
+                    "rooms_shortname": "CEME"
+                },
+                {
+                    "rooms_name": "CEME_1210",
+                    "rooms_fullname": "Civil and Mechanical Engineering",
+                    "rooms_shortname": "CEME"
+                },
+                {
+                    "rooms_name": "CEME_1212",
+                    "rooms_fullname": "Civil and Mechanical Engineering",
+                    "rooms_shortname": "CEME"
+                },
+                {
+                    "rooms_name": "CEME_1215",
+                    "rooms_fullname": "Civil and Mechanical Engineering",
+                    "rooms_shortname": "CEME"
+                }
+            ]
+        }
+    }
+}

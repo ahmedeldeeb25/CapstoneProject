@@ -1,10 +1,9 @@
 import XMLParse from "../src/controller/consumer/parse_xml";
 import * as fs from "fs";
-import { promisify, inspect, isArray } from "util";
+import { promisify } from "util";
 import { JSZipObject } from "../node_modules/@types/jszip";
 import { expect } from "chai";
 import * as path from "path";
-import * as parse5 from "parse5";
 import Log from "../src/Util";
 
 describe("XMLPARSE", () => {
@@ -30,9 +29,9 @@ describe("XMLPARSE", () => {
         const valid: boolean = await parser.setIndex();
         const index: JSZipObject = parser.getIndex();
         const xml: string = await index.async("text");
-        const buildings: any = await parser.parse(xml);
+        const rooms: any = await parser.parse(xml);
         expect(valid).to.equal(true);
-        expect(buildings.length).to.equal(62);
+        expect(rooms.length).to.equal(284);
     });
 
     it("Should return false if given invalid XML document", async () => {
@@ -79,13 +78,16 @@ describe("XMLPARSE", () => {
     });
 
     it("Should have lat and long in data", async () => {
-        const valid: boolean = await parser.setIndex();
-        const index: JSZipObject = parser.getIndex();
-        const xml: string = await index.async("text");
-        const buildings: any = await parser.parse(xml);
-        Log.test(JSON.stringify(buildings));
-        expect(buildings[0].lat).to.not.equal(null || undefined);
-        expect(buildings[1].lon).to.not.equal(null || undefined);
-        Log.test(JSON.stringify(buildings[3]));
+        let rooms: any;
+        try {
+            const valid: boolean = await parser.setIndex();
+            const index: JSZipObject = parser.getIndex();
+            const xml: string = await index.async("text");
+            rooms = await parser.parse(xml);
+        } catch (err) {
+            throw Error("ERROR: " + err);
+        }
+        expect(rooms[0]["rooms_lat"]).to.not.equal(null || undefined);
+        expect(rooms[1]["rooms_lon"]).to.not.equal(null || undefined);
     });
 });

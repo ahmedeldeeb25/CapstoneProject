@@ -2,6 +2,24 @@ import * as parse5 from "parse5";
 import * as JSzip from "jszip";
 import Request, { IGeoResponse } from "./request";
 
+interface IROOM {
+    number: string;
+    link: string;
+    seats: string;
+    furniture: string;
+    type: string;
+}
+
+interface IBUILDING {
+    code: string;
+    name: string;
+    path: string;
+    address: string;
+    lat: number;
+    lon: number;
+    rooms: IROOM[];
+}
+
 export default class XMLParse {
 
     private id: string;
@@ -49,7 +67,7 @@ export default class XMLParse {
         const container: any = body.childNodes[0];
         // Filter everything thats not a building (text)
         const buildings: any = container.childNodes.filter((x: any) => x.tagName === "building" );
-        const data: object[] = [];
+        const data: IBUILDING[] = [];
         const roomsPromises: Array<Promise<{}>> = [];
         const locPromises: Array<Promise<{}>> = [];
         // I think instead of waiting for each promise to finish I need to implement
@@ -83,7 +101,7 @@ export default class XMLParse {
         }
         await Promise.all(locPromises);
         await Promise.all(roomsPromises);
-        return data;
+        return this.format_data(data);
     }
 
     /**
@@ -134,5 +152,27 @@ export default class XMLParse {
             data.push(newRoom);
         }
         return Promise.resolve(data);
+    }
+
+    private format_data(buildings: IBUILDING[]): object[] {
+        const rooms: object[] = [];
+        for (const building of buildings) {
+            for (const room of building["rooms"]) {
+                const newRoom: any = {};
+                newRoom[`${this.id}_name`] = `${building.code}_${room["number"]}`;
+                newRoom[`${this.id}_fullname`] = building.name;
+                newRoom[`${this.id}_shortname`] = building.code;
+                newRoom[`${this.id}_seats`] = parseFloat(room.seats);
+                newRoom[`${this.id}_furniture`] = room.furniture;
+                newRoom[`${this.id}_href`] = room.link;
+                newRoom[`${this.id}_type`] = room.type;
+                newRoom[`${this.id}_address`] = building.address;
+                newRoom[`${this.id}_lat`] = building.lat;
+                newRoom[`${this.id}_lon`] = building.lon;
+                newRoom[`${this.id}_number`] = room.number;
+                rooms.push(newRoom);
+            }
+        }
+        return rooms;
     }
 }

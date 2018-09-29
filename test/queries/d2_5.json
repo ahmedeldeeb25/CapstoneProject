@@ -1,0 +1,103 @@
+{
+    "title": "Select Name Full Name from Rooms where Latitude > 49.263 and Latitude < 49.264",
+    "query": "In rooms dataset rooms, find entries whose Latitude is greater than 49.263 and Latitude is less than 49.264; show Name and Full Name.",
+    "response": {
+        "code": 200,
+        "body": {
+            "result": [
+                {
+                    "rooms_name": "AERL_120",
+                    "rooms_fullname": "Aquatic Ecosystems Research Laboratory"
+                },
+                {
+                    "rooms_name": "SCRF_100",
+                    "rooms_fullname": "Neville Scarfe"
+                },
+                {
+                    "rooms_name": "SCRF_1003",
+                    "rooms_fullname": "Neville Scarfe"
+                },
+                {
+                    "rooms_name": "SCRF_1004",
+                    "rooms_fullname": "Neville Scarfe"
+                },
+                {
+                    "rooms_name": "SCRF_1005",
+                    "rooms_fullname": "Neville Scarfe"
+                },
+                {
+                    "rooms_name": "SCRF_1020",
+                    "rooms_fullname": "Neville Scarfe"
+                },
+                {
+                    "rooms_name": "SCRF_1021",
+                    "rooms_fullname": "Neville Scarfe"
+                },
+                {
+                    "rooms_name": "SCRF_1022",
+                    "rooms_fullname": "Neville Scarfe"
+                },
+                {
+                    "rooms_name": "SCRF_1023",
+                    "rooms_fullname": "Neville Scarfe"
+                },
+                {
+                    "rooms_name": "SCRF_1024",
+                    "rooms_fullname": "Neville Scarfe"
+                },
+                {
+                    "rooms_name": "SCRF_1328",
+                    "rooms_fullname": "Neville Scarfe"
+                },
+                {
+                    "rooms_name": "SCRF_200",
+                    "rooms_fullname": "Neville Scarfe"
+                },
+                {
+                    "rooms_name": "SCRF_201",
+                    "rooms_fullname": "Neville Scarfe"
+                },
+                {
+                    "rooms_name": "SCRF_202",
+                    "rooms_fullname": "Neville Scarfe"
+                },
+                {
+                    "rooms_name": "SCRF_203",
+                    "rooms_fullname": "Neville Scarfe"
+                },
+                {
+                    "rooms_name": "SCRF_204",
+                    "rooms_fullname": "Neville Scarfe"
+                },
+                {
+                    "rooms_name": "SCRF_204A",
+                    "rooms_fullname": "Neville Scarfe"
+                },
+                {
+                    "rooms_name": "SCRF_205",
+                    "rooms_fullname": "Neville Scarfe"
+                },
+                {
+                    "rooms_name": "SCRF_206",
+                    "rooms_fullname": "Neville Scarfe"
+                },
+                {
+                    "rooms_name": "SCRF_207",
+                    "rooms_fullname": "Neville Scarfe"
+                },
+                {
+                    "rooms_name": "SCRF_208",
+                    "rooms_fullname": "Neville Scarfe"
+                },
+                {
+                    "rooms_name": "SCRF_209",
+                    "rooms_fullname": "Neville Scarfe"
+                },
+                {
+                    "rooms_name": "SCRF_210",
+                    "rooms_fullname": "Neville Scarfe"
+                }
+            ]
+        }
+    }
+}

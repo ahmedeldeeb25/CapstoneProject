@@ -1,0 +1,43 @@
+{
+    "title": "Select Number, Seats from Rooms where Address = '1984 West Mall'",
+    "query": "In rooms dataset rooms, find entries whose Address is \"1984 West Mall\"; show Number and Seats.",
+    "response": {
+        "code": 200,
+        "body": {
+            "result": [
+                {
+                    "rooms_number": "100",
+                    "rooms_seats": 225
+                },
+                {
+                    "rooms_number": "101",
+                    "rooms_seats": 60
+                },
+                {
+                    "rooms_number": "147",
+                    "rooms_seats": 60
+                },
+                {
+                    "rooms_number": "200",
+                    "rooms_seats": 100
+                },
+                {
+                    "rooms_number": "201",
+                    "rooms_seats": 42
+                },
+                {
+                    "rooms_number": "212",
+                    "rooms_seats": 72
+                },
+                {
+                    "rooms_number": "214",
+                    "rooms_seats": 39
+                },
+                {
+                    "rooms_number": "242",
+                    "rooms_seats": 21
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "title": "Select * from Rooms where Name is ANGU_039",
+    "query": "In rooms dataset rooms, find entries whose Name is \"ANGU_039\"; show Name, Full Name, Short Name, Seats, Furniture, Link, Type, Address, Latitude and Longitude.",
+    "response": {
+        "code": 200,
+        "body": {
+            "result": [
+                {
+                    "rooms_name": "ANGU_039",
+                    "rooms_fullname": "Henry Angus",
+                    "rooms_shortname": "ANGU",
+                    "rooms_seats": 54,
+                    "rooms_furniture": "Classroom-Fixed Tables/Movable Chairs",
+                    "rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/ANGU-039",
+                    "rooms_type": "Case Style",
+                    "rooms_address": "2053 Main Mall",
+                    "rooms_lat": 49.26486,
+                    "rooms_lon": -123.25364
+                }
+            ]
+        }
+    }
+}

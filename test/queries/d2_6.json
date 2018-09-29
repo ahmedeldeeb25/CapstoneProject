@@ -1,0 +1,215 @@
+{
+    "title": "Select Name, Full Name from Rooms where Seats is >= 100",
+    "query": "In rooms dataset rooms, find entries whose Seats is not less than 100; show Name and Full Name.",
+    "response": {
+        "code": 200,
+        "body": {
+            "result": [
+                {
+                    "rooms_name": "AERL_120",
+                    "rooms_fullname": "Aquatic Ecosystems Research Laboratory"
+                },
+                {
+                    "rooms_name": "BIOL_2000",
+                    "rooms_fullname": "Biological Sciences"
+                },
+                {
+                    "rooms_name": "CIRS_1250",
+                    "rooms_fullname": "Centre for Interactive  Research on Sustainability"
+                },
+                {
+                    "rooms_name": "CHBE_101",
+                    "rooms_fullname": "Chemical and Biological Engineering Building"
+                },
+                {
+                    "rooms_name": "CHEM_B150",
+                    "rooms_fullname": "Chemistry"
+                },
+                {
+                    "rooms_name": "CHEM_B250",
+                    "rooms_fullname": "Chemistry"
+                },
+                {
+                    "rooms_name": "CHEM_D200",
+                    "rooms_fullname": "Chemistry"
+                },
+                {
+                    "rooms_name": "CHEM_D300",
+                    "rooms_fullname": "Chemistry"
+                },
+                {
+                    "rooms_name": "CEME_1202",
+                    "rooms_fullname": "Civil and Mechanical Engineering"
+                },
+                {
+                    "rooms_name": "ESB_1012",
+                    "rooms_fullname": "Earth Sciences Building"
+                },
+                {
+                    "rooms_name": "ESB_1013",
+                    "rooms_fullname": "Earth Sciences Building"
+                },
+                {
+                    "rooms_name": "FSC_1005",
+                    "rooms_fullname": "Forest Sciences Centre"
+                },
+                {
+                    "rooms_name": "FRDM_153",
+                    "rooms_fullname": "Friedman Building"
+                },
+                {
+                    "rooms_name": "GEOG_100",
+                    "rooms_fullname": "Geography"
+                },
+                {
+                    "rooms_name": "GEOG_200",
+                    "rooms_fullname": "Geography"
+                },
+                {
+                    "rooms_name": "HEBB_100",
+                    "rooms_fullname": "Hebb"
+                },
+                {
+                    "rooms_name": "HENN_200",
+                    "rooms_fullname": "Hennings"
+                },
+                {
+                    "rooms_name": "HENN_201",
+                    "rooms_fullname": "Hennings"
+                },
+                {
+                    "rooms_name": "HENN_202",
+                    "rooms_fullname": "Hennings"
+                },
+                {
+                    "rooms_name": "ANGU_098",
+                    "rooms_fullname": "Henry Angus"
+                },
+                {
+                    "rooms_name": "DMP_110",
+                    "rooms_fullname": "Hugh Dempster Pavilion"
+                },
+                {
+                    "rooms_name": "DMP_310",
+                    "rooms_fullname": "Hugh Dempster Pavilion"
+                },
+                {
+                    "rooms_name": "IBLC_182",
+                    "rooms_fullname": "Irving K Barber Learning Centre"
+                },
+                {
+                    "rooms_name": "IBLC_261",
+                    "rooms_fullname": "Irving K Barber Learning Centre"
+                },
+                {
+                    "rooms_name": "LSK_200",
+                    "rooms_fullname": "Leonard S. Klinck (also known as CSCI)"
+                },
+                {
+                    "rooms_name": "LSK_201",
+                    "rooms_fullname": "Leonard S. Klinck (also known as CSCI)"
+                },
+                {
+                    "rooms_name": "LSC_1001",
+                    "rooms_fullname": "Life Sciences Centre"
+                },
+                {
+                    "rooms_name": "LSC_1002",
+                    "rooms_fullname": "Life Sciences Centre"
+                },
+                {
+                    "rooms_name": "LSC_1003",
+                    "rooms_fullname": "Life Sciences Centre"
+                },
+                {
+                    "rooms_name": "MCLD_202",
+                    "rooms_fullname": "MacLeod"
+                },
+                {
+                    "rooms_name": "MCLD_228",
+                    "rooms_fullname": "MacLeod"
+                },
+                {
+                    "rooms_name": "MCML_166",
+                    "rooms_fullname": "MacMillan"
+                },
+                {
+                    "rooms_name": "MATH_100",
+                    "rooms_fullname": "Mathematics"
+                },
+                {
+                    "rooms_name": "MATX_1100",
+                    "rooms_fullname": "Mathematics Annex"
+                },
+                {
+                    "rooms_name": "SCRF_100",
+                    "rooms_fullname": "Neville Scarfe"
+                },
+                {
+                    "rooms_name": "PHRM_1101",
+                    "rooms_fullname": "Pharmaceutical Sciences Building"
+                },
+                {
+                    "rooms_name": "PHRM_1201",
+                    "rooms_fullname": "Pharmaceutical Sciences Building"
+                },
+                {
+                    "rooms_name": "SRC_220A",
+                    "rooms_fullname": "Student Recreation Centre"
+                },
+                {
+                    "rooms_name": "SRC_220B",
+                    "rooms_fullname": "Student Recreation Centre"
+                },
+                {
+                    "rooms_name": "SRC_220C",
+                    "rooms_fullname": "Student Recreation Centre"
+                },
+                {
+                    "rooms_name": "WESB_100",
+                    "rooms_fullname": "Wesbrook"
+                },
+                {
+                    "rooms_name": "WESB_201",
+                    "rooms_fullname": "Wesbrook"
+                },
+                {
+                    "rooms_name": "SWNG_121",
+                    "rooms_fullname": "West Mall Swing Space"
+                },
+                {
+                    "rooms_name": "SWNG_122",
+                    "rooms_fullname": "West Mall Swing Space"
+                },
+                {
+                    "rooms_name": "SWNG_221",
+                    "rooms_fullname": "West Mall Swing Space"
+                },
+                {
+                    "rooms_name": "SWNG_222",
+                    "rooms_fullname": "West Mall Swing Space"
+                },
+                {
+                    "rooms_name": "WOOD_1",
+                    "rooms_fullname": "Woodward (Instructional Resources Centre-IRC)"
+                },
+                {
+                    "rooms_name": "WOOD_2",
+                    "rooms_fullname": "Woodward (Instructional Resources Centre-IRC)"
+                },
+                {
+                    "rooms_name": "WOOD_4",
+                    "rooms_fullname": "Woodward (Instructional Resources Centre-IRC)"
+                },
+                {
+                    "rooms_name": "WOOD_5",
+                    "rooms_fullname": "Woodward (Instructional Resources Centre-IRC)"
+                },
+                {
+                    "rooms_name": "WOOD_6",
+                    "rooms_fullname": "Woodward (Instructional Resources Centre-IRC)"
+                }
+            ]
+        }
+    }
+}
