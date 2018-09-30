@@ -1,0 +1,15 @@
+{
+    "title": "Select Title, Average from Courses where ID is 400 group by Title",
+    "query": "In courses dataset courses grouped by ID, find entries whose ID is \"400\"; show ID and passers, where passers is the SUM of Pass.",
+    "response": {
+        "code": 200,
+        "body": {
+            "result": [
+                {
+                    "courses_id": "400",
+                    "passers": 10225
+                }
+            ]
+        }
+    }
+}

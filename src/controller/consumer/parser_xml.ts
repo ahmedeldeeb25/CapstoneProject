@@ -1,6 +1,7 @@
-import * as parse5 from "parse5";
+import * as parse5 from "parse5/lib";
 import * as JSzip from "jszip";
 import Request, { IGeoResponse } from "./request";
+import Parser from "./Parser";
 
 interface IROOM {
     number: string;
@@ -20,18 +21,15 @@ interface IBUILDING {
     rooms: IROOM[];
 }
 
-export default class XMLParse {
+export default class XMLParse extends Parser {
 
-    private id: string;
-    private content: string;
-    private jszip: JSzip;
     private index: JSzip.JSZipObject;
     private request: Request = new Request();
+
     constructor(id: string, content: string) {
-        this.id = id;
-        this.content = content;
-        this.jszip = new JSzip();
+        super(id, content);
     }
+
     public getIndex(): JSzip.JSZipObject {
         return this.index;
     }
@@ -59,7 +57,22 @@ export default class XMLParse {
         }
     }
 
-    public async parse(xml: string): Promise<object[]> {
+    public async parse(xml?: string): Promise<object[]> {
+        if (!xml) {
+            if (this.getIndex) {
+                try {
+                    await this.setIndex();
+                } catch (err) {
+                    throw Error("Couldn't set index");
+                }
+            }
+            const index: JSzip.JSZipObject = this.getIndex();
+            try {
+                xml = await index.async("text");
+            } catch (err) {
+                throw Error("couldn't get contents of index.xml");
+            }
+        }
         const doc: { [childNodes: string]: any } = parse5.parse(xml);
         // GET to the BUILDINGS
         const html: any = doc.childNodes[1];

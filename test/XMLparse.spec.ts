@@ -1,7 +1,7 @@
-import XMLParse from "../src/controller/consumer/parse_xml";
+import XMLParse from "../src/controller/consumer/parser_xml";
 import * as fs from "fs";
 import { promisify } from "util";
-import { JSZipObject } from "../node_modules/@types/jszip";
+import { JSZipObject } from "jszip";
 import { expect } from "chai";
 import * as path from "path";
 import Log from "../src/Util";
@@ -89,5 +89,16 @@ describe("XMLPARSE", () => {
         }
         expect(rooms[0]["rooms_lat"]).to.not.equal(null || undefined);
         expect(rooms[1]["rooms_lon"]).to.not.equal(null || undefined);
+    });
+
+    it("Should work if no parameter passed to parse", async () => {
+        let rooms: object[];
+        try {
+            rooms = await parser.parse();
+        } catch (err) {
+            rooms = err;
+        } finally {
+            expect(rooms.length).to.be.equal(284);
+        }
     });
 });

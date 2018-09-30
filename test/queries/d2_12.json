@@ -1,0 +1,71 @@
+{
+    "title": "Select Title, Average from Courses where ID is 400 group by Title",
+    "query": "In courses dataset courses grouped by Title, find entries whose ID is \"400\"; show Title and avg, where avg is the AVG of Average.",
+    "response": {
+        "code": 200,
+        "body": {
+            "result": [
+                {
+                    "courses_title": "app part diff eq",
+                    "avg": 68.55
+                },
+                {
+                    "courses_title": "adv crim procedr",
+                    "avg": 74.26
+                },
+                {
+                    "courses_title": "intr elem prtcls",
+                    "avg": 76.59
+                },
+                {
+                    "courses_title": "systematic pcol",
+                    "avg": 86.15
+                },
+                {
+                    "courses_title": "curr iss oral hl",
+                    "avg": 87.02
+                },
+                {
+                    "courses_title": "fourth-year russ",
+                    "avg": 84.36
+                },
+                {
+                    "courses_title": "pharm mgmt",
+                    "avg": 85.43
+                },
+                {
+                    "courses_title": "cmnty pr env sci",
+                    "avg": 82.95
+                },
+                {
+                    "courses_title": "rsrc prj env sci",
+                    "avg": 85.69
+                },
+                {
+                    "courses_title": "practicm/adv res",
+                    "avg": 84.78
+                },
+                {
+                    "courses_title": "intro ece & care",
+                    "avg": 79.5
+                },
+                {
+                    "courses_title": "sem urban studes",
+                    "avg": 80.45
+                },
+                {
+                    "courses_title": "res prop anal",
+                    "avg": 77.59
+                },
+                {
+                    "courses_title": "dig comm&tpcs ag",
+                    "avg": 85.21
+                },
+                {
+                    "courses_title": "audio strytellng",
+                    "avg": 79
+                }
+            ]
+        }
+    }
+}

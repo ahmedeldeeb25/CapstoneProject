@@ -1,0 +1,56 @@
+{
+    "title": "Select Title from Courses where ID is 400 group by Title",
+    "query": "In courses dataset courses grouped by Title, find entries whose ID is \"400\"; show Title.",
+    "response": {
+        "code": 200,
+        "body": {
+            "result": [
+                {
+                    "courses_title": "app part diff eq"
+                },
+                {
+                    "courses_title": "adv crim procedr"
+                },
+                {
+                    "courses_title": "intr elem prtcls"
+                },
+                {
+                    "courses_title": "systematic pcol"
+                },
+                {
+                    "courses_title": "curr iss oral hl"
+                },
+                {
+                    "courses_title": "fourth-year russ"
+                },
+                {
+                    "courses_title": "pharm mgmt"
+                },
+                {
+                    "courses_title": "cmnty pr env sci"
+                },
+                {
+                    "courses_title": "rsrc prj env sci"
+                },
+                {
+                    "courses_title": "practicm/adv res"
+                },
+                {
+                    "courses_title": "intro ece & care"
+                },
+                {
+                    "courses_title": "sem urban studes"
+                },
+                {
+                    "courses_title": "res prop anal"
+                },
+                {
+                    "courses_title": "dig comm&tpcs ag"
+                },
+                {
+                    "courses_title": "audio strytellng"
+                }
+            ]
+        }
+    }
+}

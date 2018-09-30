@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import Validator from "../src/controller/consumer/validator";
-import Parser from "../src/controller/consumer/parser_cvs";
+import CVSParser from "../src/controller/consumer/parser_cvs";
 import { promisify } from "util";
 import * as path from "path";
 import * as fs from "fs";
@@ -60,14 +60,14 @@ describe("Consumer valid_file validator", () => {
 
 describe("Consumer Parser", () => {
 
-    let parser: Parser;
+    let parser: CVSParser;
     const filename: string = path.join(__dirname, "/data/small_test.zip");
     const id: string = "small_test_1";
     before("Before each", async () => {
         // assumes that file is valid
         const buffer: Buffer = await (promisify)(fs.readFile)(filename);
         const content: string = buffer.toString("base64");
-        parser = new Parser(id, content);
+        parser = new CVSParser(id, content);
     });
 
     after("After each", () => {
@@ -116,7 +116,7 @@ describe("Consumer Parser", () => {
                 small_test_1_section: "001",
             },
         ];
-        const actual: object[] = await parser.parse_data();
+        const actual: object[] = await parser.parse();
         expect(actual).to.deep.equal(expected);
     });
 

@@ -5,8 +5,9 @@
  */
 import * as JSzip from "jszip";
 import * as readline from "readline";
+import Parser from "./Parser";
 
-export default class Parser {
+export default class CVSParser extends Parser {
 
     private mKeys: string[] = ["pass", "fail", "audit", "avg", "course"];
     private translate: { [index: string]: string } = {
@@ -15,19 +16,14 @@ export default class Parser {
         id: "uuid",
         course: "id",
     };
-    private id: string;
-    private content: string;
-    private jszip: JSzip;
 
     constructor(id: string, content: string) {
-        this.id = id;
-        this.content = content;
-        this.jszip = new JSzip();
+        super(id, content);
     }
 
     // Parse the file
     // Return promise with JSON Object that represents all entries from all csv files in the folder
-    public async parse_data(): Promise<object[]> {
+    public async parse(): Promise<object[]> {
         const data: Array<Promise<Array<{}>>> = [];
         let folder: JSzip;
         try {

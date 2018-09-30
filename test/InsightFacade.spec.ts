@@ -117,6 +117,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
         try {
             response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Rooms);
         } catch (err) {
+            Log.test("Error occured: " + JSON.stringify(err));
             response = err;
         } finally {
             expect(response.code).to.equal(expected);
@@ -382,7 +383,11 @@ describe("InsightFacade PerformQuery", () => {
 
             const datasets: { [id: string]: string } = Object.assign({}, ...loadedDatasets);
             for (const [id, content] of Object.entries(datasets)) {
-                responsePromises.push(insightFacade.addDataset(id, content, InsightDatasetKind.Courses));
+                if (id === "rooms") {
+                    responsePromises.push(insightFacade.addDataset(id, content, InsightDatasetKind.Rooms));
+                } else {
+                    responsePromises.push(insightFacade.addDataset(id, content, InsightDatasetKind.Courses));
+                }
             }
             await Promise.all(responsePromises);
             // This try/catch is a hack to let your dynamic tests execute enough the addDataset method fails.

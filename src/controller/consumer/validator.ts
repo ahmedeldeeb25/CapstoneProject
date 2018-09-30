@@ -20,7 +20,7 @@ export default class Validator {
 
     // Returns true if the file is valid, false if not;
     public async valid_file(): Promise<boolean> {
-        return await this.contains_only_csv() && await this.data_doesnt_exist();
+       return await this.contains_only_csv() && await this.data_doesnt_exist();
     }
 
     // return false if the file doens't end in .csv
@@ -62,7 +62,7 @@ export default class Validator {
     // with the name ${foldername}.json
     private data_doesnt_exist(): Promise<boolean> {
         return new Promise<boolean>((resolve, reject) => {
-            fs.exists(path.join(__dirname, "..", "..", "cache", `${this.id}.json`), (exists) => {
+            fs.exists(path.join(__dirname, "..", "..", `${this.id}.json`), (exists) => {
                 resolve(!exists);
             });
         });

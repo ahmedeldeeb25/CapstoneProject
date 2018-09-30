@@ -2,7 +2,7 @@ import { expect } from "chai";
 import QueryEngine from "../src/controller/queryEngine/retrieveResults";
 import { IsplitQuery, SplitQuery } from "../src/controller/queryAST/splitQuery";
 import Log from "../src/Util";
-import Parser from "../src/controller/consumer/parser_cvs";
+import CVSParser from "../src/controller/consumer/parser_cvs";
 import { promisify } from "util";
 import * as fs from "fs";
 import * as path from "path";
@@ -35,11 +35,11 @@ describe("Query Engine", () => {
         const filename: string = path.join(__dirname, "/data/small_test.zip");
         const buffer: Buffer = await (promisify)(fs.readFile)(filename);
         const content = buffer.toString("base64");
-        const parser: Parser = new Parser(id, content);
+        const parser: CVSParser = new CVSParser(id, content);
         query = new QueryEngine(id);
 
         try {
-            const data: object[] = await parser.parse_data();
+            const data: object[] = await parser.parse();
             // await parser.store_data(data);
             // await query.set_data();
             query.data_setter(data);

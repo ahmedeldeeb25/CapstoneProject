@@ -1,12 +1,14 @@
 import Log from "../Util";
 import { IInsightFacade, InsightResponse, InsightDatasetKind, InsightDataset } from "./IInsightFacade";
 import Validator from "./consumer/validator";
-import Parser from "./consumer/parser_cvs";
+import CVSParser from "./consumer/parser_cvs";
 import { isNull, promisify } from "util";
 import { SplitQuery } from "./queryAST/splitQuery";
 import ValidateQuery from "./queryAST/validateQuery";
 import QueryEngine from "./queryEngine/retrieveResults";
 import * as fs from "fs";
+import XMLParse from "./consumer/parser_xml";
+import IParser from "./consumer/Parser";
 /**
  * This is the main programmatic entry point for the project.
  */
@@ -23,22 +25,29 @@ export default class InsightFacade implements IInsightFacade {
 
     public async addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<InsightResponse> {
         const validator = new Validator(id, content);
-        const parser: Parser = new Parser(id, content);
+        let parser: IParser;
         let validFile: boolean;
         let data: object[];
+        // Set type of parser based on the kind passed in
+        parser = kind === "rooms" ? new XMLParse(id, content) : new CVSParser(id, content);
         try {
-            validFile = await validator.valid_file();
+            // invalid rooms data will throw an error while parsing
+            validFile = kind === "courses" ? await validator.valid_file() : true;
+            // if file valid AND is the data not already there?
             if (!validFile || this.cache[id]) {
                 return Promise.reject({ code: 400, body: { error: "file was not valid" } });
+                // if the data is already there just load it into RAM
             } else if (await (promisify)(fs.exists)(`./${id}.json`)) {
                 data = JSON.parse(await (promisify)(fs.readFile)(`./${id}.json`, "utf-8"));
                 this.cache[id] = data;
             } else {
-                data = await parser.parse_data();
+                // file is valid and data is not there so parse, save it to RAM and hard disk
+                data = await parser.parse();
                 this.cache[id] = data;
                 await (promisify)(fs.writeFile)(`./${id}.json`, JSON.stringify(data));
             }
         } catch (err) {
+            Log.test("ERROR: " + err);
             return Promise.reject({ code: 400, body: { error: err } });
         }
         this.dataSets.push({ id, kind, numRows: data.length });
