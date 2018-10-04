@@ -81,6 +81,22 @@ export default class QueryEngine {
 
     /**
      *
+     * @param query takse split query
+     * @return void
+     * converts all the Keys in each Aggregator to
+     * how they appear in the data using the id
+     * ie, Seats -> rooms_seats
+     */
+    private convertAggId(query: IsplitQuery): void {
+        for (const agg of query.aggregators) {
+            let key: string = agg.get_key();
+            key = this.id_key(key);
+            agg.set_key(key);
+        }
+    }
+
+    /**
+     *
      * @param filter Takes a list of filters or just 1 filter if it's a "find all entries"
      * @returns object[] of filtered data by each filter
      */

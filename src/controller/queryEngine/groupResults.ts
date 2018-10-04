@@ -12,7 +12,8 @@ export default class Grouper {
     // Groups Together Keys To Group On So that it's not nested
     // Assummes that the keys being passed in have already been reformatted
     // ie Seats -> rooms_seats
-    public groupData(keys: string[], data: object[] = this.data): object[] {
+    public groupData(keys: string[], data: object[]
+         = this.data): { [name: string]: Array<{ [name: string]: string | number}> } {
         const key: string = keys.join("-");
         const newData = data.slice();
         newData.map( (item: any) => {
@@ -25,7 +26,8 @@ export default class Grouper {
         return this.groupBy(key, data);
     }
 
-    public groupBy(key: string, data: object[] = this.data): object[] {
+    public groupBy(key: string, data: object[]
+         = this.data): { [name: string]: Array<{ [name: string]: string | number }> } {
         return data.reduce( (result: any, item: any) => ({
             ...result,
             [item[key]]: [

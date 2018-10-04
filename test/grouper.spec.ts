@@ -1,7 +1,9 @@
 import { expect } from "chai";
-import Grouper from "../src/controller/queryEngine/grouperResults";
+import Grouper from "../src/controller/queryEngine/groupResults";
 import Log from "../src/Util";
 import { inspect } from "util";
+import Aggregator from "../src/controller/queryAST/Aggregation";
+import AggregateResults from "../src/controller/queryEngine/aggregateResults";
 
 describe("Grouper", () => {
 
@@ -73,6 +75,17 @@ describe("Grouper", () => {
     it("Should group data multiple deep", () => {
         const groups: string[] = ["rooms_name", "rooms_seats"];
         const grouper = new Grouper(data);
-        Log.test(inspect(grouper.groupData(groups)));
+        // Log.test(inspect(grouper.groupData(groups)));
+    });
+
+    it("Should aggregate groups", () => {
+        const agg1 = new Aggregator("avg", "AVG", "rooms_seats");
+        const agg2 = new Aggregator("countName", "COUNT", "rooms_name");
+        const show: string[] = ["rooms_seats", "rooms_name", "rooms_fullname"];
+        const groups: string[] = ["rooms_name", "rooms_seast"];
+        const grouper: Grouper = new Grouper(data);
+        const grouped: any = grouper.groupData(groups);
+        const aggregator: AggregateResults = new AggregateResults([agg1, agg2], show);
+        Log.test(inspect(aggregator.aggregate(grouped)));
     });
 });

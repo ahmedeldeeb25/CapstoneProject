@@ -30,6 +30,11 @@ export default class Aggregator {
     public get_aggregator(): string {
         return this.aggregator;
     }
+
+    public set_key(key: string ) {
+        this.key = key;
+    }
+
     public validate(): boolean {
         // "Apply keys can't have _ "
         if (this.input.includes("_")) {
@@ -46,5 +51,63 @@ export default class Aggregator {
             }
         }
         return true;
+    }
+
+    public aggregate(data: Array<{ [index: string]: number | string }>): number {
+        switch (this.aggregator) {
+            case "MAX":
+                return this.max(data);
+            case "MIN":
+                return this.min(data);
+            case "SUM":
+                return this.sum(data);
+            case "COUNT":
+                return this.count(data);
+            case "AVG":
+                return this.avg(data);
+        }
+    }
+
+    // returns the sum of given data group
+    private sum(data: Array<{ [index: string]: number | string }>): number {
+        let sum: 0;
+        for (const d of data) {
+            sum += d[this.key] as number;
+        }
+        return sum;
+    }
+
+    // returns the max of given data group
+    private max(data: Array<{ [index: string]: number | string }>): number {
+        const nums: number[] = [];
+        for (const d of data) {
+            nums.push(d[this.key] as number);
+        }
+        return Math.max(...nums);
+    }
+
+    // returns the min of given data group
+    private min(data: Array<{ [index: string]: number | string }>): number {
+        const nums: number[] = [];
+        for (const d of data) {
+            nums.push(d[this.key] as number);
+        }
+        return Math.min(...nums);
+    }
+
+    // returns the avg of given data group
+    private avg(data: Array<{ [index: string]: number | string }>): number {
+        let sum: number = 0;
+        let count: number = 0;
+        for (const d of data) {
+            sum += d[this.key] as number;
+            count += 1;
+        }
+        return parseFloat((sum / count).toFixed(2));
+    }
+
+    // returns the count of given data group
+    private count(data: Array<{ [index: string]: number | string }>): number {
+        return data.length;
     }
 }
