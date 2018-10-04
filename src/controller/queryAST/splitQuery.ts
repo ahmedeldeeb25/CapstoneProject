@@ -2,22 +2,28 @@ import QueryFilter from "./queryFilter";
 import Order from "./queryOrder";
 import SOP from "./querySOP";
 import MOP from "./queryMOP";
+import Aggregator from "./Aggregation";
 
 export interface IsplitQuery {
     dataset: string;
     filter: QueryFilter | QueryFilter[];
     order: Order;
     show: string[];
+    grouped?: boolean;
+    groupedBy?: string[];
+    aggregators?: Aggregator[];
 }
 
 export class SplitQuery {
-    private regex: string = '(?= and (?:(?:[^"]*"){2})*[^"]*$| or (?:(?:[^"]*"){2})*[^"]*$)';
-    private POS_LOOK_AHEAD_AND: RegExp = new RegExp(this.regex, "g");
-    private COMMA: RegExp = /,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/;
-    private SEMI: RegExp = /;(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/;
-    private SPLIT_QUERY: IsplitQuery;
+    protected regex: string = '(?= and (?:(?:[^"]*"){2})*[^"]*$| or (?:(?:[^"]*"){2})*[^"]*$)';
+    protected POS_LOOK_AHEAD_AND: RegExp = new RegExp(this.regex, "g");
+    protected COMMA: RegExp = /,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/;
+    protected SEMI: RegExp = /;(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/;
+    protected SPLIT_QUERY: IsplitQuery;
 
     constructor(query: string) {
+        query = query.replace(/Full Name(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/g, "FullName");
+        query = query.replace(/Short Name(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/g, "ShortName");
         this.split_query(query);
     }
     // Returns an object with dataset, filter, show, order (IsplitQuery interface)
@@ -35,9 +41,9 @@ export class SplitQuery {
         const show: string[] = this.split_show(sepBySemi[1].trim());
         let order: Order = null;
         if (sepBySemi.length === 3) {
-            order = new Order(sepBySemi[2].trim().slice(0, -1));
+            order = new Order(sepBySemi[2].trim().slice(0, -1), show);
         }
-        this.SPLIT_QUERY = { dataset, filter, show, order };
+        this.SPLIT_QUERY = { dataset, filter, show, order, grouped: false };
     }
 
     public get_split_query(): IsplitQuery {
@@ -64,7 +70,7 @@ export class SplitQuery {
      * @returns QueryFilters built with ["is \"the and \that", "and is not equal to 75", "or is less than 400"]]
      *
      */
-    private split_filter(filter: string): QueryFilter | QueryFilter[] {
+    protected split_filter(filter: string): QueryFilter | QueryFilter[] {
         if (filter === "find all entries") {
             return new QueryFilter(true);
         } else {
@@ -82,7 +88,7 @@ export class SplitQuery {
      * @returns ["Department","Title","Audit"]
      *
      */
-    private split_show(show: string): string[] {
+    protected split_show(show: string): string[] {
         // trim show just in case
         show = show.trim();
         // if show has a period at the end remove the period

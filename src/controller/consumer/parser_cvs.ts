@@ -9,7 +9,7 @@ import Parser from "./Parser";
 
 export default class CVSParser extends Parser {
 
-    private mKeys: string[] = ["pass", "fail", "audit", "avg", "course"];
+    private mKeys: string[] = ["pass", "fail", "audit", "avg", "course", "year"];
     private translate: { [index: string]: string } = {
         subject: "dept",
         professor: "instructor",
@@ -87,6 +87,9 @@ export default class CVSParser extends Parser {
                     const key: string = keys[i];
                     const datum: string | number = this.mKeys.includes(key) ? parseFloat(entry[i]) : entry[i];
                     lineObj[`${this.id}_${key}`] = datum;
+                }
+                if (lineObj[`${this.id}_section`] === "overall") {
+                    lineObj[`${this.id}_year`] = 1900;
                 }
                 json.push(lineObj);
             }

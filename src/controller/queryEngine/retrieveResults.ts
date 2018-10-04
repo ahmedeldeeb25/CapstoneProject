@@ -20,6 +20,15 @@ export default class QueryEngine {
         Course: "course",
         Subject: "subject",
         Professor: "instructor",
+        Furniture: "furniture",
+        Link: "href",
+        Seats: "seats",
+        FullName: "fullname",
+        ShortName: "shortname",
+        Latitude: "lat",
+        Longitude: "lon",
+        Address: "address",
+        Number: "number",
     };
 
     constructor(id: string) {
@@ -38,7 +47,7 @@ export default class QueryEngine {
         let data: object[] = this.filter_data(query.filter);
         // sort if sort is true
         if (query.order) {
-            const orderOn: string = query.order.getKey();
+            const orderOn: string[] = query.order.getKeys();
             data = this.sort_data(data, orderOn);
         }
         // map so that it only shows what we want (i'm sure there's a nice ES6 way to do this)
@@ -106,17 +115,19 @@ export default class QueryEngine {
     }
 
     // sort the data
-    private sort_data(data: object[], orderOn: string): object[] {
-        orderOn = this.id_key(orderOn);
-        data = data.sort(((a: { [i: string]: number | string }, b: { [i: string]: number | string }) => {
-            if (a[orderOn] < b[orderOn]) {
-                return -1;
-            }
-            if (a[orderOn] > b[orderOn]) {
-                return 1;
-            }
-            return 0;
-        }));
+    private sort_data(data: object[], orderOns: string[]): object[] {
+        for (let orderOn of orderOns) {
+            orderOn = this.id_key(orderOn);
+            data = data.sort(((a: { [i: string]: number | string }, b: { [i: string]: number | string }) => {
+                if (a[orderOn] < b[orderOn]) {
+                    return -1;
+                }
+                if (a[orderOn] > b[orderOn]) {
+                    return 1;
+                }
+                return 0;
+            }));
+        }
         return data;
     }
 

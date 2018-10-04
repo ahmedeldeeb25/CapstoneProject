@@ -1,28 +1,52 @@
+import Log from "../../Util";
+
 export default class Order {
-    private key: string;
-    private phrase: string = "sort in ascending order by";
+    private keys: string[];
     private order: string;
-    private keys: string[] = ["Average", "Pass", "Fail", "Audit", "Department", "ID", "Instructor", "Title", "UUID"];
-    constructor(order: string) {
+    private direction: string;
+    private validKeys: string[];
+
+    constructor(order: string, show: string[]) {
         this.order = order.trim();
+        this.validKeys = show;
         this.parse(order);
     }
-    public getKey(): string { return this.key; }
+
+    public getKeys(): string[] { return this.keys; }
+
+    public getDirection(): string { return this.direction; }
 
     public validateOrder(): boolean {
-        return this.keys.includes(this.key)
+        return this.validateKeys(this.keys)
             && this.order.split(" ").length === 6
-            && /^sort in ascending order by/.test(this.order);
+            && (/^sort in ascending order by/.test(this.order) || /^sort in descending order by/.test(this.order));
     }
 
     public toString(): string {
-        return `key: ${this.key}`;
+        return `key: ${this.keys}`;
     }
 
     private parse(order: string) {
-        const words: string[] = order.split(" ");
-        const key: string = words.pop();
-        this.key = key;
+        // this no longer works with grouped queries
+        const words: string[] = order.split(" order by ");
+        const keysPhrase: string = words[1];
+        const keys: string[] = keysPhrase.replace(/,/g, " and").split(" and ");
+        this.keys = keys;
+
+        if (order.includes("ascending")) {
+            this.direction = "up";
+        } else {
+            this.direction = "down";
+        }
+    }
+
+    private validateKeys(keys: string[]): boolean {
+        for (const key of keys) {
+            if (!this.validKeys.includes(key)) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

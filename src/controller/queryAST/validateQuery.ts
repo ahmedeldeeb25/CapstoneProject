@@ -2,27 +2,38 @@ import { IsplitQuery, SplitQuery } from "./splitQuery";
 import QueryFilter from "./queryFilter";
 import Order from "./queryOrder";
 import { isArray } from "util";
+import Log from "../../Util";
+import Aggregator from "./Aggregation";
 
 /**
  * Take a query apart and determine if it is valid
  */
 export default class ValidateQuery {
-    private MORE_KEYS: string = "and";
     // test included for testing purposes
     private KIND: string[] = ["courses", "test", "rooms"];
-    private KEYS: string[] = ["Average", "Pass", "Fail", "Audit", "Department", "ID", "Instructor", "Title", "UUID"];
+    private KEYS: string[] =
+    ["Average", "Pass", "Fail",
+    "Audit", "Department", "ID",
+    "Instructor", "Title", "UUID",
+    "Seats", "Year", "FullName",
+    "ShortName", "Number", "Address",
+    "Name", "Address", "Type", "Link",
+    "Furniture",
+    ];
     private KEYWORDS: string[] = [
-        "In", "dataset", "find", "all", "show", "and", "or", "sort", "by", "entries", "is", "the", "of", "whose",
+        "In", "dataset", "find", "all", "show", "and", "or", "sort",
+        "by", "entries", "is", "the", "of", "whose", "where",
     ];
 
-    private ORDER: string = "sort in ascending order by";
-    private SHOW: string = "show";
-    private FILTER_ALL: string = "find all entries";
-    private FILTER: string = "find entries whose";
     private SPLIT_QUERY: SplitQuery;
+    private AGG_KEYS: string[] = [];
 
     public constructor(splitQuery: SplitQuery) {
         this.SPLIT_QUERY = splitQuery;
+        // work around, originally in show but two for of loops were acting like they were async...?
+        if (splitQuery.get_split_query().aggregators) {
+            this.get_agg_keys(splitQuery.get_split_query().aggregators);
+        }
     }
 
     /**
@@ -42,8 +53,11 @@ export default class ValidateQuery {
         const { filter } = splitQuery;
         const { order} = splitQuery;
         const { show } = splitQuery;
+        const { groupedBy } = splitQuery;
+        const { aggregators } = splitQuery;
         return this.valid_dataset(dataset) && this.valid_filter(filter)
-            && this.valid_show(show) && this.valid_order(order);
+            && this.valid_show(show, aggregators) && this.valid_order(order)
+            && this.valid_groups(groupedBy) && this.valid_aggregators(aggregators);
     }
 
     /**
@@ -55,7 +69,16 @@ export default class ValidateQuery {
      * fourth word is valid input
      */
     public valid_dataset(dataset: string): boolean {
-        const words: string[] = dataset.split(" ");
+        let words: string[];
+        const grouped: boolean | undefined = this.SPLIT_QUERY.get_split_query().grouped;
+        // Just check beginning part of DATASET_GROUPED if grouped else do normal (will check groupedBy idependently)
+        if (grouped) {
+            const splitDataset = dataset.split("grouped by");
+            words = splitDataset[0].trim().split(" ");
+        } else {
+            words = dataset.split(" ");
+        }
+        // TODO UPDATE FOR dataset grouped by
         return words[0] === "In"
             && this.valid_kind(words[1])
             && words[2] === "dataset"
@@ -76,10 +99,20 @@ export default class ValidateQuery {
         return true;
     }
 
-    public valid_show(show: string[]): boolean {
-        for (const index in show) {
-            if (!this.KEYS.includes(show[index])) {
+    public valid_show(show: string[], aggregators?: Aggregator[]): boolean {
+        // Make sure all the aggregator inputs are also in show
+        for (const agg of this.AGG_KEYS) {
+            if (!show.includes(agg)) {
                 return false;
+            }
+        }
+        // make sure show keys are all either keys or aggregator inputs
+        for (const key of show) {
+            // If it's not a regular key, then it needs to be an aggregator key
+            if (!this.KEYS.includes(key)) {
+                if (!this.AGG_KEYS.includes(key)) {
+                    return false;
+                }
             }
         }
         return true;
@@ -92,14 +125,37 @@ export default class ValidateQuery {
             return true;
         }
     }
+
+    public valid_aggregators(aggregators: Aggregator[]): boolean {
+        if (this.SPLIT_QUERY.get_split_query().grouped) {
+            return true;
+        } else {
+            return true;
+        }
+    }
+
+    public valid_groups(groups: string[]): boolean {
+        if (this.SPLIT_QUERY.get_split_query().grouped) {
+            for (const group of groups) {
+                if (!this.KEYS.includes(group)) {
+                    return false;
+                }
+            }
+            return true;
+        } else {
+            return true;
+        }
+    }
+
     public toString(): string {
         const splitQuery: IsplitQuery = this.SPLIT_QUERY.get_split_query();
-        const { dataset } = splitQuery;
-        const { filter } = splitQuery;
-        const { order } = splitQuery;
-        const { show } = splitQuery;
-        return `Dataset: ${this.valid_dataset(dataset)} Filter: ${this.valid_filter(filter)}
-            Show: ${this.valid_show(show)} Order: ${this.valid_order(order)}`;
+        const { dataset, filter, order, show, groupedBy, grouped, aggregators } = splitQuery;
+        return `\n\tDataset: ${this.valid_dataset(dataset)}
+                \n\tFilter: ${this.valid_filter(filter)}
+                \n\tShow: ${this.valid_show(show, aggregators)}
+                \n\tOrder: ${this.valid_order(order)}
+                \n\tGroups: ${this.valid_groups(groupedBy)}
+                \n\tAggregators: ${this.valid_aggregators(aggregators)}`;
     }
 
     private valid_kind(kind: string): boolean {
@@ -112,4 +168,11 @@ export default class ValidateQuery {
             && !input.includes("_")
             && !input.includes(" ");
     }
+
+    private get_agg_keys(aggs: Aggregator[]): void {
+        for (const agg of aggs) {
+            this.AGG_KEYS.push(agg.get_input());
+        }
+    }
+
 }

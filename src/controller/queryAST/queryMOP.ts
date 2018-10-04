@@ -13,7 +13,7 @@ export default class MOP extends CRITERIA {
 
     constructor(key: string, OP: string, target: number) {
         super(key, OP, target);
-        this.setKeys(["Average", "Pass", "Fail", "Audit"]);
+        this.setKeys(["Average", "Pass", "Fail", "Audit", "Latitude", "Longitude", "Seats", "Year"]);
         this.setPhrases(["greater than", "less than", "equal to", "not greater than",
                     "not less than", "not equal to"]);
     }

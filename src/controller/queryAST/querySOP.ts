@@ -15,7 +15,8 @@ export default class SOP extends CRITERIA {
 
     constructor(key: string, OP: string, target: string) {
         super(key, OP, target);
-        this.setKeys(["Department", "ID", "Instructor", "Title", "UUID"]);
+        this.setKeys(["Department", "ID", "Instructor", "Title", "UUID",
+             "FullName", "ShortName", "Number", "Name", "Address", "Type", "Furniture", "Link"]);
         this.setPhrases(["is", "is not", "includes", "does not include",
             "begins with", "does not begin with", "ends with", "does not end with"]);
     }

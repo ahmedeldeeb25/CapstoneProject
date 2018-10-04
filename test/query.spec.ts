@@ -5,6 +5,7 @@ import QueryFilter from "../src/controller/queryAST/queryFilter";
 import MOP from "../src/controller/queryAST/queryMOP";
 import SOP from "../src/controller/queryAST/querySOP";
 import Order from "../src/controller/queryAST/queryOrder";
+import SplitGroupQuery from "../src/controller/queryAST/splitGroupedQuery";
 
 describe("Query splitter", () => {
     const splitQuery = new SplitQuery("In rooms dataset rooms, find entries whose Average is greater" +
@@ -50,7 +51,7 @@ describe("Query splitter", () => {
     });
 
     it("Should have proper order", () => {
-        const expected: Order = new Order("sort in ascending order by Average");
+        const expected: Order = new Order("sort in ascending order by Average", ["Department", "ID", "Average"]);
         expect(IsplitQuery.order).to.deep.equal(expected);
     });
 
@@ -129,28 +130,28 @@ describe("QueryOP", () => {
 describe("Order", () => {
 
     it("Should return true with valid order", () => {
-        const order: Order = new Order("sort in ascending order by Average");
+        const order: Order = new Order("sort in ascending order by Average", ["Average"]);
         const actual: boolean = order.validateOrder();
         const expected: boolean = true;
         expect(actual).to.equal(expected);
     });
 
     it("Should return false with invalid order", () => {
-        const order: Order = new Order("sort in descending order by Average");
+        const order: Order = new Order("sort in descending order by Average", ["Average"]);
+        const actual: boolean = order.validateOrder();
+        const expected: boolean = true;
+        expect(actual).to.equal(expected);
+    });
+
+    it("Should return false with invalid order", () => {
+        const order: Order = new Order("descending order by Average", ["Average"]);
         const actual: boolean = order.validateOrder();
         const expected: boolean = false;
         expect(actual).to.equal(expected);
     });
 
     it("Should return false with invalid order", () => {
-        const order: Order = new Order("descending order by Average");
-        const actual: boolean = order.validateOrder();
-        const expected: boolean = false;
-        expect(actual).to.equal(expected);
-    });
-
-    it("Should return false with invalid order", () => {
-        const order: Order = new Order("sort in descending order by Average Department Title");
+        const order: Order = new Order("sort in descending order by Average Department Title", ["Average"]);
         const actual: boolean = order.validateOrder();
         const expected: boolean = false;
         expect(actual).to.equal(expected);
@@ -323,6 +324,101 @@ describe("Validate Query", () => {
     it("Should validate with commas in the show", () => {
         const query = "In courses dataset courses, find entries whose Average is greater than 95;" +
         " show Average, ID, UUID, and Title.";
+        const splitQuery: SplitQuery = new SplitQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        expect(parser.valid_query(query)).to.equal(true);
+    });
+
+    it("Should validate grouped query", () => {
+        const query = "In courses dataset courses grouped by Department, find entries whose Department is \"cpsc\";" +
+        " show Department, and avgGrade, where avgGrade is the AVG of Average.";
+        const splitQuery: SplitQuery = new SplitGroupQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        expect(parser.valid_query(query)).to.equal(true);
+    });
+
+    it("Should validate grouped query with order up", () => {
+        const query = "In courses dataset courses grouped by Department, find entries whose Department is \"cpsc\";" +
+            " show Department, Average and avgGrade, where avgGrade is the AVG of Average;"
+            + " sort in ascending order by Average.";
+        const splitQuery: SplitQuery = new SplitGroupQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        expect(parser.valid_query(query)).to.equal(true);
+    });
+
+    it("Should validate grouped query with order down", () => {
+        const query = "In courses dataset courses grouped by Department, find entries whose Department is \"cpsc\";" +
+            " show Department, Average and avgGrade, where avgGrade is the AVG of Average;"
+             + " sort in descending order by Average.";
+        const splitQuery: SplitQuery = new SplitGroupQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        expect(parser.valid_query(query)).to.equal(true);
+    });
+
+    it("Should validate grouped query multiple aggregations", () => {
+        const query = "In courses dataset courses grouped by Department, find entries whose Department is \"cpsc\";" +
+            " show Department, minGrade and avgGrade, where avgGrade is the AVG of Average and" +
+            " minGrade is the MIN of Fail.";
+        const splitQuery: SplitQuery = new SplitGroupQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        expect(parser.valid_query(query)).to.equal(true);
+    });
+
+    it("Should validate grouped query multiple aggregations multiple groups", () => {
+        const query = "In courses dataset courses grouped by Department and ID,"
+            + " find entries whose Department is \"cpsc\";" +
+            " show Department, minGrade and avgGrade, where avgGrade is the AVG of Average and" +
+            " minGrade is the MIN of Fail.";
+        const splitQuery: SplitQuery = new SplitGroupQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        expect(parser.valid_query(query)).to.equal(true);
+    });
+
+    it("Should validate grouped query multiple aggregations multiple groups full name in search", () => {
+        const query = "In courses dataset courses grouped by Department and ID,"
+            + " find entries whose Full Name is \"Full Name\";" +
+            " show Department, minGrade and avgGrade, where avgGrade is the AVG of Average and" +
+            " minGrade is the MIN of Fail.";
+        const splitQuery: SplitQuery = new SplitGroupQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        expect(parser.valid_query(query)).to.equal(true);
+    });
+
+    it("Should validate query with new keywords Latitude is greater than 47", () => {
+        const query = "In rooms dataset rooms, find entries whose Latitude is greater than 47;"
+        + " show Name and Full Name.";
+        const splitQuery: SplitQuery = new SplitQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        expect(parser.valid_query(query)).to.equal(true);
+    });
+
+    it("Should validate query with new keywords Longitude less than 100", () => {
+        const query = "In rooms dataset rooms, find entries whose Longitude is less than -100;"
+            + " show Name and Full Name.";
+        const splitQuery: SplitQuery = new SplitQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        expect(parser.valid_query(query)).to.equal(true);
+    });
+
+    it("Should validate query with new keywords Full Name begins with a", () => {
+        const query = "In rooms dataset rooms, find entries whose Full Name begins with \"a\";"
+            + " show Name, Full Name, Short Name and Seats.";
+        const splitQuery: SplitQuery = new SplitQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        expect(parser.valid_query(query)).to.equal(true);
+    });
+
+    it("Should validate query with new keywords Seats === 100", () => {
+        const query = "In rooms dataset rooms, find entries whose Seats is equal to 100;"
+            + " show Name, Full Name, Short Name and Link.";
+        const splitQuery: SplitQuery = new SplitQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        expect(parser.valid_query(query)).to.equal(true);
+    });
+
+    it("Should validate query with new keywords Type includes chair", () => {
+        const query = "In rooms dataset rooms, find entries whose Type includes \"chair\";"
+            + " show Address, Full Name, Short Name and Link.";
         const splitQuery: SplitQuery = new SplitQuery(query);
         const parser: ValidateQuery = new ValidateQuery(splitQuery);
         expect(parser.valid_query(query)).to.equal(true);
