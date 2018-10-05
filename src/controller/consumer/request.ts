@@ -1,4 +1,5 @@
 import * as http from "http";
+import Log from "../../Util";
 
 export interface IGeoResponse {
     lat?: number;
@@ -12,6 +13,7 @@ export default class Request {
     public async getCoords(address: string): Promise<{}> {
         // todo
         return new Promise( (resolve, reject) => {
+            try {
             http.get(this.url + address, (res) => {
                 const { statusCode } = res;
                 const contentType = res.headers["content-type"];
@@ -39,6 +41,9 @@ export default class Request {
                     reject(err);
                 });
             });
+            } catch (err) {
+                Log.test("An error occured");
+            }
         });
     }
 }
