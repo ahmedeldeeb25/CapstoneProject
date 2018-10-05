@@ -1,3 +1,4 @@
+import Log from "../../Util";
 
 export default class Aggregator {
     // TODO
@@ -68,9 +69,12 @@ export default class Aggregator {
         }
     }
 
+    public toString(): string {
+        return `\n\tKEY: ${this.key}, INPUT: ${this.input}, AGG: ${this.aggregator}`;
+    }
     // returns the sum of given data group
     private sum(data: Array<{ [index: string]: number | string }>): number {
-        let sum: 0;
+        let sum: number = 0;
         for (const d of data) {
             sum += d[this.key] as number;
         }

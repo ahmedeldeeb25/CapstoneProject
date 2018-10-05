@@ -6,6 +6,7 @@ import MOP from "../src/controller/queryAST/queryMOP";
 import SOP from "../src/controller/queryAST/querySOP";
 import Order from "../src/controller/queryAST/queryOrder";
 import SplitGroupQuery from "../src/controller/queryAST/splitGroupedQuery";
+import Log from "../src/Util";
 
 describe("Query splitter", () => {
     const splitQuery = new SplitQuery("In rooms dataset rooms, find entries whose Average is greater" +
@@ -420,6 +421,54 @@ describe("Validate Query", () => {
         const query = "In rooms dataset rooms, find entries whose Type includes \"chair\";"
             + " show Address, Full Name, Short Name and Link.";
         const splitQuery: SplitQuery = new SplitQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        expect(parser.valid_query(query)).to.equal(true);
+    });
+
+    it("Should valid d2_10.json query", () => {
+        const query = "In rooms dataset rooms, find entries whose Name is \"ANGU_039\";"
+        + " show Name, Full Name, Short Name, Seats, Furniture, Link, Type, Address, Latitude and Longitude.";
+        const splitQuery: SplitQuery = new SplitQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        expect(parser.valid_query(query)).to.equal(true);
+    });
+
+    it("Should valid d2_11.json query", () => {
+        const query = "In courses dataset courses grouped by Title, find entries whose ID is \"400\"; show Title.";
+        const splitQuery: SplitQuery = new SplitGroupQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        expect(parser.valid_query(query)).to.equal(true);
+    });
+
+    it("Should valid d2_12.json query", () => {
+        const query = "In courses dataset courses grouped by Title, find entries whose ID is \"400\";"
+        + " show Title and avg, where avg is the AVG of Average.";
+        const splitQuery: SplitQuery = new SplitGroupQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        expect(parser.valid_query(query)).to.equal(true);
+    });
+
+    it("Should valid d2_13.json query", () => {
+        const query = "In courses dataset courses grouped by ID, find entries whose ID is \"400\";"
+         + " show ID and passers, where passers is the SUM of Pass.";
+        const splitQuery: SplitQuery = new SplitGroupQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        expect(parser.valid_query(query)).to.equal(true);
+    });
+
+    it("Should valid d2_14.json query", () => {
+        const query = "In courses dataset courses grouped by ID, find entries whose ID is \"400\";"
+            + " show ID and passers, where passers is the SUM of Pass.";
+        const splitQuery: SplitQuery = new SplitGroupQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        expect(parser.valid_query(query)).to.equal(true);
+    });
+
+    it("Should valid d2_14.json query multiple sorts", () => {
+        const query = "In courses dataset courses grouped by UUID, find entries whose ID is \"400\";"
+        + " show UUID and min, where min is the MIN of Average; "
+         + "sort in descending order by min and UUID.";
+        const splitQuery: SplitQuery = new SplitGroupQuery(query);
         const parser: ValidateQuery = new ValidateQuery(splitQuery);
         expect(parser.valid_query(query)).to.equal(true);
     });

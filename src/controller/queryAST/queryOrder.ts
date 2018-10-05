@@ -1,4 +1,3 @@
-import Log from "../../Util";
 
 export default class Order {
     private keys: string[];
@@ -18,12 +17,15 @@ export default class Order {
 
     public validateOrder(): boolean {
         return this.validateKeys(this.keys)
-            && this.order.split(" ").length === 6
             && (/^sort in ascending order by/.test(this.order) || /^sort in descending order by/.test(this.order));
     }
 
     public toString(): string {
-        return `key: ${this.keys}`;
+        return `\n\tkey: ${this.keys}, order: ${this.direction}
+        \n\t valid keys? ${this.validateKeys(this.keys)}
+        \n\t valid length? ${this.order.split(" ").length === 6}
+        \n\t valid phrasing? ${(/^sort in ascending order by/.test(this.order)
+            || /^sort in descending order by/.test(this.order))};`;
     }
 
     private parse(order: string) {

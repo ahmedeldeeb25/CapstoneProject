@@ -18,7 +18,7 @@ export default class ValidateQuery {
     "Seats", "Year", "FullName",
     "ShortName", "Number", "Address",
     "Name", "Address", "Type", "Link",
-    "Furniture",
+    "Furniture", "Longitude", "Latitude",
     ];
     private KEYWORDS: string[] = [
         "In", "dataset", "find", "all", "show", "and", "or", "sort",
@@ -127,11 +127,16 @@ export default class ValidateQuery {
     }
 
     public valid_aggregators(aggregators: Aggregator[]): boolean {
-        if (this.SPLIT_QUERY.get_split_query().grouped) {
-            return true;
-        } else {
+        // Guard if there are no aggregators
+        if (this.SPLIT_QUERY.get_split_query().aggregators) {
+            for (const agg of aggregators) {
+                if (!agg.validate()) {
+                    return false;
+                }
+            }
             return true;
         }
+        return true;
     }
 
     public valid_groups(groups: string[]): boolean {

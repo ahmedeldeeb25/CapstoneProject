@@ -15,18 +15,18 @@ describe("Query Engine", () => {
     let newQuery: QueryEngine;
     const customContents: object[] = [{
         sorted_title: "highest", sorted_uuid: "1845",
-        sorted_instructor: "thomas anderson", sorted_audit: 0, sorted_year: "2013",
+        sorted_instructor: "thomas anderson", sorted_audit: 0, sorted_year: 2013,
         sorted_id: "392", sorted_pass: 82, sorted_fail: 0, sorted_avg: 105,
         sorted_dept: "anat", sorted_section: "001",
     }, {
         sorted_title: "lowest",
-        sorted_uuid: "1846", sorted_instructor: "billy bob thorton", sorted_audit: 0, sorted_year: "2013",
+        sorted_uuid: "1846", sorted_instructor: "billy bob thorton", sorted_audit: 0, sorted_year: 1900,
         sorted_id: "392", sorted_pass: 82, sorted_fail: 0, sorted_avg: 4,
         sorted_dept: "anat", sorted_section: "overall",
     }, {
         sorted_title: "middle",
         sorted_uuid: "12690", sorted_instructor: "sam bob boo", sorted_audit: 0,
-        sorted_year: "2014", sorted_id: "392", sorted_pass: 83, sorted_fail: 0,
+        sorted_year: 2014, sorted_id: "392", sorted_pass: 83, sorted_fail: 0,
         sorted_avg: 75, sorted_dept: "anat", sorted_section: "001",
     }];
     const sorted = "sorted";
@@ -51,18 +51,18 @@ describe("Query Engine", () => {
     it("Should retrieve JSON object from .json file", async () => {
         const contents: object[] = [{
             small_test_1_title: "gross anat limbs", small_test_1_uuid: "1845",
-            small_test_1_instructor: "alimohammadi, majid", small_test_1_audit: 0, small_test_1_year: "2013",
+            small_test_1_instructor: "alimohammadi, majid", small_test_1_audit: 0, small_test_1_year: 2013,
             small_test_1_id: "392", small_test_1_pass: 82, small_test_1_fail: 0, small_test_1_avg: 81.82,
             small_test_1_dept: "anat", small_test_1_section: "001",
         }, {
             small_test_1_title: "gross anat limbs",
-            small_test_1_uuid: "1846", small_test_1_instructor: "", small_test_1_audit: 0, small_test_1_year: "2013",
+            small_test_1_uuid: "1846", small_test_1_instructor: "", small_test_1_audit: 0, small_test_1_year: 1900,
             small_test_1_id: "392", small_test_1_pass: 82, small_test_1_fail: 0, small_test_1_avg: 81.82,
             small_test_1_dept: "anat", small_test_1_section: "overall",
         }, {
             small_test_1_title: "gross anat limbs",
             small_test_1_uuid: "12690", small_test_1_instructor: "alimohammadi, majid", small_test_1_audit: 0,
-            small_test_1_year: "2014", small_test_1_id: "392", small_test_1_pass: 83, small_test_1_fail: 0,
+            small_test_1_year: 2014, small_test_1_id: "392", small_test_1_pass: 83, small_test_1_fail: 0,
             small_test_1_avg: 83.65, small_test_1_dept: "anat", small_test_1_section: "001",
         }];
         const expected: object[] = query.get_data();
@@ -72,18 +72,18 @@ describe("Query Engine", () => {
     it("Should return all data if queried for all", () => {
         const contents: object[] = [{
             small_test_1_title: "gross anat limbs", small_test_1_uuid: "1845",
-            small_test_1_instructor: "alimohammadi, majid", small_test_1_audit: 0, small_test_1_year: "2013",
+            small_test_1_instructor: "alimohammadi, majid", small_test_1_audit: 0, small_test_1_year: 2013,
             small_test_1_id: "392", small_test_1_pass: 82, small_test_1_fail: 0, small_test_1_avg: 81.82,
             small_test_1_dept: "anat", small_test_1_section: "001",
         }, {
             small_test_1_title: "gross anat limbs",
-            small_test_1_uuid: "1846", small_test_1_instructor: "", small_test_1_audit: 0, small_test_1_year: "2013",
+            small_test_1_uuid: "1846", small_test_1_instructor: "", small_test_1_audit: 0, small_test_1_year: 1900,
             small_test_1_id: "392", small_test_1_pass: 82, small_test_1_fail: 0, small_test_1_avg: 81.82,
             small_test_1_dept: "anat", small_test_1_section: "overall",
         }, {
             small_test_1_title: "gross anat limbs",
             small_test_1_uuid: "12690", small_test_1_instructor: "alimohammadi, majid", small_test_1_audit: 0,
-            small_test_1_year: "2014", small_test_1_id: "392", small_test_1_pass: 83, small_test_1_fail: 0,
+            small_test_1_year: 2014, small_test_1_id: "392", small_test_1_pass: 83, small_test_1_fail: 0,
             small_test_1_avg: 83.65, small_test_1_dept: "anat", small_test_1_section: "001",
         }];
         const splitQuery: SplitQuery = new SplitQuery("In courses dataset small_test, find all entries; " +
@@ -130,6 +130,7 @@ describe("Query Engine", () => {
             "find all entries; show Title; sort in ascending order by Average.";
         const splitQuery = new SplitQuery(q);
         const queryAST: IsplitQuery = splitQuery.get_split_query();
+        Log.test(queryAST.order.toString());
         const data: object[] = newQuery.query_data(queryAST);
         expect(data).to.deep.equal(expected);
     });
@@ -178,28 +179,14 @@ describe("Query Engine", () => {
         expect(data).to.deep.equal(expected);
     });
 
-    it("Should be able to get data that does not match the string", async () => {
-        newQuery = new QueryEngine(sorted);
-        newQuery.data_setter(customContents);
-        const expected: object[] = [{
-            sorted_title: "middle",
-        }];
-        const q: string = "In courses dataset courses, " +
-            "find entries whose Year is not \"2013\"; show Title.";
-        const splitQuery = new SplitQuery(q);
-        const queryAST: IsplitQuery = splitQuery.get_split_query();
-        const data: object[] = newQuery.query_data(queryAST);
-        expect(data).to.deep.equal(expected);
-    });
-
     it("Should be able to handle a query with or", async () => {
         newQuery = new QueryEngine(sorted);
         newQuery.data_setter(customContents);
         const expected: object[] = [{
-            sorted_instructor: "sam bob boo",
-        }, {
-            sorted_instructor: "thomas anderson",
-        }];
+                sorted_instructor: "sam bob boo",
+            }, {
+                sorted_instructor: "thomas anderson",
+            }];
         const q: string = "In courses dataset courses, " +
             "find entries whose UUID is \"1845\" or UUID is \"12690\"; show Instructor.";
         const splitQuery = new SplitQuery(q);

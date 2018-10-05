@@ -26,7 +26,10 @@ export default class SplitGroupQuery extends SplitQuery {
         // ["show Average, Title, FullName and special", "special is the AVG of Average"]
         const showAndAgg: string[] = sepBySemi[1].trim().split(" where ");
         const show: string[] = this.split_show(showAndAgg[0]);
-        const aggregators: Aggregator[] = this.split_aggregators(showAndAgg[1]);
+        let aggregators: Aggregator[];
+        if (showAndAgg.length === 2) {
+            aggregators = this.split_aggregators(showAndAgg[1]);
+        }
         let order: Order = null;
         if (sepBySemi.length === 3) {
             order = new Order(sepBySemi[2].trim().slice(0, -1), show);
@@ -50,6 +53,9 @@ export default class SplitGroupQuery extends SplitQuery {
     private split_aggregators(aggregators: string): Aggregator[] {
         // s1 is the MIN of Average, s2 is the MAX of Average and s3 is the SUM of Fail =>
         // s1 is the Min of Average and s2 is the MAX of Average and s3 is the SUM of Fail
+        if (aggregators.slice(-1) === ".") {
+            aggregators = aggregators.slice(0, -1);
+        }
         const aggs: string[] = aggregators.replace(/,/g, " and").split(" and ");
         const aggList: Aggregator[] = [];
         for (const agg of aggs) {

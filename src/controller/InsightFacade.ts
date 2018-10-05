@@ -9,6 +9,7 @@ import QueryEngine from "./queryEngine/retrieveResults";
 import * as fs from "fs";
 import XMLParse from "./consumer/parser_xml";
 import IParser from "./consumer/Parser";
+import SplitGroupQuery from "./queryAST/splitGroupedQuery";
 /**
  * This is the main programmatic entry point for the project.
  */
@@ -77,7 +78,11 @@ export default class InsightFacade implements IInsightFacade {
         let validator: ValidateQuery;
         // Try and split the query into a AST, if it throws an error than it was inherently a bad query
         try {
-            queryAST = new SplitQuery(query);
+            if (query.includes("grouped by")) {
+                queryAST = new SplitGroupQuery(query);
+            } else {
+                queryAST = new SplitQuery(query);
+            }
             validator = new ValidateQuery(queryAST);
         } catch (err) {
             return Promise.reject({ code: 400, body: { error: "invalid query" } });
@@ -90,12 +95,12 @@ export default class InsightFacade implements IInsightFacade {
             // Store the cached data in the queryEngine object then use the queryAST to get the data
             try {
                 // await queryEngine.set_data();
-                queryEngine.data_setter(this.cache[dataset]);
+                // don't mess up the data that's cached!
+                const data = this.cache[dataset].slice();
+                queryEngine.data_setter(data);
                 result = queryEngine.query_data(queryAST.get_split_query());
             } catch (err) {
-
                 Log.test("err: the data wasn't valid" + err);
-
                 return Promise.reject({ code: 400, body: { error: "dataset not found" } });
             }
             return Promise.resolve({ code: 200, body: { result } });

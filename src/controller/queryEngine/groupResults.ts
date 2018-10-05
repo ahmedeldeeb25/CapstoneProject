@@ -4,7 +4,7 @@ export default class Grouper {
     private data: object[];
 
     constructor(data: object[]) {
-        this.data = data;
+        this.data = data.slice();
     }
 
     public get_data(): object[] { return this.data; }
@@ -36,5 +36,15 @@ export default class Grouper {
             ],
         }),
         {});
+    }
+
+    public flattenData(data: { [index: string]: any }, shows: string[]): object[] {
+        const result: object[] = [];
+        for (const index of Object.keys(data)) {
+            for (const show of shows) {
+                result.push(data[index][0][show]);
+            }
+        }
+        return result;
     }
 }
