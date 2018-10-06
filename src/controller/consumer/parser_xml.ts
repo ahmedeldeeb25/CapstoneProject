@@ -63,14 +63,14 @@ export default class XMLParse extends Parser {
                 try {
                     await this.setIndex();
                 } catch (err) {
-                    throw Error("Couldn't set index");
+                    return Promise.reject(Error("Couldn't set index"));
                 }
             }
             const index: JSzip.JSZipObject = this.getIndex();
             try {
                 xml = await index.async("text");
             } catch (err) {
-                throw Error("couldn't get contents of index.xml");
+                return Promise.reject(Error("couldn't get contents of index.xml"));
             }
         }
         const doc: { [childNodes: string]: any } = parse5.parse(xml);
@@ -79,7 +79,7 @@ export default class XMLParse extends Parser {
         const body: any = html.childNodes[1];
         const container: any = body.childNodes[0];
         // Filter everything thats not a building (text)
-        const buildings: any = container.childNodes.filter((x: any) => x.tagName === "building" );
+        const buildings: any = container.childNodes.filter((x: any) => x.tagName === "building");
         const data: IBUILDING[] = [];
         const roomsPromises: Array<Promise<{}>> = [];
         const locPromises: Array<Promise<{}>> = [];
@@ -92,20 +92,20 @@ export default class XMLParse extends Parser {
                 x[buildingAttr.name] = buildingAttr.value;
             }
             // loop through attributes of location tag and make object with name, value pairs
-            const location: any = building.childNodes.filter( (node: any) => node.tagName === "location");
+            const location: any = building.childNodes.filter((node: any) => node.tagName === "location");
             const locAttrs: any = location[0].attrs;
             for (const locAttr of locAttrs) {
                 x[locAttr.name] = locAttr.value;
             }
             // use the path to parse the file that contains info about the rooms
             const rooms = this.parseRooms(x.path);
-            rooms.then( (res) => {
+            rooms.then((res) => {
                 x["rooms"] = res;
             });
             roomsPromises.push(rooms);
             // use request to get lat and long
             const geoResponse: Promise<IGeoResponse> = this.request.getCoords(x["address"]);
-            geoResponse.then( (r) => {
+            geoResponse.then((r) => {
                 x["lat"] = r.lat;
                 x["lon"] = r.lon;
             });
@@ -114,7 +114,7 @@ export default class XMLParse extends Parser {
         }
         await Promise.all(locPromises);
         await Promise.all(roomsPromises);
-        return this.format_data(data);
+        return Promise.resolve(this.format_data(data));
     }
 
     /**
@@ -132,7 +132,7 @@ export default class XMLParse extends Parser {
         try {
             xml = await file.async("text");
         } catch (err) {
-            throw Error("error finding file!");
+            return Promise.reject(Error("error finding file!"));
         }
         // get to rooms doc -> html -> body -> building -> rooms
         const doc: any = parse5.parse(xml);
@@ -142,7 +142,7 @@ export default class XMLParse extends Parser {
         const roomsContainer: any = building.childNodes[1];
         // get rid of anything that's not a room
         let rooms: any = roomsContainer.childNodes;
-        rooms = rooms.filter( (room: any) => room.tagName === "room");
+        rooms = rooms.filter((room: any) => room.tagName === "room");
         // Log.test(inspect(rooms));
         const data = [];
         for (const room of rooms) {
@@ -150,13 +150,13 @@ export default class XMLParse extends Parser {
             for (const attr of room.attrs) {
                 newRoom[attr.name] = attr.value;
             }
-            const webs: any = room.childNodes.filter( (x: any) => x.tagName === "web");
+            const webs: any = room.childNodes.filter((x: any) => x.tagName === "web");
             for (const web of webs) {
                 for (const attr of web.attrs) {
                     newRoom[attr.name] = attr.value;
                 }
             }
-            const spaces: any = webs[0].childNodes.filter( (x: any) => x.tagName === "space");
+            const spaces: any = webs[0].childNodes.filter((x: any) => x.tagName === "space");
             for (const space of spaces) {
                 for (const attr of space.attrs) {
                     newRoom[attr.name] = attr.value;

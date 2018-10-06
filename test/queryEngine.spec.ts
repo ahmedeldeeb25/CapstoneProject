@@ -8,6 +8,7 @@ import * as fs from "fs";
 import * as path from "path";
 import InsightFacade from "../src/controller/InsightFacade";
 import { InsightDatasetKind } from "../src/controller/IInsightFacade";
+import SplitGroupQuery from "../src/controller/queryAST/splitGroupedQuery";
 
 describe("Query Engine", () => {
     let query: QueryEngine;
@@ -183,10 +184,10 @@ describe("Query Engine", () => {
         newQuery = new QueryEngine(sorted);
         newQuery.data_setter(customContents);
         const expected: object[] = [{
-                sorted_instructor: "sam bob boo",
-            }, {
-                sorted_instructor: "thomas anderson",
-            }];
+            sorted_instructor: "sam bob boo",
+        }, {
+            sorted_instructor: "thomas anderson",
+        }];
         const q: string = "In courses dataset courses, " +
             "find entries whose UUID is \"1845\" or UUID is \"12690\"; show Instructor.";
         const splitQuery = new SplitQuery(q);
@@ -221,13 +222,48 @@ describe("Course data", () => {
     });
 
     // it("Use to compare data between UI on SDMM and data my app gets", () => {
-    //     const query: string = "In courses dataset courses, find entries whose" +
-    //     " Average is less than -5 or Audit is greater than -12 or ID is \"404\"; show ID and Title and UUID.";
-    //     const splitQuery = new SplitQuery(query);
+    //     const query: string = "In rooms dataset rooms grouped by Full Name,"
+    //         + " find all entries; show Full Name and avg, where avg is the AVG of Seats.";
+    //     const splitQuery = new SplitGroupQuery(query);
     //     const d: object[] = queryEngine.query_data(splitQuery.get_split_query());
     //     for (const c of d) {
     //         Log.test(JSON.stringify(c));
     //     }
     //     expect(data.length).to.equal(19);
     // });
+});
+
+describe("Course data", () => {
+    const queryEngine: QueryEngine = new QueryEngine("rooms");
+    let data: object[];
+
+    before("load data if it doesn't exist", async () => {
+        const filename = path.join(__dirname, "..", "/src/data/rooms.zip");
+        const insightFacade = new InsightFacade();
+        try {
+            const buffer: Buffer = await (promisify)(fs.readFile)(filename);
+            const content: string = buffer.toString("base64");
+            await insightFacade.addDataset("rooms", content, InsightDatasetKind.Rooms);
+            data = insightFacade.get_cache()["rooms"];
+        } catch (err) {
+            throw new Error("there was an error loading data");
+        }
+        queryEngine.data_setter(data);
+    });
+
+    it("Should have 49044 entries", () => {
+        const expected: number = 284;
+        expect(queryEngine.get_data().length).to.equal(expected);
+    });
+
+    it("Use to compare data between UI on SDMM and data my app gets", () => {
+        const query: string = "In rooms dataset rooms grouped by Full Name,"
+            + " find all entries; show Full Name and avg, where avg is the AVG of Seats.";
+        const splitQuery = new SplitGroupQuery(query);
+        const d: object[] = queryEngine.query_data(splitQuery.get_split_query());
+        for (const c of d) {
+            Log.test(JSON.stringify(c));
+        }
+        //  expect(data.length).to.equal(19);
+    });
 });

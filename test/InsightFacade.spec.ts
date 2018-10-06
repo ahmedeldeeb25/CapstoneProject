@@ -22,7 +22,7 @@ export interface ITestQuery {
 async function remove_files(datasets: { [index: string]: string }): Promise<void> {
     const filesToRemove: Array<Promise<void>> = [];
     for (const file of Object.keys(datasets)) {
-        if (await(promisify)(fs.exists)(`./${file}.json`)) {
+        if (await (promisify)(fs.exists)(`./${file}.json`)) {
             filesToRemove.push((promisify)(fs.unlink)(`./${file}.json`));
         }
     }
@@ -199,6 +199,19 @@ describe("InsightFacade Add/Remove Dataset", function () {
     // This is an example of a pending test. Add a callback function to make the test run.
     it("Should remove the courses dataset", async () => {
         const id: string = "courses";
+        let response: InsightResponse;
+        const expected: number = 204;
+        try {
+            response = await insightFacade.removeDataset(id);
+        } catch (err) {
+            response = err;
+        } finally {
+            expect(response.code).to.equal(expected);
+        }
+    });
+
+    it("Should remove the rooms dataset", async () => {
+        const id: string = "rooms";
         let response: InsightResponse;
         const expected: number = 204;
         try {

@@ -12,14 +12,14 @@ export default class ValidateQuery {
     // test included for testing purposes
     private KIND: string[] = ["courses", "test", "rooms"];
     private KEYS: string[] =
-    ["Average", "Pass", "Fail",
-    "Audit", "Department", "ID",
-    "Instructor", "Title", "UUID",
-    "Seats", "Year", "FullName",
-    "ShortName", "Number", "Address",
-    "Name", "Address", "Type", "Link",
-    "Furniture", "Longitude", "Latitude",
-    ];
+        ["Average", "Pass", "Fail",
+            "Audit", "Department", "ID",
+            "Instructor", "Title", "UUID",
+            "Seats", "Year", "FullName",
+            "ShortName", "Number", "Address",
+            "Name", "Address", "Type", "Link",
+            "Furniture", "Longitude", "Latitude",
+        ];
     private KEYWORDS: string[] = [
         "In", "dataset", "find", "all", "show", "and", "or", "sort",
         "by", "entries", "is", "the", "of", "whose", "where",
@@ -51,7 +51,7 @@ export default class ValidateQuery {
         const splitQuery: IsplitQuery = this.SPLIT_QUERY.get_split_query();
         const { dataset } = splitQuery;
         const { filter } = splitQuery;
-        const { order} = splitQuery;
+        const { order } = splitQuery;
         const { show } = splitQuery;
         const { groupedBy } = splitQuery;
         const { aggregators } = splitQuery;
