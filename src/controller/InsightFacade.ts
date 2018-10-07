@@ -18,6 +18,10 @@ export default class InsightFacade implements IInsightFacade {
     private cache: { [name: string]: object[] } = {};
     constructor() {
         Log.trace("InsightFacadeImpl::init()");
+        process.on("unhandledRejection", (reason, p) => {
+            Log.test("Unhandled Rejection at: Promise " + p + "reason: " + reason);
+            // application specific logging, throwing an error, or other logic here
+        });
     }
 
     public get_cache(): { [name: string]: object[] } {

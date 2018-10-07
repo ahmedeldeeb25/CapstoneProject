@@ -108,6 +108,8 @@ export default class XMLParse extends Parser {
             geoResponse.then((r) => {
                 x["lat"] = r.lat;
                 x["lon"] = r.lon;
+            }).catch((err) => {
+                return Promise.reject(Error("Error getting geolocation!"));
             });
             locPromises.push(geoResponse);
             data.push(x);
