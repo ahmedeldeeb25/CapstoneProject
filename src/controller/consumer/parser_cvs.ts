@@ -38,6 +38,8 @@ export default class CVSParser extends Parser {
         return Promise.all(data).then((d) => {
             const flatten: Array<{}> = [].concat.apply([], d);
             return Promise.resolve(flatten);
+        }).catch((err) => {
+            return Promise.reject(Error("an error occurred"));
         });
     }
 

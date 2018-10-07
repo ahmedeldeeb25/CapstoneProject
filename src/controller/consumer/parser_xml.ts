@@ -98,9 +98,11 @@ export default class XMLParse extends Parser {
                 x[locAttr.name] = locAttr.value;
             }
             // use the path to parse the file that contains info about the rooms
-            const rooms = this.parseRooms(x.path);
+            const rooms: Promise<object[]> = this.parseRooms(x.path);
             rooms.then((res) => {
                 x["rooms"] = res;
+            }).catch((err) => {
+                return Promise.reject(Error("Error parsing rooms"));
             });
             roomsPromises.push(rooms);
             // use request to get lat and long
