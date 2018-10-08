@@ -111,13 +111,18 @@ export default class XMLParse extends Parser {
                 x["lat"] = r.lat;
                 x["lon"] = r.lon;
             }).catch((err) => {
-                return Promise.reject(Error("Error getting geolocation!"));
+                x["lat"] = err;
+                x["lon"] = err;
             });
             locPromises.push(geoResponse);
             data.push(x);
         }
-        await Promise.all(locPromises);
-        await Promise.all(roomsPromises);
+        await Promise.all(locPromises).catch((err) => {
+            return Promise.reject(Error("error occured getting locations"));
+        });
+        await Promise.all(roomsPromises).catch((err) => {
+            return Promise.reject(Error("error occured getting rooms"));
+        });
         return Promise.resolve(this.format_data(data));
     }
 

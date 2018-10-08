@@ -233,7 +233,7 @@ describe("Course data", () => {
     // });
 });
 
-describe("Course data", () => {
+describe("Rooms data", () => {
     const queryEngine: QueryEngine = new QueryEngine("rooms");
     let data: object[];
 

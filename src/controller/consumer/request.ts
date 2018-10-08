@@ -26,7 +26,10 @@ export default class Request {
                     }
                     if (error) {
                         res.resume();
-                        reject(Error("an error occured"));
+                        return resolve({
+                            lat: 0,
+                            lon: 0,
+                        });
                     }
                     res.setEncoding("utf8");
                     let rawData: string = "";
@@ -34,16 +37,19 @@ export default class Request {
                     res.on("end", () => {
                         try {
                             const parsedData = JSON.parse(rawData);
-                            resolve(parsedData);
+                            return resolve(parsedData);
                         } catch (err) {
-                            reject(err);
+                            return resolve({ lat: 0, lon: 0 });
                         }
                     }).on("error", (err) => {
-                        reject(err);
+                        return resolve({ lat: 0, lon: 0 });
+                    });
+                    res.on("error", (err) => {
+                        return resolve({ lat: 0, lon: 0 });
                     });
                 });
             } catch (err) {
-                reject(Error("an error occured getting lat and long!"));
+                return resolve({ lat: 0, lon: 0 });
             }
         });
     }

@@ -26,10 +26,17 @@ describe("XMLPARSE", () => {
     });
 
     it("Should return true with a valid XML document", async () => {
-        const valid: boolean = await parser.setIndex();
-        const index: JSZipObject = parser.getIndex();
-        const xml: string = await index.async("text");
-        const rooms: any = await parser.parse(xml);
+        let valid: boolean;
+        let xml: string;
+        let rooms: any;
+        try {
+            valid = await parser.setIndex();
+            const index: JSZipObject = parser.getIndex();
+            xml = await index.async("text");
+            rooms = await parser.parse(xml);
+        } catch (err) {
+            valid = false;
+        }
         expect(valid).to.equal(true);
         expect(rooms.length).to.equal(284);
     });
@@ -37,7 +44,12 @@ describe("XMLPARSE", () => {
     it("Should return false if given invalid XML document", async () => {
         const id: string = "nonsense";
         const filepath: string = path.join(__dirname + "/data/nonsense.zip");
-        const buffer: Buffer = await(promisify)(fs.readFile)(filepath);
+        let buffer: Buffer;
+        try {
+            buffer = await (promisify)(fs.readFile)(filepath);
+        } catch (err) {
+            buffer = err;
+        }
         const content: string = buffer.toString("base64");
         const p: XMLParse = new XMLParse(id, content);
         let response: boolean;
@@ -85,7 +97,7 @@ describe("XMLPARSE", () => {
             const xml: string = await index.async("text");
             rooms = await parser.parse(xml);
         } catch (err) {
-            throw Error("ERROR: " + err);
+            Log.test("error");
         }
         expect(rooms[0]["rooms_lat"]).to.not.equal(null || undefined);
         expect(rooms[1]["rooms_lon"]).to.not.equal(null || undefined);
