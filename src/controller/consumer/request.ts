@@ -8,13 +8,18 @@ export interface IGeoResponse {
 }
 
 export default class Request {
-    private url: string = "http://sdmm.cs.ubc.ca:11316/api/v1/team_ccunnin8/";
 
     public async getCoords(address: string): Promise<{}> {
-        // todo
+        const options = {
+            host: "sdmm.cs.ubc.ca",
+            port: 11316,
+            method: "GET",
+            path: "/api/v1/team_ccunnin8/" + address,
+        };
+        Log.test(options.path);
         return new Promise((resolve, reject) => {
             try {
-                http.get(this.url + address, (res) => {
+                http.get(options, (res) => {
                     const { statusCode } = res;
                     const contentType = res.headers["content-type"];
                     let error;
