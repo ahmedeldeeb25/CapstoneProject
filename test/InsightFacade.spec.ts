@@ -34,6 +34,8 @@ const datasetsToLoad: { [id: string]: string } = {
     rooms: "./test/data/rooms.zip",
     test: "./test/data/test.zip",
     nonsense: "./test/data/nonsense.zip",
+    test_rooms_1: "./test/data/rooms_test_valid.zip",
+    test_rooms_2: "./test/data/rooms_test_invalid.zip",
 };
 
 const testCache: { [id: string]: object[] } = {};
@@ -77,7 +79,7 @@ describe("InsightFacade Add/Remove Dataset", function () {
     // remove the cached files
     after(async function () {
         Log.test(`After: ${this.test.parent.title}`);
-        await remove_files(datasetsToLoad);
+        // await remove_files(datasetsToLoad);
         Log.test("cached files removed");
     });
 
@@ -121,6 +123,48 @@ describe("InsightFacade Add/Remove Dataset", function () {
         try {
             response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Rooms);
             testCache["rooms"] = insightFacade.get_cache()["rooms"];
+        } catch (err) {
+            Log.test("Error occured: " + JSON.stringify(err));
+            response = err;
+        } finally {
+            expect(response.code).to.equal(expected);
+        }
+    });
+
+    it("Should add an valid custom dataset of type rooms", async () => {
+        let response: InsightResponse;
+        const id: string = "test_rooms_1";
+        const expected: number = 204;
+        try {
+            response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Rooms);
+        } catch (err) {
+            Log.test("Error occured: " + JSON.stringify(err));
+            response = err;
+        } finally {
+            expect(response.code).to.equal(expected);
+        }
+    });
+
+    it("Should add an valid custom dataset of type rooms", async () => {
+        let response: InsightResponse;
+        const id: string = "test_rooms_2";
+        const expected: number = 400;
+        try {
+            response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Rooms);
+        } catch (err) {
+            Log.test("Error occured: " + JSON.stringify(err));
+            response = err;
+        } finally {
+            expect(response.code).to.equal(expected);
+        }
+    });
+
+    it("Should not add an invalid dataset of type rooms", async () => {
+        let response: InsightResponse;
+        const id: string = "nonsense";
+        const expected: number = 400;
+        try {
+            response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Rooms);
         } catch (err) {
             Log.test("Error occured: " + JSON.stringify(err));
             response = err;

@@ -10,6 +10,7 @@ import * as fs from "fs";
 import XMLParse from "./consumer/parser_xml";
 import IParser from "./consumer/Parser";
 import SplitGroupQuery from "./queryAST/splitGroupedQuery";
+import { IncomingMessage } from "http";
 /**
  * This is the main programmatic entry point for the project.
  */
@@ -33,11 +34,15 @@ export default class InsightFacade implements IInsightFacade {
         let parser: IParser;
         let validFile: boolean;
         let data: object[];
+        // typescript should prevent this
+        if (kind !== InsightDatasetKind.Courses && kind !== InsightDatasetKind.Rooms) {
+            return Promise.reject({ code: 400, body: { error: "not valid kind" } });
+        }
         // Set type of parser based on the kind passed in
-        parser = kind === "rooms" ? new XMLParse(id, content) : new CVSParser(id, content);
+        parser = kind === InsightDatasetKind.Rooms ? new XMLParse(id, content) : new CVSParser(id, content);
         try {
             // invalid rooms data will throw an error while parsing
-            validFile = kind === "courses" ? await validator.valid_file() : true;
+            validFile = kind === InsightDatasetKind.Courses ? await validator.valid_file() : true;
             // if file valid AND is the data not already there?
             if (!validFile || this.cache[id]) {
                 return Promise.reject({ code: 400, body: { error: "file was not valid" } });

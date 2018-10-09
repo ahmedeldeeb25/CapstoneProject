@@ -27,7 +27,7 @@
         "mocha": "4.0.1",
         "nyc": "11.3.0",
         "recursive-readdir": "2.2.1",
-        "ts-node": "4.1.0",
+        "ts-node": "^7.0.1",
         "tslint": "5.8.0",
         "typescript": "2.6.2"
     },
@@ -35,6 +35,7 @@
         "@types/csv-parse": "^1.1.11",
         "decimal.js": "9.0.1",
         "dotenv": "4.0.0",
+        "global": "^4.3.2",
         "jszip": "3.1.5",
         "parse5": "4.0.0",
         "restify": "^4.3.X"
@@ -43,7 +44,7 @@
         "cleanwin": "rmdir node_modules /s /q & del /f .yarnclean & exit 0",
         "clean": "rm -rf ./node_modules/; rm -f .yarnclean",
         "build": "tsc && tslint -c tslint.json 'src/**/*.ts' 'test/**/*.ts'",
-        "test": "mocha --full-trace --require ts-node/register --timeout 10000",
+        "test": "mocha --full-trace --require ts-node/register --timeout 100000",
         "clear_cache": "rm -rf ./src/cache; mkdir ./src/cache"
     }
 }
