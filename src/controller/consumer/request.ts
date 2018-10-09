@@ -14,9 +14,8 @@ export default class Request {
             host: "sdmm.cs.ubc.ca",
             port: 11316,
             method: "GET",
-            path: "/api/v1/team_ccunnin8/" + address,
+            path: "/api/v1/team_ccunnin8/" + encodeURI(address),
         };
-        Log.test(options.path);
         return new Promise((resolve, reject) => {
             try {
                 http.get(options, (res) => {

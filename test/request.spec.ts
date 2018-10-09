@@ -5,7 +5,7 @@ describe("Request", () => {
 
     it("Should be able to return JSON response with given url", async () => {
         const address: string = "2356 Main Mall";
-        const uri: string = encodeURI(address);
+        const uri: string = address;
         const request: Request = new Request();
         let response: IGeoResponse;
         try {

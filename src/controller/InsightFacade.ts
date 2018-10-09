@@ -24,6 +24,10 @@ export default class InsightFacade implements IInsightFacade {
         return this.cache;
     }
 
+    public set_cache(cache: { [name: string]: object[] }): void {
+        this.cache = cache;
+    }
+
     public async addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<InsightResponse> {
         const validator = new Validator(id, content);
         let parser: IParser;

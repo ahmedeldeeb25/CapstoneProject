@@ -254,6 +254,7 @@ describe("Rooms data", () => {
     it("Should have 49044 entries", () => {
         const expected: number = 284;
         expect(queryEngine.get_data().length).to.equal(expected);
+        Log.test(JSON.stringify(queryEngine.get_data()));
     });
 
     it("Use to compare data between UI on SDMM and data my app gets", () => {
