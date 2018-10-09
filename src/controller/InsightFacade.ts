@@ -10,7 +10,7 @@ import * as fs from "fs";
 import XMLParse from "./consumer/parser_xml";
 import IParser from "./consumer/Parser";
 import SplitGroupQuery from "./queryAST/splitGroupedQuery";
-import { IncomingMessage } from "http";
+
 /**
  * This is the main programmatic entry point for the project.
  */

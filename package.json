@@ -44,7 +44,7 @@
         "cleanwin": "rmdir node_modules /s /q & del /f .yarnclean & exit 0",
         "clean": "rm -rf ./node_modules/; rm -f .yarnclean",
         "build": "tsc && tslint -c tslint.json 'src/**/*.ts' 'test/**/*.ts'",
-        "test": "mocha --full-trace --require ts-node/register --timeout 100000",
+        "test": "mocha --full-trace --require ts-node/register --timeout 10000",
         "clear_cache": "rm -rf ./src/cache; mkdir ./src/cache"
     }
 }
