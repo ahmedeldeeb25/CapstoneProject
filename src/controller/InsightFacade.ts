@@ -38,9 +38,9 @@ export default class InsightFacade implements IInsightFacade {
         if (kind !== InsightDatasetKind.Courses && kind !== InsightDatasetKind.Rooms) {
             return Promise.reject({ code: 400, body: { error: "not valid kind" } });
         }
-        // Set type of parser based on the kind passed in
-        parser = kind === InsightDatasetKind.Rooms ? new XMLParse(id, content) : new CVSParser(id, content);
         try {
+            // Set type of parser based on the kind passed in
+            parser = kind === InsightDatasetKind.Rooms ? new XMLParse(id, content) : new CVSParser(id, content);
             // invalid rooms data will throw an error while parsing
             validFile = kind === InsightDatasetKind.Courses ? await validator.valid_file() : true;
             // if file valid AND is the data not already there?
