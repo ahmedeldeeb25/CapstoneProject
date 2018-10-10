@@ -30,7 +30,7 @@ export default class Request {
                     }
                     if (error) {
                         res.resume();
-                        return resolve({
+                        resolve({
                             lat: 0,
                             lon: 0,
                         });
@@ -41,19 +41,17 @@ export default class Request {
                     res.on("end", () => {
                         try {
                             const parsedData = JSON.parse(rawData);
-                            return resolve(parsedData);
+                            resolve(parsedData);
                         } catch (err) {
-                            return resolve({ lat: 0, lon: 0 });
+                            resolve({ lat: 0, lon: 0 });
                         }
-                    }).on("error", (err) => {
-                        return resolve({ lat: 0, lon: 0 });
                     });
                     res.on("error", (err) => {
-                        return resolve({ lat: 0, lon: 0 });
+                        resolve({ lat: 0, lon: 0 });
                     });
                 });
             } catch (err) {
-                return resolve({ lat: 0, lon: 0 });
+                resolve({ lat: 0, lon: 0 });
             }
         });
     }
