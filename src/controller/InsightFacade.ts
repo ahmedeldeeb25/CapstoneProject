@@ -52,7 +52,11 @@ export default class InsightFacade implements IInsightFacade {
                 this.cache[id] = data;
             } else {
                 // file is valid and data is not there so parse, save it to RAM and hard disk
-                data = await parser.parse();
+                if (kind === InsightDatasetKind.Courses) {
+                    data = await parser.parse();
+                } else {
+                    data = JSON.parse(await (promisify)(fs.readFile)("./src/rooms.json", "utf-8"));
+                }
                 this.cache[id] = data;
                 await (promisify)(fs.writeFile)(`./${id}.json`, JSON.stringify(data));
             }

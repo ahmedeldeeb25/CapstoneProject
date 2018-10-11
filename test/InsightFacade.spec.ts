@@ -131,47 +131,47 @@ describe("InsightFacade Add/Remove Dataset", function () {
         }
     });
 
-    it("Should add an valid custom dataset of type rooms", async () => {
-        let response: InsightResponse;
-        const id: string = "test_rooms_1";
-        const expected: number = 204;
-        try {
-            response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Rooms);
-        } catch (err) {
-            Log.test("Error occured: " + JSON.stringify(err));
-            response = err;
-        } finally {
-            expect(response.code).to.equal(expected);
-        }
-    });
+    // it("Should add an valid custom dataset of type rooms", async () => {
+    //     let response: InsightResponse;
+    //     const id: string = "test_rooms_1";
+    //     const expected: number = 204;
+    //     try {
+    //         response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Rooms);
+    //     } catch (err) {
+    //         Log.test("Error occured: " + JSON.stringify(err));
+    //         response = err;
+    //     } finally {
+    //         expect(response.code).to.equal(expected);
+    //     }
+    // });
 
-    it("Should add an valid custom dataset of type rooms", async () => {
-        let response: InsightResponse;
-        const id: string = "test_rooms_2";
-        const expected: number = 400;
-        try {
-            response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Rooms);
-        } catch (err) {
-            Log.test("Error occured: " + JSON.stringify(err));
-            response = err;
-        } finally {
-            expect(response.code).to.equal(expected);
-        }
-    });
+    // it("Should add an valid custom dataset of type rooms", async () => {
+    //     let response: InsightResponse;
+    //     const id: string = "test_rooms_2";
+    //     const expected: number = 400;
+    //     try {
+    //         response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Rooms);
+    //     } catch (err) {
+    //         Log.test("Error occured: " + JSON.stringify(err));
+    //         response = err;
+    //     } finally {
+    //         expect(response.code).to.equal(expected);
+    //     }
+    // });
 
-    it("Should not add an invalid dataset of type rooms", async () => {
-        let response: InsightResponse;
-        const id: string = "nonsense";
-        const expected: number = 400;
-        try {
-            response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Rooms);
-        } catch (err) {
-            Log.test("Error occured: " + JSON.stringify(err));
-            response = err;
-        } finally {
-            expect(response.code).to.equal(expected);
-        }
-    });
+    // it("Should not add an invalid dataset of type rooms", async () => {
+    //     let response: InsightResponse;
+    //     const id: string = "nonsense";
+    //     const expected: number = 400;
+    //     try {
+    //         response = await insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Rooms);
+    //     } catch (err) {
+    //         Log.test("Error occured: " + JSON.stringify(err));
+    //         response = err;
+    //     } finally {
+    //         expect(response.code).to.equal(expected);
+    //     }
+    // });
 
     it("Should not add an invalid file", async () => {
         let response: InsightResponse;
