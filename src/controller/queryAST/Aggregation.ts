@@ -107,7 +107,6 @@ export default class Aggregator {
             sum += d[this.key] as number;
             count += 1;
         }
-        const total: Decimal = new Decimal(sum);
         return +(sum / count).toFixed(2);
     }
 
