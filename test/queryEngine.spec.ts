@@ -3,7 +3,7 @@ import QueryEngine from "../src/controller/queryEngine/retrieveResults";
 import { IsplitQuery, SplitQuery } from "../src/controller/queryAST/splitQuery";
 import Log from "../src/Util";
 import CVSParser from "../src/controller/consumer/parser_cvs";
-import { promisify } from "util";
+import { promisify, inspect } from "util";
 import * as fs from "fs";
 import * as path from "path";
 import InsightFacade from "../src/controller/InsightFacade";
@@ -251,10 +251,10 @@ describe("Rooms data", () => {
         queryEngine.data_setter(data);
     });
 
-    it("Should have 49044 entries", () => {
+    it("Should have 284 entries", () => {
         const expected: number = 284;
         expect(queryEngine.get_data().length).to.equal(expected);
-        Log.test(JSON.stringify(queryEngine.get_data()));
+        // Log.test(JSON.stringify(queryEngine.get_data()));
     });
 
     it("Use to compare data between UI on SDMM and data my app gets", () => {
@@ -262,6 +262,19 @@ describe("Rooms data", () => {
             + " find all entries; show Full Name and avg, where avg is the AVG of Seats.";
         const splitQuery = new SplitGroupQuery(query);
         const d: object[] = queryEngine.query_data(splitQuery.get_split_query());
+        // for (const c of d) {
+        //     Log.test(JSON.stringify(c));
+        // }
+        //  expect(data.length).to.equal(19);
+    });
+
+    it("Use to compare data between UI on SDMM and data my app gets", () => {
+        const query: string = "In courses dataset courses grouped by Title,"
+            + " find entries whose ID is \"400\"; show UUID and min, where"
+            + " min is the MIN of Average; sort in descending order by min and UUID.";
+        const splitQuery = new SplitGroupQuery(query);
+        const d: object[] = queryEngine.query_data(splitQuery.get_split_query());
+        Log.test(inspect(d));
         for (const c of d) {
             Log.test(JSON.stringify(c));
         }

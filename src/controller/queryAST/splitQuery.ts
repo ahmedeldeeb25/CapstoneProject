@@ -59,9 +59,21 @@ export class SplitQuery {
         }
     }
 
+    // returns array of keys used in filters
+    public get_filter_keys(): string[] {
+        const keys: string[] = [];
+        for (const filter of this.get_split_query().filter as QueryFilter[]) {
+            const key: string = filter.criteria.getKey();
+            if (!keys.includes(key)) {
+                keys.push(key);
+            }
+        }
+        return keys;
+    }
+
     public toString(): string {
         return `\n\tdataset: ${this.get_split_query().dataset}
-        \nfilter: ${this.get_split_query().filter.toString() }
+        \nfilter: ${this.get_split_query().filter.toString()}
         \norder: ${this.get_split_query().order}
         \nshow: ${this.get_split_query().show}`;
     }
@@ -75,7 +87,7 @@ export class SplitQuery {
             return new QueryFilter(true);
         } else {
             const criteria: string = filter.split("find entries whose")[1];
-            let splitByAndOr: string [];
+            let splitByAndOr: string[];
             // splits into list of individual CRITERIA
             splitByAndOr = criteria.split(this.POS_LOOK_AHEAD_AND);
             return this.parse_criteria(splitByAndOr);
@@ -98,7 +110,7 @@ export class SplitQuery {
         // commas ?
         show = show.replace(/,/g, "");
         // split show into words and filter out words that are not keys
-        return show.split(" ").filter( (x) => x !== "show").filter( (x) => x !== "and");
+        return show.split(" ").filter((x) => x !== "show").filter((x) => x !== "and");
     }
 
     // returns an array of criteria, maybe criteria should be objects
@@ -112,7 +124,7 @@ export class SplitQuery {
             let key: string;
             let OP: SOP | MOP;
             const target: string = words.pop();
-            if (words[0] === "and" || words[0] === "or" ) {
+            if (words[0] === "and" || words[0] === "or") {
                 andOr = words.shift();
                 key = words.shift();
             } else {
@@ -121,7 +133,7 @@ export class SplitQuery {
             // target is a string
             if (isNaN(parseFloat(target))) {
                 OP = new SOP(key, words.join(" "), target);
-            // target is a number
+                // target is a number
             } else {
                 OP = new MOP(key, words.slice(1).join(" "), parseFloat(target));
             }

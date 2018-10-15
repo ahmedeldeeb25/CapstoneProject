@@ -1,0 +1,10 @@
+{
+    "title": "Select Title, Average from Courses where ID is 400 group by Title",
+    "query": "In courses dataset courses grouped by Department, find entries whose Department is \"cpsc\"; show Department and avgGrade and avgGrade, where avgGrade is the SUM of Average and avgGrade is the AVG of Average.",
+    "response": {
+        "code": 400,
+        "body": {
+            "error": "Duplicate apply key"
+        }
+    }
+}

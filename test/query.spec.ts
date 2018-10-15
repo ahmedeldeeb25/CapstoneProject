@@ -10,9 +10,9 @@ import Log from "../src/Util";
 
 describe("Query splitter", () => {
     const splitQuery = new SplitQuery("In rooms dataset rooms, find entries whose Average is greater" +
-                                    " than 90 and Department is \"adhe\" " +
-                                    "or Average is equal to 95; show Department and ID and Average;" +
-                                    " sort in ascending order by Average.");
+        " than 90 and Department is \"adhe\" " +
+        "or Average is equal to 95; show Department and ID and Average;" +
+        " sort in ascending order by Average.");
     const IsplitQuery = splitQuery.get_split_query();
 
     it("Should have proper dataset", () => {
@@ -164,7 +164,7 @@ describe("Validate Query", () => {
     it("Should validate valid query from q1", () => {
         const expected: boolean = true;
         const query: string = "In courses dataset courses, find entries whose Average is greater than 97;" +
-                                "show Department and Average; sort in ascending order by Average.";
+            "show Department and Average; sort in ascending order by Average.";
         const splitQuery: SplitQuery = new SplitQuery(query);
         const parser: ValidateQuery = new ValidateQuery(splitQuery);
         expect(parser.valid_query(query)).to.equal(expected);
@@ -173,8 +173,8 @@ describe("Validate Query", () => {
     it("Should validate query from q2", () => {
         const expected: boolean = true;
         const query: string = "In courses dataset courses, find entries whose Average is greater than 90 "
-        + "and Department is \"adhe\" "
-        + "or Average is equal to 95; show Department and ID and Average; sort in ascending order by Average.";
+            + "and Department is \"adhe\" "
+            + "or Average is equal to 95; show Department and ID and Average; sort in ascending order by Average.";
         const splitQuery: SplitQuery = new SplitQuery(query);
         const parser: ValidateQuery = new ValidateQuery(splitQuery);
         expect(parser.valid_query(query)).to.equal(true);
@@ -191,7 +191,7 @@ describe("Validate Query", () => {
     it("Should validate query from q4", () => {
         const expected: boolean = false;
         const query: string = "In rooms dataset abc, find entries whose Seats is greater than 80; "
-        + "show Seats and Address; sort in ascending order by Average2.";
+            + "show Seats and Address; sort in ascending order by Average2.";
         const splitQuery: SplitQuery = new SplitQuery(query);
         const parser: ValidateQuery = new ValidateQuery(splitQuery);
         expect(parser.valid_query(query)).to.equal(expected);
@@ -200,7 +200,7 @@ describe("Validate Query", () => {
     it("Should validate query from q5", () => {
         const expected: boolean = true;
         const query: string = "In courses dataset courses, find entries whose Average is less than 97"
-        + " and ID is \"400\"; show Department and Average; sort in ascending order by Average.";
+            + " and ID is \"400\"; show Department and Average; sort in ascending order by Average.";
         const splitQuery: SplitQuery = new SplitQuery(query);
         const parser: ValidateQuery = new ValidateQuery(splitQuery);
         expect(parser.valid_query(query)).to.equal(expected);
@@ -228,7 +228,7 @@ describe("Validate Query", () => {
         const invalidKeys: string[] = ["Appaloosa", "Title", "Audit", "Jonathon"];
         const expected: boolean = false;
         const parser: ValidateQuery = new ValidateQuery(new SplitQuery("In courses dataset courses, " +
-                                    "find all entries; show Department."));
+            "find all entries; show Department."));
         expect(parser.valid_show(invalidKeys)).to.equal(expected);
     });
 
@@ -252,7 +252,7 @@ describe("Validate Query", () => {
 
     it("Should return false with invalid input", () => {
         const query: string = "In courses dataset course titles, "
-        + "find entries whose Average is equal to 45; show Average and Instructor.";
+            + "find entries whose Average is equal to 45; show Average and Instructor.";
         const splitQuery = new SplitQuery(query);
         const parser: ValidateQuery = new ValidateQuery(splitQuery);
         const expected: boolean = false;
@@ -261,11 +261,11 @@ describe("Validate Query", () => {
 
     it("Should return true for this very long query", () => {
         const query: string = "In courses dataset courses, " +
-         "find entries whose Department is \"elec\" and ID is \"292\"" +
-         " and UUID is \"30872\" and Instructor is \"calvino-fraga, jesus\"" +
-         " and Pass is equal to 19 and Fail is equal to 0 and Audit is equal to 0" +
-         " and Title is \"biom dsgn studio\" and Average is equal to 89.68;" +
-        " show Department and ID and UUID and Instructor and Pass and Fail and Audit and Title and Average.";
+            "find entries whose Department is \"elec\" and ID is \"292\"" +
+            " and UUID is \"30872\" and Instructor is \"calvino-fraga, jesus\"" +
+            " and Pass is equal to 19 and Fail is equal to 0 and Audit is equal to 0" +
+            " and Title is \"biom dsgn studio\" and Average is equal to 89.68;" +
+            " show Department and ID and UUID and Instructor and Pass and Fail and Audit and Title and Average.";
         const splitQuery = new SplitQuery(query);
         const parser: ValidateQuery = new ValidateQuery(splitQuery);
         const expected: boolean = true;
@@ -275,8 +275,8 @@ describe("Validate Query", () => {
 
     it("validate query", () => {
         const query = "In courses dataset courses, find entries whose Audit is not less than 4" +
-        " and Average is not equal to 45 and Pass is not greater than 1 and ID begins with \"5\";" +
-        " show Average and ID and Title and UUID.";
+            " and Average is not equal to 45 and Pass is not greater than 1 and ID begins with \"5\";" +
+            " show Average and ID and Title and UUID.";
         const splitQuery = new SplitQuery(query);
         const parser: ValidateQuery = new ValidateQuery(splitQuery);
         expect(parser.valid_query(query)).to.equal(true);
@@ -284,7 +284,7 @@ describe("Validate Query", () => {
 
     it("validate query", () => {
         const query = "In courses dataset courses, find entries whose Pass is not greater than 5 and " +
-        "Pass is not greater than 6 and Pass is not greater than 7; show ID.";
+            "Pass is not greater than 6 and Pass is not greater than 7; show ID.";
         const splitQuery = new SplitQuery(query);
         const parser: ValidateQuery = new ValidateQuery(splitQuery);
         expect(parser.valid_query(query)).to.equal(true);
@@ -292,7 +292,7 @@ describe("Validate Query", () => {
 
     it("validate query", () => {
         const query = "In courses dataset courses, find entries whose ID begins with \"a\" and " +
-        "ID ends with \"z\" and ID includes \"g\"; show UUID.";
+            "ID ends with \"z\" and ID includes \"g\"; show UUID.";
         const splitQuery = new SplitQuery(query);
         const parser: ValidateQuery = new ValidateQuery(splitQuery);
         expect(parser.valid_query(query)).to.equal(true);
@@ -300,7 +300,7 @@ describe("Validate Query", () => {
 
     it("validate query with single quotes and no escapes", () => {
         const query = "In courses dataset courses, find entries whose " +
-        'ID begins with "a" and ID ends with "z" and ID includes "g"; show UUID.';
+            'ID begins with "a" and ID ends with "z" and ID includes "g"; show UUID.';
         const splitQuery = new SplitQuery(query);
         const parser: ValidateQuery = new ValidateQuery(splitQuery);
         expect(parser.valid_query(query)).to.equal(true);
@@ -308,7 +308,7 @@ describe("Validate Query", () => {
 
     it("shoud validate with differnet input", () => {
         const query = "In courses dataset horses, find entries whose " +
-        'ID begins with "a" and ID ends with "z" and ID includes "g"; show UUID.';
+            'ID begins with "a" and ID ends with "z" and ID includes "g"; show UUID.';
         const splitQuery = new SplitQuery(query);
         const parser: ValidateQuery = new ValidateQuery(splitQuery);
         expect(parser.valid_query(query)).to.equal(true);
@@ -324,7 +324,7 @@ describe("Validate Query", () => {
 
     it("Should validate with commas in the show", () => {
         const query = "In courses dataset courses, find entries whose Average is greater than 95;" +
-        " show Average, ID, UUID, and Title.";
+            " show Average, ID, UUID, and Title.";
         const splitQuery: SplitQuery = new SplitQuery(query);
         const parser: ValidateQuery = new ValidateQuery(splitQuery);
         expect(parser.valid_query(query)).to.equal(true);
@@ -332,7 +332,7 @@ describe("Validate Query", () => {
 
     it("Should validate grouped query", () => {
         const query = "In courses dataset courses grouped by Department, find entries whose Department is \"cpsc\";" +
-        " show Department, and avgGrade, where avgGrade is the AVG of Average.";
+            " show Department, and avgGrade, where avgGrade is the AVG of Average.";
         const splitQuery: SplitQuery = new SplitGroupQuery(query);
         const parser: ValidateQuery = new ValidateQuery(splitQuery);
         expect(parser.valid_query(query)).to.equal(true);
@@ -350,7 +350,7 @@ describe("Validate Query", () => {
     it("Should validate grouped query with order down", () => {
         const query = "In courses dataset courses grouped by Department, find entries whose Department is \"cpsc\";" +
             " show Department, Average and avgGrade, where avgGrade is the AVG of Average;"
-             + " sort in descending order by Average.";
+            + " sort in descending order by Average.";
         const splitQuery: SplitQuery = new SplitGroupQuery(query);
         const parser: ValidateQuery = new ValidateQuery(splitQuery);
         expect(parser.valid_query(query)).to.equal(true);
@@ -387,7 +387,7 @@ describe("Validate Query", () => {
 
     it("Should validate query with new keywords Latitude is greater than 47", () => {
         const query = "In rooms dataset rooms, find entries whose Latitude is greater than 47;"
-        + " show Name and Full Name.";
+            + " show Name and Full Name.";
         const splitQuery: SplitQuery = new SplitQuery(query);
         const parser: ValidateQuery = new ValidateQuery(splitQuery);
         expect(parser.valid_query(query)).to.equal(true);
@@ -427,7 +427,7 @@ describe("Validate Query", () => {
 
     it("Should valid d2_10.json query", () => {
         const query = "In rooms dataset rooms, find entries whose Name is \"ANGU_039\";"
-        + " show Name, Full Name, Short Name, Seats, Furniture, Link, Type, Address, Latitude and Longitude.";
+            + " show Name, Full Name, Short Name, Seats, Furniture, Link, Type, Address, Latitude and Longitude.";
         const splitQuery: SplitQuery = new SplitQuery(query);
         const parser: ValidateQuery = new ValidateQuery(splitQuery);
         expect(parser.valid_query(query)).to.equal(true);
@@ -442,7 +442,7 @@ describe("Validate Query", () => {
 
     it("Should valid d2_12.json query", () => {
         const query = "In courses dataset courses grouped by Title, find entries whose ID is \"400\";"
-        + " show Title and avg, where avg is the AVG of Average.";
+            + " show Title and avg, where avg is the AVG of Average.";
         const splitQuery: SplitQuery = new SplitGroupQuery(query);
         const parser: ValidateQuery = new ValidateQuery(splitQuery);
         expect(parser.valid_query(query)).to.equal(true);
@@ -450,7 +450,7 @@ describe("Validate Query", () => {
 
     it("Should valid d2_13.json query", () => {
         const query = "In courses dataset courses grouped by ID, find entries whose ID is \"400\";"
-         + " show ID and passers, where passers is the SUM of Pass.";
+            + " show ID and passers, where passers is the SUM of Pass.";
         const splitQuery: SplitQuery = new SplitGroupQuery(query);
         const parser: ValidateQuery = new ValidateQuery(splitQuery);
         expect(parser.valid_query(query)).to.equal(true);
@@ -466,10 +466,23 @@ describe("Validate Query", () => {
 
     it("Should valid d2_14.json query multiple sorts", () => {
         const query = "In courses dataset courses grouped by UUID, find entries whose ID is \"400\";"
-        + " show UUID and min, where min is the MIN of Average; "
-         + "sort in descending order by min and UUID.";
+            + " show UUID and min, where min is the MIN of Average; "
+            + "sort in descending order by min and UUID.";
         const splitQuery: SplitQuery = new SplitGroupQuery(query);
         const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        expect(parser.valid_query(query)).to.equal(true);
+    });
+
+    it("Should valid d2_17.json", () => {
+        const query = "In courses dataset courses grouped by Department, "
+            + "find entries whose Department is \"cpsc\"; show Department"
+            + " and avgGrade, where avgGrade is the COUNT of Average.";
+        const splitQuery: SplitQuery = new SplitGroupQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        Log.test(parser.toString());
+        for (const ag of splitQuery.get_split_query().aggregators) {
+            Log.test(ag.toString());
+        }
         expect(parser.valid_query(query)).to.equal(true);
     });
 

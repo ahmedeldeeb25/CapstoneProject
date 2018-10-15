@@ -1,7 +1,7 @@
 import { IsplitQuery, SplitQuery } from "./splitQuery";
 import QueryFilter from "./queryFilter";
 import Order from "./queryOrder";
-import { isArray } from "util";
+import { isArray, inspect } from "util";
 import Log from "../../Util";
 import Aggregator from "./Aggregation";
 
@@ -57,7 +57,7 @@ export default class ValidateQuery {
         const { aggregators } = splitQuery;
         return this.valid_dataset(dataset) && this.valid_filter(filter)
             && this.valid_show(show, aggregators) && this.valid_order(order)
-            && this.valid_groups(groupedBy) && this.valid_aggregators(aggregators);
+            && this.valid_groups(groupedBy, show) && this.valid_aggregators(aggregators);
     }
 
     /**
@@ -134,19 +134,31 @@ export default class ValidateQuery {
                     return false;
                 }
             }
+            const inputs: string[] = [];
+            // make sure that all inputs are unique ("APPLY"s)
+            for (const agg of aggregators) {
+                const input = agg.get_input();
+                if (inputs.includes(input)) {
+                    return false;
+                } else {
+                    inputs.push(input);
+                }
+            }
             return true;
         }
         return true;
     }
 
-    public valid_groups(groups: string[]): boolean {
+    public valid_groups(groups: string[], show: string[]): boolean {
         if (this.SPLIT_QUERY.get_split_query().grouped) {
             for (const group of groups) {
-                if (!this.KEYS.includes(group)) {
-                    return false;
+                if (this.KEYS.includes(group) && show.includes(group)) {
+                    return true;
                 }
             }
-            return true;
+            // there is no group that is also in show so return false
+            return false;
+            // if it's not grouped just return true
         } else {
             return true;
         }
@@ -159,7 +171,7 @@ export default class ValidateQuery {
                 \n\tFilter: ${this.valid_filter(filter)}
                 \n\tShow: ${this.valid_show(show, aggregators)}
                 \n\tOrder: ${this.valid_order(order)}
-                \n\tGroups: ${this.valid_groups(groupedBy)}
+                \n\tGroups: ${this.valid_groups(groupedBy, show)}
                 \n\tAggregators: ${this.valid_aggregators(aggregators)}`;
     }
 

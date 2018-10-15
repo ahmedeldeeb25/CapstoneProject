@@ -32,7 +32,7 @@ export default class Aggregator {
         return this.aggregator;
     }
 
-    public set_key(key: string ) {
+    public set_key(key: string) {
         this.key = key;
     }
 
@@ -46,8 +46,8 @@ export default class Aggregator {
             return false;
         }
         // MIN | AVG | SUM only work on mKey
-        if (this.mKeys.includes(this.key)) {
-            if (!this.mAggs.includes(this.aggregator)) {
+        if (this.mAggs.includes(this.aggregator)) {
+            if (!this.mKeys.includes(this.key)) {
                 return false;
             }
         }
@@ -78,7 +78,7 @@ export default class Aggregator {
         for (const d of data) {
             sum += d[this.key] as number;
         }
-        return sum;
+        return +sum.toFixed(2);
     }
 
     // returns the max of given data group
@@ -107,11 +107,17 @@ export default class Aggregator {
             sum += d[this.key] as number;
             count += 1;
         }
-        return parseFloat((sum / count).toFixed(2));
+        return +(sum / count).toFixed(2);
     }
 
-    // returns the count of given data group
+    // returns the unique instances of whatever the key is
     private count(data: Array<{ [index: string]: number | string }>): number {
-        return data.length;
+        const uniques: Array<number | string> = [];
+        for (const d of data) {
+            if (!uniques.includes(d[this.key])) {
+                uniques.push(d[this.key]);
+            }
+        }
+        return uniques.length;
     }
 }
