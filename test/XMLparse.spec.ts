@@ -16,7 +16,8 @@ describe("XMLPARSE", () => {
         const buffer: Buffer = await (promisify)(fs.readFile)(filepath);
         const content: string = buffer.toString("base64");
         parser = new XMLParse(id, content);
-        rooms = JSON.parse(await (promisify)(fs.readFile)("./src/rooms.json", "utf-8"));
+        // rooms = JSON.parse(await (promisify)(fs.readFile)("./src/rooms.json", "utf-8"));
+        rooms = await parser.parse();
     });
 
     it("Should get index file xml", async () => {
