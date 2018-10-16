@@ -131,7 +131,7 @@ describe("Query Engine", () => {
             "find all entries; show Title; sort in ascending order by Average.";
         const splitQuery = new SplitQuery(q);
         const queryAST: IsplitQuery = splitQuery.get_split_query();
-        Log.test(queryAST.order.toString());
+        // Log.test(queryAST.order.toString());
         const data: object[] = newQuery.query_data(queryAST);
         expect(data).to.deep.equal(expected);
     });
@@ -274,10 +274,10 @@ describe("Rooms data", () => {
             + " min is the MIN of Average; sort in descending order by min and UUID.";
         const splitQuery = new SplitGroupQuery(query);
         const d: object[] = queryEngine.query_data(splitQuery.get_split_query());
-        Log.test(inspect(d));
-        for (const c of d) {
-            Log.test(JSON.stringify(c));
-        }
+        // Log.test(inspect(d));
+        // for (const c of d) {
+        //     Log.test(JSON.stringify(c));
+        // }
         //  expect(data.length).to.equal(19);
     });
 });

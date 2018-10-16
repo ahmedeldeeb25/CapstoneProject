@@ -1,6 +1,4 @@
 import Aggregator from "../queryAST/Aggregation";
-import Log from "../../Util";
-import { isArray, isUndefined, isNull } from "util";
 
 export default class AggregateResults {
 
@@ -28,18 +26,6 @@ export default class AggregateResults {
                 const result: number = agg.aggregate(data[group]);
                 newGroup[agg.get_input()] = result;
             }
-            // get the rest of what is going to be shown (should be same for all entries)
-            // for (const key of this.shows) {
-            //     // SKIP IF ALREADY IN NEW GROUP and
-            //     // for some reason title is coming back as array???
-            //     if (!newGroup[key]) {
-            //         let val = data[group][0][key];
-            //         if (isArray(val)) {
-            //             val = val[0];
-            //         }
-            //         newGroup[key] = val;
-            //     }
-            // }
             newGroup = {...newGroup, ...data[group][0]};
             results.push(newGroup);
         }

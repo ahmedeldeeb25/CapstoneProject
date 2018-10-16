@@ -6,7 +6,6 @@ import MOP from "../src/controller/queryAST/queryMOP";
 import SOP from "../src/controller/queryAST/querySOP";
 import Order from "../src/controller/queryAST/queryOrder";
 import SplitGroupQuery from "../src/controller/queryAST/splitGroupedQuery";
-import Log from "../src/Util";
 
 describe("Query splitter", () => {
     const splitQuery = new SplitQuery("In rooms dataset rooms, find entries whose Average is greater" +
@@ -479,10 +478,6 @@ describe("Validate Query", () => {
             + " and avgGrade, where avgGrade is the COUNT of Average.";
         const splitQuery: SplitQuery = new SplitGroupQuery(query);
         const parser: ValidateQuery = new ValidateQuery(splitQuery);
-        Log.test(parser.toString());
-        for (const ag of splitQuery.get_split_query().aggregators) {
-            Log.test(ag.toString());
-        }
         expect(parser.valid_query(query)).to.equal(true);
     });
 

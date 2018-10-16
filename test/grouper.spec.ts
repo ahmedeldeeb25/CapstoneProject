@@ -1,7 +1,5 @@
 import { expect } from "chai";
 import Grouper from "../src/controller/queryEngine/groupResults";
-import Log from "../src/Util";
-import { inspect } from "util";
 import Aggregator from "../src/controller/queryAST/Aggregation";
 import AggregateResults from "../src/controller/queryEngine/aggregateResults";
 
@@ -86,6 +84,6 @@ describe("Grouper", () => {
         const grouper: Grouper = new Grouper(data);
         const grouped: any = grouper.groupData(groups);
         const aggregator: AggregateResults = new AggregateResults([agg1, agg2], show);
-        Log.test(inspect(aggregator.aggregate(grouped)));
+        // Log.test(inspect(aggregator.aggregate(grouped)));
     });
 });

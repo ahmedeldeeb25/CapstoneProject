@@ -1,5 +1,4 @@
 import * as http from "http";
-import Log from "../../Util";
 
 export interface IGeoResponse {
     lat?: number;

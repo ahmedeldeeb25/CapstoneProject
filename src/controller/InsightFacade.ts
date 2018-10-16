@@ -55,7 +55,8 @@ export default class InsightFacade implements IInsightFacade {
                 if (kind === InsightDatasetKind.Courses) {
                     data = await parser.parse();
                 } else {
-                    data = JSON.parse(await (promisify)(fs.readFile)("./src/rooms.json", "utf-8"));
+                    // data = JSON.parse(await (promisify)(fs.readFile)("./src/rooms.json", "utf-8"));
+                    data = await parser.parse();
                 }
                 this.cache[id] = data;
                 await (promisify)(fs.writeFile)(`./${id}.json`, JSON.stringify(data));

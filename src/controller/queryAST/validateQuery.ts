@@ -1,8 +1,7 @@
 import { IsplitQuery, SplitQuery } from "./splitQuery";
 import QueryFilter from "./queryFilter";
 import Order from "./queryOrder";
-import { isArray, inspect } from "util";
-import Log from "../../Util";
+import { isArray } from "util";
 import Aggregator from "./Aggregation";
 
 /**
