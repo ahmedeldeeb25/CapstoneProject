@@ -231,6 +231,31 @@ describe("Course data", () => {
     //     }
     //     expect(data.length).to.equal(19);
     // });
+
+    it("Use to compare data between UI on SDMM and data my app gets", () => {
+        const query: string = "In courses dataset courses grouped by Title,"
+            + " find entries whose ID is \"400\"; show UUID and min, where"
+            + " min is the MIN of Average; sort in descending order by min and UUID.";
+        const splitQuery = new SplitGroupQuery(query);
+        const d: object[] = queryEngine.query_data(splitQuery.get_split_query());
+        // Log.test(inspect(d));
+        // for (const c of d) {
+        //     Log.test(JSON.stringify(c));
+        // }
+        //  expect(data.length).to.equal(19);
+    });
+
+    it("Find where the timeout is happening!", () => {
+        const query: string = "In courses dataset courses grouped by ID, find all entries;"
+            + " show ID and id, where id is the COUNT of ID; sort in ascending order by ID.";
+        const splitQuery = new SplitGroupQuery(query);
+        const d: object[] = queryEngine.query_data(splitQuery.get_split_query());
+        Log.test(inspect(d));
+        // for (const c of d) {
+        //     Log.test(JSON.stringify(c));
+        // }
+        //  expect(data.length).to.equal(19);
+    });
 });
 
 describe("Rooms data", () => {
@@ -268,16 +293,4 @@ describe("Rooms data", () => {
         //  expect(data.length).to.equal(19);
     });
 
-    it("Use to compare data between UI on SDMM and data my app gets", () => {
-        const query: string = "In courses dataset courses grouped by Title,"
-            + " find entries whose ID is \"400\"; show UUID and min, where"
-            + " min is the MIN of Average; sort in descending order by min and UUID.";
-        const splitQuery = new SplitGroupQuery(query);
-        const d: object[] = queryEngine.query_data(splitQuery.get_split_query());
-        // Log.test(inspect(d));
-        // for (const c of d) {
-        //     Log.test(JSON.stringify(c));
-        // }
-        //  expect(data.length).to.equal(19);
-    });
 });

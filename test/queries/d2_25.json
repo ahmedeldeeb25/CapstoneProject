@@ -1,0 +1,209 @@
+{
+    "title": "Select Title, Average from Courses where ID is 400 group by Title",
+    "query": "In courses dataset courses grouped by ID, UUID and Title, find entries whose Title begins with \"a\" and ID is \"400\"; show ID, Title, UUID and id, where id is the COUNT of ID; sort in ascending order by UUID.",
+    "response": {
+        "code": 200,
+        "body": {
+            "result": [
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "13889",
+                    "courses_title": "app part diff eq",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "13890",
+                    "courses_title": "app part diff eq",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "27411",
+                    "courses_title": "app part diff eq",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "27412",
+                    "courses_title": "app part diff eq",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "27413",
+                    "courses_title": "app part diff eq",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "29923",
+                    "courses_title": "app part diff eq",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "29924",
+                    "courses_title": "app part diff eq",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "33397",
+                    "courses_title": "audio strytellng",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "33398",
+                    "courses_title": "audio strytellng",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "34149",
+                    "courses_title": "app part diff eq",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "34150",
+                    "courses_title": "app part diff eq",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "34151",
+                    "courses_title": "app part diff eq",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "34635",
+                    "courses_title": "adv crim procedr",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "34636",
+                    "courses_title": "adv crim procedr",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "36227",
+                    "courses_title": "adv crim procedr",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "36228",
+                    "courses_title": "adv crim procedr",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "3946",
+                    "courses_title": "app part diff eq",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "3947",
+                    "courses_title": "app part diff eq",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "3948",
+                    "courses_title": "app part diff eq",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "47199",
+                    "courses_title": "app part diff eq",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "47200",
+                    "courses_title": "app part diff eq",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "47201",
+                    "courses_title": "app part diff eq",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "5317",
+                    "courses_title": "app part diff eq",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "5318",
+                    "courses_title": "app part diff eq",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "57384",
+                    "courses_title": "audio strytellng",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "57385",
+                    "courses_title": "audio strytellng",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "73097",
+                    "courses_title": "app part diff eq",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "73098",
+                    "courses_title": "app part diff eq",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "87881",
+                    "courses_title": "audio strytellng",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "87882",
+                    "courses_title": "audio strytellng",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "90161",
+                    "courses_title": "app part diff eq",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "90162",
+                    "courses_title": "app part diff eq",
+                    "id": 1
+                },
+                {
+                    "courses_id": "400",
+                    "courses_uuid": "90163",
+                    "courses_title": "app part diff eq",
+                    "id": 1
+                }
+            ]
+        }
+    }
+}

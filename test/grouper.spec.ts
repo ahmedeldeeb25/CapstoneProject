@@ -2,8 +2,27 @@ import { expect } from "chai";
 import Grouper from "../src/controller/queryEngine/groupResults";
 import Aggregator from "../src/controller/queryAST/Aggregation";
 import AggregateResults from "../src/controller/queryEngine/aggregateResults";
+import InsightFacade from "../src/controller/InsightFacade";
+import { promisify, inspect } from "util";
+import * as fs from "fs";
+import * as path from "path";
+import { InsightDatasetKind } from "../src/controller/IInsightFacade";
+import Log from "../src/Util";
 
 describe("Grouper", () => {
+    let coursesData: object[];
+    before("load data if it doesn't exist", async () => {
+        const filename = path.join(__dirname, "..", "/src/data/courses.zip");
+        const insightFacade = new InsightFacade();
+        try {
+            const buffer: Buffer = await (promisify)(fs.readFile)(filename);
+            const content: string = buffer.toString("base64");
+            await insightFacade.addDataset("courses", content, InsightDatasetKind.Courses);
+            coursesData = insightFacade.get_cache()["courses"];
+        } catch (err) {
+            throw new Error("there was an error loading data");
+        }
+    });
 
     const data: object[] = [
         { rooms_name: "MCML_360E", rooms_fullname: "MacMillan",
@@ -85,5 +104,11 @@ describe("Grouper", () => {
         const grouped: any = grouper.groupData(groups);
         const aggregator: AggregateResults = new AggregateResults([agg1, agg2], show);
         // Log.test(inspect(aggregator.aggregate(grouped)));
+    });
+
+    it("Should group data in a timely manner", () => {
+        const grouper = new Grouper(data);
+        const results: {} = grouper.groupBy("ID", coursesData);
+        Log.test(inspect(results));
     });
 });

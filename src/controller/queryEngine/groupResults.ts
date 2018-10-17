@@ -1,3 +1,5 @@
+import Log from "../../Util";
+import { inspect } from "util";
 
 export default class Grouper {
 
@@ -26,16 +28,27 @@ export default class Grouper {
         return this.groupBy(key, data);
     }
 
-    public groupBy(key: string, data: object[]
+    // how can i make this faster?
+    public groupBy(key: string, data: any
          = this.data): { [name: string]: Array<{ [name: string]: string | number }> } {
-        return data.reduce( (result: any, item: any) => ({
-            ...result,
-            [item[key]]: [
-                ...result[item[key]] || [],
-                item,
-            ],
-        }),
-        {});
+        if (key === "ID" || key === "UUID") {
+            key = `courses_${key.toLowerCase()}`;
+            const newData: { [name: string]: Array<{ [name: string]: string | number }> } = {};
+            for (const item of data) {
+                const keyVal = item[key];
+                newData[keyVal] = item;
+            }
+            return newData;
+        } else {
+            return data.reduce((result: any, item: any) => ({
+                ...result,
+                [item[key]]: [
+                    ...result[item[key]] || [],
+                    item,
+                ],
+            }),
+                {});
+        }
     }
 
     public flattenData(data: { [index: string]: any }, shows: string[]): object[] {

@@ -481,6 +481,14 @@ describe("Validate Query", () => {
         expect(parser.valid_query(query)).to.equal(true);
     });
 
+    it("Should valid d2_24.json", () => {
+        const query = "In courses dataset courses grouped by ID, find all entries;"
+         + " show ID and id, where id is the COUNT of ID; sort in ascending order by ID.";
+        const splitQuery: SplitQuery = new SplitGroupQuery(query);
+        const parser: ValidateQuery = new ValidateQuery(splitQuery);
+        expect(parser.valid_query(query)).to.equal(true);
+    });
+
 });
 
 describe("Query Filter", () => {
