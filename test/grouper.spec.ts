@@ -7,7 +7,6 @@ import { promisify, inspect } from "util";
 import * as fs from "fs";
 import * as path from "path";
 import { InsightDatasetKind } from "../src/controller/IInsightFacade";
-import Log from "../src/Util";
 
 describe("Grouper", () => {
     let coursesData: object[];
@@ -86,7 +85,7 @@ describe("Grouper", () => {
         const groups: string[] = ["rooms_type"];
         const grouper = new Grouper(data);
         // Log.test(inspect(grouper.groupBy(groups[0])));
-        expect(Object.keys(grouper.groupBy(groups[0])).length).to.equal(3);
+        expect(Object.keys(grouper.groupData(groups)).length).to.equal(3);
     });
 
     it("Should group data multiple deep", () => {
@@ -108,7 +107,13 @@ describe("Grouper", () => {
 
     it("Should group data in a timely manner", () => {
         const grouper = new Grouper(data);
-        const results: {} = grouper.groupBy("ID", coursesData);
-        Log.test(inspect(results));
+        const results: {} = grouper.groupData(["courses_id"], coursesData);
+        // Log.test(inspect(results));
+    });
+
+    it("Should group data in a timely manner", () => {
+        const grouper = new Grouper(data);
+        const results: {} = grouper.groupData(["courses_id", "courses_title"], coursesData);
+        // Log.test(inspect(results));
     });
 });

@@ -3,6 +3,7 @@ import QueryFilter from "../queryAST/queryFilter";
 import { isArray, isString, isNull, isUndefined, inspect } from "util";
 import Grouper from "./groupResults";
 import AggregateResults from "./aggregateResults";
+import Log from "../../Util";
 
 export default class QueryEngine {
     private data: object[];
@@ -65,9 +66,8 @@ export default class QueryEngine {
             const aggregator: AggregateResults = new AggregateResults(query.aggregators, show);
             const groupedData: { [index: string]: any } = grouper.groupData(show);
             data = aggregator.aggregate(groupedData);
-        }
-            // if the data is grouped but not aggregated takes the first entry for
-        if (query.grouped) {
+            // Log.test(inspect(data));
+        } else if (query.grouped) {
             data = this.group_without_aggs(data, show);
         }
 
@@ -84,10 +84,6 @@ export default class QueryEngine {
         data = data.map((x: { [index: string]: any }) => {
             const y: { [index: string]: string | number } = {};
             for (const s of show) {
-                // makes title a string not a string[]
-                if (isArray(x[s])) {
-                    x[s] = x[s][0];
-                }
                 y[s] = x[s];
             }
             return y;

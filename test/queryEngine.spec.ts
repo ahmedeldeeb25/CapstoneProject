@@ -245,17 +245,30 @@ describe("Course data", () => {
         //  expect(data.length).to.equal(19);
     });
 
-    it("Find where the timeout is happening!", () => {
-        const query: string = "In courses dataset courses grouped by ID, find all entries;"
-            + " show ID and id, where id is the COUNT of ID; sort in ascending order by ID.";
-        const splitQuery = new SplitGroupQuery(query);
-        const d: object[] = queryEngine.query_data(splitQuery.get_split_query());
-        Log.test(inspect(d));
-        // for (const c of d) {
-        //     Log.test(JSON.stringify(c));
-        // }
-        //  expect(data.length).to.equal(19);
-    });
+    // it("Find where the timeout is happening!", () => {
+    //     const query: string = "In courses dataset courses grouped by ID, find all entries;"
+    //         + " show ID and id, where id is the COUNT of ID; sort in ascending order by ID.";
+    //     const splitQuery = new SplitGroupQuery(query);
+    //     const d: object[] = queryEngine.query_data(splitQuery.get_split_query());
+    //     Log.test(inspect(d));
+    //     // for (const c of d) {
+    //     //     Log.test(JSON.stringify(c));
+    //     // }
+    //     //  expect(data.length).to.equal(19);
+    // });
+
+    // it("Find where the discrepancies are happening!", () => {
+    //     const query: string = "In courses dataset courses grouped by Title,"
+    //     + " find entries whose ID is \"400\"; show Title and avg, where avg is"
+    //     + " the AVG of Average; sort in ascending order by avg.";
+    //     const splitQuery = new SplitGroupQuery(query);
+    //     const d: object[] = queryEngine.query_data(splitQuery.get_split_query());
+    //     Log.test(inspect(d));
+    //     // for (const c of d) {
+    //     //     Log.test(JSON.stringify(c));
+    //     // }
+    //     //  expect(data.length).to.equal(19);
+    // });
 });
 
 describe("Rooms data", () => {

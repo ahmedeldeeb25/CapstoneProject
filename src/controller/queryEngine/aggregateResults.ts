@@ -14,7 +14,6 @@ export default class AggregateResults {
     // Handling show here isn't the best for couping but it kind of goes hand in hand here
     public aggregate(data: { [index: string]: Array<{ [index: string ]: string | number}>}): object[] {
         // query without args is rejecting
-
         const results = [];
         // Get all the groups
         const groups: string[] = Object.keys(data);

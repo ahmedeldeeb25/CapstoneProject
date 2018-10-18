@@ -1,0 +1,15 @@
+{
+    "title": "Select Title, Average from Courses where ID is 400 group by Title",
+    "query": "In courses dataset courses grouped by Department, find entries whose Department is \"cpsc\"; show Department and avgGrade, where avgGrade is the COUNT of Average.",
+    "response": {
+        "code": 200,
+        "body": {
+            "result": [
+                {
+                    "courses_dept": "cpsc",
+                    "avgGrade": 621
+                }
+            ]
+        }
+    }
+}

@@ -1,5 +1,3 @@
-import Log from "../../Util";
-import { inspect } from "util";
 
 export default class Grouper {
 
@@ -16,48 +14,22 @@ export default class Grouper {
     // ie Seats -> rooms_seats
     public groupData(keys: string[], data: object[]
          = this.data): { [name: string]: Array<{ [name: string]: string | number}> } {
-        const key: string = keys.join("-");
-        const newData = data.slice();
-        newData.map( (item: any) => {
-            const arr: Array<string | number> = [];
+        const newData: { [name: string]: Array<{ [name: string]: string | number }> } = {};
+        for (const d of data as any) {
+            // get all the values that respond to each key and make it a new key
+            const val: Array<string | number> = [];
             for (const k of keys) {
-                arr.push(item[k]);
+                val.push(d[k]);
             }
-            item[key] = arr;
-        });
-        return this.groupBy(key, data);
-    }
-
-    // how can i make this faster?
-    public groupBy(key: string, data: any
-         = this.data): { [name: string]: Array<{ [name: string]: string | number }> } {
-        if (key === "ID" || key === "UUID") {
-            key = `courses_${key.toLowerCase()}`;
-            const newData: { [name: string]: Array<{ [name: string]: string | number }> } = {};
-            for (const item of data) {
-                const keyVal = item[key];
-                newData[keyVal] = item;
-            }
-            return newData;
-        } else {
-            return data.reduce((result: any, item: any) => ({
-                ...result,
-                [item[key]]: [
-                    ...result[item[key]] || [],
-                    item,
-                ],
-            }),
-                {});
-        }
-    }
-
-    public flattenData(data: { [index: string]: any }, shows: string[]): object[] {
-        const result: object[] = [];
-        for (const index of Object.keys(data)) {
-            for (const show of shows) {
-                result.push(data[index][0][show]);
+            const newKey: string = val.join("-");
+            if (newData[newKey]) {
+                newData[newKey].push(d);
+            } else {
+                newData[newKey] = [d];
             }
         }
-        return result;
+        return newData;
+        // return this.groupBy(key, data);
     }
+
 }

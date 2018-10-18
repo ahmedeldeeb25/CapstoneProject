@@ -1,3 +1,4 @@
+import Decimal from "decimal.js";
 
 export default class Aggregator {
     // TODO
@@ -103,10 +104,10 @@ export default class Aggregator {
         let sum: number = 0;
         let count: number = 0;
         for (const d of data) {
-            sum += d[this.key] as number;
-            count += 1;
+            sum += (d[this.key] as number);
+            count++;
         }
-        return +(sum / count).toFixed(2);
+        return Number((sum / count).toFixed(2));
     }
 
     // returns the unique instances of whatever the key is
