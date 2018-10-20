@@ -68,14 +68,15 @@ export default class Server {
                 // NOTE: your endpoints should go here
                 that.rest.put("/dataset/:id/:kind", async (req, res, next) => {
                     const { id, kind } = req.params;
-                    const buffer: Buffer = req.body.content;
-                    const content: string = buffer.toString("base64");
                     let response: InsightResponse;
                     let code: number;
                     try {
+                        const buffer: Buffer = req.body.file;
+                        const content: string = buffer.toString("base64");
                         response = await insightFacade.addDataset(id, content, kind);
-                        code = 200;
+                        code = 204;
                     } catch (err) {
+                        Log.info("Error occurred " + inspect(err));
                         response = err;
                         code = 400;
                     }
