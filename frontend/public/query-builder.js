@@ -6,8 +6,188 @@
  * @returns query object adhering to the query EBNF
  */
 CampusExplorer.buildQuery = function() {
-    let query = {};
-    // TODO: implement!
-    console.log("CampusExplorer.buildQuery not implemented yet.");
+    let query = "";
+    const conditionType = document.querySelector("input[name='conditionType']:checked").value;
+    const rawFilters = document.querySelectorAll(".control-group.condition");
+    const dataType = document.querySelector(".tab-panel.active").attributes.getNamedItem("data-type").value;
+    const rawTransformations = document.querySelectorAll(".control-group.transformation");
+    const rawOrders = document.querySelector(".order").querySelector("select").querySelectorAll("option[selected='selected']");
+    const direction = document.querySelector(".descending").querySelector("input[checked='checked']");
+    const connector = HelperFunctions.getConditionType(conditionType);
+    const showCheckBoxes = document.querySelector(".columns").querySelector(".control-group").children;
+    const groupCheckBoxes = document.querySelector(".groups").querySelector(".control-group").children;
+    const transformations = HelperFunctions.getTransformations(rawTransformations);
+    const show = HelperFunctions.getShowGroups("show", showCheckBoxes);
+    const groups = HelperFunctions.getShowGroups("grouped by", groupCheckBoxes);
+    const filters = HelperFunctions.getFilters(rawFilters, connector);
+    const order = HelperFunctions.getOrder(rawOrders, direction);
+    // DATATYPE
+    if (dataType === "courses") {
+        query += "In courses dataset courses";
+    } else {
+        query += "In rooms dataset rooms";
+    }
+    // GROUPED?
+    if (groups) {
+        query += " " + groups + ",";
+    } else {
+        query += ",";
+    }
+    // FILTERS
+    if (filters) {
+        // find entries whose
+        query += " find entries whose " + filters + "; ";
+    } else {
+        // find all entries
+        query += " find all entries; ";
+    }
+    // SHOW
+    query += show;
+    // TRANSFORMATIONS
+    if (transformations) {
+        query += transformations;
+    }
+    if (order) {
+        query +=  "; " + order + ".";
+    }  else {
+        query += ".";
+    }
+    console.log("Connector is " + connector);
+    console.log("Filters are " + filters);
+    console.log("Show " + show);
+    console.log("Order " + order);
+    console.log("Groups: " + groups);
+    console.log("Transformations: " + transformations);
+    console.log(query);
     return query;
 };
+
+HelperFunctions =  {
+    noneOfFollowing: false,
+    getConditionType: function(condition) {
+        if (condition === "all") {
+            return "and";
+        } else if (condition === "or" ){
+            return "or";
+        } else {
+            this.noneOfFollowing = true;
+            return "and";
+        }
+    },
+    invertFilters: function(filters) {
+        return filters.map( (filter) => {
+            if (filter.includes("not")) {
+                filter = filter.replace(/not /g, "");
+            } else {
+                let breakPt = filter.indexOf("is") + 2;
+                filter = filter.slice(0, breakPt) + " not" + filter.slice(breakPt);
+            }
+            return filter;
+        });
+    },
+    getFilters: function(filters, condition){
+        let allFilters = [];
+        for (filter of filters) {
+            let not = filter.querySelector(".not:checked") ? "not" : "";
+            let field = filter.querySelector(".fields").querySelector("select").value;
+            field = this.translateColumn(field);
+            let operator = filter.querySelector(".operators").querySelector("select").value;
+            operator = this.translateOperator(operator, not);
+            let term = filter.querySelector(".term").querySelector("input").value;
+            allFilters.push(field + " " + operator + " " + term);
+        }
+        if (this.noneOfFollowing) {
+            this.invertFilters(allFilters);
+        }
+        if (allFilters.length > 0) {
+            return allFilters.join(" " + condition + " ");
+        } else {
+            return ""
+        }
+    },
+    getTransformations(trans) {
+        const shows = [];
+        const transformations = [];
+        for (tran of trans) {
+            let term = tran.querySelector(".term").querySelector("input").value;
+            let operator = tran.querySelector(".operators").querySelector("select").value;
+            let field = tran.querySelector(".fields").querySelector("select").value;
+            field = this.translateColumn(field);
+            shows.push(term);
+            transformations.push(term + " is the " + operator + " of " + field);
+        }
+        if (transformations.length > 0) {
+            return " and " + shows.join(" and ") + ", where " + transformations.join(" and ");
+        } else {
+            return "";
+        }
+    },
+    translateOperator: function(operator, not) {
+        switch (operator) {
+            case "EQ":
+                return "is" + not  + " equal to";
+            case "GT":
+                return "is" + not + " greater than";
+            case "IS":
+                return "is" + not;
+            case "LT":
+                return "is" + not + " less than";
+        }
+    },
+    translateColumn: function(col) {
+        const dict = {
+            "audit": "Audit",
+            "avg": "Average",
+            "dept": "Department",
+            "fail": "Fail",
+            "id": "ID",
+            "instructor": "Instructor",
+            "pass": "Pass",
+            "title": "Title",
+            "uuid": "UUID",
+            "year": "Year",
+            "address": "Address",
+            "fullname": "Full Name",
+            "Furniture": "Furniture",
+            "href": "Link",
+            "lat": "Latitude",
+            "lon": "Longitude",
+            "name": "Name",
+            "number": "Number",
+            "seats": "Seats",
+            "shortname": "Short Name",
+            "type": "Type"
+        }
+        return dict[col];
+    },
+    getShowGroups: function(phrase, showCheckBoxes) {
+        const show = [];
+        for (box of showCheckBoxes) {
+            const thisBox = box.querySelector("input");
+            if (thisBox.checked) {
+                show.push(this.translateColumn(thisBox.value));
+            }
+        }
+        if (show.length === 0) {
+            return "";
+        } else {
+            return phrase + " " + show.join(" and ");
+        }
+    },
+    getOrder: function(orders, direction) {
+        let dir = direction ? "descending" : "ascending";
+        let phrase = "sort in " + dir + " order by ";
+        let allOrders = [];
+        for (order of orders) {
+            allOrders.push(this.translateColumn(order.value));
+        }
+        if (allOrders.length > 0) {
+            return phrase + allOrders.join(" and ");
+        } else {
+            return "";
+        }
+    },
+    putItAllTogether: function(){
+        return "todo";
+    }
+}

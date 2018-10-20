@@ -6,6 +6,8 @@ import fs = require("fs");
 import restify = require("restify");
 import Log from "../Util";
 import {InsightResponse} from "../controller/IInsightFacade";
+import InsightFacade from "../controller/InsightFacade";
+import { inspect } from "util";
 
 /**
  * This configures the REST endpoints for the server.
@@ -48,23 +50,83 @@ export default class Server {
         return new Promise(function (fulfill, reject) {
             try {
                 Log.info("Server::start() - start");
-
+                const insightFacade: InsightFacade = new InsightFacade();
                 that.rest = restify.createServer({
                     name: "insightUBC",
                 });
-
+                that.rest.use(restify.bodyParser());
                 that.rest.use(
                     function crossOrigin(req, res, next) {
                         res.header("Access-Control-Allow-Origin", "*");
                         res.header("Access-Control-Allow-Headers", "X-Requested-With");
                         return next();
                     });
-
                 // This is an example endpoint that you can invoke by accessing this URL in your browser:
                 // http://localhost:4321/echo/hello
                 that.rest.get("/echo/:msg", Server.echo);
 
                 // NOTE: your endpoints should go here
+                that.rest.put("/dataset/:id/:kind", async (req, res, next) => {
+                    const { id, kind } = req.params;
+                    const buffer: Buffer = req.body.content;
+                    const content: string = buffer.toString("base64");
+                    let response: InsightResponse;
+                    let code: number;
+                    try {
+                        response = await insightFacade.addDataset(id, content, kind);
+                        code = 200;
+                    } catch (err) {
+                        response = err;
+                        code = 400;
+                    }
+                    res.json(code, response);
+                    return next();
+                });
+
+                that.rest.del("/dataset/:id", async (req, res, next) => {
+                    const id: string = req.params.id;
+                    let response: InsightResponse;
+                    let code: number;
+                    try {
+                        response = await insightFacade.removeDataset(id);
+                        code = 200;
+                    } catch (err) {
+                        response = err;
+                        code = 400;
+                    }
+                    res.json(code, response);
+                    return next();
+                });
+
+                that.rest.post("/query", async (req, res, next) => {
+                    let response: InsightResponse;
+                    let code: number;
+                    try {
+                        const query: string = req.body.query;
+                        response = await insightFacade.performQuery(query);
+                        code = 200;
+                    } catch (err) {
+                        response = err;
+                        code = 400;
+                    }
+                    res.json(code, response);
+                    return next();
+                });
+
+                that.rest.get("/datasets", async (req, res, next) => {
+                    let code: number;
+                    let response: InsightResponse;
+                    Log.info("GET DATASETS");
+                    try {
+                        response = await insightFacade.listDatasets();
+                        code = 200;
+                    } catch (err) {
+                        response = err;
+                        code = 400;
+                    }
+                    res.json(code, response);
+                    return next();
+                });
 
                 // This must be the last endpoint!
                 that.rest.get("/.*", Server.getStatic);

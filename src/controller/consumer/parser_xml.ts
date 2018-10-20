@@ -103,7 +103,9 @@ export default class XMLParse extends Parser {
                 rooms.then((res) => {
                     x["rooms"] = res;
                 }).catch((err) => {
-                    return Promise.reject(Error("Error parsing rooms"));
+                    if (err) {
+                        return Promise.reject(Error("Error parsing rooms"));
+                    }
                 });
                 roomsPromises.push(rooms);
                 // use request to get lat and long
@@ -112,21 +114,23 @@ export default class XMLParse extends Parser {
                     x["lat"] = r.lat;
                     x["lon"] = r.lon;
                 }).catch((err) => {
-                    x["lat"] = err;
-                    x["lon"] = err;
+                    if (err) {
+                        x["lat"] = err;
+                        x["lon"] = err;
+                    }
                 });
                 locPromises.push(geoResponse);
                 data.push(x);
             }
             await Promise.all(locPromises).catch((err) => {
-                return Promise.reject(Error("error occured getting locations"));
+                if (err) { return Promise.reject(Error("error occured getting locations")); }
             });
             await Promise.all(roomsPromises).catch((err) => {
-                return Promise.reject(Error("error occured getting rooms"));
+                if (err) { return Promise.reject(Error("error occured getting rooms")); }
             });
             return Promise.resolve(this.format_data(data));
         } catch (err) {
-            return Promise.reject(Error("something went wrong with get request!"));
+            if (err) { return Promise.reject(Error("something went wrong with get request!")); }
         }
     }
 
@@ -146,7 +150,9 @@ export default class XMLParse extends Parser {
             try {
                 xml = await file.async("text");
             } catch (err) {
-                return Promise.reject(Error("error finding file!"));
+                if (err) {
+                    return Promise.reject(Error("error finding file!"));
+                }
             }
             // get to rooms doc -> html -> body -> building -> rooms
             const doc: any = parse5.parse(xml);
@@ -180,7 +186,9 @@ export default class XMLParse extends Parser {
             }
             return Promise.resolve(data);
         } catch (err) {
-            return Promise.reject(Error("an error occured in parsing rooms"));
+            if (err) {
+                return Promise.reject(Error("an error occured in parsing rooms"));
+            }
         }
     }
 
