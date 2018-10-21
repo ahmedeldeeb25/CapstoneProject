@@ -7,7 +7,7 @@ import restify = require("restify");
 import Log from "../Util";
 import {InsightResponse} from "../controller/IInsightFacade";
 import InsightFacade from "../controller/InsightFacade";
-import { inspect } from "util";
+import { inspect, promisify } from "util";
 
 /**
  * This configures the REST endpoints for the server.
@@ -71,7 +71,7 @@ export default class Server {
                     let response: InsightResponse;
                     let code: number;
                     try {
-                        const buffer: Buffer = req.body.file;
+                        const buffer: Buffer = await (promisify)(fs.readFile)(req.files.body.path);
                         const content: string = buffer.toString("base64");
                         response = await insightFacade.addDataset(id, content, kind);
                         code = 204;
@@ -90,10 +90,10 @@ export default class Server {
                     let code: number;
                     try {
                         response = await insightFacade.removeDataset(id);
-                        code = 200;
+                        code = 204;
                     } catch (err) {
                         response = err;
-                        code = 400;
+                        code = 404;
                     }
                     res.json(code, response);
                     return next();
@@ -104,6 +104,7 @@ export default class Server {
                     let code: number;
                     try {
                         const query: string = req.body.query;
+                        Log.test(query);
                         response = await insightFacade.performQuery(query);
                         code = 200;
                     } catch (err) {

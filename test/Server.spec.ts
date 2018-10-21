@@ -45,7 +45,7 @@ describe("Facade D3", function () {
         try {
             return chai.request(URL)
                 .put("/dataset/courses/courses")
-                .send({file: coursesBuffer })
+                .attach("body", coursesBuffer, "courses.zip")
                 .then(function (res: any) {
                     // some logging here please!
                     chai.expect(res.status).to.be.equal(204);
@@ -67,7 +67,7 @@ describe("Facade D3", function () {
         try {
             return chai.request(URL)
                 .put("/dataset/rooms/rooms")
-                .send({file: roomsBuffer})
+                .attach("body", roomsBuffer, "rooms.zip")
                 .then(function (res: any) {
                     // some logging here please!
                     chai.expect(res.status).to.be.equal(204);
@@ -85,5 +85,94 @@ describe("Facade D3", function () {
         }
     });
 
+    it("POST test for query", function () {
+        try {
+            return chai.request(URL)
+                .post("/query")
+                .send({ query: "In courses dataset courses, find all entries; show ID." })
+                .then(function (res: any) {
+                    chai.expect(res.status).to.be.equal(200);
+                })
+                .catch(function (err: any) {
+                    Log.test("Error occured" + err);
+                    throw Error("fail!");
+                });
+
+        } catch (err) {
+            Log.test("Error occurred " + err);
+            throw Error("fail!");
+        }
+    });
+
+    it("POST test for query REJECT bad query", function () {
+        try {
+            return chai.request(URL)
+                .post("/query")
+                .send({ query: "How now brown cow?" })
+                .then(function (res: any) {
+                    throw Error("unexpected!");
+                })
+                .catch(function (err: any) {
+                    chai.expect(err.status).to.be.equal(400);
+                });
+
+        } catch (err) {
+            Log.test("Error occurred " + err);
+            throw Error("fail!");
+        }
+    });
+
+    it("DEL test for courses dataset", function () {
+        try {
+            return chai.request(URL)
+                .del("/dataset/courses")
+                .then(function (res: any) {
+                    chai.expect(res.status).to.be.equal(204);
+                })
+                .catch(function (err: any) {
+                    Log.test("Error occured" + err);
+                    throw Error("fail!");
+                });
+
+        } catch (err) {
+            Log.test("Error occurred " + err);
+            throw Error("fail!");
+        }
+    });
+
+    it("DEL test for nonexistent dataset", function () {
+        try {
+            return chai.request(URL)
+                .del("/dataset/moras")
+                .then(function (res: any) {
+                    throw Error("fail");
+                })
+                .catch(function (err: any) {
+                    chai.expect(err.status).to.be.equal(404);
+                });
+
+        } catch (err) {
+            Log.test("Error occurred " + err);
+            throw Error("fail!");
+        }
+    });
+
+    it("GET test for datasetlist", function () {
+        try {
+            return chai.request(URL)
+                .get("/datasets")
+                .then(function (res: any) {
+                    chai.expect(res.status).to.be.equal(200);
+                })
+                .catch(function (err: any) {
+                    Log.test("Error occured" + err);
+                    throw Error("fail!");
+                });
+
+        } catch (err) {
+            Log.test("Error occurred " + err);
+            throw Error("fail!");
+        }
+    });
     // The other endpoints work similarly. You should be able to find all instructions at the chai-http documentation
 });
