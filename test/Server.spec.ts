@@ -27,7 +27,6 @@ describe("Facade D3", function () {
     });
 
     after(function () {
-        // TODO: stop server here once!
         server.stop();
     });
 
@@ -48,6 +47,7 @@ describe("Facade D3", function () {
                 .attach("body", coursesBuffer, "courses.zip")
                 .then(function (res: any) {
                     // some logging here please!
+                    Log.test("Successfully added courses");
                     chai.expect(res.status).to.be.equal(204);
                 })
                 .catch(function (err: any) {

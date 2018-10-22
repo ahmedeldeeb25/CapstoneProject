@@ -6,22 +6,23 @@
  */
 CampusExplorer.sendQuery = function(query) {
     return new Promise(function(fulfill, reject) {
-        // TODO: implement!
-        console.log("CampusExplorer.sendQuery not implemented yet.");
-        query = "In courses dataset courses, find all entries; show ID.";
-        const data = {
-            body: JSON.stringify({ "query": query }),
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
+        const request = new XMLHttpRequest();
+        const data = { query };
+        request.open("POST", "/query", true);
+        request.setRequestHeader("Content-Type", "application/json");
+        request.send(JSON.stringify(data));
+
+        request.onload = function() {
+            if (request.status === 200 || request.status === 400) {
+                const data = JSON.parse(request.responseText);
+                fulfill(data);
+            } else {
+                reject(Error("an error occured!"));
             }
         }
-        fetch("/query", data).then( (data) => {
-            console.log(data);
-            fulfill(data);
-        }).catch( (err) => {
-            console.log(err);
-            reject(err);
-        });
+
+        request.onerror = function() {
+            reject(Error("an error occured!"));
+        }
     });
 };

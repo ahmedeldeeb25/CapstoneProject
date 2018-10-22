@@ -9,3 +9,16 @@
  */
 
 
+const button = document.querySelector("#submit-button");
+
+button.onclick = function() {
+    const query = CampusExplorer.buildQuery();
+    console.log(query);
+    CampusExplorer.sendQuery(query).then((data) => {
+        CampusExplorer.renderResult(data.body);
+    }).catch((err) => {
+        CampusExplorer.renderResult(err);
+    });
+}
+
+

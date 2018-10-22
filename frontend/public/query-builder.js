@@ -7,15 +7,16 @@
  */
 CampusExplorer.buildQuery = function() {
     let query = "";
-    const conditionType = document.querySelector("input[name='conditionType']:checked").value;
-    const rawFilters = document.querySelectorAll(".control-group.condition");
+    const activeForm = document.querySelector(".tab-panel.active").querySelector("form");
     const dataType = document.querySelector(".tab-panel.active").attributes.getNamedItem("data-type").value;
-    const rawTransformations = document.querySelectorAll(".control-group.transformation");
-    const rawOrders = document.querySelector(".order").querySelector("select").querySelectorAll("option[selected='selected']");
-    const direction = document.querySelector(".descending").querySelector("input[checked='checked']");
+    const conditionType = activeForm.querySelector("input[name='conditionType']:checked").value;
+    const rawFilters = activeForm.querySelectorAll(".control-group.condition");
+    const rawTransformations = activeForm.querySelectorAll(".control-group.transformation");
+    const rawOrders = activeForm.querySelector(".order").querySelector("select").querySelectorAll("option[selected='selected']");
+    const direction = activeForm.querySelector(".descending").querySelector("input[checked='checked']");
     const connector = HelperFunctions.getConditionType(conditionType);
-    const showCheckBoxes = document.querySelector(".columns").querySelector(".control-group").children;
-    const groupCheckBoxes = document.querySelector(".groups").querySelector(".control-group").children;
+    const showCheckBoxes = activeForm.querySelector(".columns").querySelector(".control-group").children;
+    const groupCheckBoxes = activeForm.querySelector(".groups").querySelector(".control-group").children;
     const transformations = HelperFunctions.getTransformations(rawTransformations);
     const show = HelperFunctions.getShowGroups("show", showCheckBoxes);
     const groups = HelperFunctions.getShowGroups("grouped by", groupCheckBoxes);
@@ -52,22 +53,19 @@ CampusExplorer.buildQuery = function() {
     }  else {
         query += ".";
     }
-    console.log("Connector is " + connector);
-    console.log("Filters are " + filters);
-    console.log("Show " + show);
-    console.log("Order " + order);
-    console.log("Groups: " + groups);
-    console.log("Transformations: " + transformations);
-    console.log(query);
     return query;
 };
 
 HelperFunctions =  {
     noneOfFollowing: false,
+    sKeys: ["Department", "ID", "Instructor", "Title", "UUID",
+        "FullName", "ShortName", "Number", "Name", "Address", "Type", "Furniture", "Link"],
     getConditionType: function(condition) {
         if (condition === "all") {
+            this.noneOfFollowing = false;
             return "and";
-        } else if (condition === "or" ){
+        } else if (condition === "any" ){
+            this.noneOfFollowing = false;
             return "or";
         } else {
             this.noneOfFollowing = true;
@@ -94,10 +92,13 @@ HelperFunctions =  {
             let operator = filter.querySelector(".operators").querySelector("select").value;
             operator = this.translateOperator(operator, not);
             let term = filter.querySelector(".term").querySelector("input").value;
+            if(this.sKeys.includes(field)) {
+                term = `"${term}"`;
+            }
             allFilters.push(field + " " + operator + " " + term);
         }
         if (this.noneOfFollowing) {
-            this.invertFilters(allFilters);
+            allFilters = this.invertFilters(allFilters);
         }
         if (allFilters.length > 0) {
             return allFilters.join(" " + condition + " ");
@@ -148,7 +149,7 @@ HelperFunctions =  {
             "year": "Year",
             "address": "Address",
             "fullname": "Full Name",
-            "Furniture": "Furniture",
+            "furniture": "Furniture",
             "href": "Link",
             "lat": "Latitude",
             "lon": "Longitude",

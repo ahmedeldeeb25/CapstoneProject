@@ -58,6 +58,7 @@
         "test": "mocha --full-trace -r ts-node/register test/**/*.ts --timeout 10000",
         "cover": "nyc --reporter text --reporter html yarn run test",
         "test:frontend": "karma start",
+        "test:backend": "mocha --full-trace -r ts-node/register --timeout 10000 'test/Server.spec.ts'",
         "start": "yarn build; node src/App.js"
     }
 }

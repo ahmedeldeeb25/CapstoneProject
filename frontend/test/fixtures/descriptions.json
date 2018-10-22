@@ -1,3 +1,10 @@
 {
-    "query1":"simple query is comparison for department with two columns and one order element"
+    "query1":"simple query is comparison for department with two columns and one order element",
+    "query2":"simple query",
+    "query3":"query with string",
+    "query4":"or query with string",
+    "query5":"not query all of the following gt and lt",
+    "query6": "",
+    "query7": "grouped by ID, with average AVG",
+    "query8": "complex rooms"
 }
