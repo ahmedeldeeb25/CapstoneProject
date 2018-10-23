@@ -79,7 +79,6 @@ export default class InsightFacade implements IInsightFacade {
                 await (promisify)(fs.unlink)(`./${id}.json`);
                 return Promise.resolve({ code: 204, body: null });
             } else {
-
                 return Promise.reject({ code: 404, body: { error: "dataset doesn't exist" } });
             }
         } catch (err) {
@@ -110,7 +109,15 @@ export default class InsightFacade implements IInsightFacade {
             try {
                 // await queryEngine.set_data();
                 // don't mess up the data that's cached!
-                const data = this.cache[dataset].slice();
+                let data: object[];
+                if (this.cache[dataset]) {
+                    data = this.cache[dataset].slice();
+                } else if (await (promisify)(fs.exists)(`./${dataset}.json`)) {
+                    data = JSON.parse(await (promisify)(fs.readFile)(`./${dataset}.json`, "utf-8"));
+                    this.cache[dataset] = data;
+                } else {
+                    throw Error("data not found");
+                }
                 queryEngine.data_setter(data);
                 result = queryEngine.query_data(queryAST.get_split_query());
             } catch (err) {

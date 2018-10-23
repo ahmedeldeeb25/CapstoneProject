@@ -89,7 +89,7 @@ describe("Facade D3", function () {
         try {
             return chai.request(URL)
                 .post("/query")
-                .send({ query: "In courses dataset courses, find all entries; show ID." })
+                .send(JSON.stringify({ query: "In courses dataset courses, find all entries; show ID." }))
                 .then(function (res: any) {
                     chai.expect(res.status).to.be.equal(200);
                 })
@@ -122,23 +122,23 @@ describe("Facade D3", function () {
         }
     });
 
-    it("DEL test for courses dataset", function () {
-        try {
-            return chai.request(URL)
-                .del("/dataset/courses")
-                .then(function (res: any) {
-                    chai.expect(res.status).to.be.equal(204);
-                })
-                .catch(function (err: any) {
-                    Log.test("Error occured" + err);
-                    throw Error("fail!");
-                });
+    // it("DEL test for courses dataset", function () {
+    //     try {
+    //         return chai.request(URL)
+    //             .del("/dataset/courses")
+    //             .then(function (res: any) {
+    //                 chai.expect(res.status).to.be.equal(204);
+    //             })
+    //             .catch(function (err: any) {
+    //                 Log.test("Error occured" + err);
+    //                 throw Error("fail!");
+    //             });
 
-        } catch (err) {
-            Log.test("Error occurred " + err);
-            throw Error("fail!");
-        }
-    });
+    //     } catch (err) {
+    //         Log.test("Error occurred " + err);
+    //         throw Error("fail!");
+    //     }
+    // });
 
     it("DEL test for nonexistent dataset", function () {
         try {

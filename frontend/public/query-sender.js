@@ -5,8 +5,6 @@
  * @returns {Promise} Promise that must be fulfilled if the Ajax request is successful and be rejected otherwise.
  */
 CampusExplorer.sendQuery = function(query) {
-    console.log(query);
-    console.log(typeof query);
     return new Promise(function(fulfill, reject) {
         const request = new XMLHttpRequest();
         request.open("POST", "/query", true);
