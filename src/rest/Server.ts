@@ -104,7 +104,6 @@ export default class Server {
                     let code: number;
                     try {
                         const query: string = req.body.query;
-                        Log.test(query);
                         response = await insightFacade.performQuery(query);
                         code = 200;
                     } catch (err) {
