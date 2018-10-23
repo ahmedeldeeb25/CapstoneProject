@@ -3,24 +3,24 @@ import Grouper from "../src/controller/queryEngine/groupResults";
 import Aggregator from "../src/controller/queryAST/Aggregation";
 import AggregateResults from "../src/controller/queryEngine/aggregateResults";
 import InsightFacade from "../src/controller/InsightFacade";
-import { promisify, inspect } from "util";
+import { promisify } from "util";
 import * as fs from "fs";
 import * as path from "path";
-import { InsightDatasetKind } from "../src/controller/IInsightFacade";
 
 describe("Grouper", () => {
     let coursesData: object[];
     before("load data if it doesn't exist", async () => {
-        const filename = path.join(__dirname, "..", "/src/data/courses.zip");
-        const insightFacade = new InsightFacade();
-        try {
-            const buffer: Buffer = await (promisify)(fs.readFile)(filename);
-            const content: string = buffer.toString("base64");
-            await insightFacade.addDataset("courses", content, InsightDatasetKind.Courses);
-            coursesData = insightFacade.get_cache()["courses"];
-        } catch (err) {
-            throw new Error("there was an error loading data");
-        }
+        // const filename = path.join(__dirname, "..", "/src/data/courses.zip");
+        // const insightFacade = new InsightFacade();
+        // try {
+            // const buffer: Buffer = await (promisify)(fs.readFile)(filename);
+            // const content: string = buffer.toString("base64");
+            // await insightFacade.addDataset("courses", content, InsightDatasetKind.Courses);
+            // coursesData = insightFacade.get_cache()["courses"];
+            // coursesData = JSON.parse(await (promisify)(fs.readFile)("./courses.json", "utf-8"));
+        // } catch (err) {
+        //     throw new Error("there was an error loading data");
+        // }
     });
 
     const data: object[] = [
@@ -105,15 +105,15 @@ describe("Grouper", () => {
         // Log.test(inspect(aggregator.aggregate(grouped)));
     });
 
-    it("Should group data in a timely manner", () => {
-        const grouper = new Grouper(data);
-        const results: {} = grouper.groupData(["courses_id"], coursesData);
-        // Log.test(inspect(results));
-    });
+    // it("Should group data in a timely manner", () => {
+    //     const grouper = new Grouper(data);
+    //     const results: {} = grouper.groupData(["courses_id"], coursesData);
+    //     // Log.test(inspect(results));
+    // });
 
-    it("Should group data in a timely manner", () => {
-        const grouper = new Grouper(data);
-        const results: {} = grouper.groupData(["courses_id", "courses_title"], coursesData);
-        // Log.test(inspect(results));
-    });
+    // it("Should group data in a timely manner", () => {
+    //     const grouper = new Grouper(data);
+    //     const results: {} = grouper.groupData(["courses_id", "courses_title"], coursesData);
+    //     // Log.test(inspect(results));
+    // });
 });

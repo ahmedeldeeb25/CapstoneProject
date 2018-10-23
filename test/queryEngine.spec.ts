@@ -206,10 +206,11 @@ describe("Course data", () => {
         const filename = path.join(__dirname, "..", "/src/data/courses.zip");
         const insightFacade = new InsightFacade();
         try {
-            const buffer: Buffer = await (promisify)(fs.readFile)(filename);
-            const content: string = buffer.toString("base64");
-            await insightFacade.addDataset("courses", content, InsightDatasetKind.Courses);
-            data = insightFacade.get_cache()["courses"];
+            // const buffer: Buffer = await (promisify)(fs.readFile)(filename);
+            // const content: string = buffer.toString("base64");
+            // await insightFacade.addDataset("courses", content, InsightDatasetKind.Courses);
+            // data = insightFacade.get_cache()["courses"];
+            data = JSON.parse(await (promisify)(fs.readFile)("./test/data/courses.json", "utf-8"));
         } catch (err) {
             throw new Error("there was an error loading data");
         }

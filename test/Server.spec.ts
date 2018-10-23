@@ -19,7 +19,7 @@ describe("Facade D3", function () {
         server = new Server(4321);
         try {
             roomsBuffer = await (promisify)(fs.readFile)("./test/data/rooms.zip");
-            coursesBuffer = await (promisify)(fs.readFile)("./test/data/courses.zip");
+            coursesBuffer = await (promisify)(fs.readFile)("./test/data/small_test.zip");
         } catch (err) {
             throw Error("Error occurred!" + err);
         }
@@ -43,8 +43,8 @@ describe("Facade D3", function () {
     it("PUT test for courses dataset", function () {
         try {
             return chai.request(URL)
-                .put("/dataset/courses/courses")
-                .attach("body", coursesBuffer, "courses.zip")
+                .put("/dataset/small_test/courses")
+                .attach("body", coursesBuffer, "small_test.zip")
                 .then(function (res: any) {
                     // some logging here please!
                     Log.test("Successfully added courses");
@@ -122,23 +122,23 @@ describe("Facade D3", function () {
         }
     });
 
-    // it("DEL test for courses dataset", function () {
-    //     try {
-    //         return chai.request(URL)
-    //             .del("/dataset/courses")
-    //             .then(function (res: any) {
-    //                 chai.expect(res.status).to.be.equal(204);
-    //             })
-    //             .catch(function (err: any) {
-    //                 Log.test("Error occured" + err);
-    //                 throw Error("fail!");
-    //             });
+    it("DEL test for courses dataset", function () {
+        try {
+            return chai.request(URL)
+                .del("/dataset/small_test")
+                .then(function (res: any) {
+                    chai.expect(res.status).to.be.equal(204);
+                })
+                .catch(function (err: any) {
+                    Log.test("Error occured" + err);
+                    throw Error("fail!");
+                });
 
-    //     } catch (err) {
-    //         Log.test("Error occurred " + err);
-    //         throw Error("fail!");
-    //     }
-    // });
+        } catch (err) {
+            Log.test("Error occurred " + err);
+            throw Error("fail!");
+        }
+    });
 
     it("DEL test for nonexistent dataset", function () {
         try {
