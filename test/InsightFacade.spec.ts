@@ -12,7 +12,6 @@ import { promisify } from "util";
 
 // This should match the JSON schema described in test/query.schema.json
 // except 'filename' which is injected when the file is read.
-// just adding a line of comment to have a new commit to see if ubcbot is still broken
 export interface ITestQuery {
     title: string;
     query: any;  // make any to allow testing structurally invalid queries

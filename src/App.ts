@@ -20,4 +20,5 @@ export class App {
 // This ends up starting the whole system and listens on a hardcoded port (4321)
 Log.info("App - starting");
 const app = new App();
-app.initServer(4321);
+const myPort = process.env.PORT || 4321;
+app.initServer(myPort as number);
