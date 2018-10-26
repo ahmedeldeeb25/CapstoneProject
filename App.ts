@@ -1,3 +1,4 @@
+import * as path from "path";
 import Server from "./src/rest/Server";
 import Log from "./src/Util";
 

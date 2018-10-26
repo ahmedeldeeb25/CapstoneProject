@@ -61,9 +61,8 @@ typings/
 **/.idea/workspace.xml
 **/.idea/tasks.xml
 
-src/*.js
+
 src/*.map
-src/**/*.js
 src/**/*.map
 test/*.js
 test/*.map

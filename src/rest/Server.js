@@ -10,8 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
 const restify = require("restify");
-const Util_1 = require("./src/Util");
-const InsightFacade_1 = require("./src/controller/InsightFacade");
+const Util_1 = require("../Util");
+const InsightFacade_1 = require("../controller/InsightFacade");
 const util_1 = require("util");
 class Server {
     constructor(port) {
