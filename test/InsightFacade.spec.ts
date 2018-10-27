@@ -11,6 +11,7 @@ import * as fs from "fs";
 import { promisify } from "util";
 
 // This should match the JSON schema described in test/query.schema.json
+// maybe autotest will work
 // except 'filename' which is injected when the file is read.
 export interface ITestQuery {
     title: string;
