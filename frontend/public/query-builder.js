@@ -86,7 +86,7 @@ HelperFunctions =  {
     getFilters: function(filters, condition){
         let allFilters = [];
         for (filter of filters) {
-            let not = filter.querySelector(".not:checked") ? "not" : "";
+            let not = filter.querySelector(".not input:checked") ? " not" : "";
             let field = filter.querySelector(".fields").querySelector("select").value;
             field = this.translateColumn(field);
             let operator = filter.querySelector(".operators").querySelector("select").value;

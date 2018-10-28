@@ -69,63 +69,50 @@ export default class Server {
                 that.rest.put("/dataset/:id/:kind", async (req, res, next) => {
                     const { id, kind } = req.params;
                     let response: InsightResponse;
-                    let code: number;
                     try {
                         const buffer: Buffer = await (promisify)(fs.readFile)(req.files.body.path);
                         const content: string = buffer.toString("base64");
                         response = await insightFacade.addDataset(id, content, kind);
-                        code = 204;
+
                     } catch (err) {
-                        Log.info("Error occurred " + inspect(err));
                         response = err;
-                        code = 400;
                     }
-                    res.json(code, response);
+                    res.json(response.code, response);
                     return next();
                 });
 
                 that.rest.del("/dataset/:id", async (req, res, next) => {
                     const id: string = req.params.id;
                     let response: InsightResponse;
-                    let code: number;
                     try {
                         response = await insightFacade.removeDataset(id);
-                        code = 204;
                     } catch (err) {
                         response = err;
-                        code = 404;
                     }
-                    res.json(code, response);
+                    res.json(response.code, response);
                     return next();
                 });
 
                 that.rest.post("/query", async (req, res, next) => {
                     let response: InsightResponse;
-                    let code: number;
                     try {
                         const query: string = req.body;
                         response = await insightFacade.performQuery(query);
-                        code = 200;
                     } catch (err) {
                         response = err;
-                        code = 400;
                     }
-                    res.json(code, response);
+                    res.json(response.code, response);
                     return next();
                 });
 
                 that.rest.get("/datasets", async (req, res, next) => {
-                    let code: number;
                     let response: InsightResponse;
-                    Log.info("GET DATASETS");
                     try {
                         response = await insightFacade.listDatasets();
-                        code = 200;
                     } catch (err) {
                         response = err;
-                        code = 400;
                     }
-                    res.json(code, response);
+                    res.json(response.code, response);
                     return next();
                 });
 
