@@ -1,9 +1,9 @@
 {
-    "query1": { "query": "In courses dataset courses, find entries whose Department is \"cpsc\"; show Department and ID; sort in ascending order by ID." },
-    "query2": { "query" : "In courses dataset courses, find entries whose Audit is equal to 2; show Audit and ID." },
-    "query3": { "query" : "In courses dataset courses, find entries whose Audit is equal to 2 and Department is \"math\"; show Audit and ID and Title." },
-    "query4": { "query" : "In courses dataset courses, find entries whose Audit is equal to 2 or Department is \"math\"; show Audit and ID and Title; sort in ascending order by Fail." },
-    "query5": { "query" : "In courses dataset courses, find entries whose Audit is greater than 10 and Department is \"math\" and Average is less than 76; show Audit and ID and Title; sort in ascending order by Fail." },
-    "query7": { "query" : "In courses dataset courses grouped by ID, find entries whose ID is 400; show Average and ID and Instructor and Title and avg, where avg is the AVG of Average; sort in descending order by ID." },
-    "query8": { "query" : "In rooms dataset rooms grouped by Latitude and Short Name, find all entries; show Longitude and Short Name and fgdfg, where fgdfg is the COUNT of Address; sort in ascending order by Full Name." }
+    "query1": "In courses dataset courses, find entries whose Department is \"cpsc\"; show Department and ID; sort in ascending order by ID.",
+    "query2":  "In courses dataset courses, find entries whose Audit is equal to 2; show Audit and ID.",
+    "query3":  "In courses dataset courses, find entries whose Audit is equal to 2 and Department is \"math\"; show Audit and ID and Title.",
+    "query4":  "In courses dataset courses, find entries whose Audit is equal to 2 or Department is \"math\"; show Audit and ID and Title; sort in ascending order by Fail.",
+    "query5":  "In courses dataset courses, find entries whose Audit is greater than 10 and Department is \"math\" and Average is less than 76; show Audit and ID and Title; sort in ascending order by Fail." ,
+    "query7":  "In courses dataset courses grouped by ID, find entries whose ID is 400; show Average and ID and Instructor and Title and avg, where avg is the AVG of Average; sort in descending order by ID." ,
+    "query8":  "In rooms dataset rooms grouped by Latitude and Short Name, find all entries; show Longitude and Short Name and fgdfg, where fgdfg is the COUNT of Address; sort in ascending order by Full Name."
 }

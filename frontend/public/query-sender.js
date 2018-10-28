@@ -8,8 +8,7 @@ CampusExplorer.sendQuery = function(query) {
     return new Promise(function(fulfill, reject) {
         const request = new XMLHttpRequest();
         request.open("POST", "/query", true);
-        request.setRequestHeader("Content-Type", "application/json");
-        request.send(JSON.stringify(query));
+        request.send(query);
         request.onload = function() {
             if (request.status === 200 || request.status === 400) {
                 const data = JSON.parse(request.responseText);

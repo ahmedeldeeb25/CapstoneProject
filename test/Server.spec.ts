@@ -89,7 +89,8 @@ describe("Facade D3", function () {
         try {
             return chai.request(URL)
                 .post("/query")
-                .send(JSON.stringify({ query: "In courses dataset courses, find all entries; show ID." }))
+                .set("Content-Type", "application/json")
+                .send(JSON.stringify("In courses dataset courses, find all entries; show ID."))
                 .then(function (res: any) {
                     chai.expect(res.status).to.be.equal(200);
                 })
@@ -108,7 +109,8 @@ describe("Facade D3", function () {
         try {
             return chai.request(URL)
                 .post("/query")
-                .send({ query: "How now brown cow?" })
+                .set("Content-Type", "application/json")
+                .send(JSON.stringify("How now brown cow?"))
                 .then(function (res: any) {
                     throw Error("unexpected!");
                 })

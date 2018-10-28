@@ -103,8 +103,7 @@ export default class Server {
                     let response: InsightResponse;
                     let code: number;
                     try {
-                        // work around to get tests to pass for front end
-                        const query: string = JSON.parse(req.body).query;
+                        const query: string = req.body;
                         response = await insightFacade.performQuery(query);
                         code = 200;
                     } catch (err) {

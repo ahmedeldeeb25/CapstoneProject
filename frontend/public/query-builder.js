@@ -53,7 +53,7 @@ CampusExplorer.buildQuery = function() {
     }  else {
         query += ".";
     }
-    return JSON.stringify({ query });
+    return query;
 };
 
 HelperFunctions =  {
